@@ -92,9 +92,29 @@
 			<version>1.2.47</version>
 		</dependency>
 
+		<!--支持热部署-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
+		</dependency>
     </dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<!--json的配置文件会和编译后的class文件放在一起-->
+					<include>**/*.json</include>
+				</includes>
+			</resource>
+			<resource>
+				<!--加载配置的资源-->
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import static com.sun.xml.internal.stream.writers.XMLStreamWriterImpl.UTF_8;
 
 /**
+ * 该控制器提供数据匿名化接口
  * @Author CLD
  * @Date 2018/3/29 10:35
  **/
