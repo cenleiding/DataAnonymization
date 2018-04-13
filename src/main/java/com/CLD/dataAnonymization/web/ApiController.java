@@ -33,10 +33,12 @@ public class ApiController {
     @RequestMapping(value = "/SafeHarbor",method = RequestMethod.POST)
     public JSONArray SafeHarbor(HttpServletRequest req) throws IOException {
         ArrayList<ArrayList<String>> list=dataParseService.requestDataToArrayList(req);
+
         if(list==null)
             return JSON.parseArray(ErrorDataSource);
         JSONArray jsonArray=dataParseService.ArrayListToJsonArray(list);
         return jsonArray;
     }
+
 
 }

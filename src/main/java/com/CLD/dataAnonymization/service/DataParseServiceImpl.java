@@ -33,21 +33,34 @@ public class DataParseServiceImpl implements DataParseService {
                 sb.append(line);
             }
             String reqBody = URLDecoder.decode(sb.toString(), UTF_8);
-            JSONArray jsonArray = com.alibaba.fastjson.JSON.parseArray(reqBody);
-            for(int i=0;i<jsonArray.size();i++){
-               JSONObject jsonObject=jsonArray.getJSONObject(i);
-               if(i==0){
-                   for(String key:jsonObject.keySet())
-                       singleList.add(key);
-                   outList.add((ArrayList<String>) singleList.clone());
-                   singleList.clear();
-               }
-               for(Object value:jsonObject.values())
-                   singleList.add(value.toString());
-               outList.add((ArrayList<String>) singleList.clone());
-               singleList.clear();
+            if(reqBody.charAt(0)=='['){
+                JSONArray jsonArray = com.alibaba.fastjson.JSON.parseArray(reqBody);
+                for(int i=0;i<jsonArray.size();i++){
+                    JSONObject jsonObject=jsonArray.getJSONObject(i);
+                    if(i==0){
+                        for(String key:jsonObject.keySet())
+                            singleList.add(key);
+                        outList.add((ArrayList<String>) singleList.clone());
+                        singleList.clear();
+                    }
+                    for(Object value:jsonObject.values())
+                        singleList.add(value.toString());
+                    outList.add((ArrayList<String>) singleList.clone());
+                    singleList.clear();
+                }
+            }else{
+                JSONObject jsonObject= JSON.parseObject(reqBody);
+                for(String key:jsonObject.keySet())
+                    singleList.add(key);
+                outList.add((ArrayList<String>) singleList.clone());
+                singleList.clear();
+                for(Object value:jsonObject.values())
+                    singleList.add(value.toString());
+                outList.add((ArrayList<String>) singleList.clone());
+                singleList.clear();
             }
-            System.out.println(req.getRemoteAddr()+": 数据转换完毕...开始匿名化");
+
+            System.out.println(req.getRemoteAddr()+": 数据转换完毕");
         } catch (Exception e) {
             return null;
         }
