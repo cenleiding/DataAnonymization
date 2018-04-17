@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 该控制器用于控制隐私字段的查询，修改。
@@ -32,6 +35,7 @@ public class PrivacyFieldController {
     @Autowired
     private PrivacyFieldService privacyFieldService;
 
+    ReadWriteLock readWriteLock=new ReentrantReadWriteLock();
 
     @RequestMapping(value = "/PrivacyFieldModify",method = RequestMethod.GET)
     public String viewOfPrivacyFieldModify(){
@@ -51,8 +55,17 @@ public class PrivacyFieldController {
      */
     @RequestMapping(value = "/getPrivacyField",method = RequestMethod.GET)
     @ResponseBody
-    public JSONArray getPrivacyField(HttpServletRequest request) throws FileNotFoundException {
-        return privacyFieldService.getPrivaryFields();
+    public JSONArray getPrivacyField(HttpServletRequest request) throws  FileNotFoundException {
+        readWriteLock.readLock().lock();
+        JSONArray jsonArray = null;
+        try {
+            jsonArray = privacyFieldService.getPrivaryFields();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            readWriteLock.readLock().unlock();
+            return jsonArray;
+        }
     }
 
     /**
@@ -63,12 +76,22 @@ public class PrivacyFieldController {
     @RequestMapping(value = "/getFieldOverView",method = RequestMethod.GET)
     @ResponseBody
     public JSONObject getFieldOverView() throws FileNotFoundException {
-        return privacyFieldService.getOrganizedFields();
+        readWriteLock.readLock().lock();
+        JSONObject jsonObject=null;
+        try {
+            jsonObject = privacyFieldService.getOrganizedFields();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            readWriteLock.readLock().unlock();
+            return jsonObject;
+        }
     }
 
     @RequestMapping(value = "/updataFields",method = RequestMethod.POST)
     @ResponseBody
-    public JSONArray updataFields(@RequestBody JSONArray jsonArray) throws FileNotFoundException, UnsupportedEncodingException {
+    public JSONArray updataFields(@RequestBody JSONArray jsonArray) throws  UnsupportedEncodingException{
+        readWriteLock.writeLock().lock();
         JSONArray out=new JSONArray();
         ArrayList<String> arrayList=privacyFieldService.checkFields(jsonArray);
         if(arrayList.size()!=0){
@@ -76,8 +99,14 @@ public class PrivacyFieldController {
                 out.add(s+"：数据类型冲突\r\n");
             return out;
         }
-        Boolean b=privacyFieldService.updataFieldFile(jsonArray);
-        out.add("更新成功");
+        try{
+            Boolean b=privacyFieldService.updataFieldFile(jsonArray);
+            out.add("更新成功");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
         return out;
     }
 }

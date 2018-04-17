@@ -104,7 +104,7 @@ public class Unstructured {
             Matcher m1=p1.matcher(m.group());
             m1.find();
             info.add(m1.group().replace(" ", ""));
-            data=data.replace(m.group(), "Ôð ÈÎ »¤ Ê¦: ***");
+            data=data.replace(m.group(), "责 任 护 师: ***");
         }
         //上级医师
         p=Pattern.compile("上\\s*级\\s*医\\s*师\\s*[:|：]\\s*[\\u4e00-\\u9fa5]*");
@@ -124,7 +124,7 @@ public class Unstructured {
             Matcher m1=p1.matcher(m.group());
             m1.find();
             info.add(m1.group().replace(" ", ""));
-            data=data.replace(m.group(), "Ö÷ ¹Ü Ò½ Ê¦: ***");
+            data=data.replace(m.group(), "主 管 医 师: ***");
         }
         //病房
         p=Pattern.compile("病\\s*房\\s*[:|：]\\S*");
@@ -142,9 +142,12 @@ public class Unstructured {
         p=Pattern.compile("出\\s*生\\s*地\\s*[:|：]\\s*[\\u4e00-\\u9fa5]*");
         m=p.matcher(data);
         while(m.find()){
+            Pattern p1=Pattern.compile("\\s*[\\u4e00-\\u9fa5]*$");
+            Matcher m1=p1.matcher(m.group());
+            m1.find();
             String value="";
             for(int k=0;k<address.size();k++){
-                if(data.indexOf(address.getString(k))!=-1)
+                if(m1.group().indexOf(address.getString(k))!=-1)
                     value+=address.getString(k);
             }
             data=data.replace(m.group(),  "出 生 地 ："+value);

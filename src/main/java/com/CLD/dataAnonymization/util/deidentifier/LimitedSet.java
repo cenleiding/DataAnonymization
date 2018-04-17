@@ -2,34 +2,30 @@ package com.CLD.dataAnonymization.util.deidentifier;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.JSONReader;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Pattern;
 
 /**
- * 此类对数据按照《安全屋》标准进行处理
+ * 该类对数据按照《有限数据集》标准处理
  * @Author CLD
- * @Date 2018/4/12 10:36
+ * @Date 2018/4/13 10:09
  **/
-public class SafeHarbor {
+public class LimitedSet {
 
     /**
      * @param data               待处理数据
      * @param removeField        直接移除类字段
      * @param dateField          时间类型字段
      * @param geographicField    地理类型字段
-     * @param middleField        按出现频率处理字段
      * @param unstructuredField  非结构化类型字段
      * @return
      */
     public ArrayList<ArrayList<String>> identity(
             ArrayList<ArrayList<String>>data,ArrayList<String> removeField,
             ArrayList<String> dateField,ArrayList<String> geographicField,
-            ArrayList<String> middleField,ArrayList<String> unstructuredField ) throws FileNotFoundException {
+            ArrayList<String> unstructuredField ) throws FileNotFoundException {
         if(data.isEmpty()) return data;
         ArrayList<ArrayList<String>> deleteInfo=new ArrayList<ArrayList<String>>();//用于记录删除的信息
         for (int i = 0; i < data.size(); i++) deleteInfo.add(new ArrayList<String>());
@@ -47,10 +43,10 @@ public class SafeHarbor {
             }
         }
 
-        //处理时间数据
+        //处理时间数据,保留年月日
         set.clear();
         set.addAll(dateField);
-        int year=Calendar.getInstance().get(Calendar.YEAR);
+        int year= Calendar.getInstance().get(Calendar.YEAR);
         Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*[\\.]?[\\d]*$");
         String format = "yyyy-MM-dd";
         for(int i=0;i<data.get(0).size();i++){
@@ -90,18 +86,7 @@ public class SafeHarbor {
                         data.get(j).set(i,n+"-"+y+"-"+r);
                     }
 
-                    String[] time = null;
-                    if(data.get(j).get(i).indexOf("-")!=-1)
-                        time=data.get(j).get(i).split("-");
-                    else if(data.get(j).get(i).indexOf("/")!=-1)
-                        time=data.get(j).get(i).split("/");
-                    else if(data.get(j).get(i).indexOf("年")!=-1)
-                        time=data.get(j).get(i).split("年");
-                    else continue;
-
-                    int y=Integer.parseInt(time[0]);
-                    if((year-y)>89) data.get(j).set(i, "大于90年");
-                    else data.get(j).set(i, time[0]);
+                    data.get(j).set(i,data.get(j).get(i).split(" ")[0]);
                 }
             }
         }
@@ -112,6 +97,7 @@ public class SafeHarbor {
         String URL =this.getClass().getResource("/").getPath()+ "com/CLD/dataAnonymization/util/deidentifier/Resources/Address.json";
         JSONObject jsonObject=FileResolve.readAddress(URL);
         JSONArray address=jsonObject.getJSONArray("BigCity");
+        address.addAll(jsonObject.getJSONArray("SmallCity"));
         String value;
         pattern=Pattern.compile("[0-9]+");//判断是否为邮编
         for(int i=0;i<data.get(0).size();i++){
@@ -134,35 +120,6 @@ public class SafeHarbor {
             }
         }
 
-        //处理hard_middle信息，将频率小于5%的隐去
-        set.clear();
-        set.addAll(middleField);
-        Map<String,Integer> map=new HashMap<String,Integer>();
-        int num;
-        for(int i=0;i<data.get(0).size();i++) {
-            if (set.contains(data.get(0).get(i).toLowerCase()
-                    .replace("_", "")
-                    .replace("-", "_"))) {
-                map.clear();
-                for(int j=1;j<data.size();j++){
-                    if ((data.get(j).get(i) != null) && (!data.get(j).get(i).equals("")))
-                        if(map.keySet().contains(data.get(j).get(i)))
-                            map.put(data.get(j).get(i),map.get(data.get(j).get(i))+1);
-                        else map.put(data.get(j).get(i),1);
-                }
-                num=0;
-                for(String s:map.keySet()) num+=map.get(s);
-                for(int j=1;j<data.size();j++){
-                    if ((data.get(j).get(i) != null) && (!data.get(j).get(i).equals(""))){
-                     if(map.get(data.get(j).get(i))/num<0.02){
-                         deleteInfo.get(j).add(data.get(j).get(i));
-                         data.get(j).set(i,"***");
-                     }
-                    }
-                }
-            }
-        }
-
         //处理非结构化数据
         set.clear();
         set.addAll(unstructuredField);
@@ -180,8 +137,5 @@ public class SafeHarbor {
 
         return data;
     }
-
-
-
 
 }

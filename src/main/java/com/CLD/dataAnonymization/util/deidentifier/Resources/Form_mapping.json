@@ -76,6 +76,18 @@
 				"type":"Health_Plan_Beneficiary_Numbers"
 			},
 			{
+				"Database_field":"DemographicDetails_BirthData_CountryOfBirth_Code",
+				"English_field":"CountryOfBirthCode",
+				"Chinese_field":"出生地址-国代码",
+				"type":"Other_Middle"
+			},
+			{
+				"Database_field":"DemographicDetails_BirthData_CountryOfBirth_Name",
+				"English_field":"CountryOfBirth",
+				"Chinese_field":"出生地址-国",
+				"type":"Other_Middle"
+			},
+			{
 				"Database_field":"DemographicDetails_BirthData_BirthAddressDescription",
 				"English_field":"BirthAddress",
 				"Chinese_field":"出生地址",
@@ -95,15 +107,21 @@
 			},
 			{
 				"Database_field":"DemographicDetails_DeathData_DeathDate",
-				"English_field":"DeathDate",
+				"English_field":"DeadDate",
 				"Chinese_field":"死亡时间",
 				"type":"Date"
 			},
 			{
 				"Database_field":"DemographicDetails_DeathData_Country_Code",
-				"English_field":"DeathDate",
-				"Chinese_field":"死亡时间",
-				"type":"Date"
+				"English_field":"CountryOfDeathCode",
+				"Chinese_field":"死亡地址-国代码",
+				"type":"Other_Middle"
+			},
+			{
+				"Database_field":"DemographicDetails_DeathData_Country_Name",
+				"English_field":"CountryOfDeath",
+				"Chinese_field":"死亡地址-国",
+				"type":"Other_Middle"
 			},
 			{
 				"Database_field":"DemographicDetails_DeathData_CityTownLocality_Code",

@@ -16,8 +16,10 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,6 +44,33 @@ public class FileResolve {
         ArrayList<String[]> dataList=new ArrayList<String[]>();
         ArrayList<ArrayList<String>> outlist=new ArrayList<ArrayList<String>>();
         CsvReader reader = new CsvReader(csvFilePath, ',', Charset.forName("utf-8"));
+        reader.readHeaders();
+        dataList.add(reader.getHeaders());
+        while (reader.readRecord()) {
+            dataList.add(reader.getValues());
+        }
+        for (int i = 0; i < dataList.size(); i++) {
+            ArrayList<String> list=new ArrayList<String>();
+            for(int j=0;j<dataList.get(i).length;j++)
+                list.add(dataList.get(i)[j]);
+            outlist.add(list);
+        }
+        reader.close();
+        return outlist;
+    }
+
+    /**
+     * CSV读入,二维表单输出
+     *
+     * @param inputStream
+     * @return
+     * @throws Exception
+     * @throws Exception
+     */
+    public static ArrayList<ArrayList<String>> readerCsv(InputStream inputStream) throws Exception {
+        ArrayList<String[]> dataList=new ArrayList<String[]>();
+        ArrayList<ArrayList<String>> outlist=new ArrayList<ArrayList<String>>();
+        CsvReader reader = new CsvReader(inputStream, ',', Charset.forName("utf-8"));
         reader.readHeaders();
         dataList.add(reader.getHeaders());
         while (reader.readRecord()) {
@@ -92,11 +121,22 @@ public class FileResolve {
      */
     @SuppressWarnings({ "deprecation", "resource" })
     public static  ArrayList<ArrayList<ArrayList<String>>> readerXls(String xlsFilepath) throws Exception{
+        return readerXls(new FileInputStream(xlsFilepath));
+    }
+
+    /**
+     *  XLS读入,三维表单输出
+     *
+     * @param inputStream
+     * @return
+     * @throws Exception
+     */
+    @SuppressWarnings({ "deprecation", "resource" })
+    public static  ArrayList<ArrayList<ArrayList<String>>> readerXls(InputStream inputStream) throws Exception{
         ArrayList<ArrayList<ArrayList<String>>> worklist=new ArrayList<ArrayList<ArrayList<String>>>();
         ArrayList<ArrayList<String>> sheetname=new ArrayList<ArrayList<String>>();
         ArrayList<String> name=new ArrayList<String>();
-        FileInputStream is=new FileInputStream(xlsFilepath);
-        HSSFWorkbook workbook=new HSSFWorkbook(is);
+        HSSFWorkbook workbook=new HSSFWorkbook(inputStream);
         int sheetnum=workbook.getNumberOfSheets();
         for(int i=0;i<sheetnum;i++){
             HSSFSheet sheet=workbook.getSheetAt(i);
@@ -155,29 +195,36 @@ public class FileResolve {
         }
         sheetname.add(name);
         worklist.add(sheetname);
-        is.close();
+        inputStream.close();
         return worklist;
+    }
+
+    /**
+     *  XLS读入,三维表单输出
+     *
+     * @param xlsFilepath
+     * @return
+     * @throws Exception
+     */
+    @SuppressWarnings({ "deprecation", "resource" })
+    public static  ArrayList<ArrayList<ArrayList<String>>> readerXlsx(String xlsFilepath) throws Exception{
+        return readerXlsx(new FileInputStream(xlsFilepath));
     }
 
     /**
      * XLSX输入,三维表单输出
      *
-     * @param xlsxFilepath
+     * @param inputStream
      * @return
      * @throws Exception
      * @throws Exception
      */
     @SuppressWarnings({ "resource", "deprecation" })
-    public static ArrayList<ArrayList<ArrayList<String>>> readerXlsx(String xlsxFilepath) throws Exception {
+    public static ArrayList<ArrayList<ArrayList<String>>> readerXlsx(InputStream inputStream) throws Exception {
         ArrayList<ArrayList<ArrayList<String>>> worklist=new ArrayList<ArrayList<ArrayList<String>>>();
         ArrayList<ArrayList<String>> sheetname=new ArrayList<ArrayList<String>>();
         ArrayList<String> name=new ArrayList<String>();
-        InputStream is=null;
-        if(xlsxFilepath.equals("Attributes.xlsx")||xlsxFilepath.equals("Address.xlsx"))
-            is=FileResolve.class.getResourceAsStream(xlsxFilepath);
-        else
-            is=new FileInputStream(xlsxFilepath);
-        XSSFWorkbook workbook=new XSSFWorkbook(is);
+        XSSFWorkbook workbook=new XSSFWorkbook(inputStream);
         int sheetnum=workbook.getNumberOfSheets();
         for(int i=0;i<sheetnum;i++){
             XSSFSheet sheet=workbook.getSheetAt(i);
@@ -236,7 +283,7 @@ public class FileResolve {
         }
         sheetname.add(name);
         worklist.add(sheetname);
-        is.close();
+        inputStream.close();
         return worklist;
     }
 
@@ -266,12 +313,12 @@ public class FileResolve {
                 }
                 continue;
             }
-            for (int i = 0; i <outdata.get(k).get(0).size(); i++)
+            for (int i = 0; i <outdata.get(k).size(); i++)
             {
                 row = sheet.createRow(i);
-                for(int j=0;j<outdata.get(k).size();j++)
+                for(int j=0;j<outdata.get(k).get(0).size();j++)
                 {
-                    row.createCell(j).setCellValue(outdata.get(k).get(j).get(i));
+                    row.createCell(j).setCellValue(outdata.get(k).get(i).get(j));
                 }
                 try {
                     FileOutputStream fout=new FileOutputStream(path);
@@ -313,12 +360,12 @@ public class FileResolve {
                 }
                 continue;
             }
-            for (int i = 0; i <outdata.get(k).get(0).size(); i++)
+            for (int i = 0; i <outdata.get(k).size(); i++)
             {
                 row = sheet.createRow(i);
-                for(int j=0;j<outdata.get(k).size();j++)
+                for(int j=0;j<outdata.get(k).get(0).size();j++)
                 {
-                    row.createCell(j).setCellValue(outdata.get(k).get(j).get(i));
+                    row.createCell(j).setCellValue(outdata.get(k).get(i).get(j));
                 }
                 try {
                     FileOutputStream fout=new FileOutputStream(path);
@@ -365,5 +412,71 @@ public class FileResolve {
         return outJson;
     }
 
+
+    /**
+     * 生成文件夹
+     * @param path
+     * @throws UnsupportedEncodingException
+     */
+    public static void createFile(String path) throws UnsupportedEncodingException{
+        path= URLDecoder.decode(path, "utf-8");
+        File tempfile = new File(path);
+        if (!tempfile.exists()) {
+            System.out.println(path+"目录不存在，需要创建");
+            System.out.println(tempfile.mkdirs());
+        }
+    }
+
+
+
+    /**
+     * 存储 文件
+     * @param file
+     * @param path
+     * @throws UnsupportedEncodingException
+     */
+    public static void saveFile(MultipartFile file, String path) throws UnsupportedEncodingException{
+        path=URLDecoder.decode(path, "utf-8");
+        try {
+            InputStream in = file.getInputStream();
+            FileOutputStream out = new FileOutputStream(path);
+            byte buffer[] = new byte[4*1024];
+            int len = 0;
+            while((len=in.read(buffer))>0){
+                out.write(buffer, 0, len);
+            }
+            in.close();
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *删除文件夹
+     * @param path
+     */
+    public static void deleteFile(String path) throws UnsupportedEncodingException{
+        path=URLDecoder.decode(path, "utf-8");
+        File file=new File(path);
+        deleteFile(file);
+    }
+    private static void deleteFile(File file) {
+        if (file.exists()) {//判断文件是否存在
+            if (file.isFile()) {//判断是否是文件
+                file.delete();//删除文件
+            } else if (file.isDirectory()) {//否则如果它是一个目录
+                File[] files = file.listFiles();//声明目录下所有的文件 files[];
+                for (int i = 0;i < files.length;i ++) {//遍历目录下所有的文件
+                    deleteFile(files[i]);//把每个文件用这个方法进行迭代
+                }
+                file.delete();//删除文件夹
+            }
+        } else {
+            System.out.println("所删除的文件不存在");
+        }
+    }
 
 }

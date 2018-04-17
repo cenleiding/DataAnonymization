@@ -42,7 +42,7 @@ public class PrivacyFieldServiceImpl implements PrivacyFieldService {
     }
 
     @Override
-    public JSONObject getOrganizedFields(JSONArray jsonArray) throws FileNotFoundException {
+    public JSONObject getOrganizedFields(JSONArray jsonArray) {
         HashMap<String, HashSet<String>> out=new HashMap<String,HashSet<String>>();
         out.put("Names",new HashSet<>());
         out.put("Geographic",new HashSet<>());
@@ -81,7 +81,7 @@ public class PrivacyFieldServiceImpl implements PrivacyFieldService {
     }
 
     @Override
-    public ProcessingFields getProcessingFields(JSONObject jsonObject) throws FileNotFoundException {
+    public ProcessingFields getProcessingFields(JSONObject jsonObject) {
         jsonObject=ToStandard(jsonObject);
         ProcessingFields processingFields=new ProcessingFields();
         for(String key:jsonObject.keySet()){
@@ -102,17 +102,22 @@ public class PrivacyFieldServiceImpl implements PrivacyFieldService {
     }
 
     @Override
-    public ProcessingFields getProcessingFields(JSONArray jsonArray) throws FileNotFoundException {
+    public ProcessingFields getProcessingFields(JSONArray jsonArray) {
         return getProcessingFields(getOrganizedFields(jsonArray));
     }
 
     @Override
-    public ArrayList<String> checkFields(JSONArray jsonArray) throws FileNotFoundException {
+    public ProcessingFields getProcessingFields() throws FileNotFoundException {
+        return getProcessingFields(getOrganizedFields());
+    }
+
+    @Override
+    public ArrayList<String> checkFields(JSONArray jsonArray) {
         return checkFields(getProcessingFields(jsonArray));
     }
 
     @Override
-    public ArrayList<String> checkFields(ProcessingFields processingFields) throws FileNotFoundException {
+    public ArrayList<String> checkFields(ProcessingFields processingFields)  {
         Set set=new HashSet();
         ArrayList<String> arrayList=new ArrayList<String>();
         for(String s:processingFields.getUnstructured()){
@@ -148,7 +153,6 @@ public class PrivacyFieldServiceImpl implements PrivacyFieldService {
         String URL =this.getClass().getResource("/").getPath()+ "com/CLD/dataAnonymization/util/deidentifier/Resources/Form_mapping_2.json";
         String path= URLDecoder.decode(URL, "utf-8");
         System.out.println(path);
-        System.out.println("开始保存");
         try {
             InputStream in =new ByteArrayInputStream(jsonArray.toJSONString().getBytes(StandardCharsets.UTF_8));
             FileOutputStream out = new FileOutputStream(path);
@@ -166,7 +170,7 @@ public class PrivacyFieldServiceImpl implements PrivacyFieldService {
             e.printStackTrace();
             return false;
         }
-        System.out.println("保存成功");
+        System.out.println("Form_mapping:保存成功");
         return true;
     }
 

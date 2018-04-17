@@ -44,7 +44,7 @@ public interface PrivacyFieldService {
      * @param jsonObject 整理后的字段
      * @return
      */
-    public ProcessingFields getProcessingFields(JSONObject jsonObject) throws FileNotFoundException;
+    public ProcessingFields getProcessingFields(JSONObject jsonObject);
 
     /**
      * 此方法用于获取用于处理的匿名字段
@@ -52,19 +52,27 @@ public interface PrivacyFieldService {
      * @param jsonArray 原始字段
      * @return
      */
-    public ProcessingFields getProcessingFields(JSONArray jsonArray) throws FileNotFoundException;
+    public ProcessingFields getProcessingFields(JSONArray jsonArray);
+
+    /**
+     * 此方法用于获取用于处理的匿名字段
+     * 按照处理要求6种分类
+     * @param
+     * @return
+     */
+    public ProcessingFields getProcessingFields() throws FileNotFoundException;
 
     /**
      * 此方法用于检查匿名字段是否可行
      * @return
      */
-    public ArrayList<String> checkFields(JSONArray jsonArray) throws FileNotFoundException;
+    public ArrayList<String> checkFields(JSONArray jsonArray);
 
     /**
      * 此方法用于检查匿名字段是否可行
      * @return
      */
-    public ArrayList<String> checkFields(ProcessingFields processingFields) throws FileNotFoundException;
+    public ArrayList<String> checkFields(ProcessingFields processingFields);
 
     /**
      * 此方法用于更新匿名字段映射表

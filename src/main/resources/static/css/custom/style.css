@@ -1,0 +1,176 @@
+.navbar-nav li:hover, .navbar-nav li.active{
+	border-bottom : #C4E17F 3px solid;
+	background : #e7e7e7;
+}
+
+.navbar-logo{
+	height: 38px;
+}
+
+.navbar-logo-small{
+	height: 30px;
+}
+
+.padding-top-120{
+	padding-top: 120px;
+}
+
+.btn-link{
+	padding: 0px;
+}
+
+.divider-short{
+	display: block;
+	width: 60px;
+	height: 1px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	background: #000;
+}
+
+
+@font-face {font-family: 'webfont';
+    src: url('font/webfont.eot'); /* IE9*/
+    src: url('font/webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('font/webfont.woff') format('woff'), /* chrome、firefox */
+    url('font/webfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('font/webfont.svg#webfont') format('svg'); /* iOS 4.1- */
+}
+
+body{
+	font-size: 14px;
+	line-height: 1.2;
+	font-family: "webfont" !important;
+}
+
+.navbar-custom{
+	-webkit-box-shadow: 0 1px 6px rgba(0,0,0,.2);
+}
+
+.web-font{
+    font-family:"webfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.no-padding-right{
+	padding-right: 0px;
+}
+
+.panel-body .form-horizontal .form-group{
+	margin-bottom: 3px;
+}
+
+.panel-body .form-horizontal .form-group .form-control{
+	border: none;
+	border-bottom: 1px solid;
+	border-radius: 0px;
+	background: #fff;
+	padding-bottom: 0px;
+	height: 23px;
+	box-shadow: none;
+}
+
+.panel-body .form-horizontal .form-group .form-control[disabled]{
+	cursor: text;
+	border: none;
+}
+
+@media (min-width: 768px){}
+	.form-horizontal .control-label{
+		text-align: left;
+	}
+td.details-control {
+   background: url('../../img/details_open.png') no-repeat center center;
+   cursor: pointer;
+}
+tr.shown td.details-control {
+   background: url('../../img/details_close.png') no-repeat center center;
+}
+table.dataTable tbody tr.selected {
+    background-color: #B0BED9;
+}
+.mask {  
+      position: absolute; top: 0px; filter: alpha(opacity=60); background-color: #777;     
+      z-index: 1002; left: 0px;     
+      opacity:0.5; -moz-opacity:0.5;    
+      display: flex;justify-content: center;align-items: center;
+      width: 100%;  height: 100%;
+ }   
+.over-zone {
+   border: 2px dashed lavender;
+   height: 100px;
+   padding: 4px;
+} 
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    /* 20px */
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    /* 10px 20px */
+}
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+    /* pointer-events: none; */
+    /* in case of FastClick lib use */
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    /* 4px */
+    margin-right: 0.25em;
+    /* 4px */
+}
+/* style 1 */
+
+.inputfile-1 + label {
+    color: #f1e5e6;
+    background-color: #337ab7;
+}
+
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+    background-color: #2e6da4;
+}
+/* style 2 */
+
+.inputfile-2 + label {
+    color: #337ab7;
+    border: 2px solid currentColor;
+}
+
+.inputfile-2:focus + label,
+.inputfile-2.has-focus + label,
+.inputfile-2 + label:hover {
+    color: #722040;
+}
+
+
+
