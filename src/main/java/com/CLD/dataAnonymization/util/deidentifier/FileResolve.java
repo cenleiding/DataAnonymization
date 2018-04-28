@@ -119,10 +119,14 @@ public class FileResolve {
      * @return
      * @throws Exception
      */
-    @SuppressWarnings({ "deprecation", "resource" })
-    public static  ArrayList<ArrayList<ArrayList<String>>> readerXls(String xlsFilepath) throws Exception{
-        return readerXls(new FileInputStream(xlsFilepath));
-    }
+//    @SuppressWarnings({ "deprecation", "resource" })
+//    public static  ArrayList<ArrayList<ArrayList<String>>> readerXls(String xlsFilepath) throws Exception{
+//        return readerXls(new FileInputStream(xlsFilepath));
+//    }
+      public static  ArrayList<ArrayList<ArrayList<String>>> readerXls(String xlsFilepath) throws IOException {
+          XlsStreamingReader xlsStreamingReader=new XlsStreamingReader(xlsFilepath);
+          return xlsStreamingReader.getData();
+      }
 
     /**
      *  XLS读入,三维表单输出
@@ -131,84 +135,91 @@ public class FileResolve {
      * @return
      * @throws Exception
      */
-    @SuppressWarnings({ "deprecation", "resource" })
-    public static  ArrayList<ArrayList<ArrayList<String>>> readerXls(InputStream inputStream) throws Exception{
-        ArrayList<ArrayList<ArrayList<String>>> worklist=new ArrayList<ArrayList<ArrayList<String>>>();
-        ArrayList<ArrayList<String>> sheetname=new ArrayList<ArrayList<String>>();
-        ArrayList<String> name=new ArrayList<String>();
-        HSSFWorkbook workbook=new HSSFWorkbook(inputStream);
-        int sheetnum=workbook.getNumberOfSheets();
-        for(int i=0;i<sheetnum;i++){
-            HSSFSheet sheet=workbook.getSheetAt(i);
-            name.add(sheet.getSheetName());
-            ArrayList<ArrayList<String>> sheetList=new ArrayList<ArrayList<String>>();
-            for (int rowNum=0;rowNum<=sheet.getLastRowNum();rowNum++){
-                HSSFRow row=sheet.getRow(rowNum);
-                if(row!=null){
-                    int mincell=row.getFirstCellNum();
-                    int maxcell=row.getLastCellNum();
-                    ArrayList<String> rowList=new ArrayList<String>();
-                    for (int cellNum=mincell;cellNum<maxcell;cellNum++){
-                        HSSFCell cell=row.getCell(cellNum);
-                        String value = "";
-                        if (cell != null) {
-                            switch (cell.getCellType()) {
-                                case Cell.CELL_TYPE_STRING:
-                                    value = cell.getStringCellValue();
-                                    break;
-                                case Cell.CELL_TYPE_NUMERIC:
-                                    if (DateUtil.isCellDateFormatted(cell)) {
-                                        Date date = cell.getDateCellValue();
-                                        if (date != null) {
-                                            value = new SimpleDateFormat("yyyy-MM-dd")
-                                                    .format(date);
-                                        } else {
-                                            value = "";
-                                        }
-                                    } else {
-                                        java.text.NumberFormat nf = java.text.NumberFormat.getInstance();
-                                        nf.setGroupingUsed(false);
-                                        value =nf.format(cell.getNumericCellValue());
-                                    }
-                                    break;
-                                case Cell.CELL_TYPE_FORMULA:
-                                    value = "";
-                                    break;
-                                case Cell.CELL_TYPE_BLANK:
-                                    break;
-                                case Cell.CELL_TYPE_ERROR:
-                                    value = "";
-                                    break;
-                                case Cell.CELL_TYPE_BOOLEAN:
-                                    value = (cell.getBooleanCellValue() == true ? "Y":"N");
-                                    break;
-                                default:
-                                    value = "";
-                            }
-                        }
-                        rowList.add(value);
-                    }
-                    sheetList.add(rowList);
-                }
-            }
-            worklist.add(sheetList);
-        }
-        sheetname.add(name);
-        worklist.add(sheetname);
-        inputStream.close();
-        return worklist;
+//    @SuppressWarnings({ "deprecation", "resource" })
+//    public static  ArrayList<ArrayList<ArrayList<String>>> readerXls(InputStream inputStream) throws Exception{
+//        ArrayList<ArrayList<ArrayList<String>>> worklist=new ArrayList<ArrayList<ArrayList<String>>>();
+//        ArrayList<ArrayList<String>> sheetname=new ArrayList<ArrayList<String>>();
+//        ArrayList<String> name=new ArrayList<String>();
+//        HSSFWorkbook workbook=new HSSFWorkbook(inputStream);
+//        int sheetnum=workbook.getNumberOfSheets();
+//        for(int i=0;i<sheetnum;i++){
+//            HSSFSheet sheet=workbook.getSheetAt(i);
+//            name.add(sheet.getSheetName());
+//            ArrayList<ArrayList<String>> sheetList=new ArrayList<ArrayList<String>>();
+//            for (int rowNum=0;rowNum<=sheet.getLastRowNum();rowNum++){
+//                HSSFRow row=sheet.getRow(rowNum);
+//                if(row!=null){
+//                    int mincell=row.getFirstCellNum();
+//                    int maxcell=row.getLastCellNum();
+//                    ArrayList<String> rowList=new ArrayList<String>();
+//                    for (int cellNum=mincell;cellNum<maxcell;cellNum++){
+//                        HSSFCell cell=row.getCell(cellNum);
+//                        String value = "";
+//                        if (cell != null) {
+//                            switch (cell.getCellType()) {
+//                                case Cell.CELL_TYPE_STRING:
+//                                    value = cell.getStringCellValue();
+//                                    break;
+//                                case Cell.CELL_TYPE_NUMERIC:
+//                                    if (DateUtil.isCellDateFormatted(cell)) {
+//                                        Date date = cell.getDateCellValue();
+//                                        if (date != null) {
+//                                            value = new SimpleDateFormat("yyyy-MM-dd")
+//                                                    .format(date);
+//                                        } else {
+//                                            value = "";
+//                                        }
+//                                    } else {
+//                                        java.text.NumberFormat nf = java.text.NumberFormat.getInstance();
+//                                        nf.setGroupingUsed(false);
+//                                        value =nf.format(cell.getNumericCellValue());
+//                                    }
+//                                    break;
+//                                case Cell.CELL_TYPE_FORMULA:
+//                                    value = "";
+//                                    break;
+//                                case Cell.CELL_TYPE_BLANK:
+//                                    break;
+//                                case Cell.CELL_TYPE_ERROR:
+//                                    value = "";
+//                                    break;
+//                                case Cell.CELL_TYPE_BOOLEAN:
+//                                    value = (cell.getBooleanCellValue() == true ? "Y":"N");
+//                                    break;
+//                                default:
+//                                    value = "";
+//                            }
+//                        }
+//                        rowList.add(value);
+//                    }
+//                    sheetList.add(rowList);
+//                }
+//            }
+//            worklist.add(sheetList);
+//        }
+//        sheetname.add(name);
+//        worklist.add(sheetname);
+//        inputStream.close();
+//        return worklist;
+//    }
+    public static  ArrayList<ArrayList<ArrayList<String>>> readerXls(InputStream inputStream) throws IOException {
+        XlsStreamingReader xlsStreamingReader=new XlsStreamingReader(inputStream);
+        return xlsStreamingReader.getData();
     }
-
     /**
-     *  XLS读入,三维表单输出
+     *  XLSX读入,三维表单输出
      *
      * @param xlsFilepath
      * @return
      * @throws Exception
      */
-    @SuppressWarnings({ "deprecation", "resource" })
+//    @SuppressWarnings({ "deprecation", "resource" })
+//    public static  ArrayList<ArrayList<ArrayList<String>>> readerXlsx(String xlsFilepath) throws Exception{
+//        return readerXlsx(new FileInputStream(xlsFilepath));
+//    }
     public static  ArrayList<ArrayList<ArrayList<String>>> readerXlsx(String xlsFilepath) throws Exception{
-        return readerXlsx(new FileInputStream(xlsFilepath));
+        XlsxStreamingReader xlsxStreamingReader=new XlsxStreamingReader(xlsFilepath);
+        return  xlsxStreamingReader.getData();
     }
 
     /**
@@ -219,72 +230,77 @@ public class FileResolve {
      * @throws Exception
      * @throws Exception
      */
-    @SuppressWarnings({ "resource", "deprecation" })
+//    @SuppressWarnings({ "resource", "deprecation" })
+//    public static ArrayList<ArrayList<ArrayList<String>>> readerXlsx(InputStream inputStream) throws Exception {
+//        ArrayList<ArrayList<ArrayList<String>>> worklist=new ArrayList<ArrayList<ArrayList<String>>>();
+//        ArrayList<ArrayList<String>> sheetname=new ArrayList<ArrayList<String>>();
+//        ArrayList<String> name=new ArrayList<String>();
+//        XSSFWorkbook workbook=new XSSFWorkbook(inputStream);
+//        int sheetnum=workbook.getNumberOfSheets();
+//        for(int i=0;i<sheetnum;i++){
+//            XSSFSheet sheet=workbook.getSheetAt(i);
+//            name.add(sheet.getSheetName());
+//            ArrayList<ArrayList<String>> sheetList=new ArrayList<ArrayList<String>>();
+//            for (int rowNum=0;rowNum<=sheet.getLastRowNum();rowNum++){
+//                XSSFRow row=sheet.getRow(rowNum);
+//                if(row!=null){
+//                    int mincell=row.getFirstCellNum();
+//                    int maxcell=row.getLastCellNum();
+//                    ArrayList<String> rowList=new ArrayList<String>();
+//                    for (int cellNum=mincell;cellNum<maxcell;cellNum++){
+//                        XSSFCell cell=row.getCell(cellNum);
+//                        String value = "";
+//                        if (cell != null) {
+//                            switch (cell.getCellType()) {
+//                                case Cell.CELL_TYPE_STRING:
+//                                    value = cell.getStringCellValue();
+//                                    break;
+//                                case Cell.CELL_TYPE_NUMERIC:
+//                                    if (DateUtil.isCellDateFormatted(cell)) {
+//                                        Date date = cell.getDateCellValue();
+//                                        if (date != null) {
+//                                            value = new SimpleDateFormat("yyyy-MM-dd")
+//                                                    .format(date);
+//                                        } else {
+//                                            value = "";
+//                                        }
+//                                    } else {
+//                                        java.text.NumberFormat nf = java.text.NumberFormat.getInstance();
+//                                        nf.setGroupingUsed(false);
+//                                        value =nf.format(cell.getNumericCellValue());
+//                                    }
+//                                    break;
+//                                case Cell.CELL_TYPE_FORMULA:
+//                                    value = "";
+//                                    break;
+//                                case Cell.CELL_TYPE_BLANK:
+//                                    break;
+//                                case Cell.CELL_TYPE_ERROR:
+//                                    value = "";
+//                                    break;
+//                                case Cell.CELL_TYPE_BOOLEAN:
+//                                    value = (cell.getBooleanCellValue() == true ? "Y":"N");
+//                                    break;
+//                                default:
+//                                    value = "";
+//                            }
+//                        }
+//                        rowList.add(value);
+//                    }
+//                    sheetList.add(rowList);
+//                }
+//            }
+//            worklist.add(sheetList);
+//        }
+//        sheetname.add(name);
+//        worklist.add(sheetname);
+//        inputStream.close();
+//        return worklist;
+//    }
+
     public static ArrayList<ArrayList<ArrayList<String>>> readerXlsx(InputStream inputStream) throws Exception {
-        ArrayList<ArrayList<ArrayList<String>>> worklist=new ArrayList<ArrayList<ArrayList<String>>>();
-        ArrayList<ArrayList<String>> sheetname=new ArrayList<ArrayList<String>>();
-        ArrayList<String> name=new ArrayList<String>();
-        XSSFWorkbook workbook=new XSSFWorkbook(inputStream);
-        int sheetnum=workbook.getNumberOfSheets();
-        for(int i=0;i<sheetnum;i++){
-            XSSFSheet sheet=workbook.getSheetAt(i);
-            name.add(sheet.getSheetName());
-            ArrayList<ArrayList<String>> sheetList=new ArrayList<ArrayList<String>>();
-            for (int rowNum=0;rowNum<=sheet.getLastRowNum();rowNum++){
-                XSSFRow row=sheet.getRow(rowNum);
-                if(row!=null){
-                    int mincell=row.getFirstCellNum();
-                    int maxcell=row.getLastCellNum();
-                    ArrayList<String> rowList=new ArrayList<String>();
-                    for (int cellNum=mincell;cellNum<maxcell;cellNum++){
-                        XSSFCell cell=row.getCell(cellNum);
-                        String value = "";
-                        if (cell != null) {
-                            switch (cell.getCellType()) {
-                                case Cell.CELL_TYPE_STRING:
-                                    value = cell.getStringCellValue();
-                                    break;
-                                case Cell.CELL_TYPE_NUMERIC:
-                                    if (DateUtil.isCellDateFormatted(cell)) {
-                                        Date date = cell.getDateCellValue();
-                                        if (date != null) {
-                                            value = new SimpleDateFormat("yyyy-MM-dd")
-                                                    .format(date);
-                                        } else {
-                                            value = "";
-                                        }
-                                    } else {
-                                        java.text.NumberFormat nf = java.text.NumberFormat.getInstance();
-                                        nf.setGroupingUsed(false);
-                                        value =nf.format(cell.getNumericCellValue());
-                                    }
-                                    break;
-                                case Cell.CELL_TYPE_FORMULA:
-                                    value = "";
-                                    break;
-                                case Cell.CELL_TYPE_BLANK:
-                                    break;
-                                case Cell.CELL_TYPE_ERROR:
-                                    value = "";
-                                    break;
-                                case Cell.CELL_TYPE_BOOLEAN:
-                                    value = (cell.getBooleanCellValue() == true ? "Y":"N");
-                                    break;
-                                default:
-                                    value = "";
-                            }
-                        }
-                        rowList.add(value);
-                    }
-                    sheetList.add(rowList);
-                }
-            }
-            worklist.add(sheetList);
-        }
-        sheetname.add(name);
-        worklist.add(sheetname);
-        inputStream.close();
-        return worklist;
+        XlsxStreamingReader xlsxStreamingReader=new XlsxStreamingReader(inputStream);
+        return  xlsxStreamingReader.getData();
     }
 
     /**
@@ -300,7 +316,7 @@ public class FileResolve {
         HSSFWorkbook wb = new HSSFWorkbook();
         for(int k=0;k<outdata.size()-1;k++){
             String name=outdata.get(outdata.size()-1).get(0).get(k);
-            HSSFSheet sheet = wb.createSheet(name+"(匿)");
+            HSSFSheet sheet = wb.createSheet(name);
             HSSFRow row = sheet.createRow(0);
             if(outdata.get(k).isEmpty()){//处理空页
                 try {
@@ -342,77 +358,48 @@ public class FileResolve {
      * @return
      * @throws IOException
      */
+//    public static boolean writerXlsx(String path,ArrayList<ArrayList<ArrayList<String>>> outdata) throws IOException{
+//        boolean isSuccess=true;
+//        XSSFWorkbook wb = new XSSFWorkbook();
+//        for(int k=0;k<outdata.size()-1;k++){
+//            String name=outdata.get(outdata.size()-1).get(0).get(k);
+//            XSSFSheet sheet = wb.createSheet(name);
+//            XSSFRow row = sheet.createRow(0);
+//            if(outdata.get(k).isEmpty()){//处理空页
+//                try {
+//                    FileOutputStream fout=new FileOutputStream(path);
+//                    wb.write(fout);
+//                    fout.close();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                    isSuccess=false;
+//                }
+//                continue;
+//            }
+//            for (int i = 0; i <outdata.get(k).size(); i++)
+//            {
+//                row = sheet.createRow(i);
+//                for(int j=0;j<outdata.get(k).get(0).size();j++)
+//                {
+//                    row.createCell(j).setCellValue(outdata.get(k).get(i).get(j));
+//                }
+//                try {
+//                    FileOutputStream fout=new FileOutputStream(path);
+//                    wb.write(fout);
+//                    fout.close();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                    isSuccess=false;
+//                }
+//            }
+//        }
+//        wb.close();
+//        return isSuccess;
+//    }
     public static boolean writerXlsx(String path,ArrayList<ArrayList<ArrayList<String>>> outdata) throws IOException{
-        boolean isSuccess=true;
-        XSSFWorkbook wb = new XSSFWorkbook();
-        for(int k=0;k<outdata.size()-1;k++){
-            String name=outdata.get(outdata.size()-1).get(0).get(k);
-            XSSFSheet sheet = wb.createSheet(name+"(匿)");
-            XSSFRow row = sheet.createRow(0);
-            if(outdata.get(k).isEmpty()){//处理空页
-                try {
-                    FileOutputStream fout=new FileOutputStream(path);
-                    wb.write(fout);
-                    fout.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    isSuccess=false;
-                }
-                continue;
-            }
-            for (int i = 0; i <outdata.get(k).size(); i++)
-            {
-                row = sheet.createRow(i);
-                for(int j=0;j<outdata.get(k).get(0).size();j++)
-                {
-                    row.createCell(j).setCellValue(outdata.get(k).get(i).get(j));
-                }
-                try {
-                    FileOutputStream fout=new FileOutputStream(path);
-                    wb.write(fout);
-                    fout.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    isSuccess=false;
-                }
-            }
-        }
-        wb.close();
-        return isSuccess;
+        XlsxStreamingWriter xlsxStreamingWriter=new XlsxStreamingWriter(outdata,path);
+        return xlsxStreamingWriter.writer();
     }
-
-    /**
-     * 读取字段映射表
-     * @param path
-     * @return JSONArray
-     */
-    public static JSONArray readFormMapping(String path) throws FileNotFoundException {
-        JSONArray outJson=new JSONArray();
-        JSONReader reader=new JSONReader(new FileReader(path));
-        reader.startArray();
-        while(reader.hasNext()) {
-            JSONObject ja= (JSONObject) reader.readObject();
-            outJson.add(ja);
-        }
-        reader.endArray();
-        reader.close();
-        return outJson;
-    }
-
-    /**
-     * 读取地理信息表
-     * @param path
-     * @return JSONObject
-     */
-    public static JSONObject readAddress(String path) throws FileNotFoundException {
-        JSONObject outJson=new JSONObject();
-        JSONReader reader=new JSONReader(new FileReader(path));
-        outJson= (JSONObject) reader.readObject();
-        reader.close();
-        return outJson;
-    }
-
-
     /**
      * 生成文件夹
      * @param path
@@ -430,7 +417,7 @@ public class FileResolve {
 
 
     /**
-     * 存储 文件
+     * 存储文件
      * @param file
      * @param path
      * @throws UnsupportedEncodingException
@@ -478,5 +465,6 @@ public class FileResolve {
             System.out.println("所删除的文件不存在");
         }
     }
+
 
 }

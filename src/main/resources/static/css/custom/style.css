@@ -89,9 +89,6 @@ td.details-control {
 tr.shown td.details-control {
    background: url('../../img/details_close.png') no-repeat center center;
 }
-table.dataTable tbody tr.selected {
-    background-color: #B0BED9;
-}
 .mask {  
       position: absolute; top: 0px; filter: alpha(opacity=60); background-color: #777;     
       z-index: 1002; left: 0px;     

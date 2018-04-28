@@ -11,11 +11,10 @@ app.controller("privacyFieldModifyCtrl", function($scope,$http,$timeout,$q) {
             "Database_field": "--",
             "English_field": "--",
             "Chinese_field": "--",
-            "type": "--",
+            "type": "--"
         }];
     $scope.selectedTemp_fiedlds=["字段1","字段2","字段3","字段4"];
 
-    var editor=new $.fn.dataTable.Editor();
     var table=$('#tempdata').DataTable();
 
 
@@ -23,7 +22,7 @@ app.controller("privacyFieldModifyCtrl", function($scope,$http,$timeout,$q) {
     (function () {
         $http({
             method:'GET',
-            url:"/PrivacyField/getPrivacyField",
+            url:"/getPrivacyField",
         }).then(function successCallback(response) {
             $scope.fields=response.data;
         }, function errorCallback(response) {
@@ -66,7 +65,7 @@ app.controller("privacyFieldModifyCtrl", function($scope,$http,$timeout,$q) {
     $scope.updateFields=function(){
         $http({
             method:'POST',
-            url:"/PrivacyField/updataFields",
+            url:"/updataFields",
             data:$scope.fields,
         }).then(function successCallback(response) {
             alert(response.data);
@@ -78,6 +77,31 @@ app.controller("privacyFieldModifyCtrl", function($scope,$http,$timeout,$q) {
 
      //重画datatables
      var datatableDraw =function(){
+
+         var editor = new $.fn.dataTable.Editor( {
+             data:  $scope.data,
+             table: "#tempdata",
+             fields: [ {
+                 label: "数据库字段：",
+                 name: "Database_field"
+             }, {
+                 label: "英文字段：",
+                 name: "English_field"
+             }, {
+                 label: "中文字段：",
+                 name: "Chinese_field"
+             }, {
+                 label: "数据类型：",
+                 name: "type",
+                 type:"select",
+                 options : [ 'Names', 'Geographic','Date','Telephone_Numbers','Fax_Numbers','Email_Addresses',
+                     'Social_Security_Numbers','Medical_Record_Numbers','Health_Plan_Beneficiary_Numbers',
+                     'Account_Numbers','Certificate_License_Numbers','Vehicle_Identifiers','Device_Identifiers',
+                     'Url','Ip','Biometric_Identifiers','Photographs','Other_Hard','Other_Middle','Other_Soft','Unstructured_Data']
+             }
+             ]
+         } );
+
          table.clear();
          table.destroy();
          table=$('#tempdata').DataTable( {
@@ -109,29 +133,6 @@ app.controller("privacyFieldModifyCtrl", function($scope,$http,$timeout,$q) {
              ]
          } );
 
-         editor = new $.fn.dataTable.Editor( {
-             data:  $scope.data,
-             table: "#tempdata",
-             fields: [ {
-                 label: "数据库字段：",
-                 name: "Database_field"
-             }, {
-                 label: "英文字段：",
-                 name: "English_field"
-             }, {
-                 label: "中文字段：",
-                 name: "Chinese_field"
-             }, {
-                 label: "数据类型：",
-                 name: "type",
-                 type:"select",
-                 options : [ 'Names', 'Geographic','Date','Telephone_Numbers','Fax_Numbers','Email_Addresses',
-                             'Social_Security_Numbers','Medical_Record_Numbers','Health_Plan_Beneficiary_Numbers',
-                             'Account_Numbers','Certificate_License_Numbers','Vehicle_Identifiers','Device_Identifiers',
-                             'Url','Ip','Biometric_Identifiers','Photographs','Other_Hard','Other_Middle','Other_Soft','Unstructured_Data']
-             }
-             ]
-         } );
 
          $('#tempdata').on( 'click', 'tbody td:not(:first-child)', function (e) {
              editor.inline( this,{

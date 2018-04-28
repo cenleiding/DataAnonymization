@@ -1,10 +1,10 @@
 package com.CLD.dataAnonymization.util.deidentifier;
 
-import com.CLD.dataAnonymization.model.ProcessingFields;
-import com.CLD.dataAnonymization.service.PrivacyFieldService;
-import com.CLD.dataAnonymization.service.PrivacyFieldServiceImpl;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 /**
@@ -17,48 +17,22 @@ public class IOConfiguration {
 
     /**用于外部调用安全屋方法
      * @param data
-     * @param fields
      * @return
      * @throws FileNotFoundException
      */
-    public static ArrayList<ArrayList<String>> ToSafeHarbor(ArrayList<ArrayList<String>> data, ProcessingFields fields) throws FileNotFoundException {
+    public static ArrayList<ArrayList<String>> ToSafeHarbor(ArrayList<ArrayList<String>> data) throws FileNotFoundException, UnsupportedEncodingException {
+        JSONObject fields=FieldHandle.readFormMappingProcessed();
         SafeHarbor safeHarbor=new SafeHarbor();
-        ArrayList<String> removeField=fields.getSensitive();
-        removeField.addAll(fields.getOther_soft());
-        data=safeHarbor.identity(data,removeField,fields.getDate(),fields.getGeographic(),
-                                 fields.getOther_middle(),fields.getUnstructured());
+        ArrayList<String> removeField=jsonArrayToArrayList(fields.getJSONArray("Sensitive"));
+        removeField.addAll(jsonArrayToArrayList(fields.getJSONArray("Other_Soft")));
+        data=safeHarbor.identity(data,removeField,
+                jsonArrayToArrayList(fields.getJSONArray("Date")),
+                jsonArrayToArrayList(fields.getJSONArray("Geographic")),
+                jsonArrayToArrayList(fields.getJSONArray("Other_Middle")),
+                jsonArrayToArrayList(fields.getJSONArray("Unstructured_Data")));
         return data;
     }
 
-    /**用于外部调用安全屋方法
-     * @param data
-     * @param data
-     * @return
-     * @throws FileNotFoundException
-     */
-    public static ArrayList<ArrayList<String>> ToSafeHarbor(ArrayList<ArrayList<String>> data) throws FileNotFoundException {
-        PrivacyFieldService privacyFieldService=new PrivacyFieldServiceImpl();
-        ProcessingFields fields= privacyFieldService.getProcessingFields();
-        SafeHarbor safeHarbor=new SafeHarbor();
-        ArrayList<String> removeField=fields.getSensitive();
-        removeField.addAll(fields.getOther_soft());
-        data=safeHarbor.identity(data,removeField,fields.getDate(),fields.getGeographic(),
-                fields.getOther_middle(),fields.getUnstructured());
-        return data;
-    }
-
-    /**
-     * 用于外部调用有限数据集方法
-     * @param data
-     * @param fields
-     * @return
-     * @throws FileNotFoundException
-     */
-    public static ArrayList<ArrayList<String>> ToLimitedSet(ArrayList<ArrayList<String>> data, ProcessingFields fields) throws FileNotFoundException {
-        LimitedSet limitedSet=new LimitedSet();
-        data=limitedSet.identity(data,fields.getSensitive(),fields.getDate(),fields.getGeographic(),fields.getUnstructured());
-        return data;
-    }
 
     /**
      * 用于外部调用有限数据集方法
@@ -67,12 +41,29 @@ public class IOConfiguration {
      * @return
      * @throws FileNotFoundException
      */
-    public static ArrayList<ArrayList<String>> ToLimitedSet(ArrayList<ArrayList<String>> data) throws FileNotFoundException {
-        PrivacyFieldService privacyFieldService=new PrivacyFieldServiceImpl();
-        ProcessingFields fields= privacyFieldService.getProcessingFields();
+    public static ArrayList<ArrayList<String>> ToLimitedSet(ArrayList<ArrayList<String>> data) throws FileNotFoundException, UnsupportedEncodingException {
+        JSONObject fields=FieldHandle.readFormMappingProcessed();
         LimitedSet limitedSet=new LimitedSet();
-        data=limitedSet.identity(data,fields.getSensitive(),fields.getDate(),fields.getGeographic(),fields.getUnstructured());
+        data=limitedSet.identity(data,
+                jsonArrayToArrayList(fields.getJSONArray("Sensitive")),
+                jsonArrayToArrayList(fields.getJSONArray("Date")),
+                jsonArrayToArrayList(fields.getJSONArray("Geographic")),
+                jsonArrayToArrayList(fields.getJSONArray("Unstructured_Data")));
         return data;
+    }
+
+    /**
+     * 用于jsonArray与ArrayList之间的转换
+     * @param jsonArray
+     * @return
+     */
+    private static ArrayList<String> jsonArrayToArrayList(JSONArray jsonArray){
+        ArrayList<String> out=new ArrayList<String>();
+        if(jsonArray==null) return out;
+        for(int i=0;i<jsonArray.size();i++){
+            out.add(jsonArray.getString(i));
+        }
+        return out;
     }
 
 }

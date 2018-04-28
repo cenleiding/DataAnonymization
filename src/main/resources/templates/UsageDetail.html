@@ -13,17 +13,22 @@
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/metisMenu.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" >
     <link href="/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/css/custom/style.css" rel="stylesheet">
+    <link href="/css/jquery.dataTables.css" rel="stylesheet" type="text/css" >
     <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-select.min.js"></script>
+    <script src="/js/jquery.dataTables.js"></script>
     <script src="/js/metisMenu.min.js"></script>
     <script src="/js/sb-admin-2.js"></script>
     <script src="/js/highcharts.js"></script>
     <script src="/js/highcharts-zh_CN.js"></script>
     <script src="/js/angular.min.js"></script>
-    <script src="/js/custom/UsageOverView.js"></script>
+    <script src="/js/custom/UsageDetail.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -115,15 +120,30 @@
     </nav>
 
     <!-- Page Content -->
-    <div data-ng-app="usageOverViewApp" data-ng-controller="usageOverViewCtrl"  id="page-wrapper">
+    <div data-ng-app="usageDetailApp" data-ng-controller="usageDetailCtrl"  id="page-wrapper">
         <div class="container-fluid">
+            <h1 class="page-header">使用细节</h1>
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">使用总览</h1>
-                    <h4 style="padding-left: 40px;padding-top: 20px">API使用总次数：{{usenum}}</h4>
-                    <h4 style="padding-left: 40px;padding-top: 20px">API使用用户：{{usernum}}</h4>
-                    <br><br><br>
-                    <div id="container" style="min-width:400px;height:600px"></div>
+                    <label style="font-size:15px;">用户选择:</label>
+                    <select id="Select" class="selectpicker" data-width="200PX" > </select>
+                    <div class="row" style="margin-top: 100px">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-7">
+                            <table class="table display" id="list-table" width="700px">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>使用时间</th>
+                                    <th>数据条数</th>
+                                    <th>匿名方式</th>
+                                    <th>字段</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="col-lg-3"></div>
+                    </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

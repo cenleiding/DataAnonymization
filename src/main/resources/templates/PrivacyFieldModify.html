@@ -11,24 +11,25 @@
 
     <title>数据匿名中心</title>
 
-    <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
     <link href="/css/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
     <link href="/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!--可编辑表格-->
+    <link href="/css/font-awesome.min.css" rel="stylesheet" >
     <link href="/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="/css/buttons.dataTables.min.css" rel="stylesheet">
     <link href="/css/select.dataTables.min.css" rel="stylesheet">
     <link href="/css/editor.dataTables.min.css" rel="stylesheet">
 
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/metisMenu.min.js"></script>
+    <script src="/js/sb-admin-2.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.buttons.min.js"></script>
+    <script src="/js/dataTables.select.min.js"></script>
+    <script src="/js/dataTables.editor.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/custom/PrivacyFieldModify.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -51,7 +52,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">医疗数据匿名化中心 v1.0</a>
+            <a class="navbar-brand" href="#">医疗数据匿名化中心 v1.0</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -67,7 +68,7 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -104,10 +105,10 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>&nbsp;字段维护<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/PrivacyField/PrivacyFieldOverView"><span class="glyphicon glyphicon-tags"></span>&nbsp;字段总览</a>
+                                <a href="/PrivacyFieldOverView"><span class="glyphicon glyphicon-tags"></span>&nbsp;字段总览</a>
                             </li>
                             <li>
-                                <a href="/PrivacyField/PrivacyFieldModify"><span class="glyphicon glyphicon-tag"></span>&nbsp;字段修改</a>
+                                <a href="/PrivacyFieldModify"><span class="glyphicon glyphicon-tag"></span>&nbsp;字段修改</a>
                             </li>
                         </ul>
                     </li>
@@ -132,23 +133,15 @@
                 </div>
             </div>
                     <div class="row">
-                        <div class="col-lg-1"><h4>模板列表：</h4></div>
-                        <div class="col-lg-5">
+                        <div class="col-lg-1"><h4>数据库表列表：</h4></div>
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <select multiple class="form-control" style="min-height:230px;width:650px;">
                                     <option data-ng-repeat="x in fields" ng-dblclick="selectTemp(x.form_name_CH,x.form_name)">{{x.form_name_CH}}：{{x.form_name}}</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-2 text-right"><h4>模板字段：</h4></div>
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <select multiple class="form-control" style="min-height:230px;width:250px;">
-                                    <option data-ng-repeat="x in selectedTemp_fiedlds">{{x}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-1"></div>
+                        <div class="col-lg-5 text-right"></div>
                     </div>
                     <hr>
                     <div class="row">
@@ -159,9 +152,9 @@
                                 <thead>
                                 <tr>
                                     <th></th>
+                                    <th>数据库字段</th>
                                     <th>英文字段</th>
                                     <th>中文字段</th>
-                                    <th>数据库字段</th>
                                     <th>数据类型</th>
                                 </tr>
                                 </thead>
@@ -176,28 +169,5 @@
 
 
 </div>
-<!-- /#wrapper -->
-
-<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="/js/metisMenu.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="/js/sb-admin-2.js"></script>
-
-<!--可编辑表格-->
-<script src="/js/jquery.dataTables.min.js"></script>
-<script src="/js/dataTables.buttons.min.js"></script>
-<script src="/js/dataTables.select.min.js"></script>
-<script src="/js/dataTables.editor.min.js"></script>
-
-<script src="/js/angular.min.js"></script>
-<script src="/js/custom/privacyFieldModify.js"></script>
 </body>
-
 </html>

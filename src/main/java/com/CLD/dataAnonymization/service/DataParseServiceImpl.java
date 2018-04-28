@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 
-import static com.sun.xml.internal.stream.writers.XMLStreamWriterImpl.UTF_8;
+
 
 /**
  * 该类用于对数据结构进行解析，进行数据格式之间的转换。
@@ -26,13 +26,13 @@ public class DataParseServiceImpl implements DataParseService {
         ArrayList<ArrayList<String>> outList=new ArrayList<ArrayList<String>>();
         ArrayList<String> singleList=new ArrayList<String>();
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
+            BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream(),"UTF-8"));
             String line = null;
             StringBuilder sb = new StringBuilder();
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
-            String reqBody = URLDecoder.decode(sb.toString(), UTF_8);
+            String reqBody = URLDecoder.decode(sb.toString(), "utf-8");
             if(reqBody.charAt(0)=='['){
                 JSONArray jsonArray = com.alibaba.fastjson.JSON.parseArray(reqBody);
                 for(int i=0;i<jsonArray.size();i++){

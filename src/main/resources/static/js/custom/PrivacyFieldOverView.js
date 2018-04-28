@@ -31,7 +31,7 @@ app.controller("privacyFieldOverViewCtrl", function($scope,$http,$timeout,$q) {
     (function () {
         $http({
             method:'GET',
-            url:"/PrivacyField/getFieldOverView",
+            url:"/getFieldOverView",
         }).then(function successCallback(response) {
             fields=response.data;
             num=0;

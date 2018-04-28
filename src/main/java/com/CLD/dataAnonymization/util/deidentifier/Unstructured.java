@@ -8,6 +8,7 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.regex.Matcher;
@@ -20,9 +21,8 @@ import java.util.regex.Pattern;
  **/
 public class Unstructured {
 
-    public String identity(String data, ArrayList<String> info) throws FileNotFoundException {
-        String URL =this.getClass().getResource("/").getPath()+ "com/CLD/dataAnonymization/util/deidentifier/Resources/Address.json";
-        JSONObject jsonObject=FileResolve.readAddress(URL);
+    public String identity(String data, ArrayList<String> info) throws FileNotFoundException, UnsupportedEncodingException {
+        JSONObject jsonObject=FieldHandle.readAddress();
         JSONArray address=jsonObject.getJSONArray("BigCity");
         Pattern p=null;
         Matcher m=null;

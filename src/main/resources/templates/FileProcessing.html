@@ -11,7 +11,6 @@
 
     <title>数据匿名中心</title>
 
-    <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" >
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" >
@@ -21,24 +20,16 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/css/custom/style.css" rel="stylesheet" type="text/css">
 
-    <!-- jQuery -->
     <script src="/js/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
     <script src="/js/metisMenu.min.js"></script>
-    <!-- Custom Theme JavaScript -->
     <script src="/js/sb-admin-2.js"></script>
     <script src="/js/bootstrap-select.min.js"></script>
-    <!--可编辑表格-->
     <script src="/js/jquery.dataTables.min.js"></script>
     <script src="/js/dataTables.buttons.min.js"></script>
     <script src="/js/dataTables.select.min.js"></script>
-    <script src="/js/dataTables.editor.min.js"></script>
-
     <script src="/js/angular.min.js"></script>
     <script src="/js/custom/FileProcessing.js"></script>
-    <!--文件上传-->
     <script src="/js/ng-file-upload.min.js"></script>
     <script src="/js/ng-file-upload-shim.min.js"></script>
 
@@ -80,7 +71,7 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -117,10 +108,10 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>&nbsp;字段维护<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/PrivacyField/PrivacyFieldOverView"><span class="glyphicon glyphicon-tags"></span>&nbsp;字段总览</a>
+                                <a href="/PrivacyFieldOverView"><span class="glyphicon glyphicon-tags"></span>&nbsp;字段总览</a>
                             </li>
                             <li>
-                                <a href="/PrivacyField/PrivacyFieldModify"><span class="glyphicon glyphicon-tag"></span>&nbsp;字段修改</a>
+                                <a href="/PrivacyFieldModify"><span class="glyphicon glyphicon-tag"></span>&nbsp;字段修改</a>
                             </li>
                         </ul>
                     </li>
@@ -137,9 +128,7 @@
         <div class="container padding-top-120">
             <h3> 文件上传</h3>
             <hr>
-
-
-            <form name="uploadForm"    method="post" enctype="multipart/form-data">
+            <form name="uploadForm"   method="post" enctype="multipart/form-data">
                 <div>
                     <!--  <input type="file" name="uploadFile" /> -->
                     <div class="row">
@@ -161,8 +150,6 @@
                             </select>
                         </div>
                     </div>
-
-
 
                     <br>
                     <div class="panel panel-default">
@@ -208,9 +195,6 @@
                 </div>
             </form>
 
-
-
-
             <hr>
             <h3> 文件下载</h3>
             <hr>
@@ -221,12 +205,6 @@
         </div>
 
     </div>
-    <!-- /#page-wrapper -->
-
-
 </div>
-<!-- /#wrapper -->
-
 </body>
-
 </html>

@@ -1,13 +1,13 @@
 package com.CLD.dataAnonymization.service;
 
+import com.CLD.dataAnonymization.dao.h2.entity.ApiUsage;
+import com.CLD.dataAnonymization.dao.h2.repository.ApiUsageRepository;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.JSONReader;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -22,52 +22,21 @@ public class ApiUsageServiceImpl implements ApiUsageService {
 
     ReadWriteLock readWriteLock=new ReentrantReadWriteLock();
 
+    @Autowired
+    ApiUsageRepository apiUsageRepository;
+
     @Override
     public Boolean addUsageLog(String ip, String time, ArrayList<String> head, String size,String method) throws UnsupportedEncodingException {
-        JSONArray jsonArray=new JSONArray();
-        JSONReader jsonReader=readJson();
-        jsonReader.startArray();
-        while (jsonReader.hasNext()){
-            jsonArray.add(jsonReader.readObject());
-        }
-        jsonReader.endArray();
-        jsonReader.close();
-        JSONArray ja=new JSONArray();
-        JSONArray j=new JSONArray();
-        ja.add(ip);
-        ja.add(time);
-        j.addAll(head);
-        ja.add(j);
-        ja.add(size);
-        ja.add(method);
-        jsonArray.add(ja);
 
-        String path= URLDecoder.decode(this.getClass().getResource("/").getPath()+"com/CLD/dataAnonymization/AppData/ApiUsageLog.json", "utf-8");
-        System.out.println(path);
-        readWriteLock.writeLock().lock();
-        try {
-            InputStream in =new ByteArrayInputStream(jsonArray.toJSONString().getBytes(StandardCharsets.UTF_8));
-            FileOutputStream out = new FileOutputStream(path);
-            byte buffer[] = new byte[4*1024];
-            int len = 0;
-            while((len=in.read(buffer))>0){
-                out.write(buffer, 0, len);
-            }
-            in.close();
-            out.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("ApiUsageLog:保存失败");
-            return false;
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("ApiUsageLog:保存失败");
-            return false;
-        }finally {
-            readWriteLock.writeLock().unlock();
-        }
-
-        System.out.println("ApiUsageLog:保存成功");
+        String shead="";
+        for(String s:head) shead+=s+";";
+        ApiUsage apiUsage=new ApiUsage();
+        apiUsage.setIp(ip);
+        apiUsage.setTime(time);
+        apiUsage.setHead(shead);
+        apiUsage.setSize(size);
+        apiUsage.setMethod(method);
+        apiUsageRepository.save(apiUsage);
         return true;
     }
 
@@ -75,29 +44,25 @@ public class ApiUsageServiceImpl implements ApiUsageService {
     public JSONArray getUsageOverView() throws FileNotFoundException {
         Map<String,Map<String,Integer>> map=new HashMap<String,Map<String, Integer>>();
         JSONArray jsonArray=new JSONArray();
-        JSONReader jsonReader=readJson();
-        jsonReader.startArray();
-        while(jsonReader.hasNext()){
-            JSONArray ja= (JSONArray) jsonReader.readObject();
-            if(map.keySet().contains(ja.getString(0))){
-                if(map.get(ja.getString(0)).keySet().contains(ja.getString(1).substring(0,10))){
-                    HashMap<String,Integer> m= (HashMap<String, Integer>) map.get(ja.getString(0));
-                    m.put(ja.getString(1).substring(0,10),m.get(ja.getString(1).substring(0,10))+1);
-                    map.put(ja.getString(0),m);
+        List<ApiUsage> usageList = apiUsageRepository.findAll();
+        for(ApiUsage usage:usageList){
+            if(map.keySet().contains(usage.getIp())){
+                if(map.get(usage.getIp()).keySet().contains(usage.getTime().substring(0,10))){
+                    HashMap<String,Integer> m= (HashMap<String, Integer>) map.get(usage.getIp());
+                    m.put(usage.getTime().substring(0,10),m.get(usage.getTime().substring(0,10))+1);
+                    map.put(usage.getIp(),m);
                 }else{
-                    HashMap<String,Integer> m= (HashMap<String, Integer>) map.get(ja.getString(0));
-                    m.put(ja.getString(1).substring(0,10),1);
-                    map.put(ja.getString(0),m);
+                    HashMap<String,Integer> m= (HashMap<String, Integer>) map.get(usage.getIp());
+                    m.put(usage.getTime().substring(0,10),1);
+                    map.put(usage.getIp(),m);
                 }
 
             }else {
                 Map<String,Integer> m=new HashMap<String,Integer>();
-                m.put(ja.getString(1).substring(0,10),1);
-                map.put(ja.getString(0),m);
+                m.put(usage.getTime().substring(0,10),1);
+                map.put(usage.getIp(),m);
             }
         }
-        jsonReader.endArray();
-        jsonReader.close();
         for (String k:map.keySet()) {
             JSONObject jo=new JSONObject();
             JSONArray ja=new JSONArray();
@@ -128,46 +93,29 @@ public class ApiUsageServiceImpl implements ApiUsageService {
     @Override
     public ArrayList<HashMap<String,String>> getUserDetail(String Ip) {
         ArrayList<HashMap<String,String>> hashMapArrayList=new ArrayList<HashMap<String, String>>();
-        JSONReader jsonReader=readJson();
+        List<ApiUsage> usageList=apiUsageRepository.findAllByIp(Ip);
         int id=0;
-        jsonReader.startArray();
-        while (jsonReader.hasNext()){
-            JSONArray jsonArray= (JSONArray) jsonReader.readObject();
-            if(Ip.equals(jsonArray.getString(0))){
-                HashMap<String,String> hashMap=new HashMap<String,String>();
-                hashMap.put("id",String.valueOf(id++));
-                hashMap.put("time",jsonArray.getString(1));
-                hashMap.put("field",jsonArray.getString(2));
-                hashMap.put("num",jsonArray.getString(3));
-                hashMap.put("method",jsonArray.getString(4));
+        for(ApiUsage usage:usageList){
+            HashMap<String,String> hashMap=new HashMap<String,String>();
+            hashMap.put("id",String.valueOf(id++));
+                hashMap.put("time",usage.getTime());
+                hashMap.put("field",usage.getHead());
+                hashMap.put("num",usage.getSize());
+                hashMap.put("method",usage.getMethod());
                 hashMapArrayList.add(hashMap);
-            }
         }
+
         return hashMapArrayList;
     }
 
     @Override
     public Set<String> getUserIp() {
         Set<String> set=new HashSet<String>();
-        JSONReader jsonReader=readJson();
-        jsonReader.startArray();
-        while (jsonReader.hasNext()){
-            set.add(((JSONArray) jsonReader.readObject()).getString(0));
+        List<String> ipList =apiUsageRepository.findAllIp();
+        for(String ip:ipList){
+            set.add(ip);
         }
         return set;
     }
 
-    public JSONReader readJson(){
-        String path=this.getClass().getResource("/").getPath()+"com/CLD/dataAnonymization/AppData/ApiUsageLog.json";
-        JSONReader jsonReader=null;
-        readWriteLock.readLock().lock();
-        try{
-            jsonReader=new JSONReader(new FileReader(path));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            readWriteLock.readLock().unlock();
-        }
-        return jsonReader;
-    }
 }

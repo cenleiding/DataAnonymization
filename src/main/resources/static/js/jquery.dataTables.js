@@ -9082,7 +9082,7 @@
 	 *    the required version, or false if this version of DataTales is not
 	 *    suitable
 	 *  @static
-	 *  @dtopt API-Resources
+	 *  @dtopt API-Static
 	 *
 	 *  @example
 	 *    alert( $.fn.dataTable.versionCheck( '1.9.0' ) );
@@ -9118,7 +9118,7 @@
 	 *      table is passed on, only the first will be checked
 	 *  @returns {boolean} true the table given is a DataTable, or false otherwise
 	 *  @static
-	 *  @dtopt API-Resources
+	 *  @dtopt API-Static
 	 *
 	 *  @example
 	 *    if ( ! $.fn.DataTable.isDataTable( '#example' ) ) {
@@ -9156,7 +9156,7 @@
 	 *  @returns {array} Array of `table` nodes (not DataTable instances) which are
 	 *    DataTables
 	 *  @static
-	 *  @dtopt API-Resources
+	 *  @dtopt API-Static
 	 *
 	 *  @example
 	 *    $.each( $.fn.dataTable.tables(true), function () {

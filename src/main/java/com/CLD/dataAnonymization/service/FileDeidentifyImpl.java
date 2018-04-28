@@ -3,7 +3,6 @@ package com.CLD.dataAnonymization.service;
 import com.CLD.dataAnonymization.util.deidentifier.FileResolve;
 import com.CLD.dataAnonymization.util.deidentifier.IOConfiguration;
 import com.CLD.dataAnonymization.util.deidentifier.ZipCompressor;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,17 +44,19 @@ public class FileDeidentifyImpl implements FileDeidentify{
             if(filename.endsWith(".xls")){
                 ArrayList<ArrayList<ArrayList<String>>> data=new ArrayList<ArrayList<ArrayList<String>>>();
                 data=FileResolve.readerXls(file.getInputStream());
+                data=clearData(data);
                 if(level.toLowerCase().equals("s"))
                     for (int i = 0; i <data.size()-1 ; i++)
                         data.set(i, IOConfiguration.ToSafeHarbor(data.get(i)));
                 if(level.toLowerCase().equals("l"))
                     for (int i = 0; i <data.size()-1 ; i++)
                         data.set(i, IOConfiguration.ToLimitedSet(data.get(i)));
-                FileResolve.writerXls(savePath+"\\"+level+filename,data);
+                FileResolve.writerXlsx(savePath+"\\"+level+filename+"x",data);
             }
             if(filename.endsWith(".xlsx")){
                 ArrayList<ArrayList<ArrayList<String>>> data=new ArrayList<ArrayList<ArrayList<String>>>();
                 data=FileResolve.readerXlsx(file.getInputStream());
+                data=clearData(data);
                 if(level.toLowerCase().equals("s"))
                     for (int i = 0; i <data.size()-1 ; i++)
                         data.set(i, IOConfiguration.ToSafeHarbor(data.get(i)));
@@ -83,5 +84,27 @@ public class FileDeidentifyImpl implements FileDeidentify{
         timer.schedule(task, delay);
 
         return "/identityFiles/"+time+".zip";
+    }
+
+    /**
+     * 对数据进行整理，补填空缺，去除空行
+     * @param data
+     * @return
+     */
+    private  ArrayList<ArrayList<ArrayList<String>>> clearData(ArrayList<ArrayList<ArrayList<String>>> data){
+        for(int i=0;i<data.size()-1;i++){
+            for(int j=0;j<data.get(i).size();j++){
+                boolean isEnpty=true;
+                for(int k=0;k<data.get(i).get(0).size();k++){
+                    if(data.get(i).get(j).size()<=k) data.get(i).get(j).add("");
+                    if(data.get(i).get(j).get(k)!="") isEnpty=false;
+                }
+                if(isEnpty) {//去除空行
+                    data.get(i).remove(j);
+                    j--;
+                }
+            }
+        }
+        return data;
     }
 }

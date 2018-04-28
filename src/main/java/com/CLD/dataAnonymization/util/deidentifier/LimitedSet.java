@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -25,7 +26,7 @@ public class LimitedSet {
     public ArrayList<ArrayList<String>> identity(
             ArrayList<ArrayList<String>>data,ArrayList<String> removeField,
             ArrayList<String> dateField,ArrayList<String> geographicField,
-            ArrayList<String> unstructuredField ) throws FileNotFoundException {
+            ArrayList<String> unstructuredField ) throws FileNotFoundException, UnsupportedEncodingException {
         if(data.isEmpty()) return data;
         ArrayList<ArrayList<String>> deleteInfo=new ArrayList<ArrayList<String>>();//用于记录删除的信息
         for (int i = 0; i < data.size(); i++) deleteInfo.add(new ArrayList<String>());
@@ -94,8 +95,7 @@ public class LimitedSet {
         //处理地理
         set.clear();
         set.addAll(geographicField);
-        String URL =this.getClass().getResource("/").getPath()+ "com/CLD/dataAnonymization/util/deidentifier/Resources/Address.json";
-        JSONObject jsonObject=FileResolve.readAddress(URL);
+        JSONObject jsonObject=FieldHandle.readAddress();
         JSONArray address=jsonObject.getJSONArray("BigCity");
         address.addAll(jsonObject.getJSONArray("SmallCity"));
         String value;

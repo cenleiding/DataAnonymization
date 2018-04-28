@@ -22,7 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.sun.xml.internal.stream.writers.XMLStreamWriterImpl.UTF_8;
 
 /**
  * 该控制器提供数据匿名化接口
@@ -50,7 +49,7 @@ public class ApiController {
         if(list==null)
             return JSON.parseArray(ErrorDataSource);
 
-        list=IOConfiguration.ToSafeHarbor(list,privacyFieldService.getProcessingFields());
+        list=IOConfiguration.ToSafeHarbor(list);
         JSONArray jsonArray=dataParseService.ArrayListToJsonArray(list);
         apiUsageService.addUsageLog(req.getRemoteAddr(),
                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),
@@ -65,7 +64,7 @@ public class ApiController {
         if(list==null)
             return JSON.parseArray(ErrorDataSource);
 
-        list=IOConfiguration.ToLimitedSet(list,privacyFieldService.getProcessingFields());
+        list=IOConfiguration.ToLimitedSet(list);
         JSONArray jsonArray=dataParseService.ArrayListToJsonArray(list);
         apiUsageService.addUsageLog(req.getRemoteAddr(),
                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),

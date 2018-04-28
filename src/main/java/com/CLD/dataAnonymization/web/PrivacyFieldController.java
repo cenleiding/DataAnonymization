@@ -26,7 +26,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @Date 2018/4/2 14:24
  **/
 @Controller
-@RequestMapping("/PrivacyField")
 public class PrivacyFieldController {
 
     @Autowired
@@ -90,23 +89,18 @@ public class PrivacyFieldController {
 
     @RequestMapping(value = "/updataFields",method = RequestMethod.POST)
     @ResponseBody
-    public JSONArray updataFields(@RequestBody JSONArray jsonArray) throws  UnsupportedEncodingException{
+    public  ArrayList<String> updataFields(@RequestBody JSONArray jsonArray) throws  UnsupportedEncodingException{
         readWriteLock.writeLock().lock();
-        JSONArray out=new JSONArray();
-        ArrayList<String> arrayList=privacyFieldService.checkFields(jsonArray);
-        if(arrayList.size()!=0){
-            for(String s:arrayList)
-                out.add(s+"：数据类型冲突\r\n");
-            return out;
-        }
+        ArrayList<String> arrayList=new ArrayList<String>();
         try{
-            Boolean b=privacyFieldService.updataFieldFile(jsonArray);
-            out.add("更新成功");
+            arrayList=privacyFieldService.updataFieldFile(jsonArray);
         } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {
             readWriteLock.writeLock().unlock();
         }
-        return out;
+        return arrayList;
     }
 }
