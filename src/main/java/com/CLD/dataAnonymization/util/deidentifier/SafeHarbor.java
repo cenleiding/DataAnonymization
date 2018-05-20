@@ -2,12 +2,9 @@ package com.CLD.dataAnonymization.util.deidentifier;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.JSONReader;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -110,7 +107,7 @@ public class SafeHarbor {
         //处理地理
         set.clear();
         set.addAll(geographicField);
-        JSONObject jsonObject=FieldHandle.readAddress();
+        JSONObject jsonObject= FieldHandle.readAddress();
         JSONArray address=jsonObject.getJSONArray("BigCity");
         String value;
         pattern=Pattern.compile("[0-9]+");//判断是否为邮编

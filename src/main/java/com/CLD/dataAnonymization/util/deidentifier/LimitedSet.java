@@ -95,7 +95,7 @@ public class LimitedSet {
         //处理地理
         set.clear();
         set.addAll(geographicField);
-        JSONObject jsonObject=FieldHandle.readAddress();
+        JSONObject jsonObject= FieldHandle.readAddress();
         JSONArray address=jsonObject.getJSONArray("BigCity");
         address.addAll(jsonObject.getJSONArray("SmallCity"));
         String value;

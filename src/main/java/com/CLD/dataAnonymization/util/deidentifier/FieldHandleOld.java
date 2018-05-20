@@ -13,18 +13,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * 该类用于处理匿名字段
  * @Author CLD
- * @Date 2018/5/10 14:28
+ * @Date 2018/4/19 9:08
  **/
-public class FieldHandle {
+public class FieldHandleOld {
 
     private static final String FilePath_mapping=new Object() {
         public String get(){
-            return this.getClass().getClassLoader().getResource("").getPath();
+           return this.getClass().getClassLoader().getResource("").getPath();
         }
     }.get().replaceAll("target/classes/","")
             .replaceAll("1.jar!/BOOT-INF/classes!/","")
-            .replaceAll("file:","")+"resources/Form_mapping.json";
+            .replaceAll("file:","")+"resources/Form_mappingOld.json";
 
     private static final String FilePath_address=new Object() {
         public String get(){
@@ -33,19 +34,6 @@ public class FieldHandle {
     }.get().replaceAll("target/classes/","")
             .replaceAll("1.jar!/BOOT-INF/classes!/","")
             .replaceAll("file:","")+"resources/Address.json";
-
-    /**
-     * 读取地理信息表
-     * @return JSONObject
-     */
-    public static JSONObject readAddress() throws FileNotFoundException, UnsupportedEncodingException {
-        InputStream is=new FileInputStream(FilePath_address);
-        JSONObject outJson=new JSONObject();
-        JSONReader reader=new JSONReader(new InputStreamReader(is,"UTF-8"));
-        outJson= (JSONObject) reader.readObject();
-        reader.close();
-        return outJson;
-    }
 
     /**
      * 读取字段映射表
@@ -76,7 +64,6 @@ public class FieldHandle {
         return readFormMappingClassified(readFormMappingOriginal());
     }
 
-
     /**
      * 读取字段映射表
      * 返回21种分类
@@ -106,19 +93,16 @@ public class FieldHandle {
         out.put("Other_Soft",new HashSet<>());
         out.put("Unstructured_Data",new HashSet<>());
 
-        for(int i=0;i<jsonArray.size();i++)
-            for(int j=0;j<jsonArray.getJSONObject(i).getJSONArray("fields").size();j++){
-                JSONArray  db=jsonArray.getJSONObject(i).getJSONArray("fields").getJSONObject(j).getJSONArray("Db_field");
-                JSONArray  en=jsonArray.getJSONObject(i).getJSONArray("fields").getJSONObject(j).getJSONArray("En_field");
-                JSONArray  ch=jsonArray.getJSONObject(i).getJSONArray("fields").getJSONObject(j).getJSONArray("Ch_field");
-                for(int k=0;k<db.size();k++)if(db.getString(k)!=null)
-                    out.get(jsonArray.getJSONObject(i).getJSONArray("fields").getJSONObject(j).getString("type")).add(db.getString(k));
-                for(int k=0;k<en.size();k++)if(en.getString(k)!=null)
-                    out.get(jsonArray.getJSONObject(i).getJSONArray("fields").getJSONObject(j).getString("type")).add(en.getString(k));
-                for(int k=0;k<ch.size();k++)if(ch.getString(k)!=null)
-                    out.get(jsonArray.getJSONObject(i).getJSONArray("fields").getJSONObject(j).getString("type")).add(ch.getString(k));
+        for(int i=0;i<jsonArray.size();i++){
+            JSONObject b1=jsonArray.getJSONObject(i);
+            JSONArray  a1=b1.getJSONArray("fields");
+            for(int j=0;j<a1.size();j++){
+                JSONObject b2=a1.getJSONObject(j);
+                out.get(b2.getString("type")).add(b2.getString("Database_field"));
+                out.get(b2.getString("type")).add(b2.getString("English_field"));
+                out.get(b2.getString("type")).add(b2.getString("Chinese_field"));
             }
-
+        }
 
         return JSONObject.parseObject(JSON.toJSONString(out));
     }
@@ -242,6 +226,19 @@ public class FieldHandle {
     }
 
     /**
+     * 读取地理信息表
+     * @return JSONObject
+     */
+    public static JSONObject readAddress() throws FileNotFoundException, UnsupportedEncodingException {
+        InputStream is=new FileInputStream(FilePath_address);
+        JSONObject outJson=new JSONObject();
+        JSONReader reader=new JSONReader(new InputStreamReader(is,"UTF-8"));
+        outJson= (JSONObject) reader.readObject();
+        reader.close();
+        return outJson;
+    }
+
+    /**
      * 用于jsonArray与ArrayList之间的转换
      * @param jsonArray
      * @return
@@ -265,12 +262,7 @@ public class FieldHandle {
         for(String key:jsonObject.keySet()){
             JSONArray jsonArray=jsonObject.getJSONArray(key);
             for(int i=0;i<jsonArray.size();i++){
-                jsonArray.set(i,jsonArray.getString(i).toLowerCase()
-                        .replace("_","")
-                        .replace("-","")
-                        .replace(".","")
-                        .replace("*","")
-                );
+                jsonArray.set(i,jsonArray.getString(i).toLowerCase().replace("_","").replace("-",""));
             }
         }
         return jsonObject;

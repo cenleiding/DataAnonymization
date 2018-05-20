@@ -2,15 +2,10 @@ package com.CLD.dataAnonymization.util.deidentifier;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
 
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,7 +17,7 @@ import java.util.regex.Pattern;
 public class Unstructured {
 
     public String identity(String data, ArrayList<String> info) throws FileNotFoundException, UnsupportedEncodingException {
-        JSONObject jsonObject=FieldHandle.readAddress();
+        JSONObject jsonObject= FieldHandle.readAddress();
         JSONArray address=jsonObject.getJSONArray("BigCity");
         Pattern p=null;
         Matcher m=null;
@@ -155,6 +150,7 @@ public class Unstructured {
 
         //移除历史信息
         for (int i = 0; i < info.size() ; i++) {
+            if (!info.get(i).equals(""))
             data=data.replace(info.get(i),"***");
         }
         return data;

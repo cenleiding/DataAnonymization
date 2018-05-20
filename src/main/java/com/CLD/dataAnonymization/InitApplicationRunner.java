@@ -15,7 +15,7 @@ import java.io.*;
  **/
 @Component
 @Order(value = 1)
-public class MyApplicationRunner implements ApplicationRunner{
+public class InitApplicationRunner implements ApplicationRunner{
 
     @Override
     public void run(ApplicationArguments args) throws Exception {

@@ -21,7 +21,7 @@ public class IOConfiguration {
      * @throws FileNotFoundException
      */
     public static ArrayList<ArrayList<String>> ToSafeHarbor(ArrayList<ArrayList<String>> data) throws FileNotFoundException, UnsupportedEncodingException {
-        JSONObject fields=FieldHandle.readFormMappingProcessed();
+        JSONObject fields= FieldHandle.readFormMappingProcessed();
         SafeHarbor safeHarbor=new SafeHarbor();
         ArrayList<String> removeField=jsonArrayToArrayList(fields.getJSONArray("Sensitive"));
         removeField.addAll(jsonArrayToArrayList(fields.getJSONArray("Other_Soft")));
@@ -42,7 +42,7 @@ public class IOConfiguration {
      * @throws FileNotFoundException
      */
     public static ArrayList<ArrayList<String>> ToLimitedSet(ArrayList<ArrayList<String>> data) throws FileNotFoundException, UnsupportedEncodingException {
-        JSONObject fields=FieldHandle.readFormMappingProcessed();
+        JSONObject fields= FieldHandle.readFormMappingProcessed();
         LimitedSet limitedSet=new LimitedSet();
         data=limitedSet.identity(data,
                 jsonArrayToArrayList(fields.getJSONArray("Sensitive")),

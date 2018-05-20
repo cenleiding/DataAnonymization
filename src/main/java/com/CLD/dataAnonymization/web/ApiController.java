@@ -4,7 +4,6 @@ import com.CLD.dataAnonymization.service.ApiUsageService;
 import com.CLD.dataAnonymization.service.DataParseService;
 import com.CLD.dataAnonymization.service.PrivacyFieldService;
 import com.CLD.dataAnonymization.util.deidentifier.IOConfiguration;
-import com.CLD.dataAnonymization.util.deidentifier.SafeHarbor;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

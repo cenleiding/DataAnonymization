@@ -2,18 +2,18 @@ var app = angular.module("privacyFieldModifyApp", []);
 app.controller("privacyFieldModifyCtrl", function($scope,$http,$timeout,$q) {
 
     $scope.fields;
-    $scope.selectedTemp_EN;
-    $scope.selectedTemp_CH;
-    $scope.selectedTemp_fiedlds;
+    $scope.selectedArc;
+    $scope.selectedArc_fiedlds;
     $scope.data=[
         {
             "DT_RowId":"--",
-            "Database_field": "--",
-            "English_field": "--",
-            "Chinese_field": "--",
+            "nodeName": "--",
+            "nodePath": "--",
+            "Db_field": "--",
+            "En_field": "--",
+            "Ch_field": "--",
             "type": "--"
         }];
-    $scope.selectedTemp_fiedlds=["字段1","字段2","字段3","字段4"];
 
     var table=$('#tempdata').DataTable();
 
@@ -32,11 +32,10 @@ app.controller("privacyFieldModifyCtrl", function($scope,$http,$timeout,$q) {
 
 
     //处理模板双击选择事件
-     $scope.selectTemp=function(C,E){
-         $scope.selectedTemp_EN=E;
-         $scope.selectedTemp_CH=C;
+     $scope.selectTemp=function(C){
+         $scope.selectedArc=C;
          for(var F in $scope.fields){
-             if($scope.fields[F].form_name===E){
+             if($scope.fields[F].archetypeName===C){
                  var f=$scope.fields[F].fields;
                  for(var i in f){
                      f[i].DT_RowId=i;
@@ -47,12 +46,21 @@ app.controller("privacyFieldModifyCtrl", function($scope,$http,$timeout,$q) {
          }
      }
 
-     //保存单模板更改
+     //保存单原型更改
     $scope.savechange=function () {
         for(var d in $scope.fields){
-           if($scope.fields[d].form_name===$scope.selectedTemp_EN){
+           if($scope.fields[d].archetypeName===$scope.selectedArc){
                $scope.fields[d].fields=[];
                table.data().each( function (q) {
+                   if(q.Db_field instanceof Array==false){
+                       q.Db_field=q.Db_field.split(/,|，/);
+                   }
+                   if(q.En_field instanceof Array==false){
+                       q.En_field=q.En_field.split(/,|，/);
+                   }
+                   if(q.Ch_field instanceof Array==false){
+                       q.Ch_field=q.Ch_field.split(/,|，/);
+                   }
                    $scope.fields[d].fields.push(q);
                } );
                break;
@@ -81,15 +89,21 @@ app.controller("privacyFieldModifyCtrl", function($scope,$http,$timeout,$q) {
          var editor = new $.fn.dataTable.Editor( {
              data:  $scope.data,
              table: "#tempdata",
-             fields: [ {
+             fields: [{
+                 label: "原型节点名：",
+                 name: "nodeName",
+             }, {
+             //     label: "节点路径：",
+             //     name: "nodePath"
+             // },{
                  label: "数据库字段：",
-                 name: "Database_field"
+                 name: "Db_field"
              }, {
                  label: "英文字段：",
-                 name: "English_field"
+                 name: "En_field"
              }, {
                  label: "中文字段：",
-                 name: "Chinese_field"
+                 name: "Ch_field"
              }, {
                  label: "数据类型：",
                  name: "type",
@@ -114,11 +128,13 @@ app.controller("privacyFieldModifyCtrl", function($scope,$http,$timeout,$q) {
                      data: null,
                      defaultContent: '',
                      className: 'select-checkbox',
-                     orderable: false
+                     orderable: false,
                  },
-                 { data: "Database_field" },
-                 { data: "English_field" },
-                 { data: "Chinese_field" },
+                 { data: "nodeName" },
+                 // { data: "nodePath" },
+                 { data: "Db_field" },
+                 { data: "En_field" },
+                 { data: "Ch_field" },
                  { data: "type" }
              ],
              select: {
@@ -142,60 +158,4 @@ app.controller("privacyFieldModifyCtrl", function($scope,$http,$timeout,$q) {
      }
 
      datatableDraw();
-
-
-
-    // $(document).ready(function() {
-    //     editor = new $.fn.dataTable.Editor( {
-    //         data:  $scope.data,
-    //         table: "#tempdata",
-    //         fields: [ {
-    //             label: "数据库字段：",
-    //             name: "Database_field"
-    //         }, {
-    //             label: "英文字段：",
-    //             name: "English_field"
-    //         }, {
-    //             label: "中文字段：",
-    //             name: "Chinese_field"
-    //         }, {
-    //             label: "数据类型：",
-    //             name: "type"
-    //         }
-    //         ]
-    //     } );
-    //
-    //     // Activate an inline edit on click of a table cell
-    //     $('#tempdata').on( 'click', 'tbody td:not(:first-child)', function (e) {
-    //         editor.inline( this );
-    //         console.log(table.data());
-    //     } );
-    //
-    //     table=$('#tempdata').DataTable( {
-    //         dom: "Bfrtip",
-    //         data:  $scope.data,
-    //         order: [[ 1, 'asc' ]],
-    //         columns: [
-    //             {
-    //                 data: null,
-    //                 defaultContent: '',
-    //                 className: 'select-checkbox',
-    //                 orderable: false
-    //             },
-    //             { data: "Database_field" },
-    //             { data: "English_field" },
-    //             { data: "Chinese_field" },
-    //             { data: "type" }
-    //         ],
-    //         select: {
-    //             style:    'os',
-    //             selector: 'td:first-child'
-    //         },
-    //         buttons: [
-    //             { extend: "create", editor: editor, text: "添加" },
-    //             { extend: "edit",   editor: editor, text: "编辑"  },
-    //             { extend: "remove", editor: editor, text: "移除"  }
-    //         ]
-    //     } );
-    // } );
 });

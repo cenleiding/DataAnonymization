@@ -8,19 +8,18 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 /**
- * 该类用于定时更新敏感字段
+ * 该类用于对隐私字段的获取，展示和修改
  * @Author CLD
- * @Date 2018/5/10 9:27
+ * @Date 2018/4/2 13:54
  **/
-public interface PrivacyFieldService {
-
+public interface PrivacyFieldServiceOld {
 
     /**
-     * 该方法用于获取按照原型分类的敏感字段
+     * 此方法用于获取隐私字段
+     * 按照模板划分
      * @return
      */
     public JSONArray getPrivaryFields() throws FileNotFoundException, UnsupportedEncodingException;
-
 
     /**
      * 此方法用于获取整理后的匿名字段
@@ -43,11 +42,4 @@ public interface PrivacyFieldService {
      * @return
      */
     public ArrayList<String> updataFieldFile(JSONArray jsonArray) throws UnsupportedEncodingException, FileNotFoundException;
-
-
-    /**
-     * 该方法通过clever接口，增加新的字段
-     * @return
-     */
-    public Boolean pollField() throws FileNotFoundException, UnsupportedEncodingException;
 }
