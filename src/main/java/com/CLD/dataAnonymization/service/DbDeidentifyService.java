@@ -6,5 +6,5 @@ package com.CLD.dataAnonymization.service;
  * @Date 2018/5/29 8:49
  **/
 public interface DbDeidentifyService {
-    
+
 }
