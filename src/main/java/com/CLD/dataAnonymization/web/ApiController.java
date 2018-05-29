@@ -1,22 +1,18 @@
 package com.CLD.dataAnonymization.web;
 
+import com.CLD.dataAnonymization.service.ApiDeidentifyService;
 import com.CLD.dataAnonymization.service.ApiUsageService;
-import com.CLD.dataAnonymization.service.DataParseService;
+import com.CLD.dataAnonymization.service.FieldClassifyService;
 import com.CLD.dataAnonymization.service.PrivacyFieldService;
-import com.CLD.dataAnonymization.util.deidentifier.IOConfiguration;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 
 /**
@@ -28,7 +24,7 @@ import java.util.Date;
 public class ApiController {
 
     @Autowired
-    DataParseService dataParseService;
+    ApiDeidentifyService apiDeidentifyService;
 
     @Autowired
     PrivacyFieldService privacyFieldService;
@@ -36,36 +32,31 @@ public class ApiController {
     @Autowired
     ApiUsageService apiUsageService;
 
+    @Autowired
+    FieldClassifyService fieldClassifyService;
+
     final static String ErrorDataSource="[{\"错误\":\"数据格式错误\"}]";
 
     @RequestMapping(value = "/SafeHarbor",method = RequestMethod.POST)
     @ResponseBody
-    public JSONArray SafeHarbor(HttpServletRequest req) throws IOException {
-        ArrayList<ArrayList<String>> list=dataParseService.requestDataToArrayList(req);
-        if(list==null)
-            return JSON.parseArray(ErrorDataSource);
-
-        list=IOConfiguration.ToSafeHarbor(list);
-        JSONArray jsonArray=dataParseService.ArrayListToJsonArray(list);
+    public ArrayList<HashMap<String,String>> SafeHarbor(HttpServletRequest req,
+                                                   @RequestParam(value = "fieldFromName",defaultValue = "Original",required = false) String fieldFromName) throws IOException {
+        ArrayList<HashMap<String,String>> data=apiDeidentifyService.ApiSafeHarbor(req,fieldFromName);
         apiUsageService.addUsageLog(req.getRemoteAddr(),
                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),
-                list.get(0),String.valueOf(list.size()-1),"SafeHarbor");
-        return jsonArray;
+                new ArrayList<String>(data.get(0).keySet()),String.valueOf(data.size()-1),"SafeHarbor");
+        return data;
     }
 
     @RequestMapping(value = "/LimitedSet",method = RequestMethod.POST)
     @ResponseBody
-    public JSONArray LimitedSet(HttpServletRequest req) throws IOException {
-        ArrayList<ArrayList<String>> list=dataParseService.requestDataToArrayList(req);
-        if(list==null)
-            return JSON.parseArray(ErrorDataSource);
-
-        list=IOConfiguration.ToLimitedSet(list);
-        JSONArray jsonArray=dataParseService.ArrayListToJsonArray(list);
+    public ArrayList<HashMap<String,String>> LimitedSet(HttpServletRequest req,
+                                                   @RequestParam(value = "fieldFromName",defaultValue = "Original",required = false) String fieldFromName) throws IOException {
+        ArrayList<HashMap<String,String>> data=apiDeidentifyService.ApiLimitedSet(req,fieldFromName);
         apiUsageService.addUsageLog(req.getRemoteAddr(),
                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),
-                list.get(0),String.valueOf(list.size()-1),"LimitedSet");
-        return jsonArray;
+                new ArrayList<String>(data.get(0).keySet()),String.valueOf(data.size()-1),"LimitedSet");
+        return data;
     }
 
 }

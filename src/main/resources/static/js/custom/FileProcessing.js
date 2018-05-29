@@ -1,17 +1,45 @@
 var app = angular.module("FileProcessingApp", ['ngFileUpload']);
-app.controller("FileProcessingCtrl", ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+app.controller("FileProcessingCtrl",function ($scope, Upload,$http,$timeout) {
 
     $scope.progress = 0;
-    $scope.typelevel="s";
     $scope.uploadstate=false;
     $scope.files=[];
     $scope.filesList=[];
     $scope.loadingImg="img/zip.png";
+    $scope.fromName="";
+    $scope.selectTypelevel="s";
+    $scope.selectFromName="Original";
 
-    $(function (){
+    (function (){
+        $http({
+            method:'GET',
+            url:"/getFromNameList"
+        }).then(
+            function successCallback (response) {
+                $scope.fromName=response.data;
+                var select = $("#fromName");
+                for (var i = 0; i < $scope.fromName.length; i++) {
+                    select.append("<option value='"+$scope.fromName[i]+"'>"
+                        + $scope.fromName[i] + "</option>");
+                }
+                $('#fromName').selectpicker('val','Original');
+                $('.selectpicker').selectpicker('refresh');
+            },
+            function errorCallback (response) {
+                console.log("获取字段表单失败！");
+            }
+        );
         $("[data-toggle='popover']").popover();
+    })();
+
+    $("#typeLevel").change(function(evt){
+        if(evt.currentTarget.value==="l") alert("注意：当前选择方式为有限数据集！处理文件只供内部使用！！")
+        $scope.progress= 0;
     });
 
+    $("#fromName").on('changed.bs.select', function (e,c) {
+        $scope.selectFromName=$scope.fromName[c];
+    });
 
     $(":file").change(function(){
         var files=$(this.files);
@@ -24,10 +52,6 @@ app.controller("FileProcessingCtrl", ['$scope', 'Upload', '$timeout', function (
         $scope.progress = 0;
     });
 
-    $(".selectpicker").change(function(evt){
-        if(evt.currentTarget.value==="l") alert("注意：当前选择方式为有限数据集！处理文件只供内部使用！！")
-        $scope.progress= 0;
-    })
 
     $scope.deleteFileal=function(i){
         $scope.filesList.splice(i,1);
@@ -41,8 +65,9 @@ app.controller("FileProcessingCtrl", ['$scope', 'Upload', '$timeout', function (
         $scope.loadingImg="img/file_loading.gif";
         file.upload =
             Upload.upload({
-                url: 'filecontent',
-                data: {'level':$scope.typelevel},
+                url: '/filecontent',
+                data: {level:$scope.selectTypelevel,
+                       fieldFromName:$scope.selectFromName},
                 file: file
             });
 
@@ -59,4 +84,4 @@ app.controller("FileProcessingCtrl", ['$scope', 'Upload', '$timeout', function (
 
 
 
-}]);
+});

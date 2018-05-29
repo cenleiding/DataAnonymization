@@ -34,17 +34,29 @@ public class FieldHandle {
             .replaceAll("1.jar!/BOOT-INF/classes!/","")
             .replaceAll("file:","")+"resources/Address.json";
 
+
     /**
-     * 读取地理信息表
-     * @return JSONObject
+     * @return
      */
-    public static JSONObject readAddress() throws FileNotFoundException, UnsupportedEncodingException {
-        InputStream is=new FileInputStream(FilePath_address);
+    public static ArrayList<ArrayList<String>> readAddress() {
+        InputStream is= null;
         JSONObject outJson=new JSONObject();
-        JSONReader reader=new JSONReader(new InputStreamReader(is,"UTF-8"));
-        outJson= (JSONObject) reader.readObject();
-        reader.close();
-        return outJson;
+        try {
+            is = new FileInputStream(FilePath_address);
+            JSONReader reader=new JSONReader(new InputStreamReader(is,"UTF-8"));
+            outJson= (JSONObject) reader.readObject();
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        ArrayList<ArrayList<String>> addressList=new ArrayList<ArrayList<String>>();
+        ArrayList<String> bigCity=jsonArrayToArrayList(outJson.getJSONArray("BigCity"));
+        ArrayList<String> smallCity=jsonArrayToArrayList(outJson.getJSONArray("SmallCity"));
+        addressList.add(bigCity);
+        addressList.add(smallCity);
+        return addressList;
     }
 
     /**

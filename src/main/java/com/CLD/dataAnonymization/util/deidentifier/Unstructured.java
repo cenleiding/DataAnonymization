@@ -1,10 +1,5 @@
 package com.CLD.dataAnonymization.util.deidentifier;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,9 +11,13 @@ import java.util.regex.Pattern;
  **/
 public class Unstructured {
 
-    public String identity(String data, ArrayList<String> info) throws FileNotFoundException, UnsupportedEncodingException {
-        JSONObject jsonObject= FieldHandle.readAddress();
-        JSONArray address=jsonObject.getJSONArray("BigCity");
+    /**
+     * @param data           待处理数据
+     * @param info           已知可处理字段
+     * @param Geographic     地理限制范围
+     * @return
+     */
+    public static String identity(String data, ArrayList<String> info,ArrayList<String>Geographic){
         Pattern p=null;
         Matcher m=null;
 
@@ -141,9 +140,9 @@ public class Unstructured {
             Matcher m1=p1.matcher(m.group());
             m1.find();
             String value="";
-            for(int k=0;k<address.size();k++){
-                if(m1.group().indexOf(address.getString(k))!=-1)
-                    value+=address.getString(k);
+            for(int k=0;k<Geographic.size();k++){
+                if(m1.group().indexOf(Geographic.get(k))!=-1)
+                    value+=Geographic.get(k);
             }
             data=data.replace(m.group(),  "出 生 地 ："+value);
         }

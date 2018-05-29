@@ -1,7 +1,10 @@
 package com.CLD.dataAnonymization.service;
 
+import com.CLD.dataAnonymization.dao.h2.entity.FieldClassify;
+import com.CLD.dataAnonymization.dao.h2.entity.NodeClassify;
+import com.CLD.dataAnonymization.dao.h2.repository.FieldClassifyRepository;
+import com.CLD.dataAnonymization.dao.h2.repository.NodeClassifyRepository;
 import com.CLD.dataAnonymization.model.TemplateNodeInfo;
-import com.CLD.dataAnonymization.util.deidentifier.FieldHandle;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -12,12 +15,11 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,57 +27,42 @@ import java.util.Map;
 
 /**
  * @Author CLD
- * @Date 2018/5/10 9:29
+ * @Date 2018/5/22 9:00
  **/
 @Service
-public class PrivacyFieldServiceImpl implements PrivacyFieldService {
+public class NodeToFieldServiceImpl implements NodeToFieldService {
 
     @Value("${clever.template.deploy}")
     private String clever_template_deploy;
-            //="http://172.16.100.63:8000/clever-rest/template/deploy/record/latest";
+//    ="http://172.16.100.63:8000/clever-rest/template/deploy/record/latest";
 
     @Value("${clever.template.mapping}")
     private String clever_template_mapping;
-    //="http://172.16.100.63:8000/clever-rest/template/mapping/";
+//    ="http://172.16.100.63:8000/clever-rest/template/mapping/";
 
+    @Autowired
+    FieldClassifyRepository fieldClassifyRepository;
 
-    @Override
-    public JSONArray getPrivaryFields() throws FileNotFoundException, UnsupportedEncodingException {
-        return FieldHandle.readFormMappingOriginal();
-    }
-
-    @Override
-    public JSONObject getOrganizedFields() throws FileNotFoundException, UnsupportedEncodingException {
-        return FieldHandle.readFormMappingClassified();
-    }
+    @Autowired
+    NodeClassifyRepository nodeClassifyRepository;
 
     @Override
-    public JSONObject getProcessingFields() throws FileNotFoundException, UnsupportedEncodingException {
-        return FieldHandle.readFormMappingProcessed();
-    }
-
-    @Override
-    public ArrayList<String> updataFieldFile(JSONArray jsonArray) throws UnsupportedEncodingException, FileNotFoundException {
-        return FieldHandle.updataFieldFile(jsonArray);
-    }
-
-    @Override
-    public Boolean pollField() throws FileNotFoundException, UnsupportedEncodingException {
+    public List<String> NodeToField(List<NodeClassify> nodeClassifyList) {
+        List<String> outList=new ArrayList<String>();
+        Map<String,String> nodeMap=new HashMap<String,String>();
+        Map<String,String> fieldMap=new HashMap<String,String>();
+        //获取节点分类信息
+        for(NodeClassify nodeClassify:nodeClassifyList){
+            nodeMap.put(nodeClassify.getArchetypeId()+nodeClassify.getNodePath(),nodeClassify.getNodeType());
+        }
+        //获取模板信息
         List<String[]> templateNames=GetTemplateName();
         List<TemplateNodeInfo> nodeList=new ArrayList<TemplateNodeInfo>();
         for(String[] name:templateNames){
             nodeList.addAll(GetTemplateMapping(name[0],name[1]));
         }
-        JSONArray jsonArray=getPrivaryFields();
-        Map<String,Integer[]> nodeMap=new HashMap<String,Integer[]>();
-        for(int i=0;i<jsonArray.size();i++)
-            for(int j=0;j<jsonArray.getJSONObject(i).getJSONArray("fields").size();j++){
-            nodeMap.put(jsonArray.getJSONObject(i).getString("archetypeId")+
-                    jsonArray.getJSONObject(i).getJSONArray("fields").getJSONObject(j).getString("nodePath"),
-                    new Integer[]{i,j});
-            }
-
-        for(int i=0;i<nodeList.size();i++){
+        //进行字段分类
+        for(int i=0;i<nodeList.size();i++) {
             String pathAndId=nodeList.get(i).getSpecialiseArchetypeId()+nodeList.get(i).getNodePath();
             String db_field=nodeList.get(i).getEn_name();
             String en_field=db_field.toLowerCase()
@@ -89,27 +76,48 @@ public class PrivacyFieldServiceImpl implements PrivacyFieldService {
                     .replace("_","")
                     .replace("-","")
                     .replace("*","");
-            if(nodeMap.keySet().contains(pathAndId)){
-                JSONArray db=jsonArray.getJSONObject(nodeMap.get(pathAndId)[0]).getJSONArray("fields").getJSONObject(nodeMap.get(pathAndId)[1]).getJSONArray("Db_field");
-                JSONArray ch=jsonArray.getJSONObject(nodeMap.get(pathAndId)[0]).getJSONArray("fields").getJSONObject(nodeMap.get(pathAndId)[1]).getJSONArray("Ch_field");
-                JSONArray en=jsonArray.getJSONObject(nodeMap.get(pathAndId)[0]).getJSONArray("fields").getJSONObject(nodeMap.get(pathAndId)[1]).getJSONArray("En_field");
-                if(!db.contains(db_field)&&db_field!=null&&!db_field.equals(""))
-                    jsonArray.getJSONObject(nodeMap.get(pathAndId)[0]).getJSONArray("fields").getJSONObject(nodeMap.get(pathAndId)[1]).getJSONArray("Db_field").add(db_field);
-                if(!en.contains(en_field)&&db_field!=null&&!db_field.equals(""))
-                    jsonArray.getJSONObject(nodeMap.get(pathAndId)[0]).getJSONArray("fields").getJSONObject(nodeMap.get(pathAndId)[1]).getJSONArray("En_field").add(en_field);
-                if(!ch.contains(ch_field)&&ch_field!=null&&!ch_field.equals(""))
-                    jsonArray.getJSONObject(nodeMap.get(pathAndId)[0]).getJSONArray("fields").getJSONObject(nodeMap.get(pathAndId)[1]).getJSONArray("Ch_field").add(ch_field);
+            if(nodeMap.get(pathAndId)!=null){
+                if(nodeMap.get(pathAndId).equals("EI"))
+                    System.out.println(pathAndId);
+                if(db_field!=null&&!db_field.equals("")){
+                    if(fieldMap.keySet().contains(db_field)&&!fieldMap.get(db_field).equals(nodeMap.get(pathAndId)))
+                       outList.add("节点"+pathAndId+"敏感程度冲突！");
+                        fieldMap.put(db_field,nodeMap.get(pathAndId));
+                }
+                if(en_field!=null&&!en_field.equals("")){
+                    if(fieldMap.keySet().contains(en_field)&&!fieldMap.get(en_field).equals(nodeMap.get(pathAndId)))
+                        outList.add("节点"+pathAndId+"敏感程度冲突！");
+                    fieldMap.put(en_field,nodeMap.get(pathAndId));
+                }
+                if(ch_field!=null&&!ch_field.equals("")){
+                    if(fieldMap.keySet().contains(ch_field)&&!fieldMap.get(ch_field).equals(nodeMap.get(pathAndId)))
+                        outList.add("节点"+pathAndId+"敏感程度冲突！");
+                    fieldMap.put(ch_field,nodeMap.get(pathAndId));
+                }
+            }
+
+        }
+        if(outList.size()!=0) return outList;
+        //存储字段分类
+        fieldClassifyRepository.deleteByFromName("Original");
+        for (String key:fieldMap.keySet()){
+            if(fieldMap.get(key)!=null && !fieldMap.get(key).equals("NI")){
+                FieldClassify fieldClassify=new FieldClassify();
+                fieldClassify.setFromName("Original");
+                fieldClassify.setFieldType(fieldMap.get(key));
+                fieldClassify.setFieldName(key);
+                fieldClassifyRepository.save(fieldClassify);
             }
         }
-        if (!FieldHandle.updataFieldFile(jsonArray).get(0).equals("更新匿名字段成功！")){
-            System.out.println("字段自动更新失败");
-            return false;
-        }else{
-            System.out.println("字段自动更新成功");
-            return true;
-        }
+        outList.add("Original字段表更新成功");
+        return outList;
     }
 
+    @Override
+    public List<String> NodeToField() {
+        List<NodeClassify> nodeClassifyList=nodeClassifyRepository.findAll();
+        return NodeToField(nodeClassifyList);
+    }
 
     private List<String[]> GetTemplateName(){
         ArrayList<String[]> templateName=new ArrayList<String[]>();
@@ -137,7 +145,7 @@ public class PrivacyFieldServiceImpl implements PrivacyFieldService {
     private List<TemplateNodeInfo> GetTemplateMapping(String TemplateName, String specialiseArchetypeId){
         List<TemplateNodeInfo> list=new ArrayList<TemplateNodeInfo>();
         String context=HttpGet(clever_template_mapping+TemplateName);
-        JSONArray jsonArray=JSON.parseObject(context).getJSONArray("data");
+        JSONArray jsonArray= JSON.parseObject(context).getJSONArray("data");
         for(int i=0;i<jsonArray.size();i++){
             TemplateNodeInfo templateNodeInfo =new TemplateNodeInfo();
             templateNodeInfo.setNodePath(jsonArray.getJSONObject(i).getString("nodePath"));
@@ -148,6 +156,8 @@ public class PrivacyFieldServiceImpl implements PrivacyFieldService {
         }
         return list;
     }
+
+
 
     private String HttpGet(String url){
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -176,5 +186,7 @@ public class PrivacyFieldServiceImpl implements PrivacyFieldService {
         return result;
     }
 
-}
 
+
+
+}

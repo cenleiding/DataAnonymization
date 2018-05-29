@@ -1,11 +1,11 @@
 package com.CLD.dataAnonymization.model;
 
 /**
- * 该类用于存储原型节点信息
+ * 该类用于存储从模板接口中获得的原型节点信息
  * @Author CLD
  * @Date 2018/5/10 9:22
  **/
-public class NodeInfo {
+public class TemplateNodeInfo {
 
     private String NodePath;
 

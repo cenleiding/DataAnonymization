@@ -1,22 +1,13 @@
 package com.CLD.dataAnonymization.web;
 
-import com.CLD.dataAnonymization.service.FileDeidentify;
-import com.CLD.dataAnonymization.service.FileDeidentifyImpl;
-import com.CLD.dataAnonymization.util.deidentifier.FileResolve;
-import com.CLD.dataAnonymization.util.deidentifier.ZipCompressor;
+import com.CLD.dataAnonymization.service.FileDeidentifyService;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
-import java.util.*;
-
-import static org.apache.coyote.http11.Constants.a;
 
 /**
  * 该控制器用于文件在线处理
@@ -27,7 +18,7 @@ import static org.apache.coyote.http11.Constants.a;
 public class FileProcessingController {
 
     @Autowired
-    FileDeidentify fileDeidentify;
+    FileDeidentifyService fileDeidentifyService;
 
     @RequestMapping(value = "/FileProcessing")
     public String FileProcessing(){
@@ -42,9 +33,12 @@ public class FileProcessingController {
      */
     @RequestMapping(value="/filecontent",method= RequestMethod.POST)
     @ResponseBody
-    public JSONArray fileContentUpload (MultipartHttpServletRequest re,HttpServletRequest rq, @RequestParam("level") String level) throws Exception{
+    public JSONArray fileContentUpload (MultipartHttpServletRequest re,
+                                        HttpServletRequest rq,
+                                        @RequestParam("level") String level,
+                                        @RequestParam(value = "fieldFromName",defaultValue = "Original",required = false) String fieldFromName) throws Exception{
         JSONArray jsonArray=new JSONArray();
-        jsonArray.add(fileDeidentify.FileDeidentify(re,rq,level));
+        jsonArray.add(fileDeidentifyService.FileDeidentify(re,rq,level,fieldFromName));
         return jsonArray;
     }
 }

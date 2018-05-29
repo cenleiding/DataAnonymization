@@ -1,5 +1,8 @@
 package com.CLD.dataAnonymization;
 
+import com.CLD.dataAnonymization.service.NodeClassifyService;
+import com.CLD.dataAnonymization.service.NodeToFieldService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -16,6 +19,12 @@ import java.io.*;
 @Component
 @Order(value = 1)
 public class InitApplicationRunner implements ApplicationRunner{
+
+    @Autowired
+    NodeToFieldService nodeToFieldService;
+
+    @Autowired
+    NodeClassifyService nodeClassifyService;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -84,5 +93,9 @@ public class InitApplicationRunner implements ApplicationRunner{
         }
 
         System.out.println("资源初始化成功！");
+         /////////////test
+        nodeClassifyService.FileToDB();
+
+
     }
 }

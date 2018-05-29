@@ -29,7 +29,8 @@
     <script src="/js/dataTables.select.min.js"></script>
     <script src="/js/dataTables.editor.min.js"></script>
     <script src="/js/angular.min.js"></script>
-    <script src="/js/custom/PrivacyFieldModify.js"></script>
+    <script src="/js/angular-popups.js"></script>
+    <script src="/js/custom/NodeModify.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -41,55 +42,51 @@
 
 <body>
 
-<div id="wrapper" data-ng-app="privacyFieldModifyApp" data-ng-controller="privacyFieldModifyCtrl">
+<div id="wrapper" data-ng-app="nodeModifyApp" data-ng-controller="nodeModifyCtrl">
 
     <!-- Navigation -->
     <div ng-include="'/htmlTemplates/Head.html'"></div>
 
     <!-- Page Content -->
-    <div id="page-wrapper">
+    <div  id="page-wrapper">
         <div class="container-fluid">
             <div class="row  page-header">
                 <div class="col-lg-2">
-                    <h1>字段配置</h1>
+                    <h1>节点修改</h1>
                 </div>
                 <div class="col-lg-8"></div>
                 <div class="col-lg-2" style="text-align: right">
-                    <button class="btn btn-large btn-primary" style="height: 50px;width: 120px" data-ng-click="updateFields()">提交修改</button>
                 </div>
             </div>
-                    <div class="row">
-                        <div class="col-lg-1"><h4>原型列表：</h4></div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <select multiple class="form-control" style="min-height:230px;width:650px;">
-                                    <option data-ng-repeat="x in fields" ng-dblclick="selectTemp(x.archetypeName)">{{x.archetypeName}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 text-right"></div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <h4>原型列表：</h4>
+                    <div class="form-group">
+                        <select multiple class="form-control" style="height:700px;width:350px">
+                            <option data-ng-repeat="x in archetypeList" ng-dblclick="selectTemp(x)">{{x}}</option>
+                        </select>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-lg-1"> <h4>匿名字段：</h4></div>
-                        <div class="col-lg-10">
-                            <h4>{{selectedTemp_CH}}&nbsp &nbsp &nbsp{{selectedTemp_EN}}</h4><br>
-                            <table id="tempdata" class="display" cellspacing="0" width="100%">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>原型节点名</th>
-                                    <!--<th>节点路径</th>-->
-                                    <th>数据库字段</th>
-                                    <th>英文字段</th>
-                                    <th>中文字段</th>
-                                    <th>数据类型</th>
-                                </tr>
-                                </thead>
-                            </table>
-                        </div>
-                        <div class="col-lg-1"></div>
-                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <h4>原型节点：</h4>
+                    <table id="tempdata" class="display" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>原型节点名</th>
+                            <th>原型节点路径</th>
+                            <th>原型节点含义</th>
+                            <th>隐私等级</th>
+                        </tr>
+                        </thead>
+                    </table>
+                    <dialog ng-if="sc.open" modal  close="sc.open=false">
+                        <div dialog-title>保存更新</div>
+                        <div dialog-content>注意：修改保存后无法还原！</div>
+                        <div dialog-buttons><button data-ng-click="$close();saveChange()">确定</button><button ng-click="$close()">取消</button></div>
+                    </dialog>
+                </div>
+            </div>
         </div>
         <!-- /.container-fluid -->
     </div>

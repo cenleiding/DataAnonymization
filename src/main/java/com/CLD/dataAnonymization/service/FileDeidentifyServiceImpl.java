@@ -1,17 +1,21 @@
 package com.CLD.dataAnonymization.service;
 
+import com.CLD.dataAnonymization.model.FieldInfo;
 import com.CLD.dataAnonymization.util.deidentifier.FileResolve;
-import com.CLD.dataAnonymization.util.deidentifier.IOConfiguration;
+import com.CLD.dataAnonymization.util.deidentifier.IOAdapter;
 import com.CLD.dataAnonymization.util.deidentifier.ZipCompressor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * 该类用于处理文件类型数据
@@ -19,11 +23,27 @@ import java.util.*;
  * @Date 2018/4/16 8:43
  **/
 @Service
-public class FileDeidentifyImpl implements FileDeidentify{
+public class FileDeidentifyServiceImpl implements FileDeidentifyService {
+
+    @Autowired
+    FieldClassifyService fieldClassifyService;
 
     @Override
     public String FileDeidentify(MultipartHttpServletRequest re, HttpServletRequest rq, String level) throws Exception {
+        return FileDeidentify(re,rq,level,"Original");
+    }
 
+    @Override
+    public String FileDeidentify(MultipartHttpServletRequest re, HttpServletRequest rq, String level,String fieldFromName) throws Exception {
+
+        List<FieldInfo> fieldInfoList=fieldClassifyService.getFieldByFromName(fieldFromName);
+        ArrayList<ArrayList<String>> fieldList=new ArrayList<ArrayList<String>>();
+        for(FieldInfo fieldInfo:fieldInfoList){
+            ArrayList<String> field=new ArrayList<String>();
+            field.add(fieldInfo.getFieldName());
+            field.add(fieldInfo.getFieldType());
+            fieldList.add(field);
+        }
         String time=String.valueOf(System.currentTimeMillis());
         String savePath =rq.getSession().getServletContext().getRealPath("/identityFiles/"+time);
         FileResolve.createFile(savePath);
@@ -36,9 +56,9 @@ public class FileDeidentifyImpl implements FileDeidentify{
                 ArrayList<ArrayList<String>> data=new ArrayList<ArrayList<String>>();
                 data= FileResolve.readerCsv(file.getInputStream());
                 if(level.toLowerCase().equals("s"))
-                    data= IOConfiguration.ToSafeHarbor(data);
+                    data= IOAdapter.ToSafeHarbor(data,fieldList);
                 if(level.toLowerCase().equals("l"))
-                    data= IOConfiguration.ToLimitedSet(data);
+                    data= IOAdapter.ToLimitedSet(data,fieldList);
                 FileResolve.writerCsv(savePath+"\\"+level+filename,data);
             }
             if(filename.endsWith(".xls")){
@@ -47,10 +67,10 @@ public class FileDeidentifyImpl implements FileDeidentify{
                 data=clearData(data);
                 if(level.toLowerCase().equals("s"))
                     for (int i = 0; i <data.size()-1 ; i++)
-                        data.set(i, IOConfiguration.ToSafeHarbor(data.get(i)));
+                        data.set(i, IOAdapter.ToSafeHarbor(data.get(i),fieldList));
                 if(level.toLowerCase().equals("l"))
                     for (int i = 0; i <data.size()-1 ; i++)
-                        data.set(i, IOConfiguration.ToLimitedSet(data.get(i)));
+                        data.set(i, IOAdapter.ToLimitedSet(data.get(i),fieldList));
                 FileResolve.writerXlsx(savePath+"\\"+level+filename+"x",data);
             }
             if(filename.endsWith(".xlsx")){
@@ -59,10 +79,10 @@ public class FileDeidentifyImpl implements FileDeidentify{
                 data=clearData(data);
                 if(level.toLowerCase().equals("s"))
                     for (int i = 0; i <data.size()-1 ; i++)
-                        data.set(i, IOConfiguration.ToSafeHarbor(data.get(i)));
+                        data.set(i, IOAdapter.ToSafeHarbor(data.get(i),fieldList));
                 if(level.toLowerCase().equals("l"))
                     for (int i = 0; i <data.size()-1 ; i++)
-                        data.set(i, IOConfiguration.ToLimitedSet(data.get(i)));
+                        data.set(i, IOAdapter.ToLimitedSet(data.get(i),fieldList));
                 FileResolve.writerXlsx(savePath+"\\"+level+filename,data);
             }
         }

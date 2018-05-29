@@ -44,87 +44,13 @@
 
 <body>
 
-<div id="wrapper">
+<div id="wrapper" data-ng-app="FileProcessingApp" data-ng-controller="FileProcessingCtrl">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">医疗数据匿名化工具 v1.0</a>
-        </div>
-        <!-- /.navbar-header -->
-
-        <ul class="nav navbar-top-links navbar-right">
-            <!-- /.dropdown -->
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-            <!-- /.dropdown -->
-        </ul>
-        <!-- /.navbar-top-links -->
-
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
-                <ul class="nav" id="side-menu">
-                    <li>
-                        <span class="glyphicon glyphicon-th" style="padding-bottom:20px;padding-left:15px;padding-top:20px;font-size: 20px">&nbsp;&nbsp;&nbsp;目录</span>
-                    </li>
-
-                    <li>
-                        <a href="/FileProcessing"><i class="fa fa-files-o fa-fw"></i>&nbsp;文件处理</a>
-                    </li>
-
-                    <li class="active">
-                        <a href="#"><i class="fa fa-dashboard fa-fw"></i>&nbsp;接口监控<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/UsageOverView"><span class="glyphicon glyphicon-book"></span>&nbsp;使用总览</a>
-                            </li>
-                            <li>
-                                <a href="/UsageDetail"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;使用细节</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-
-                    <li class="active">
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i>&nbsp;字段维护<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/PrivacyFieldOverView"><span class="glyphicon glyphicon-tags"></span>&nbsp;字段总览</a>
-                            </li>
-                            <li>
-                                <a href="/PrivacyFieldModify"><span class="glyphicon glyphicon-tag"></span>&nbsp;字段修改</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </div>
-            <!-- /.sidebar-collapse -->
-        </div>
-        <!-- /.navbar-static-side -->
-    </nav>
+    <div ng-include="'/htmlTemplates/Head.html'"></div>
 
     <!-- Page Content -->
-    <div data-ng-app="FileProcessingApp" data-ng-controller="FileProcessingCtrl" class="ng-scope" id="page-wrapper">
+    <div class="ng-scope" id="page-wrapper">
         <div class="container padding-top-120">
             <h3> 文件上传</h3>
             <hr>
@@ -132,7 +58,7 @@
                 <div>
                     <!--  <input type="file" name="uploadFile" /> -->
                     <div class="row">
-                        <div class="col-md-6" >
+                        <div class="col-md-4" >
                             <div class="box">
                                 <input type="file" ngf-select multiple data-ng-model="files" name="files" id="file-1" class="inputfile inputfile-2" data-multiple-caption="{count} files selected" />
                                 <label for="file-1" title="注意！" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="只能处理excel,CSV文件。" >
@@ -141,13 +67,17 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-6" style="text-align: center;">
+                        <div class="col-md-4" style="text-align: center;">
                             <label style="font-size:15px;">匿名方式:</label>
-                            <select data-ng-model="typelevel"  class="selectpicker " data-width="250PX" >
+                            <select id="typeLevel"data-ng-model="selectTypelevel"  class="selectpicker " data-width="250PX" >
                                 <option value="s">安全屋</option>
                                 <option value="l">有限数据集</option>
                                 <option value="k" disabled="disabled">K-匿名</option>
                             </select>
+                        </div>
+                        <div class="col-md-4" style="text-align: center;">
+                            <label style="font-size:15px;">匿名字段表:</label>
+                            <select id="fromName" class="selectpicker" data-width="250PX"  ></select>
                         </div>
                     </div>
 
