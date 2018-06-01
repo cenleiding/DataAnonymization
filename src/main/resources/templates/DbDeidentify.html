@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>数据匿名中心</title>
+
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" >
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" >
+    <link href="/css/awesome-bootstrap-checkbox.css" rel="stylesheet" type="text/css">
+    <link href="/css/metisMenu.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/custom/style.css" rel="stylesheet" type="text/css">
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/metisMenu.min.js"></script>
+    <script src="/js/sb-admin-2.js"></script>
+    <script src="/js/bootstrap-select.min.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.buttons.min.js"></script>
+    <script src="/js/dataTables.select.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/ng-file-upload.min.js"></script>
+    <script src="/js/ng-file-upload-shim.min.js"></script>
+    <script src="/js/custom/DbDeidentify.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+<div id="wrapper" data-ng-app="DbDeidentifyApp" data-ng-controller="DbDeidentifyCtrl">
+
+    <!-- Navigation -->
+    <div ng-include="'/htmlTemplates/Head.html'"></div>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <h3>数据库匿名化</h3>
+            <hr>
+            <div style="padding-top: 10px;padding-bottom: 40px">
+                <label style="font-size:16px;padding-left: 15px">匿名化方式:&nbsp&nbsp</label>
+                <select id="DeidentityMethod" data-ng-model="selectMethod"  class="selectpicker " data-width="200PX" >
+                    <option value="SafeHarbor">安全屋</option>
+                    <option value="LimitedSet">有限数据集</option>
+                    <option value="" disabled="disabled">t-临近</option>
+                </select>
+                <label style="font-size:16px;padding-left: 15px">匿名字段表:&nbsp&nbsp</label>
+                <select id="fromName" class="selectpicker " data-width="200PX" ></select>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <div class="thumbnail" style="height: 500px">
+                        <br>
+                        <label style="font-size:18px;padding-left: 15px">数据库类型:&nbsp&nbsp</label>
+                        <select id="DbType" data-ng-model="selectDbType"  class="selectpicker " data-width="200PX" >
+                            <option value="MySql">MySql</option>
+                            <option value="SqlServer">SqlServer</option>
+                            <option value="Oracle">Oracle</option>
+                        </select>
+                        <br>
+
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2" style="padding-left:0px;padding-right:0;">
+                                <label style="font-size:15px;padding-left:0px;padding-right:0">主机:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="localhost" style="" ng-model="host">
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2" style="padding-left:0px;padding-right:0;">
+                                <label style="font-size:15px;padding-left:0px;padding-right:0;text-align: left">端口:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder={{portCase}} style="" ng-model="port">
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2" style="padding-left:0px;padding-right:0;">
+                                <label style="font-size:15px;padding-left:0px;padding-right:0;text-align: left">{{databaseNameCase}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" style="" ng-model="databaseName">
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2" style="padding-left:0px;padding-right:0;">
+                                <label style="font-size:15px;padding-left:0px;padding-right:0;text-align: left">用户名:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder={{userCase}} style="" ng-model="user">
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2" style="padding-left:0px;padding-right:0">
+                                <label style="font-size:15px;padding-left:0px;padding-right:0;">密码:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" style="" ng-model="password">
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <br><br>
+
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-primary" data-ng-click="testConnection()">连接测试</button>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-success" data-ng-click="DbDeidentify()">开始匿名化</button>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <br><br>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+                    <div class="thumbnail" style="height: 500px;">
+                        <h2>数据库处理进程</h2>
+                        <hr>
+                        <div id="DbInfoShow" class="well well-lg "style="margin: auto; height:380px; width: 95%;overflow-y:auto;position:relative">
+                            <p data-ng-repeat="x in DbInfo track by $index">
+                                {{x}}
+                            </p>
+                            <span id="msg_end" style="overflow:hidden">{{wuliaoLog}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

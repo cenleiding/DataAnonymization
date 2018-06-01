@@ -2,6 +2,7 @@ package com.CLD.dataAnonymization.service;
 
 import com.CLD.dataAnonymization.model.FieldInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +15,8 @@ public interface FieldClassifyService {
     public List<String> getFromNameList();
 
     public List<FieldInfo> getFieldByFromName(String fromName);
+
+    public ArrayList<ArrayList<String>> getUseFieldByFromName(String fromName);
 
     public List<String> updataField(List<FieldInfo> fieldInfoList, String newFromName);
 

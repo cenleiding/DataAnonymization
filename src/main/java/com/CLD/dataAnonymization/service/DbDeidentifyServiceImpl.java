@@ -1,91 +1,160 @@
 package com.CLD.dataAnonymization.service;
 
-import java.sql.*;
+import com.CLD.dataAnonymization.dao.h2.entity.DbInfo;
+import com.CLD.dataAnonymization.dao.h2.repository.DbInfoRepository;
+import com.CLD.dataAnonymization.util.deidentifier.IOAdapter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author CLD
- * @Date 2018/5/29 9:02
+ * @Date 2018/5/31 17:07
  **/
-public class DbDeidentifyServiceImpl implements DbDeidentifyService{
+@Service
+public class DbDeidentifyServiceImpl implements DbDeidentifyService {
 
-    public static void MySqlDeidentify(String url,String user,String password){
+    @Autowired
+    @Qualifier("MySql")
+    DbHandle dbMySqlHandle;
+
+    @Autowired
+    @Qualifier("SqlServer")
+    DbHandle dbSqlServerHandle;
+
+    @Autowired
+    @Qualifier("Oracle")
+    DbHandle dbOracleHandle;
+
+    @Autowired
+    DbInfoRepository dbInfoRepository;
+
+    @Autowired
+    FieldClassifyService fieldClassifyService;
+
+    @Override
+    public void DbDeidentify(String dbType,
+                             String host,
+                             String port,
+                             String databaseName,
+                             String user,
+                             String password,
+                             String method,
+                             String fieldFromName) {
+        String url="";
         Connection conn=null;
-        Statement stmt=null;
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(url,user,password);
+        if(dbType.equals("MySql")){
+            url="jdbc:mysql://"+host+":"+port+"/"+databaseName+"?autoReconnect=true&useSSL=false";
+            conn=dbMySqlHandle.getConn(url,user,password);
+            saveH2(url,"***数据库连接成功***");
+            ArrayList<String> fromName=dbMySqlHandle.getDbFromName(conn,user);
+            saveH2(url,"***代处理数据库表列表***");
+            saveH2(url,fromName.toString());
+            for(int i=0;i<fromName.size();i++){
+                saveH2(url,"表："+fromName.get(i)+"处理中...");
 
-            //获取数据库中表信息
-            DatabaseMetaData metadata = conn.getMetaData();
+                ArrayList<ArrayList<String>> fromInfo=dbMySqlHandle.getDbFromInfo(conn,fromName.get(i));
+                saveH2(url,"字段总数："+fromInfo.size());
 
-            //获取表内容
-            // catalog 为数据库名，url中已包括可以不填
-            ResultSet rs1 = metadata.getTables(null, null, null, null);
-            while (rs1.next()) {
-                System.out.println();
-                System.out.println("数据库名:"+ rs1.getString(1));
-                System.out.println("表名: "+rs1.getString(3));
-                System.out.println("类型: "+rs1.getString(4));
+                ArrayList<ArrayList<String>> dataList=dbMySqlHandle.getFromData(conn,fromName.get(i),fromInfo);
+                saveH2(url,"表共含记录："+dataList.size()+"条...");
 
-                stmt = conn.createStatement();
-                String sql = "SELECT * FROM "+rs1.getString(3);
-                ResultSet rs2 = stmt.executeQuery(sql);
-                //获取每张表的字段名
-                String createSql="CREATE TABLE "+rs1.getString(3)+"_new(";
-                String key="";
-                ResultSetMetaData rsme = rs2.getMetaData();
-                System.out.println("列数："+ rsme.getColumnCount());
-                for (int i = 1; i <=rsme.getColumnCount() ; i++) {
-                    System.out.println();
-                    System.out.print(" 列名称: "+ rsme.getColumnName(i));
-                    System.out.print(" 列类型(DB): " + rsme.getColumnTypeName(i));
-                    System.out.print(" 长度: "+ rsme.getPrecision(i) );
-                    System.out.print(" 是否自动编号: "+ rsme.isAutoIncrement(i));
-                    System.out.print(" 是否可以为空: "+ rsme.isNullable(i));
-                    System.out.print(" 是否可以写入: "+ rsme.isReadOnly(i));
-                    createSql+=rsme.getColumnName(i)+" VARCHAR(";
-                    if(rsme.getPrecision(i)<32) createSql+="32)";
-                    else createSql+=rsme.getPrecision(i)+")";
-                    if(rsme.isNullable(i)==0) createSql+=" not null,";
-                    else createSql+=",";
-                }
-                rs2.close();
-                //获取主键
-                ResultSet rs3 = metadata.getPrimaryKeys(null, null, rs1.getString(3));
-                while(rs3.next()) {
-                    createSql+="primary key ("+rs3.getObject(4)+",";
-                    System.out.println("***主键***");
-                    System.out.println("COLUMN_NAME: " + rs3.getObject(4));
-                    System.out.println("KEY_SEQ : " + rs3.getObject(5));
-                    System.out.println("PK_NAME : " + rs3.getObject(6));
-                }
-                createSql=createSql.substring(0,createSql.length()-1)+"))";
-                rs3.close();
-                //新建副本表
-                stmt.executeUpdate(createSql);
+                saveH2(url,"数据处理中...");
+                ArrayList<ArrayList<String>> fieldList=fieldClassifyService.getUseFieldByFromName(fieldFromName);
+                if(method.equals("SafeHarbor"))
+                dataList= IOAdapter.ToSafeHarbor(dataList,fieldList);
+                if(method.equals("LimitedSet"))
+                dataList= IOAdapter.ToLimitedSet(dataList,fieldList);
+                saveH2(url,"数据处理完毕！");
+
+                dbMySqlHandle.createMirrorFrom(conn,fromName.get(i)+"_"+method,fromInfo);
+                saveH2(url,"匿名表："+fromName.get(i)+"_"+method+"创建成功！");
+
+                dbMySqlHandle.insertNewFrom(conn,fromName.get(i)+"_"+method,dataList);
+                saveH2(url,"匿名数据插入成功！");
+                saveH2(url,"****************");
             }
-            rs1.close();
-            stmt.close();
-            conn.close();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally{
-            try{
-                if(stmt!=null) stmt.close();
-            }catch(SQLException e){
-                e.printStackTrace();
-            }
-            try{
-                if(conn!=null) conn.close();
-            }catch(SQLException e){
-                e.printStackTrace();
-            }
+            dbMySqlHandle.closeConn(conn);
         }
+        if(dbType.equals("SqlServer")){
+            url="jdbc:sqlserver://"+host+":"+port+";DatabaseName="+databaseName;
+        }
+        if(dbType.equals("Oracle")){
+            url="jdbc:oracle:thin:@"+host+":"+port+":"+databaseName;
+        }
+
+        deletH2(url);
     }
 
-    public static void main (String[] args){
-        MySqlDeidentify("jdbc:mysql://localhost:3306/test","root","123456");
+    /**
+     * 测试数据库连接
+     * @param dbType
+     * @param host
+     * @param port
+     * @param databaseName
+     * @param user
+     * @param password
+     * @return
+     */
+    @Override
+    public Boolean testConnect(String dbType, String host, String port, String databaseName, String user, String password) {
+        String url="";
+        Boolean test=false;
+        if(dbType.equals("MySql")) {
+            url = "jdbc:mysql://" + host + ":" + port + "/" + databaseName + "?autoReconnect=true&useSSL=false";
+            test=dbMySqlHandle.DbTestConnection(url,user,password);
+        }
+        if(dbType.equals("SqlServer")){
+            url="jdbc:sqlserver://"+host+":"+port+";DatabaseName="+databaseName;
+            test=dbSqlServerHandle.DbTestConnection(url,user,password);
+        }
+        if(dbType.equals("Oracle")){
+            url="jdbc:oracle:thin:@"+host+":"+port+":"+databaseName;
+            test=dbOracleHandle.DbTestConnection(url,user,password);
+        }
+        return test;
+    }
+
+    /**
+     * 用于获取处理信息
+     * @param dbType
+     * @param host
+     * @param port
+     * @param databaseName
+     * @return
+     */
+    @Override
+    public List<String> getInfo(String dbType, String host, String port, String databaseName) {
+        String url="";
+        if(dbType.equals("MySql")) {
+            url = "jdbc:mysql://" + host + ":" + port + "/" + databaseName + "?autoReconnect=true&useSSL=false";
+        }
+        if(dbType.equals("SqlServer")){
+            url="jdbc:sqlserver://"+host+":"+port+";DatabaseName="+databaseName;
+        }
+        if(dbType.equals("Oracle")){
+            url="jdbc:oracle:thin:@"+host+":"+port+":"+databaseName;
+        }
+        List<DbInfo> dbInfoList=dbInfoRepository.findAllByUrl(url);
+        List<String> out=new ArrayList<String>();
+        for(DbInfo dbInfo:dbInfoList){
+            out.add(dbInfo.getState());
+        }
+        return out;
+    }
+
+    private void saveH2 (String url,String s){
+        DbInfo dbInfo=new DbInfo();
+        dbInfo.setUrl(url);
+        dbInfo.setState(s);
+        dbInfoRepository.save(dbInfo);
+    }
+
+    private void deletH2(String url){
+        dbInfoRepository.deleteAllByUrl(url);
     }
 }

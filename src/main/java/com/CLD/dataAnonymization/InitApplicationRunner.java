@@ -94,7 +94,7 @@ public class InitApplicationRunner implements ApplicationRunner{
 
         System.out.println("资源初始化成功！");
          /////////////test
-        nodeClassifyService.FileToDB();
+        //nodeClassifyService.FileToDB();
 
 
     }

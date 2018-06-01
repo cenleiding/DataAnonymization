@@ -176,8 +176,8 @@ public class Hippa {
                                        ArrayList<ArrayList<String>>deleteInfo,
                                        String type,
                                        int col){
-        Map<String,Integer> map=new HashMap<String,Integer>();
-        int num=0;
+        Map<String,Double> map=new HashMap<String,Double>();
+        Double num= Double.valueOf(0);
         double pre=0;
         if(type.equals("SafeHarbor")) pre=0.05;
         else pre=0.02;
@@ -186,7 +186,7 @@ public class Hippa {
             if ((data.get(i).get(col) != null) && (!data.get(i).get(col).equals("")))
                 if(map.keySet().contains(data.get(i).get(col)))
                     map.put(data.get(i).get(col),map.get(data.get(i).get(col))+1);
-                else map.put(data.get(i).get(col),1);
+                else map.put(data.get(i).get(col), (double) 1);
         }
         for(String s:map.keySet()) num+=map.get(s);
         for(int j=1;j<data.size();j++){

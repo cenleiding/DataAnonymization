@@ -39,6 +39,19 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
     }
 
     @Override
+    public ArrayList<ArrayList<String>> getUseFieldByFromName(String fromName) {
+        List<FieldInfo> fieldInfoList=getFieldByFromName(fromName);
+        ArrayList<ArrayList<String>> fieldList=new ArrayList<ArrayList<String>>();
+        for(FieldInfo fieldInfo:fieldInfoList){
+            ArrayList<String> field=new ArrayList<String>();
+            field.add(fieldInfo.getFieldName());
+            field.add(fieldInfo.getFieldType());
+            fieldList.add(field);
+        }
+        return fieldList;
+    }
+
+    @Override
     public List<String> updataField(List<FieldInfo> fieldInfoList, String newFromName) {
         List<String> outList=new ArrayList<String>();
         if(fieldInfoList.get(0).getFieldType()==null){
