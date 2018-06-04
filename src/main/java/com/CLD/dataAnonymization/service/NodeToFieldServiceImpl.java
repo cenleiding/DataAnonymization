@@ -56,6 +56,9 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
     @Autowired
     ExpandBasisFieldClassifyRepository expandBasisFieldClassifyRepository;
 
+    @Autowired
+    FieldClassifyService fieldClassifyService;
+
     @Override
     public List<String> ArcheTypeNodeToField() {
         return ArcheTypeNodeToField(archetypeNodeClassifyRepository.findAll());
@@ -115,20 +118,26 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
 
         }
         if(outList.size()!=0) return outList;
-        //调用生成可用字段表方法
 
-
-        //存储字段分类
-        archetypeBasisFieldClassifyRepository.deleteAll();
+        //生成镜像表
+        List<ArchetypeBasisFieldClassify> archetypeBasisFieldClassifyList=new ArrayList<ArchetypeBasisFieldClassify>();
         for (String key:fieldMap.keySet()){
             if(fieldMap.get(key)!=null && !fieldMap.get(key).equals("NI")){
                 ArchetypeBasisFieldClassify archetypeBasisFieldClassify=new ArchetypeBasisFieldClassify();
                 archetypeBasisFieldClassify.setArchetypePath(pathMap.get(key));
                 archetypeBasisFieldClassify.setFieldName(key);
                 archetypeBasisFieldClassify.setFieldType(fieldMap.get(key));
-                archetypeBasisFieldClassifyRepository.save(archetypeBasisFieldClassify);
+                archetypeBasisFieldClassifyList.add(archetypeBasisFieldClassify);
             }
         }
+        //调用生成可用字段表方法
+        outList=fieldClassifyService.createOrignalFrom(archetypeBasisFieldClassifyList,null);
+        if(outList.size()!=0) return outList;
+
+        //存储字段分类
+        archetypeBasisFieldClassifyRepository.deleteAll();
+        archetypeBasisFieldClassifyRepository.saveAll(archetypeBasisFieldClassifyList);
+
         return outList;
     }
 
@@ -150,17 +159,23 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
         }
 
         if(outList.size()!=0) return outList;
-        //调用生成可用字段表方法
 
-        //存储字段分类
-        expandBasisFieldClassifyRepository.deleteAll();
+        //生成镜像表
+        List<ExpandBasisFieldClassify> expandBasisFieldClassifyList=new ArrayList<ExpandBasisFieldClassify>();
         for (String key:fieldMap.keySet()){
             ExpandBasisFieldClassify expandBasisFieldClassify=new ExpandBasisFieldClassify();
             expandBasisFieldClassify.setExpandFromName(expandFromMap.get(key));
             expandBasisFieldClassify.setFieldName(key);
             expandBasisFieldClassify.setFieldType(fieldMap.get(key));
-            expandBasisFieldClassifyRepository.save(expandBasisFieldClassify);
+            expandBasisFieldClassifyList.add(expandBasisFieldClassify);
         }
+        //调用生成可用字段表方法
+        outList=fieldClassifyService.createOrignalFrom(null,expandBasisFieldClassifyList);
+        if(outList.size()!=0) return outList;
+        //存储字段分类
+        expandBasisFieldClassifyRepository.deleteAll();
+        expandBasisFieldClassifyRepository.saveAll(expandBasisFieldClassifyList);
+
         return outList;
     }
 

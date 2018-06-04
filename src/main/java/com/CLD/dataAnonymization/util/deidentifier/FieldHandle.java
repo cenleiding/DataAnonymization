@@ -32,7 +32,7 @@ public class FieldHandle {
         }
     }.get().replaceAll("target/classes/","")
             .replaceAll("1.jar!/BOOT-INF/classes!/","")
-            .replaceAll("file:","")+"resources/Address.json";
+            .replaceAll("file:","")+"com/CLD/dataAnonymization/util/deidentifier/Resources/Address.json";
 
 
     /**
@@ -42,12 +42,14 @@ public class FieldHandle {
         InputStream is= null;
         JSONObject outJson=new JSONObject();
         try {
-            is = new FileInputStream(FilePath_address);
+            is=new Object(){
+                public InputStream get(){
+                    return this.getClass().getClassLoader().getResourceAsStream("com/CLD/dataAnonymization/util/deidentifier/Resources/Address.json");
+                }
+            }.get();
             JSONReader reader=new JSONReader(new InputStreamReader(is,"UTF-8"));
             outJson= (JSONObject) reader.readObject();
             reader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

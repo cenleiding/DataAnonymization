@@ -38,7 +38,7 @@ public class InitApplicationRunner implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        resourcesFileInitializeService.InitializeResourcesFile();
+      resourcesFileInitializeService.InitializeResourcesFile();
 
       expandNodeClassifyService.FileToDB();
       openEhrNodeClassifyService.FileToDB();
