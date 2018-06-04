@@ -1,6 +1,6 @@
 package com.CLD.dataAnonymization.web;
 
-import com.CLD.dataAnonymization.service.NodeClassifyService;
+import com.CLD.dataAnonymization.service.OpenEhrNodeClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import java.util.List;
 public class NodeOverViewController {
 
     @Autowired
-    NodeClassifyService nodeClassifyService;
+    OpenEhrNodeClassifyService openEhrNodeClassifyService;
 
     @RequestMapping("/NodeOverView")
     public String nodeOverView(){
@@ -28,6 +28,6 @@ public class NodeOverViewController {
     @RequestMapping(value = "/getNodeOverView",method = RequestMethod.GET)
     @ResponseBody
     public List<Double> getNodeOverView(){
-       return nodeClassifyService.getNodeOverView();
+       return openEhrNodeClassifyService.getNodeOverView();
     }
 }

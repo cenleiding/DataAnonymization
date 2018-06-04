@@ -1,0 +1,26 @@
+[
+  {"fromName":"test1",
+    "fields":[
+      {
+        "nodeName":"Patient identifier1",
+        "type":"QI_Number"
+      },
+      {
+        "nodeName":"Patient identifier2",
+        "type":"QI_Number"
+      }
+    ]
+  },
+  {"fromName":"test1.1",
+    "fields":[
+      {
+        "nodeName":"Patient identifier1",
+        "type":"QI_Number"
+      },
+      {
+        "nodeName":"Patient identifier2",
+        "type":"QI_Number"
+      }
+    ]
+  }
+]

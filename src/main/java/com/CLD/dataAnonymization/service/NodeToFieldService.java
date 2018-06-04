@@ -1,6 +1,7 @@
 package com.CLD.dataAnonymization.service;
 
-import com.CLD.dataAnonymization.dao.h2.entity.NodeClassify;
+import com.CLD.dataAnonymization.dao.h2.entity.ArchetypeNodeClassify;
+import com.CLD.dataAnonymization.dao.h2.entity.ExpandNodeClassify;
 
 import java.util.List;
 
@@ -11,7 +12,15 @@ import java.util.List;
  **/
 public interface NodeToFieldService {
 
-    public List<String> NodeToField();
+    //将原型节点表转换为原型基础字段表
+    public List<String> ArcheTypeNodeToField();
 
-    public List<String> NodeToField(List<NodeClassify> nodeClassifyList);
+    //将原型节点表转换为原型基础字段表
+    public List<String> ArcheTypeNodeToField(List<ArchetypeNodeClassify> archetypeNodeClassifyList);
+
+    //将拓展节点表转换为拓展基础字段表
+    public List<String> ExpandNodeToField();
+
+    //将拓展节点表转换为拓展基础字段表
+    public List<String> ExpandNodeToField(List<ExpandNodeClassify> expandNodeClassifyList);
 }

@@ -3,7 +3,6 @@ package com.CLD.dataAnonymization.web;
 import com.CLD.dataAnonymization.service.ApiDeidentifyService;
 import com.CLD.dataAnonymization.service.ApiUsageService;
 import com.CLD.dataAnonymization.service.FieldClassifyService;
-import com.CLD.dataAnonymization.service.PrivacyFieldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +24,6 @@ public class ApiController {
 
     @Autowired
     ApiDeidentifyService apiDeidentifyService;
-
-    @Autowired
-    PrivacyFieldService privacyFieldService;
 
     @Autowired
     ApiUsageService apiUsageService;

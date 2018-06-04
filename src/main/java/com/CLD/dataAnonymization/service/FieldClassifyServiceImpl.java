@@ -1,7 +1,7 @@
 package com.CLD.dataAnonymization.service;
 
-import com.CLD.dataAnonymization.dao.h2.entity.FieldClassify;
-import com.CLD.dataAnonymization.dao.h2.repository.FieldClassifyRepository;
+import com.CLD.dataAnonymization.dao.h2.entity.UsageFieldClassify;
+import com.CLD.dataAnonymization.dao.h2.repository.UsageFieldClassifyRepository;
 import com.CLD.dataAnonymization.model.FieldInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,23 +16,23 @@ import java.util.*;
 public class FieldClassifyServiceImpl implements FieldClassifyService {
 
     @Autowired
-    FieldClassifyRepository fieldClassifyRepository;
+    UsageFieldClassifyRepository usageFieldClassifyRepository;
 
     @Override
     public List<String> getFromNameList() {
-        return fieldClassifyRepository.getFromName();
+        return usageFieldClassifyRepository.getFromName();
     }
 
     @Override
     public List<FieldInfo> getFieldByFromName(String fromName) {
-        List<FieldClassify> fieldClassifyList=fieldClassifyRepository.findByFromName(fromName);
+        List<UsageFieldClassify> usageFieldClassifyList = usageFieldClassifyRepository.findByFromName(fromName);
         List<FieldInfo> fieldInfoList=new ArrayList<FieldInfo>();
-        for(FieldClassify fieldClassify:fieldClassifyList){
+        for(UsageFieldClassify usageFieldClassify : usageFieldClassifyList){
             FieldInfo fieldInfo=new FieldInfo();
-            fieldInfo.setFieldName(fieldClassify.getFieldName());
-            fieldInfo.setFieldType(fieldClassify.getFieldType());
-            fieldInfo.setFromName(fieldClassify.getFromName());
-            fieldInfo.setId(String.valueOf(fieldClassify.getID()));
+            fieldInfo.setFieldName(usageFieldClassify.getFieldName());
+            fieldInfo.setFieldType(usageFieldClassify.getFieldType());
+            fieldInfo.setFromName(usageFieldClassify.getFromName());
+            fieldInfo.setId(String.valueOf(usageFieldClassify.getID()));
             fieldInfoList.add(fieldInfo);
         }
         return fieldInfoList;
@@ -62,7 +62,7 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
             outList.add("Original表无法修改");
             return outList;
         }
-        List<String> fromNameList=fieldClassifyRepository.getFromName();
+        List<String> fromNameList= usageFieldClassifyRepository.getFromName();
         if(!fieldInfoList.get(0).getFromName().equals(newFromName)&&fromNameList.contains(newFromName)){
             outList.add(newFromName+"表名重复!");
             return outList;
@@ -80,14 +80,14 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
         if(outList.size()!=0) return outList;
         //
         String fromName=fieldInfoList.get(0).getFromName();
-        fieldClassifyRepository.deleteByFromName(fromName);
+        usageFieldClassifyRepository.deleteByFromName(fromName);
         for(FieldInfo fieldInfo:fieldInfoList){
             if(fieldInfo.getFieldName()==null||fieldInfo.getFieldType()==null) continue;
-            FieldClassify fieldClassify=new FieldClassify();
-            fieldClassify.setFromName(newFromName);
-            fieldClassify.setFieldName(fieldInfo.getFieldName());
-            fieldClassify.setFieldType(fieldInfo.getFieldType());
-            fieldClassifyRepository.save(fieldClassify);
+            UsageFieldClassify usageFieldClassify =new UsageFieldClassify();
+            usageFieldClassify.setFromName(newFromName);
+            usageFieldClassify.setFieldName(fieldInfo.getFieldName());
+            usageFieldClassify.setFieldType(fieldInfo.getFieldType());
+            usageFieldClassifyRepository.save(usageFieldClassify);
         }
         outList.add("更新成功！");
         return outList;
@@ -95,7 +95,7 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
 
     @Override
     public Boolean deleteFromByName(String fromName) {
-        fieldClassifyRepository.deleteByFromName(fromName);
+        usageFieldClassifyRepository.deleteByFromName(fromName);
         return true;
     }
 

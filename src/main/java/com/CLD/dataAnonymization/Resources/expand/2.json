@@ -1,0 +1,10 @@
+[
+  {"fromName":"test2",
+    "fields":[
+      {
+        "nodeName":"Patient identifier2",
+        "type":"QI_Number"
+      }
+    ]
+  }
+]

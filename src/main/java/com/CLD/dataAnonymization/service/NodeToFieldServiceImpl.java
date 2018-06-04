@@ -1,9 +1,13 @@
 package com.CLD.dataAnonymization.service;
 
-import com.CLD.dataAnonymization.dao.h2.entity.FieldClassify;
-import com.CLD.dataAnonymization.dao.h2.entity.NodeClassify;
-import com.CLD.dataAnonymization.dao.h2.repository.FieldClassifyRepository;
-import com.CLD.dataAnonymization.dao.h2.repository.NodeClassifyRepository;
+import com.CLD.dataAnonymization.dao.h2.entity.ArchetypeBasisFieldClassify;
+import com.CLD.dataAnonymization.dao.h2.entity.ArchetypeNodeClassify;
+import com.CLD.dataAnonymization.dao.h2.entity.ExpandBasisFieldClassify;
+import com.CLD.dataAnonymization.dao.h2.entity.ExpandNodeClassify;
+import com.CLD.dataAnonymization.dao.h2.repository.ArchetypeBasisFieldClassifyRepository;
+import com.CLD.dataAnonymization.dao.h2.repository.ArchetypeNodeClassifyRepository;
+import com.CLD.dataAnonymization.dao.h2.repository.ExpandBasisFieldClassifyRepository;
+import com.CLD.dataAnonymization.dao.h2.repository.ExpandNodeClassifyRepository;
 import com.CLD.dataAnonymization.model.TemplateNodeInfo;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -41,19 +45,31 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
 //    ="http://172.16.100.63:8000/clever-rest/template/mapping/";
 
     @Autowired
-    FieldClassifyRepository fieldClassifyRepository;
+    ArchetypeBasisFieldClassifyRepository archetypeBasisFieldClassifyRepository;
 
     @Autowired
-    NodeClassifyRepository nodeClassifyRepository;
+    ArchetypeNodeClassifyRepository archetypeNodeClassifyRepository;
+
+    @Autowired
+    ExpandNodeClassifyRepository expandNodeClassifyRepository;
+
+    @Autowired
+    ExpandBasisFieldClassifyRepository expandBasisFieldClassifyRepository;
 
     @Override
-    public List<String> NodeToField(List<NodeClassify> nodeClassifyList) {
+    public List<String> ArcheTypeNodeToField() {
+        return ArcheTypeNodeToField(archetypeNodeClassifyRepository.findAll());
+    }
+
+    @Override
+    public List<String> ArcheTypeNodeToField(List<ArchetypeNodeClassify> archetypeNodeClassifyList) {
         List<String> outList=new ArrayList<String>();
         Map<String,String> nodeMap=new HashMap<String,String>();
         Map<String,String> fieldMap=new HashMap<String,String>();
+        Map<String,String> pathMap=new HashMap<String,String>();
         //获取节点分类信息
-        for(NodeClassify nodeClassify:nodeClassifyList){
-            nodeMap.put(nodeClassify.getArchetypeId()+nodeClassify.getNodePath(),nodeClassify.getNodeType());
+        for(ArchetypeNodeClassify archetypeNodeClassify : archetypeNodeClassifyList){
+            nodeMap.put(archetypeNodeClassify.getArchetypeId()+ archetypeNodeClassify.getNodePath(), archetypeNodeClassify.getNodeType());
         }
         //获取模板信息
         List<String[]> templateNames=GetTemplateName();
@@ -77,47 +93,77 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
                     .replace("-","")
                     .replace("*","");
             if(nodeMap.get(pathAndId)!=null){
-                if(nodeMap.get(pathAndId).equals("EI"))
-                    System.out.println(pathAndId);
                 if(db_field!=null&&!db_field.equals("")){
                     if(fieldMap.keySet().contains(db_field)&&!fieldMap.get(db_field).equals(nodeMap.get(pathAndId)))
                        outList.add("节点"+pathAndId+"敏感程度冲突！");
-                        fieldMap.put(db_field,nodeMap.get(pathAndId));
+                    fieldMap.put(db_field,nodeMap.get(pathAndId));
+                    pathMap.put(db_field,pathMap.get(db_field)==null?pathAndId:pathMap.get(db_field)+";"+pathAndId);
                 }
                 if(en_field!=null&&!en_field.equals("")){
                     if(fieldMap.keySet().contains(en_field)&&!fieldMap.get(en_field).equals(nodeMap.get(pathAndId)))
                         outList.add("节点"+pathAndId+"敏感程度冲突！");
                     fieldMap.put(en_field,nodeMap.get(pathAndId));
+                    pathMap.put(en_field,pathMap.get(en_field)==null?pathAndId:pathMap.get(en_field)+";"+pathAndId);
                 }
                 if(ch_field!=null&&!ch_field.equals("")){
                     if(fieldMap.keySet().contains(ch_field)&&!fieldMap.get(ch_field).equals(nodeMap.get(pathAndId)))
                         outList.add("节点"+pathAndId+"敏感程度冲突！");
                     fieldMap.put(ch_field,nodeMap.get(pathAndId));
+                    pathMap.put(ch_field,pathMap.get(ch_field)==null?pathAndId:pathMap.get(ch_field)+";"+pathAndId);
                 }
             }
 
         }
         if(outList.size()!=0) return outList;
+        //调用生成可用字段表方法
+
+
         //存储字段分类
-        fieldClassifyRepository.deleteByFromName("Original");
+        archetypeBasisFieldClassifyRepository.deleteAll();
         for (String key:fieldMap.keySet()){
             if(fieldMap.get(key)!=null && !fieldMap.get(key).equals("NI")){
-                FieldClassify fieldClassify=new FieldClassify();
-                fieldClassify.setFromName("Original");
-                fieldClassify.setFieldType(fieldMap.get(key));
-                fieldClassify.setFieldName(key);
-                fieldClassifyRepository.save(fieldClassify);
+                ArchetypeBasisFieldClassify archetypeBasisFieldClassify=new ArchetypeBasisFieldClassify();
+                archetypeBasisFieldClassify.setArchetypePath(pathMap.get(key));
+                archetypeBasisFieldClassify.setFieldName(key);
+                archetypeBasisFieldClassify.setFieldType(fieldMap.get(key));
+                archetypeBasisFieldClassifyRepository.save(archetypeBasisFieldClassify);
             }
         }
-        outList.add("Original字段表更新成功");
         return outList;
     }
 
     @Override
-    public List<String> NodeToField() {
-        List<NodeClassify> nodeClassifyList=nodeClassifyRepository.findAll();
-        return NodeToField(nodeClassifyList);
+    public List<String> ExpandNodeToField() {
+        return ExpandNodeToField(expandNodeClassifyRepository.findAll());
     }
+
+    @Override
+    public List<String> ExpandNodeToField(List<ExpandNodeClassify> expandNodeClassifyList) {
+        List<String> outList=new ArrayList<String>();
+        Map<String,String> fieldMap=new HashMap<String,String>();
+        Map<String,String> expandFromMap=new HashMap<String, String>();
+        for(ExpandNodeClassify expandNodeClassify:expandNodeClassifyList){
+            if(fieldMap.keySet().contains(expandNodeClassify.getNodeName())&&!fieldMap.get(expandNodeClassify.getNodeName()).equals(expandNodeClassify.getNodeType()))
+                outList.add(expandFromMap.get(expandNodeClassify.getNodeName())+";"+expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName()+"字段："+expandNodeClassify.getNodeName()+"冲突！");
+            fieldMap.put(expandNodeClassify.getNodeName(),expandNodeClassify.getNodeType());
+            expandFromMap.put(expandNodeClassify.getNodeName(),expandFromMap.get(expandNodeClassify.getNodeName())==null?expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName():expandFromMap.get(expandNodeClassify.getNodeName())+";"+expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName());
+        }
+
+        if(outList.size()!=0) return outList;
+        //调用生成可用字段表方法
+
+        //存储字段分类
+        expandBasisFieldClassifyRepository.deleteAll();
+        for (String key:fieldMap.keySet()){
+            ExpandBasisFieldClassify expandBasisFieldClassify=new ExpandBasisFieldClassify();
+            expandBasisFieldClassify.setExpandFromName(expandFromMap.get(key));
+            expandBasisFieldClassify.setFieldName(key);
+            expandBasisFieldClassify.setFieldType(fieldMap.get(key));
+            expandBasisFieldClassifyRepository.save(expandBasisFieldClassify);
+        }
+        return outList;
+    }
+
 
     private List<String[]> GetTemplateName(){
         ArrayList<String[]> templateName=new ArrayList<String[]>();
@@ -156,8 +202,6 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
         }
         return list;
     }
-
-
 
     private String HttpGet(String url){
         CloseableHttpClient httpClient = HttpClients.createDefault();
