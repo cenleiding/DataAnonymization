@@ -1,6 +1,6 @@
 package com.CLD.dataAnonymization.web;
 
-import com.CLD.dataAnonymization.service.FileDeidentifyService;
+import com.CLD.dataAnonymization.service.deidentifyTarget.fileDeidentify.FileDeidentifyService;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

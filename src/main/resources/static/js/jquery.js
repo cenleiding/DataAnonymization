@@ -2683,7 +2683,7 @@ support.sortStable = expando.split("").sort( sortOrder ).join("") === expando;
 // Always assume duplicates if they aren't passed to the comparison function
 support.detectDuplicates = !!hasDuplicate;
 
-// Initialize against the default document
+// initialize against the default document
 setDocument();
 
 // Support: Webkit<537.32 - Safari 6.0.3/Chrome 25 (fixed in Chrome 27)
@@ -2882,7 +2882,7 @@ jQuery.fn.extend( {
 } );
 
 
-// Initialize a jQuery object
+// initialize a jQuery object
 
 
 // A central reference to the root jQuery(document)
@@ -2996,7 +2996,7 @@ var rootjQuery,
 // Give the init function the jQuery prototype for later instantiation
 init.prototype = jQuery.fn;
 
-// Initialize central reference
+// initialize central reference
 rootjQuery = jQuery( document );
 
 

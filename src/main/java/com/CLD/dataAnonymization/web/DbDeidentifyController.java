@@ -1,6 +1,6 @@
 package com.CLD.dataAnonymization.web;
 
-import com.CLD.dataAnonymization.service.DbDeidentifyService;
+import com.CLD.dataAnonymization.service.deidentifyTarget.dbDeidentify.DbDeidentifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

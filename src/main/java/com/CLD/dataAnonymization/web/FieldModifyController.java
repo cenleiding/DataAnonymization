@@ -1,7 +1,7 @@
 package com.CLD.dataAnonymization.web;
 
 import com.CLD.dataAnonymization.model.FieldInfo;
-import com.CLD.dataAnonymization.service.FieldClassifyService;
+import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;

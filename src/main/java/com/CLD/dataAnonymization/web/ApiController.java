@@ -1,8 +1,8 @@
 package com.CLD.dataAnonymization.web;
 
-import com.CLD.dataAnonymization.service.ApiDeidentifyService;
-import com.CLD.dataAnonymization.service.ApiUsageService;
-import com.CLD.dataAnonymization.service.FieldClassifyService;
+import com.CLD.dataAnonymization.service.deidentifyTarget.apiDeidentify.ApiDeidentifyService;
+import com.CLD.dataAnonymization.service.deidentifyTarget.apiDeidentify.ApiUsageService;
+import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,14 +1,15 @@
 package com.CLD.dataAnonymization;
 
-import com.CLD.dataAnonymization.service.ExpandNodeClassifyService;
-import com.CLD.dataAnonymization.service.NodeToFieldService;
-import com.CLD.dataAnonymization.service.OpenEhrNodeClassifyService;
-import com.CLD.dataAnonymization.service.ResourcesFileInitializeService;
+import com.CLD.dataAnonymization.dao.h2.repository.UsageFieldClassifyRepository;
+import com.CLD.dataAnonymization.service.systemManage.Reset.NodeResetService;
+import com.CLD.dataAnonymization.service.systemManage.initialize.ResourcesFileInitializeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 
 /**
@@ -21,40 +22,23 @@ import org.springframework.stereotype.Component;
 public class InitApplicationRunner implements ApplicationRunner{
 
     @Autowired
-    NodeToFieldService nodeToFieldService;
-
-    @Autowired
-    OpenEhrNodeClassifyService openEhrNodeClassifyService;
-
-    @Autowired
     ResourcesFileInitializeService resourcesFileInitializeService;
 
     @Autowired
-    ExpandNodeClassifyService expandNodeClassifyService;
+    NodeResetService nodeResetService;
 
-
-
+    @Autowired
+    UsageFieldClassifyRepository usageFieldClassifyRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-      resourcesFileInitializeService.InitializeResourcesFile();
+        //文件初始化
+        resourcesFileInitializeService.InitializeResourcesFile();
 
-      expandNodeClassifyService.FileToDB();
-      openEhrNodeClassifyService.FileToDB();
-
-      nodeToFieldService.ArcheTypeNodeToField();
-      nodeToFieldService.ExpandNodeToField();
-
-
-
-
-
-         /////////////test
-        //openEhrNodeClassifyService.FileToDB();
-
-
+        //字段表，Original表创建
+        List<String> fieldList=usageFieldClassifyRepository.getFromName();
+        if(fieldList.size()==0)
+        nodeResetService.NodeReset();
     }
-
-
 }

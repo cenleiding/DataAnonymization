@@ -1,3 +1,11 @@
+div img{
+    cursor: pointer;
+    transition: all 0.6s;
+}
+div img:hover{
+    transform: scale(1.4);
+}
+
 .navbar-nav li:hover, .navbar-nav li.active{
 	border-bottom : #C4E17F 3px solid;
 	background : #e7e7e7;
