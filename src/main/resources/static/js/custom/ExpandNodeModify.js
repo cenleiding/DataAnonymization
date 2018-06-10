@@ -9,7 +9,9 @@ app.controller("expandNodeModifyCtrl", function($scope,$http,$timeout,$q) {
         {
             "expandName":"--",
             "fromName":"--",
-            "nodeName":"--",
+            "en_name":"--",
+            "ch_name":"--",
+            "description":"--",
             "nodeType": "--",
             "id":"--"
         }];
@@ -110,9 +112,15 @@ app.controller("expandNodeModifyCtrl", function($scope,$http,$timeout,$q) {
             table: "#tempdata",
             idSrc:  'id',
             fields: [{
-                label: "节点名：",
-                name: "nodeName",
-            },  {
+                label: "节点英文名：",
+                name: "en_name",
+            }, {
+                label: "节点中文名：",
+                name: "ch_name",
+            },{
+                label: "节点含义：",
+                name: "description",
+            }, {
                 label: "隐私等级：",
                 name: "nodeType",
                 type:"select",
@@ -135,7 +143,9 @@ app.controller("expandNodeModifyCtrl", function($scope,$http,$timeout,$q) {
                     className: 'select-checkbox',
                     orderable: false,
                 },
-                { data: "nodeName" },
+                { data: "en_name" },
+                { data: "ch_name" },
+                { data: "description" },
                 { data: "nodeType" }
             ],
             select: {

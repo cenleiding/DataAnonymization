@@ -19,7 +19,7 @@ public class ExpandBasisFieldClassify{
 
     private String fieldType;
 
-    @Column(length = 2500)
+    @Column(length = 10000)
     private String expandFromName;
 
     public Long getId() {

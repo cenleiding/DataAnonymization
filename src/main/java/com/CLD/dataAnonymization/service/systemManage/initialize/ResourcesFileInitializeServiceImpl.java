@@ -14,7 +14,7 @@ import java.io.*;
 public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitializeService{
 
     @Value("${node.out.archetype.path}")
-    private String outArchetypePath;
+    private static String outArchetypePath;
 
     @Value("${node.in.archetype.path}")
     private String inArchetypePath;
@@ -28,6 +28,15 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
     @Value("${node.archetype.name}")
     private String ArchetypeName;
 
+    @Value("${field.out.path}")
+    private String FieldOutPath;
+
+    @Value("${package.jar.name}")
+    private String jarName;
+
+    @Value("${node.expand.name}")
+    private String[] expandName;
+
     @Override
     public Boolean InitializeResourcesFile() {
 
@@ -39,7 +48,7 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
                 return this.getClass().getClassLoader().getResource("").getPath();
             }
         }.get().replaceAll("target/classes/","")
-                .replaceAll("1.jar!/BOOT-INF/classes!/","")
+                .replaceAll(jarName+"!/BOOT-INF/classes!/","")
                 .replaceAll("file:","");
 
         file=new File(outPath+outArchetypePath);
@@ -50,20 +59,19 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
         if(!file.exists()){
             System.out.println(file.mkdirs());
         }
+        file=new File(outPath+FieldOutPath);
+        if(!file.exists()){
+            System.out.println(file.mkdirs());
+        }
 
         //复制原型节点分类表
         copyFile(inArchetypePath+"/"+ArchetypeName,outPath+outArchetypePath+"/"+ArchetypeName);
 
+
         //复制其他拓展表
-        String exPath= new Object(){
-            public String get(){
-                return this.getClass().getClassLoader().getResource(inExpandPath).getPath();
-            }
-        }.get();
-        file=new File(exPath);
-        String[] fileList = file.list();
+        String[] fileList = expandName;
         for (int i = 0; i < fileList.length; i++) {
-            copyFile(inExpandPath+fileList[i],outPath+outExpandPath+"/"+fileList[i]);
+            copyFile(inExpandPath+"/"+fileList[i],outPath+outExpandPath+"/"+fileList[i]);
         }
 
         System.out.println("资源初始化成功！");

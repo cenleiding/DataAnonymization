@@ -7,7 +7,6 @@ import org.apache.poi.hssf.record.*;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -198,9 +197,9 @@ public class XlsStreamingReader{
 
     }
 
-    public static void main(String[] args) throws Exception
-    {
-       XlsStreamingReader xlsStreamingReader=new XlsStreamingReader("C:\\Users\\CLD\\Desktop\\test.xls");
-        ArrayList<ArrayList<ArrayList<String>>> w = xlsStreamingReader.getData();
-    }
+//    public static void main(String[] args) throws Exception
+//    {
+//       XlsStreamingReader xlsStreamingReader=new XlsStreamingReader("C:\\Users\\CLD\\Desktop\\1.xls");
+//        ArrayList<ArrayList<ArrayList<String>>> w = xlsStreamingReader.getData();
+//    }
 }

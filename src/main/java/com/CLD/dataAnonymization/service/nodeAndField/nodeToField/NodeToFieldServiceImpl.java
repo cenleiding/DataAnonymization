@@ -153,11 +153,35 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
         Map<String,String> fieldMap=new HashMap<String,String>();
         Map<String,String> expandFromMap=new HashMap<String, String>();
         for(ExpandNodeClassify expandNodeClassify:expandNodeClassifyList){
-            if(fieldMap.keySet().contains(expandNodeClassify.getNodeName())&&!fieldMap.get(expandNodeClassify.getNodeName()).equals(expandNodeClassify.getNodeType()))
-                outList.add(expandFromMap.get(expandNodeClassify.getNodeName())+";"+expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName()+"字段："+expandNodeClassify.getNodeName()+"冲突！");
-            fieldMap.put(expandNodeClassify.getNodeName(),expandNodeClassify.getNodeType());
-            expandFromMap.put(expandNodeClassify.getNodeName(),expandFromMap.get(expandNodeClassify.getNodeName())==null?expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName():expandFromMap.get(expandNodeClassify.getNodeName())+";"+expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName());
-        }
+            String EN_name=expandNodeClassify.getEN_name()
+                    .toLowerCase()
+                    .replace(".","")
+                    .replace("_","")
+                    .replace("-","")
+                    .replace("*","");
+            String CH_name=expandNodeClassify.getCH_name()
+                    .toLowerCase()
+                    .replace(".","")
+                    .replace("_","")
+                    .replace("-","")
+                    .replace("*","");
+            if(EN_name!=null&&!EN_name.equals("")){
+                if(fieldMap.keySet().contains(EN_name)&&!fieldMap.get(EN_name).equals(expandNodeClassify.getNodeType()))
+                    outList.add(expandFromMap.get(EN_name)+";"+expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName()+"字段："+EN_name+"冲突！");
+                fieldMap.put(EN_name,expandNodeClassify.getNodeType());
+                expandFromMap.put(EN_name,expandFromMap.get(EN_name)==null?
+                        expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName():
+                        expandFromMap.get(EN_name)+";"+expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName());
+            }
+            if(CH_name!=null&&!CH_name.equals("")){
+                if(fieldMap.keySet().contains(CH_name)&&!fieldMap.get(CH_name).equals(expandNodeClassify.getNodeType()))
+                    outList.add(expandFromMap.get(CH_name)+";"+expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName()+"字段："+CH_name+"冲突！");
+                fieldMap.put(CH_name,expandNodeClassify.getNodeType());
+                expandFromMap.put(CH_name,expandFromMap.get(CH_name)==null?
+                        expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName():
+                        expandFromMap.get(CH_name)+";"+expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName());
+            }
+           }
 
         if(outList.size()!=0) return outList;
 

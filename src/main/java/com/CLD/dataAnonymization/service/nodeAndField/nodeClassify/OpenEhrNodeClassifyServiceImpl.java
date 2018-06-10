@@ -30,18 +30,21 @@ public class OpenEhrNodeClassifyServiceImpl implements OpenEhrNodeClassifyServic
     @Value("${node.archetype.name}")
     private String archetypeName;
 
+    @Value("${package.jar.name}")
+    private String jarName;
+
     @Autowired
     ArchetypeNodeClassifyRepository archetypeNodeClassifyRepository;
 
     @Autowired
     NodeToFieldService nodeToFieldService;
 
-    private static final String FilePath_mapping=new Object() {
+    private String FilePath_mapping=new Object() {
         public String get(){
             return this.getClass().getClassLoader().getResource("").getPath();
         }
     }.get().replaceAll("target/classes/","")
-            .replaceAll("1.jar!/BOOT-INF/classes!/","")
+            .replaceAll(jarName+"!/BOOT-INF/classes!/","")
             .replaceAll("file:","");
 
     @Override

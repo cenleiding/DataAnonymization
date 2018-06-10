@@ -64,26 +64,48 @@
             <div class="row">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-4">
-                    <h2 style="padding-top: 130px;padding-bottom: 80px">节点文件备份</h2>
-                    <div data-ng-click="bf={open: true}"><img src="/img/backUp.png" style="height: 180px;width: 180px" ></div>
-                    <dialog ng-if="bf.open" modal  close="bf.open=false">
-                        <div dialog-title>保存更新</div>
+                    <h2 style="padding-top: 50px;padding-bottom: 50px">节点文件备份</h2>
+                    <div data-ng-click="jdbf={open: true}"><img src="/img/backUp.png" style="height: 180px;width: 180px" ></div>
+                    <dialog ng-if="jdbf.open" modal  close="jdbf.open=false">
+                        <div dialog-title>节点文件备份</div>
                         <div dialog-content>注意：备份文件存储于resources文件夹！</div>
-                        <div dialog-buttons><button data-ng-click="$close();backUp()">确定</button><button ng-click="$close()">取消</button></div>
+                        <div dialog-buttons><button data-ng-click="$close();jdbackUp()">确定</button><button ng-click="$close()">取消</button></div>
                     </dialog>
                 </div>
                 <div class="col-lg-1"></div>
                 <div class="col-lg-4">
-                    <h2 style="padding-top: 130px;padding-bottom: 80px">节点文件重置</h2>
-                    <div data-ng-click="cz={open: true}"><img src="/img/reset.png" style="height: 180px;width: 180px"></div>
-                    <dialog ng-if="cz.open" modal  close="cz.open=false">
-                        <div dialog-title>保存更新</div>
+                    <h2 style="padding-top: 50px;padding-bottom:50px">节点文件重置</h2>
+                    <div data-ng-click="jdcz={open: true}"><img src="/img/reset.png" style="height: 180px;width: 180px"></div>
+                    <dialog ng-if="jdcz.open" modal  close="jdcz.open=false">
+                        <div dialog-title>节点文件重置</div>
                         <div dialog-content>注意：节点信息重置后无法还原！</div>
-                        <div dialog-buttons><button data-ng-click="$close();reset()">确定</button><button ng-click="$close()">取消</button></div>
+                        <div dialog-buttons><button data-ng-click="$close();jdreset()">确定</button><button ng-click="$close()">取消</button></div>
                     </dialog>
                 </div>
                 <div class="col-lg-1"></div>
-
+            </div>
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4">
+                    <h2 style="padding-top: 50px;padding-bottom: 50px">字段表下载</h2>
+                    <div data-ng-click="zdbf={open: true}"><img src="/img/backUp.png" style="height: 180px;width: 180px" ></div>
+                    <dialog ng-if="zdbf.open" modal  close="zdbf.open=false">
+                        <div dialog-title>字段表下载</div>
+                        <div dialog-content>注意：备份文件存储于resources文件夹！</div>
+                        <div dialog-buttons><button data-ng-click="$close();zdbackUp()">确定</button><button ng-click="$close()">取消</button></div>
+                    </dialog>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-4">
+                    <h2 style="padding-top: 50px;padding-bottom: 50px">字段表添加</h2>
+                    <div data-ng-click="zdcz={open: true}"><img src="/img/reset.png" style="height: 180px;width: 180px"></div>
+                    <dialog ng-if="zdcz.open" modal  close="zdcz.open=false">
+                        <div dialog-title>字段表添加</div>
+                        <div dialog-content>注意：将覆盖同名的原字段表(Original除外)！</div>
+                        <div dialog-buttons><button data-ng-click="$close();zdreset()">确定</button><button ng-click="$close()">取消</button></div>
+                    </dialog>
+                </div>
+                <div class="col-lg-1"></div>
             </div>
         </div>
         <!-- /.container-fluid -->

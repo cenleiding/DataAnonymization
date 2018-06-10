@@ -29,4 +29,16 @@ public interface FieldClassifyService {
 
     public Boolean deleteFromByName(String fromName);
 
+    /**
+     * 该方法将文件形式的字段表，存入数据库
+     * @return
+     */
+    public Boolean FileToDB();
+
+    /**
+     * 该方法将数据库形式的字段表保存为文件形式
+     * @return
+     */
+    public Boolean DBToFile();
+
 }

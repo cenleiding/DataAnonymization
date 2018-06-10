@@ -168,11 +168,9 @@ public class XlsxStreamingReader {
         }
     }
 
-
-    public static void main(String[] args) throws Exception {
-        XlsxStreamingReader example = new XlsxStreamingReader("C:\\Users\\CLD\\Desktop\\test.xlsx");
-        ArrayList<ArrayList<ArrayList<String>>> d=example.getData();
-    }
-
-
+//
+//    public static void main(String[] args) throws Exception {
+//        XlsxStreamingReader example = new XlsxStreamingReader("C:\\Users\\CLD\\Desktop\\test.xlsx");
+//        ArrayList<ArrayList<ArrayList<String>>> d=example.getData();
+//    }
 }

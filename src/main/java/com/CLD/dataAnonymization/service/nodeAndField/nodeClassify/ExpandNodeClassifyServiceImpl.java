@@ -25,18 +25,21 @@ public class ExpandNodeClassifyServiceImpl implements ExpandNodeClassifyService 
     @Value("${node.out.expand.path}")
     private String expandPath;
 
+    @Value("${package.jar.name}")
+    private String jarName;
+
     @Autowired
     ExpandNodeClassifyRepository expandNodeClassifyRepository;
 
     @Autowired
     NodeToFieldService nodeToFieldService;
 
-    private static final String FilePath_mapping=new Object() {
+    private String FilePath_mapping=new Object() {
         public String get(){
             return this.getClass().getClassLoader().getResource("").getPath();
         }
     }.get().replaceAll("target/classes/","")
-            .replaceAll("1.jar!/BOOT-INF/classes!/","")
+            .replaceAll(jarName+"!/BOOT-INF/classes!/","")
             .replaceAll("file:","");
 
     @Override
@@ -70,7 +73,9 @@ public class ExpandNodeClassifyServiceImpl implements ExpandNodeClassifyService 
                     ExpandNodeClassify expandNodeClassify=new ExpandNodeClassify();
                     expandNodeClassify.setExpandName(fileList[i]);
                     expandNodeClassify.setFromName(jsonArray.getJSONObject(j).getString("fromName"));
-                    expandNodeClassify.setNodeName(jsonArray.getJSONObject(j).getJSONArray("fields").getJSONObject(k).getString("nodeName"));
+                    expandNodeClassify.setCH_name(jsonArray.getJSONObject(j).getJSONArray("fields").getJSONObject(k).getString("CH_Name"));
+                    expandNodeClassify.setEN_name(jsonArray.getJSONObject(j).getJSONArray("fields").getJSONObject(k).getString("EN_Name"));
+                    expandNodeClassify.setDescription(jsonArray.getJSONObject(j).getJSONArray("fields").getJSONObject(k).getString("description"));
                     expandNodeClassify.setNodeType(jsonArray.getJSONObject(j).getJSONArray("fields").getJSONObject(k).getString("type"));
                     expandNodeClassifyRepository.save(expandNodeClassify);
                 }
@@ -93,7 +98,9 @@ public class ExpandNodeClassifyServiceImpl implements ExpandNodeClassifyService 
                 for(ExpandNodeClassify expandNodeClassify:expandNodeClassifyList){
                     if(expandNodeClassify.getExpandName().equals(expandName)&&expandNodeClassify.getFromName().equals(fromName)){
                         JSONObject jo=new JSONObject();
-                        jo.put("nodeName",expandNodeClassify.getNodeName());
+                        jo.put("EN_Name",expandNodeClassify.getEN_name());
+                        jo.put("CH_Name",expandNodeClassify.getCH_name());
+                        jo.put("description",expandNodeClassify.getDescription());
                         jo.put("type",expandNodeClassify.getNodeType());
                         jsonArray.add(jo);
                     }
@@ -136,7 +143,9 @@ public class ExpandNodeClassifyServiceImpl implements ExpandNodeClassifyService 
             expandNodeInfo.setExpandName(expandNodeClassify.getExpandName());
             expandNodeInfo.setFromName(expandNodeClassify.getFromName());
             expandNodeInfo.setId(expandNodeClassify.getId());
-            expandNodeInfo.setNodeName(expandNodeClassify.getNodeName());
+            expandNodeInfo.setEN_name(expandNodeClassify.getEN_name());
+            expandNodeInfo.setCH_name(expandNodeClassify.getCH_name());
+            expandNodeInfo.setDescription(expandNodeClassify.getDescription());
             expandNodeInfo.setNodeType(expandNodeClassify.getNodeType());
             expandNodeInfoList.add(expandNodeInfo);
         }
@@ -151,13 +160,16 @@ public class ExpandNodeClassifyServiceImpl implements ExpandNodeClassifyService 
         for(ExpandNodeInfo expandNodeInfo:expandNodeInfoList){
             ExpandNodeClassify expandNodeClassify=new ExpandNodeClassify();
             expandNodeClassify.setNodeType(expandNodeInfo.getNodeType());
-            expandNodeClassify.setNodeName(expandNodeInfo.getNodeName());
+            expandNodeClassify.setEN_name(expandNodeInfo.getEN_name());
+            expandNodeClassify.setCH_name(expandNodeInfo.getCH_name());
+            expandNodeClassify.setDescription(expandNodeInfo.getDescription());
             expandNodeClassify.setFromName(expandNodeInfo.getFromName());
             expandNodeClassify.setExpandName(expandNodeInfo.getExpandName());
             expandNodeClassifyList.add(expandNodeClassify);
         }
         //进入NodeToField模块
         outList=nodeToFieldService.ExpandNodeToField(expandNodeClassifyList);
+        System.out.println(outList);
         if(outList.size()!=0) return outList;
         outList.add("Original字段表更新成功！");
 

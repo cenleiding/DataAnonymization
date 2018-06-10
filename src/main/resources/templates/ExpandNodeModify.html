@@ -61,7 +61,6 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-1"></div>
                 <div class="col-lg-3">
                     <label style="font-size:18px;font-weight:normal;padding-right: 15px">拓展文件：</label>
                     <select id="Select" class="selectpicker" data-width="220PX"></select>
@@ -73,13 +72,15 @@
                     </div>
                 </div>
                 <div class="col-lg-1"></div>
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                     <h4>原型节点：</h4>
                     <table id="tempdata" class="display" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th></th>
-                            <th>节点名</th>
+                            <th>节点英文名</th>
+                            <th>节点中文名</th>
+                            <th>节点含义</th>
                             <th>隐私等级</th>
                         </tr>
                         </thead>
@@ -90,7 +91,6 @@
                         <div dialog-buttons><button data-ng-click="$close();saveChange()">确定</button><button ng-click="$close()">取消</button></div>
                     </dialog>
                 </div>
-                <div class="col-lg-1"></div>
             </div>
         </div>
         <!-- /.container-fluid -->

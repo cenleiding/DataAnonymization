@@ -61,10 +61,10 @@ public class XlsxStreamingWriter {
         return isSuccess;
     }
 
-    public static void main(String[] args) throws Exception {
-        XlsxStreamingReader xlsStreamingReader=new XlsxStreamingReader("C:\\Users\\CLD\\Desktop\\test.xlsx");
-        ArrayList<ArrayList<ArrayList<String>>> w = xlsStreamingReader.getData();
-        XlsxStreamingWriter xlsxStreamingWriter=new XlsxStreamingWriter(w,"C:\\Users\\CLD\\Desktop\\testbig.xlsx");
-        xlsxStreamingWriter.writer();
-    }
+//    public static void main(String[] args) throws Exception {
+//        XlsxStreamingReader xlsStreamingReader=new XlsxStreamingReader("C:\\Users\\CLD\\Desktop\\test.xlsx");
+//        ArrayList<ArrayList<ArrayList<String>>> w = xlsStreamingReader.getData();
+//        XlsxStreamingWriter xlsxStreamingWriter=new XlsxStreamingWriter(w,"C:\\Users\\CLD\\Desktop\\testbig.xlsx");
+//        xlsxStreamingWriter.writer();
+//    }
 }

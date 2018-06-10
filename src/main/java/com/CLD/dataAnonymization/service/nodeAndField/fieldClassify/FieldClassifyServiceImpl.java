@@ -7,9 +7,14 @@ import com.CLD.dataAnonymization.dao.h2.repository.ArchetypeBasisFieldClassifyRe
 import com.CLD.dataAnonymization.dao.h2.repository.ExpandBasisFieldClassifyRepository;
 import com.CLD.dataAnonymization.dao.h2.repository.UsageFieldClassifyRepository;
 import com.CLD.dataAnonymization.model.FieldInfo;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.*;
 import java.util.*;
 
 /**
@@ -18,6 +23,20 @@ import java.util.*;
  **/
 @Service
 public class FieldClassifyServiceImpl implements FieldClassifyService {
+
+    @Value("${field.out.path}")
+    private String fieldPath;
+
+    @Value("${package.jar.name}")
+    private String jarName;
+
+    private String FilePath_mapping=new Object() {
+        public String get(){
+            return this.getClass().getClassLoader().getResource("").getPath();
+        }
+    }.get().replaceAll("target/classes/","")
+            .replaceAll(jarName+"!/BOOT-INF/classes!/","")
+            .replaceAll("file:","");
 
     @Autowired
     UsageFieldClassifyRepository usageFieldClassifyRepository;
@@ -154,6 +173,71 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
     @Override
     public Boolean deleteFromByName(String fromName) {
         usageFieldClassifyRepository.deleteByFromName(fromName);
+        return true;
+    }
+
+    @Override
+    public Boolean FileToDB() {
+        InputStream is= null;
+        File file=new File(FilePath_mapping+fieldPath);
+        String[] fileList = file.list();
+        for (int i = 0; i < fileList.length; i++) {
+            if(fileList[i].equals("Original.json")) continue;
+            usageFieldClassifyRepository.deleteByFromName(fileList[i].split("\\.")[0]);
+            JSONArray jsonArray=new JSONArray();
+            String path=FilePath_mapping+fieldPath+"/"+fileList[i];
+            try {
+                is = new FileInputStream(path);
+                JSONReader reader=new JSONReader(new InputStreamReader(is,"UTF-8"));
+                reader.startArray();
+                while(reader.hasNext()) {
+                    JSONObject ja= (JSONObject) reader.readObject();
+                    jsonArray.add(ja);
+                }
+                reader.endArray();
+                reader.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return false;
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                return false;
+            }
+            for(int j=0;j<jsonArray.size();j++){
+                UsageFieldClassify usageFieldClassify=new UsageFieldClassify();
+                usageFieldClassify.setFromName(fileList[i].split("\\.")[0]);
+                usageFieldClassify.setFieldName(jsonArray.getJSONObject(j).getString("fieldName"));
+                usageFieldClassify.setFieldType(jsonArray.getJSONObject(j).getString("fieldType"));
+                usageFieldClassifyRepository.save(usageFieldClassify);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean DBToFile() {
+        List<String> fieldNameList=usageFieldClassifyRepository.getFromName();
+        for(String fieldName:fieldNameList) {
+            List<UsageFieldClassify> usageFieldClassifyList = usageFieldClassifyRepository.findByFromName(fieldName);
+            JSONArray jsonArray=new JSONArray();
+            for(UsageFieldClassify usageFieldClassify:usageFieldClassifyList){
+                JSONObject jsonObject=new JSONObject();
+                jsonObject.put("fieldName",usageFieldClassify.getFieldName());
+                jsonObject.put("fieldType",usageFieldClassify.getFieldType());
+                jsonArray.add(jsonObject);
+            }
+            String jsonStr =jsonArray.toJSONString();
+            PrintWriter pw = null;
+            try {
+                pw = new PrintWriter(new BufferedWriter(new FileWriter(FilePath_mapping+fieldPath+"/backup"+fieldName+".json")));
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+            pw.print(jsonStr);
+            pw.flush();
+            pw.close();
+        }
         return true;
     }
 

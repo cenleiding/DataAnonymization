@@ -1,6 +1,8 @@
 package com.CLD.dataAnonymization.web;
 
+import com.CLD.dataAnonymization.service.systemManage.BackUp.FieldFileBackUpService;
 import com.CLD.dataAnonymization.service.systemManage.BackUp.NodeFileBackUpService;
+import com.CLD.dataAnonymization.service.systemManage.Reset.FieldResetService;
 import com.CLD.dataAnonymization.service.systemManage.Reset.NodeResetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +24,13 @@ public class SysManageController {
     NodeFileBackUpService nodeFileBackUpService;
 
     @Autowired
+    FieldFileBackUpService fieldFileBackUpService;
+
+    @Autowired
     NodeResetService nodeResetService;
+
+    @Autowired
+    FieldResetService fieldResetService;
 
     @RequestMapping("/SysManage")
     public String sysManage(){
@@ -39,5 +47,17 @@ public class SysManageController {
     @ResponseBody
     public List<String> nodeReset(){
         return nodeResetService.NodeReset();
+    }
+
+    @RequestMapping(value = "/fieldFileBackUp",method = RequestMethod.GET)
+    @ResponseBody
+    public Boolean fieldFileBackUp(){
+        return fieldFileBackUpService.FieldFileBackUp();
+    }
+
+    @RequestMapping(value = "/fieldReset",method = RequestMethod.GET)
+    @ResponseBody
+    public Boolean fieldReset(){
+        return fieldResetService.FieldReset();
     }
 }

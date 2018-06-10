@@ -22,9 +22,37 @@ public class ExpandNodeClassify {
 
     private String fromName;
 
-    private String nodeName;
+    private String CH_name;
+
+    private String EN_name;
+
+    private String description;
 
     private String nodeType;
+
+    public String getCH_name() {
+        return CH_name;
+    }
+
+    public void setCH_name(String CH_name) {
+        this.CH_name = CH_name;
+    }
+
+    public String getEN_name() {
+        return EN_name;
+    }
+
+    public void setEN_name(String EN_name) {
+        this.EN_name = EN_name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -48,14 +76,6 @@ public class ExpandNodeClassify {
 
     public void setFromName(String fromName) {
         this.fromName = fromName;
-    }
-
-    public String getNodeName() {
-        return nodeName;
-    }
-
-    public void setNodeName(String nodeName) {
-        this.nodeName = nodeName;
     }
 
     public String getNodeType() {
