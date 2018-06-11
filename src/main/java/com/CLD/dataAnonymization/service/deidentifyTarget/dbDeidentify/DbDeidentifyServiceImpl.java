@@ -58,7 +58,7 @@ public class DbDeidentifyServiceImpl implements DbDeidentifyService {
             for(int i=0;i<fromName.size();i++){
                 saveH2(url,"表："+fromName.get(i)+"处理中...");
 
-                ArrayList<ArrayList<String>> fromInfo=dbMySqlHandle.getDbFromInfo(conn,fromName.get(i));
+                ArrayList<ArrayList<String>> fromInfo=dbMySqlHandle.getDbFromInfo(conn,user,fromName.get(i));
                 saveH2(url,"字段总数："+fromInfo.size());
 
                 ArrayList<ArrayList<String>> dataList=dbMySqlHandle.getFromData(conn,fromName.get(i),fromInfo);
@@ -83,9 +83,69 @@ public class DbDeidentifyServiceImpl implements DbDeidentifyService {
         }
         if(dbType.equals("SqlServer")){
             url="jdbc:sqlserver://"+host+":"+port+";DatabaseName="+databaseName;
+            conn=dbSqlServerHandle.getConn(url,user,password);
+            saveH2(url,"***数据库连接成功***");
+            ArrayList<String> fromName=dbSqlServerHandle.getDbFromName(conn,user);
+            saveH2(url,"***代处理数据库表列表***");
+            saveH2(url,fromName.toString());
+            for(int i=0;i<fromName.size();i++){
+                saveH2(url,"表："+fromName.get(i)+"处理中...");
+
+                ArrayList<ArrayList<String>> fromInfo=dbSqlServerHandle.getDbFromInfo(conn,user,fromName.get(i));
+                saveH2(url,"字段总数："+fromInfo.size());
+
+                ArrayList<ArrayList<String>> dataList=dbSqlServerHandle.getFromData(conn,fromName.get(i),fromInfo);
+                saveH2(url,"表共含记录："+dataList.size()+"条...");
+
+                saveH2(url,"数据处理中...");
+                ArrayList<ArrayList<String>> fieldList=fieldClassifyService.getUseFieldByFromName(fieldFromName);
+                if(method.equals("SafeHarbor"))
+                    dataList= IOAdapter.ToSafeHarbor(dataList,fieldList);
+                if(method.equals("LimitedSet"))
+                    dataList= IOAdapter.ToLimitedSet(dataList,fieldList);
+                saveH2(url,"数据处理完毕！");
+
+                dbSqlServerHandle.createMirrorFrom(conn,fromName.get(i)+"_"+method,fromInfo);
+                saveH2(url,"匿名表："+fromName.get(i)+"_"+method+"创建成功！");
+
+                dbSqlServerHandle.insertNewFrom(conn,fromName.get(i)+"_"+method,dataList);
+                saveH2(url,"匿名数据插入成功！");
+                saveH2(url,"****************");
+            }
+            dbSqlServerHandle.closeConn(conn);
         }
         if(dbType.equals("Oracle")){
             url="jdbc:oracle:thin:@"+host+":"+port+":"+databaseName;
+            conn=dbOracleHandle.getConn(url,user,password);
+            saveH2(url,"***数据库连接成功***");
+            ArrayList<String> fromName=dbOracleHandle.getDbFromName(conn,user);
+            saveH2(url,"***代处理数据库表列表***");
+            saveH2(url,fromName.toString());
+            for(int i=0;i<fromName.size();i++){
+                saveH2(url,"表："+fromName.get(i)+"处理中...");
+
+                ArrayList<ArrayList<String>> fromInfo=dbOracleHandle.getDbFromInfo(conn,user,fromName.get(i));
+                saveH2(url,"字段总数："+fromInfo.size());
+
+                ArrayList<ArrayList<String>> dataList=dbOracleHandle.getFromData(conn,fromName.get(i),fromInfo);
+                saveH2(url,"表共含记录："+dataList.size()+"条...");
+
+                saveH2(url,"数据处理中...");
+                ArrayList<ArrayList<String>> fieldList=fieldClassifyService.getUseFieldByFromName(fieldFromName);
+                if(method.equals("SafeHarbor"))
+                    dataList= IOAdapter.ToSafeHarbor(dataList,fieldList);
+                if(method.equals("LimitedSet"))
+                    dataList= IOAdapter.ToLimitedSet(dataList,fieldList);
+                saveH2(url,"数据处理完毕！");
+
+                dbOracleHandle.createMirrorFrom(conn,fromName.get(i)+"_"+method,fromInfo);
+                saveH2(url,"匿名表："+fromName.get(i)+"_"+method+"创建成功！");
+
+                dbOracleHandle.insertNewFrom(conn,fromName.get(i)+"_"+method,dataList);
+                saveH2(url,"匿名数据插入成功！");
+                saveH2(url,"****************");
+            }
+            dbOracleHandle.closeConn(conn);
         }
 
         deletH2(url);

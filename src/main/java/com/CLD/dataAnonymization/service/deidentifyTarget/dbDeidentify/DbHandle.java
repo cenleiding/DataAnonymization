@@ -47,7 +47,7 @@ public interface DbHandle {
      * @param fromName
      * @return 字段信息<字段名,字段类型,字段长度,是否为空,主键列表>
      */
-    public ArrayList<ArrayList<String>> getDbFromInfo(Connection conn, String fromName);
+    public ArrayList<ArrayList<String>> getDbFromInfo(Connection conn,String user, String fromName);
 
     /**
      * 根据(新表名、原表信息)建匿名新表

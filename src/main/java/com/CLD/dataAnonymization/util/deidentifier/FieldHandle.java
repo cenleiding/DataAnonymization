@@ -15,15 +15,6 @@ import java.util.ArrayList;
  **/
 public class FieldHandle {
 
-    private static final String FilePath_address=new Object() {
-        public String get(){
-            return this.getClass().getClassLoader().getResource("").getPath();
-        }
-    }.get().replaceAll("target/classes/","")
-            .replaceAll("1.jar!/BOOT-INF/classes!/","")
-            .replaceAll("file:","")+"com/CLD/dataAnonymization/util/deidentifier/Resources/Address.json";
-
-
     /**
      * @return
      */

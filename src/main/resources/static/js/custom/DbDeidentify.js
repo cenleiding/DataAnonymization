@@ -105,6 +105,7 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce) {
         if(($scope.host==="")||($scope.port==="")||($scope.databaseName==="")||($scope.user==="")||($scope.password===""))
             alert("请填写完整数据库连接信息！");
         else{
+            $scope.DbInfo="";
             $http({
                 method:"GET",
                 url:"/runDeidentify",

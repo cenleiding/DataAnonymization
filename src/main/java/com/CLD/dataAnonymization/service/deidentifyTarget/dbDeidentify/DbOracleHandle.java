@@ -19,7 +19,7 @@ public class DbOracleHandle implements DbHandle{
             conn=getConn(url,user,password);
             ArrayList<String> fromName=getDbFromName(conn,user);
             for(int i=0;i<fromName.size();i++){
-                ArrayList<ArrayList<String>> fromInfo=getDbFromInfo(conn,fromName.get(i));
+                ArrayList<ArrayList<String>> fromInfo=getDbFromInfo(conn,user,fromName.get(i));
                 createMirrorFrom(conn,fromName.get(i)+"_"+identityType,fromInfo);
                 System.out.println("***表单："+fromName.get(i)+"_"+identityType+" 创建成功！***");
                 ArrayList<ArrayList<String>> dataList=getFromData(conn,fromName.get(i),fromInfo);
@@ -127,7 +127,7 @@ public class DbOracleHandle implements DbHandle{
      * @return 字段信息<字段名,字段类型,字段长度,是否为空,主键列表>
      */
     @Override
-    public ArrayList<ArrayList<String>> getDbFromInfo(Connection conn, String fromName){
+    public ArrayList<ArrayList<String>> getDbFromInfo(Connection conn,String user, String fromName){
         ResultSet rs=null;
         ArrayList<ArrayList<String>> fromInfo=new ArrayList<ArrayList<String>>();
         ArrayList<String> name=new ArrayList<String>();
@@ -135,9 +135,10 @@ public class DbOracleHandle implements DbHandle{
         ArrayList<String> length=new ArrayList<String>();
         ArrayList<String> isNull=new ArrayList<String>();
         ArrayList<String> key=new ArrayList<String>();
+        ArrayList<String> index=new ArrayList<String>();
         try {
             //表头信息
-            rs=conn.getMetaData().getColumns(null,null,fromName,null);
+            rs=conn.getMetaData().getColumns(null,user,fromName,null);
             System.out.println("表名："+fromName);
             while(rs.next()) {
                 System.out.print(" 列名称: "+ rs.getString("COLUMN_NAME"));
@@ -152,7 +153,7 @@ public class DbOracleHandle implements DbHandle{
             }
 
             //主键信息
-            rs = conn.getMetaData().getPrimaryKeys(null, null,fromName);
+            rs = conn.getMetaData().getPrimaryKeys(null, user,fromName);
             while(rs.next()) {
                 System.out.println();
                 System.out.println("***主键***");
@@ -160,6 +161,27 @@ public class DbOracleHandle implements DbHandle{
                 System.out.println("KEY_SEQ : " + rs.getObject(5));
                 System.out.println("PK_NAME : " + rs.getObject(6));
                 key.add(rs.getObject(4).toString());
+            }
+
+            //索引信息
+            rs=conn.getMetaData().getIndexInfo(null,user,fromName,false,true);
+            while(rs.next()) {
+                System.out.println();
+                System.out.println("***索引***");
+                System.out.println("索引名：" + rs.getString("INDEX_NAME"));
+                System.out.println("列名：" + rs.getString("COLUMN_NAME"));
+                System.out.println("索引类型：" + rs.getShort("TYPE"));
+                System.out.println("索引类别：" + rs.getString("INDEX_QUALIFIER"));
+                if(key.contains(rs.getString("COLUMN_NAME"))) continue;
+                switch (rs.getShort("TYPE")) {
+                    case 0: {
+                        break;
+                    }
+                    default:{
+                        index.add("CREATE INDEX "+rs.getString("INDEX_NAME")+"_NEW"+" ON FromName ("+rs.getString("COLUMN_NAME")+")" );
+                        break;
+                    }
+                }
             }
 
         } catch (SQLException e) {
@@ -170,6 +192,7 @@ public class DbOracleHandle implements DbHandle{
         fromInfo.add(length);
         fromInfo.add(isNull);
         fromInfo.add(key);
+        fromInfo.add(index);
         return fromInfo;
     }
 
@@ -196,13 +219,19 @@ public class DbOracleHandle implements DbHandle{
                 else createSql+=",";
             }
             //拼接主键
+            if(fromInfo.get(4).size()>0) createSql+="primary key (";
             for(int i=0;i<fromInfo.get(4).size();i++){
-                createSql+="primary key ("+fromInfo.get(4).get(i)+",";
+                createSql+=fromInfo.get(4).get(i)+",";
             }
             createSql=createSql.substring(0,createSql.length()-1)+"))";
             //建表
             stmt = conn.createStatement();
             stmt.executeUpdate(createSql);
+            //加索引
+            for(int i=0;i<fromInfo.get(5).size();i++){
+                createSql=fromInfo.get(5).get(i).replace("FromName",newFromName);
+                stmt.executeUpdate(createSql);
+            }
             stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();

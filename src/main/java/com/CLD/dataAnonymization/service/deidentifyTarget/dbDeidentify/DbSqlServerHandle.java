@@ -13,31 +13,6 @@ import java.util.ArrayList;
 @Service("SqlServer")
 public class DbSqlServerHandle implements DbHandle {
 
-    public void DbDeidentify(String url,String user,String password,String fieldFromName,String identityType){
-        Connection conn=null;
-        try {
-            conn=getConn(url,user,password);
-            ArrayList<String> fromName=getDbFromName(conn,user);
-            for(int i=0;i<fromName.size();i++){
-                ArrayList<ArrayList<String>> fromInfo=getDbFromInfo(conn,fromName.get(i));
-                createMirrorFrom(conn,fromName.get(i)+"_"+identityType,fromInfo);
-                System.out.println("***表单："+fromName.get(i)+"_"+identityType+" 创建成功！***");
-                ArrayList<ArrayList<String>> dataList=getFromData(conn,fromName.get(i),fromInfo);
-                insertNewFrom(conn,fromName.get(i)+"_"+identityType,dataList);
-                System.out.println("***表单："+fromName.get(i)+"_"+identityType+" 数据插入成功！***");
-            }
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            try {
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     /**
      * 测试连接
      * @param url
@@ -127,7 +102,7 @@ public class DbSqlServerHandle implements DbHandle {
      * @return 字段信息<字段名,字段类型,字段长度,是否为空,主键列表>
      */
     @Override
-    public ArrayList<ArrayList<String>> getDbFromInfo(Connection conn, String fromName){
+    public ArrayList<ArrayList<String>> getDbFromInfo(Connection conn,String user, String fromName){
         ResultSet rs=null;
         ArrayList<ArrayList<String>> fromInfo=new ArrayList<ArrayList<String>>();
         ArrayList<String> name=new ArrayList<String>();
@@ -135,6 +110,7 @@ public class DbSqlServerHandle implements DbHandle {
         ArrayList<String> length=new ArrayList<String>();
         ArrayList<String> isNull=new ArrayList<String>();
         ArrayList<String> key=new ArrayList<String>();
+        ArrayList<String> index=new ArrayList<String>();
         try {
             //表头信息
             rs=conn.getMetaData().getColumns(null,null,fromName,null);
@@ -162,6 +138,40 @@ public class DbSqlServerHandle implements DbHandle {
                 key.add(rs.getObject(4).toString());
             }
 
+            //索引信息
+            rs=conn.getMetaData().getIndexInfo(null,null,fromName,false,true);
+            while(rs.next()){
+                System.out.println();
+                System.out.println("***索引***");
+                System.out.println("索引名："+rs.getString("INDEX_NAME"));
+                System.out.println("列名："+rs.getString("COLUMN_NAME"));
+                System.out.println("索引类型："+rs.getShort("TYPE"));
+                System.out.println("索引类别："+rs.getString("INDEX_QUALIFIER"));
+                System.out.println("索引是否唯一："+rs.getBoolean("NON_UNIQUE"));
+                if(key.contains(rs.getString("COLUMN_NAME"))) continue;
+                switch (rs.getShort("TYPE")){
+                    case 0:{
+                        break;
+                    }
+                    case 1:{
+                        index.add("KEY "+rs.getString("INDEX_NAME")+" ("+rs.getString("COLUMN_NAME")+"),");
+                        break;
+                    }
+                    case 2:{
+                        index.add("KEY "+rs.getString("INDEX_NAME")+" ("+rs.getString("COLUMN_NAME")+") USING HASH ,");
+                        break;
+                    }
+                    case 3:{
+                        index.add("KEY "+rs.getString("INDEX_NAME")+" ("+rs.getString("COLUMN_NAME")+") USING BTREE ,");
+                        break;
+                    }
+                    default:{
+                        index.add("KEY "+rs.getString("INDEX_NAME")+" ("+rs.getString("COLUMN_NAME")+"),");
+                        break;
+                    }
+                }
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -170,6 +180,7 @@ public class DbSqlServerHandle implements DbHandle {
         fromInfo.add(length);
         fromInfo.add(isNull);
         fromInfo.add(key);
+        fromInfo.add(index);
         return fromInfo;
     }
 
@@ -196,10 +207,16 @@ public class DbSqlServerHandle implements DbHandle {
                 else createSql+=",";
             }
             //拼接主键
+            if(fromInfo.get(4).size()>0) createSql+="primary key (";
             for(int i=0;i<fromInfo.get(4).size();i++){
-                createSql+="primary key ("+fromInfo.get(4).get(i)+",";
+                createSql+=fromInfo.get(4).get(i)+",";
             }
-            createSql=createSql.substring(0,createSql.length()-1)+"))";
+            createSql=createSql.substring(0,createSql.length()-1)+"),";
+            //拼接索引
+            for(int i=0;i<fromInfo.get(5).size();i++){
+                createSql+=fromInfo.get(5).get(i);
+            }
+            createSql=createSql.substring(0,createSql.length()-1)+")";
             //建表
             stmt = conn.createStatement();
             stmt.executeUpdate(createSql);
