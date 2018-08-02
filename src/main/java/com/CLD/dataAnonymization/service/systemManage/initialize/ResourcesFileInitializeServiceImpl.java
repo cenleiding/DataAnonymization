@@ -14,7 +14,7 @@ import java.io.*;
 public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitializeService{
 
     @Value("${node.out.archetype.path}")
-    private static String outArchetypePath;
+    private String outArchetypePath;
 
     @Value("${node.in.archetype.path}")
     private String inArchetypePath;

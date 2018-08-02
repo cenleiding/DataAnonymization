@@ -47,7 +47,9 @@ public class DbDeidentifyServiceImpl implements DbDeidentifyService {
                              String method,
                              String fieldFromName) {
         String url="";
+        Integer length=10000;
         Connection conn=null;
+        ArrayList<ArrayList<String>> fieldList=fieldClassifyService.getUseFieldByFromName(fieldFromName);
         if(dbType.equals("MySql")){
             url="jdbc:mysql://"+host+":"+port+"/"+databaseName+"?autoReconnect=true&useSSL=false";
             conn=dbMySqlHandle.getConn(url,user,password);
@@ -56,27 +58,42 @@ public class DbDeidentifyServiceImpl implements DbDeidentifyService {
             saveH2(url,"***代处理数据库表列表***");
             saveH2(url,fromName.toString());
             for(int i=0;i<fromName.size();i++){
+
+                Boolean success=false;
+                saveH2(url,"****************");
                 saveH2(url,"表："+fromName.get(i)+"处理中...");
 
                 ArrayList<ArrayList<String>> fromInfo=dbMySqlHandle.getDbFromInfo(conn,user,fromName.get(i));
+                if(fromInfo==null){saveH2(url,"!!!字段获取失败!!!");continue;}
                 saveH2(url,"字段总数："+fromInfo.size());
 
-                ArrayList<ArrayList<String>> dataList=dbMySqlHandle.getFromData(conn,fromName.get(i),fromInfo);
-                saveH2(url,"表共含记录："+dataList.size()+"条...");
-
-                saveH2(url,"数据处理中...");
-                ArrayList<ArrayList<String>> fieldList=fieldClassifyService.getUseFieldByFromName(fieldFromName);
-                if(method.equals("SafeHarbor"))
-                dataList= IOAdapter.ToSafeHarbor(dataList,fieldList);
-                if(method.equals("LimitedSet"))
-                dataList= IOAdapter.ToLimitedSet(dataList,fieldList);
-                saveH2(url,"数据处理完毕！");
-
-                dbMySqlHandle.createMirrorFrom(conn,fromName.get(i)+"_"+method,fromInfo);
+                success=dbMySqlHandle.createMirrorFrom(conn,fromName.get(i)+"_"+method,fromInfo);
+                if(success==false) { saveH2(url,"!!!匿名表："+fromName.get(i)+"_"+method+"创建失败!!!");continue;}
                 saveH2(url,"匿名表："+fromName.get(i)+"_"+method+"创建成功！");
 
-                dbMySqlHandle.insertNewFrom(conn,fromName.get(i)+"_"+method,dataList);
-                saveH2(url,"匿名数据插入成功！");
+                Integer columnNum=dbMySqlHandle.getFromColumnNum(conn,fromName.get(i));
+                if(columnNum==null) { saveH2(url,"!!!表单行数获取失败!!!");continue;}
+                saveH2(url,"表共含记录："+columnNum+"条...");
+                saveH2(url,"数据开始处理......");
+                Integer offset=0;
+                while(offset<columnNum){
+                    ArrayList<ArrayList<String>> dataList=dbMySqlHandle.getFromData(conn,fromName.get(i),offset,length,fromInfo);
+                    if(dataList==null){saveH2(url,"!!!表获取数据失败!!!");break;}
+                    if(offset+length<columnNum)saveH2(url,"获取第"+(offset+1)+"——"+(offset+length)+"条数据");
+                    else saveH2(url,"获取第"+(offset+1)+"——"+columnNum+"条数据");
+
+                    if(method.equals("SafeHarbor"))
+                        dataList= IOAdapter.ToSafeHarbor(dataList,fieldList);
+                    if(method.equals("LimitedSet"))
+                        dataList= IOAdapter.ToLimitedSet(dataList,fieldList);
+                    if(dataList==null) {saveH2(url,"!!!处理失败!!!");break;}
+                    saveH2(url,"处理完毕！");
+                    success=dbMySqlHandle.insertNewFrom(conn,fromName.get(i)+"_"+method,dataList);
+                    if(success==false) { saveH2(url,"!!!插入失败!!!");break;}
+                    saveH2(url,"插入成功！");
+                    offset+=length;
+                }
+
                 saveH2(url,"****************");
             }
             dbMySqlHandle.closeConn(conn);
@@ -89,27 +106,42 @@ public class DbDeidentifyServiceImpl implements DbDeidentifyService {
             saveH2(url,"***代处理数据库表列表***");
             saveH2(url,fromName.toString());
             for(int i=0;i<fromName.size();i++){
+                Boolean success=false;
+                saveH2(url,"****************");
                 saveH2(url,"表："+fromName.get(i)+"处理中...");
 
                 ArrayList<ArrayList<String>> fromInfo=dbSqlServerHandle.getDbFromInfo(conn,user,fromName.get(i));
+                if(fromInfo==null){saveH2(url,"!!!字段获取失败!!!");continue;}
                 saveH2(url,"字段总数："+fromInfo.size());
 
-                ArrayList<ArrayList<String>> dataList=dbSqlServerHandle.getFromData(conn,fromName.get(i),fromInfo);
-                saveH2(url,"表共含记录："+dataList.size()+"条...");
-
-                saveH2(url,"数据处理中...");
-                ArrayList<ArrayList<String>> fieldList=fieldClassifyService.getUseFieldByFromName(fieldFromName);
-                if(method.equals("SafeHarbor"))
-                    dataList= IOAdapter.ToSafeHarbor(dataList,fieldList);
-                if(method.equals("LimitedSet"))
-                    dataList= IOAdapter.ToLimitedSet(dataList,fieldList);
-                saveH2(url,"数据处理完毕！");
-
-                dbSqlServerHandle.createMirrorFrom(conn,fromName.get(i)+"_"+method,fromInfo);
+                success=dbSqlServerHandle.createMirrorFrom(conn,fromName.get(i)+"_"+method,fromInfo);
+                if(success==false) { saveH2(url,"!!!匿名表："+fromName.get(i)+"_"+method+"创建失败!!!");continue;}
                 saveH2(url,"匿名表："+fromName.get(i)+"_"+method+"创建成功！");
 
-                dbSqlServerHandle.insertNewFrom(conn,fromName.get(i)+"_"+method,dataList);
-                saveH2(url,"匿名数据插入成功！");
+                Integer columnNum=dbMySqlHandle.getFromColumnNum(conn,fromName.get(i));
+                if(columnNum==null) { saveH2(url,"!!!表单行数获取失败!!!");continue;}
+                saveH2(url,"表共含记录："+columnNum+"条...");
+                saveH2(url,"数据开始处理......");
+                Integer offset=0;
+                while(offset<columnNum){
+                    ArrayList<ArrayList<String>> dataList=dbSqlServerHandle.getFromData(conn,fromName.get(i),offset,length,fromInfo);
+                    if(dataList==null){saveH2(url,"!!!表获取数据失败!!!");break;}
+                    if(offset+length<columnNum)saveH2(url,"获取第"+(offset+1)+"——"+(offset+length)+"条数据");
+                    else saveH2(url,"获取第"+(offset+1)+"——"+columnNum+"条数据");
+
+                    if(method.equals("SafeHarbor"))
+                        dataList= IOAdapter.ToSafeHarbor(dataList,fieldList);
+                    if(method.equals("LimitedSet"))
+                        dataList= IOAdapter.ToLimitedSet(dataList,fieldList);
+                    if(dataList==null) {saveH2(url,"!!!处理失败!!!");break;}
+                    saveH2(url,"处理完毕！");
+
+                    success=dbSqlServerHandle.insertNewFrom(conn,fromName.get(i)+"_"+method,dataList);
+                    if(success==false) { saveH2(url,"!!!数据插入失败!!!");break;}
+                    saveH2(url,"插入成功！");
+                    offset+=length;
+                }
+
                 saveH2(url,"****************");
             }
             dbSqlServerHandle.closeConn(conn);
@@ -122,32 +154,50 @@ public class DbDeidentifyServiceImpl implements DbDeidentifyService {
             saveH2(url,"***代处理数据库表列表***");
             saveH2(url,fromName.toString());
             for(int i=0;i<fromName.size();i++){
+                Boolean success=false;
+                saveH2(url,"****************");
                 saveH2(url,"表："+fromName.get(i)+"处理中...");
 
                 ArrayList<ArrayList<String>> fromInfo=dbOracleHandle.getDbFromInfo(conn,user,fromName.get(i));
+                if(fromInfo==null){saveH2(url,"!!!字段获取失败!!!");continue;}
                 saveH2(url,"字段总数："+fromInfo.size());
 
-                ArrayList<ArrayList<String>> dataList=dbOracleHandle.getFromData(conn,fromName.get(i),fromInfo);
-                saveH2(url,"表共含记录："+dataList.size()+"条...");
-
-                saveH2(url,"数据处理中...");
-                ArrayList<ArrayList<String>> fieldList=fieldClassifyService.getUseFieldByFromName(fieldFromName);
-                if(method.equals("SafeHarbor"))
-                    dataList= IOAdapter.ToSafeHarbor(dataList,fieldList);
-                if(method.equals("LimitedSet"))
-                    dataList= IOAdapter.ToLimitedSet(dataList,fieldList);
-                saveH2(url,"数据处理完毕！");
-
-                dbOracleHandle.createMirrorFrom(conn,fromName.get(i)+"_"+method,fromInfo);
+                success=dbOracleHandle.createMirrorFrom(conn,fromName.get(i)+"_"+method,fromInfo);
+                if(success==false) { saveH2(url,"!!!匿名表："+fromName.get(i)+"_"+method+"创建失败!!!");continue;}
                 saveH2(url,"匿名表："+fromName.get(i)+"_"+method+"创建成功！");
 
-                dbOracleHandle.insertNewFrom(conn,fromName.get(i)+"_"+method,dataList);
-                saveH2(url,"匿名数据插入成功！");
+                Integer columnNum=dbMySqlHandle.getFromColumnNum(conn,fromName.get(i));
+                if(columnNum==null) { saveH2(url,"!!!表单行数获取失败!!!");continue;}
+                saveH2(url,"表共含记录："+columnNum+"条...");
+                saveH2(url,"数据开始处理......");
+                Integer offset=0;
+                while(offset<columnNum){
+                    ArrayList<ArrayList<String>> dataList=dbOracleHandle.getFromData(conn,fromName.get(i),offset,length,fromInfo);
+                    if(dataList==null){saveH2(url,"!!!表获取数据失败!!!");break;}
+                    if(offset+length<columnNum)saveH2(url,"获取第"+(offset+1)+"——"+(offset+length)+"条数据");
+                    else saveH2(url,"获取第"+(offset+1)+"——"+columnNum+"条数据");
+
+                    if(method.equals("SafeHarbor"))
+                        dataList= IOAdapter.ToSafeHarbor(dataList,fieldList);
+                    if(method.equals("LimitedSet"))
+                        dataList= IOAdapter.ToLimitedSet(dataList,fieldList);
+                    if(dataList==null) {saveH2(url,"!!!处理失败!!!");break;}
+                    saveH2(url,"处理完毕！");
+
+                    success=dbOracleHandle.insertNewFrom(conn,fromName.get(i)+"_"+method,dataList);
+                    if(success==false) { saveH2(url,"!!!插入失败!!!");break;}
+                    saveH2(url,"插入成功！");
+                    offset+=length;
+                }
                 saveH2(url,"****************");
             }
             dbOracleHandle.closeConn(conn);
         }
-
+        try {
+            Thread.currentThread().sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         deletH2(url);
     }
 
@@ -213,6 +263,7 @@ public class DbDeidentifyServiceImpl implements DbDeidentifyService {
         dbInfo.setUrl(url);
         dbInfo.setState(s);
         dbInfoRepository.save(dbInfo);
+        System.out.println(s);
     }
 
     private void deletH2(String url){

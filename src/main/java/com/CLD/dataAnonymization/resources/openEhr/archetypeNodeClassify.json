@@ -1570,12 +1570,6 @@
       "description":"检验日期时间"
       },
       {
-      "nodeName":"Requester provieder",
-      "nodePath": "/otherParticipations[at0.16]",
-      "type":"QI_Number",
-      "description":"检验申请号"
-      },
-      {
       "nodeName":"Receiver provider",
       "nodePath": "/otherParticipations[at0.19]",
       "type":"EI",

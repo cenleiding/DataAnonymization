@@ -1,5 +1,7 @@
 package com.CLD.dataAnonymization.util.deidentifier;
 
+import com.CLD.dataAnonymization.util.deidentifier.resources.ResourcesRead;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -33,8 +35,13 @@ public class IOAdapter {
             if(fieldList.get(i).get(1).equals("QI_String"))     QI_String.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("UI"))            UI.add(fieldList.get(i).get(0));
         }
-        Geographic=FieldHandle.readAddress().get(0);
-        data=Hippa.Identity("SafeHarbor",data,EI,QI_Geographic,QI_Date,QI_Number,QI_String,UI,Geographic);
+        try{
+            Geographic= ResourcesRead.readAddress().get(0);
+            data=Hippa.Identity("SafeHarbor",data,EI,QI_Geographic,QI_Date,QI_Number,QI_String,UI,Geographic);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
         return data;
     }
 
@@ -47,7 +54,7 @@ public class IOAdapter {
      * @throws FileNotFoundException
      */
     public static ArrayList<ArrayList<String>> ToLimitedSet(ArrayList<ArrayList<String>> data,
-                                                            ArrayList<ArrayList<String>> fieldList) {
+                                                            ArrayList<ArrayList<String>> fieldList){
         ArrayList<String> EI=new ArrayList<String>();
         ArrayList<String> QI_Geographic=new ArrayList<String>();;
         ArrayList<String> QI_Date=new ArrayList<String>();
@@ -63,9 +70,15 @@ public class IOAdapter {
             if(fieldList.get(i).get(1).equals("QI_String"))     QI_String.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("UI"))            UI.add(fieldList.get(i).get(0));
         }
-        Geographic.addAll(FieldHandle.readAddress().get(0));
-        Geographic.addAll(FieldHandle.readAddress().get(1));
-        data=Hippa.Identity("LimitedSet",data,EI,QI_Geographic,QI_Date,QI_Number,QI_String,UI,Geographic);
+
+        try{
+            Geographic.addAll(ResourcesRead.readAddress().get(0));
+            Geographic.addAll(ResourcesRead.readAddress().get(1));
+            data=Hippa.Identity("LimitedSet",data,EI,QI_Geographic,QI_Date,QI_Number,QI_String,UI,Geographic);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
         return data;
     }
 

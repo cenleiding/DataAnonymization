@@ -1,4 +1,4 @@
-package com.CLD.dataAnonymization.util.deidentifier;
+package com.CLD.dataAnonymization.util.deidentifier.io;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -12,13 +12,13 @@ import java.util.ArrayList;
  * @Author CLD
  * @Date 2018/4/23 16:08
  **/
-public class XlsxStreamingWriter {
+public class XlsxWriter {
 
     private ArrayList<ArrayList<ArrayList<String>>> outdata=null;
 
     private String path;
 
-    public XlsxStreamingWriter(ArrayList<ArrayList<ArrayList<String>>> outdata,String path){
+    public XlsxWriter(ArrayList<ArrayList<ArrayList<String>>> outdata, String path){
        this.outdata=outdata;
        this.path=path;
     }
@@ -64,7 +64,7 @@ public class XlsxStreamingWriter {
 //    public static void main(String[] args) throws Exception {
 //        XlsxStreamingReader xlsStreamingReader=new XlsxStreamingReader("C:\\Users\\CLD\\Desktop\\test.xlsx");
 //        ArrayList<ArrayList<ArrayList<String>>> w = xlsStreamingReader.getData();
-//        XlsxStreamingWriter xlsxStreamingWriter=new XlsxStreamingWriter(w,"C:\\Users\\CLD\\Desktop\\testbig.xlsx");
+//        XlsxWriter xlsxStreamingWriter=new XlsxWriter(w,"C:\\Users\\CLD\\Desktop\\testbig.xlsx");
 //        xlsxStreamingWriter.writer();
 //    }
 }

@@ -1,20 +1,10 @@
 package com.CLD.dataAnonymization.util.deidentifier;
 
-import org.junit.Test;
-
-import static org.junit.Assert.*;
-
 /**
+ * @description:
  * @Author CLD
- * @Date 2018/4/12 16:10
- **/
+ * @Date 2018/8/2 15:31
+ */
 public class FileResolveTest {
-    @Test
-    public void readFormMapping() throws Exception {
-    }
-
-    @Test
-    public void readAddress() throws Exception {
-    }
 
 }

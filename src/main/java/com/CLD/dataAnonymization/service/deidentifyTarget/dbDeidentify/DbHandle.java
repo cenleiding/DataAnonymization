@@ -60,12 +60,15 @@ public interface DbHandle {
 
     /**
      * 根据(表名，表字段详细信息)获得表单数据
+     * 分页获取
      * @param conn
      * @param fromName
+     * @param offset  分页偏移量
+     * @param length  分页长度
      * @param fromInfo
      * @return
      */
-    public ArrayList<ArrayList<String>> getFromData(Connection conn, String fromName, ArrayList<ArrayList<String>> fromInfo);
+    public ArrayList<ArrayList<String>> getFromData(Connection conn, String fromName, Integer offset,Integer length, ArrayList<ArrayList<String>> fromInfo);
 
     /**
      * 将数据插入新表中
@@ -75,4 +78,13 @@ public interface DbHandle {
      * @return
      */
     public Boolean insertNewFrom(Connection conn, String newFromName, ArrayList<ArrayList<String>> dataList);
+
+    /**
+     * 获得指定表的行数
+     * @param conn
+     * @param fromName
+     * @return
+     */
+    public Integer getFromColumnNum(Connection conn,String fromName);
+
 }
