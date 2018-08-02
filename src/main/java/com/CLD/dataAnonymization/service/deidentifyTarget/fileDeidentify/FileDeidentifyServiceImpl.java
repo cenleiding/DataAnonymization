@@ -2,7 +2,7 @@ package com.CLD.dataAnonymization.service.deidentifyTarget.fileDeidentify;
 
 import com.CLD.dataAnonymization.model.FieldInfo;
 import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
-import com.CLD.dataAnonymization.util.deidentifier.FileResolve;
+import com.CLD.dataAnonymization.util.deidentifier.io.FileResolve;
 import com.CLD.dataAnonymization.util.deidentifier.IOAdapter;
 import com.CLD.dataAnonymization.util.deidentifier.ZipCompressor;
 import org.springframework.beans.factory.annotation.Autowired;

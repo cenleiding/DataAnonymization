@@ -155,11 +155,11 @@ public class Hippa {
                 String[] time = null;
                 if(data.get(i).get(col).indexOf("-")!=-1)
                     time=data.get(i).get(col).split(" ")[0].split("-");
-                if(data.get(i).get(col).indexOf("/")!=-1)
+                else if(data.get(i).get(col).indexOf("/")!=-1)
                     time=data.get(i).get(col).split(" ")[0].split("/");
-                if(data.get(i).get(col).indexOf("日")!=-1)
+                else if(data.get(i).get(col).indexOf("日")!=-1)
                     time=data.get(i).get(col).split("日")[0].split("[\\u4E00-\\u9FA5]");
-                if(time.length!=3) continue;
+                else continue;
                 data.get(i).set(col, time[0]+"/"+time[1]+"/"+time[2]);
             }
 

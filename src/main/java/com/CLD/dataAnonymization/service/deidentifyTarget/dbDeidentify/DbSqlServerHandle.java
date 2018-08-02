@@ -91,6 +91,7 @@ public class DbSqlServerHandle implements DbHandle {
             rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
         return fromNameList;
     }
@@ -150,23 +151,11 @@ public class DbSqlServerHandle implements DbHandle {
                 System.out.println("索引是否唯一："+rs.getBoolean("NON_UNIQUE"));
                 if(key.contains(rs.getString("COLUMN_NAME"))) continue;
                 switch (rs.getShort("TYPE")){
-                    case 0:{
-                        break;
-                    }
-                    case 1:{
-                        index.add("KEY "+rs.getString("INDEX_NAME")+" ("+rs.getString("COLUMN_NAME")+"),");
-                        break;
-                    }
-                    case 2:{
-                        index.add("KEY "+rs.getString("INDEX_NAME")+" ("+rs.getString("COLUMN_NAME")+") USING HASH ,");
-                        break;
-                    }
-                    case 3:{
-                        index.add("KEY "+rs.getString("INDEX_NAME")+" ("+rs.getString("COLUMN_NAME")+") USING BTREE ,");
+                    case 0: {
                         break;
                     }
                     default:{
-                        index.add("KEY "+rs.getString("INDEX_NAME")+" ("+rs.getString("COLUMN_NAME")+"),");
+                        index.add("CREATE NONCLUSTERED INDEX ["+rs.getString("INDEX_NAME")+"] ON FromName (["+rs.getString("COLUMN_NAME")+"])" );
                         break;
                     }
                 }
@@ -174,6 +163,7 @@ public class DbSqlServerHandle implements DbHandle {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
         fromInfo.add(name);
         fromInfo.add(type);
@@ -200,29 +190,39 @@ public class DbSqlServerHandle implements DbHandle {
         try {
             //拼接表头基本信息
             for (int i =0; i <fromInfo.get(0).size(); i++) {
-                createSql+=fromInfo.get(0).get(i)+" VARCHAR(";
-                if(Integer.valueOf(fromInfo.get(2).get(i))<32) createSql+="32)";
+                if(Integer.valueOf(fromInfo.get(2).get(i))>20000){
+                    createSql+="["+fromInfo.get(0).get(i)+"] TEXT,";
+                    continue;
+                }
+                createSql+="["+fromInfo.get(0).get(i)+"] VARCHAR(";
+                if(Integer.valueOf(fromInfo.get(2).get(i))<100) createSql+="100)";
                 else createSql+=Integer.valueOf(fromInfo.get(2).get(i))+")";
                 if(fromInfo.get(3).get(i).equals("0")) createSql+=" not null,";
                 else createSql+=",";
             }
             //拼接主键
-            if(fromInfo.get(4).size()>0) createSql+="primary key (";
-            for(int i=0;i<fromInfo.get(4).size();i++){
-                createSql+=fromInfo.get(4).get(i)+",";
+            if(fromInfo.get(4).size()>0) {
+                createSql+="primary key (";
+                for(int i=0;i<fromInfo.get(4).size();i++){
+                    createSql+="["+fromInfo.get(4).get(i)+"],";
+                }
+                createSql=createSql.substring(0,createSql.length()-1)+"))";
+            }else {
+                createSql=createSql.substring(0,createSql.length()-1)+")";
             }
-            createSql=createSql.substring(0,createSql.length()-1)+"),";
-            //拼接索引
-            for(int i=0;i<fromInfo.get(5).size();i++){
-                createSql+=fromInfo.get(5).get(i);
-            }
-            createSql=createSql.substring(0,createSql.length()-1)+")";
+
             //建表
             stmt = conn.createStatement();
             stmt.executeUpdate(createSql);
+            //加索引
+            for(int i=0;i<fromInfo.get(5).size();i++){
+                createSql=fromInfo.get(5).get(i).replace("FromName",newFromName);
+                stmt.executeUpdate(createSql);
+            }
             stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }finally {
             try {
                 if (stmt != null) stmt.close();
@@ -241,9 +241,11 @@ public class DbSqlServerHandle implements DbHandle {
      * @return
      */
     @Override
-    public ArrayList<ArrayList<String>> getFromData(Connection conn, String fromName, ArrayList<ArrayList<String>> fromInfo){
+    public ArrayList<ArrayList<String>> getFromData(Connection conn, String fromName,Integer offset,Integer length, ArrayList<ArrayList<String>> fromInfo){
         Statement stmt=null;
-        String sql = "SELECT * FROM "+fromName;
+        String key=(fromInfo.get(4).size()>0)?fromInfo.get(4).get(0):fromInfo.get(0).get(0);
+        String sql="SELECT * FROM "+fromName+" ORDER BY "+key+" OFFSET "+offset+" ROWS FETCH NEXT "+length+" ROWS ONLY";
+
         ArrayList<ArrayList<String>> dataList=new ArrayList<ArrayList<String>>();
         dataList.add(fromInfo.get(0));
         try {
@@ -254,16 +256,14 @@ public class DbSqlServerHandle implements DbHandle {
                 for(int i=0;i<fromInfo.get(0).size();i++){
                     String name=fromInfo.get(0).get(i);
                     String type=fromInfo.get(1).get(i);
-                    if(type.equals("VARCHAR"))  data.add(rs.getString(name) == null ? "NULL": rs.getString(name));
-                    if(type.equals("DATETIME")) data.add(rs.getDate(name)==null ? "NULL" : rs.getDate(name).toString());
-                    if(type.equals("BIT"))      data.add(String.valueOf(rs.getByte(name)));
-                    if(type.equals("INT"))      data.add(String.valueOf(rs.getInt(name)));
+                    data.add(rs.getObject(name) == null ? "NULL": rs.getObject(name).toString());
                 }
                 dataList.add(data);
             }
             stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }finally {
             try {
                 if (stmt != null) stmt.close();
@@ -286,7 +286,7 @@ public class DbSqlServerHandle implements DbHandle {
         PreparedStatement pstmt=null;
         String insetSql="insert into "+newFromName+"(";
         for(int i=0;i<dataList.get(0).size();i++)
-            insetSql+=dataList.get(0).get(i)+",";
+            insetSql+="["+dataList.get(0).get(i)+"],";
         insetSql=insetSql.substring(0,insetSql.length()-1)+") VALUES (";
         for(int i=0;i<dataList.get(0).size();i++)
             insetSql+="?,";
@@ -310,6 +310,7 @@ public class DbSqlServerHandle implements DbHandle {
             pstmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }finally {
             try {
                 conn.setAutoCommit(true);
@@ -319,5 +320,23 @@ public class DbSqlServerHandle implements DbHandle {
             }
         }
         return true;
+    }
+
+    @Override
+    public Integer getFromColumnNum(Connection conn, String fromName) {
+        Statement stmt=null;
+        Integer columnNum=0;
+        String sql = "SELECT COUNT(*) FROM "+fromName;
+        try{
+            stmt=conn.createStatement();
+            ResultSet rs=stmt.executeQuery(sql);
+            while (rs.next()){
+                columnNum=rs.getInt(1);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return columnNum;
     }
 }

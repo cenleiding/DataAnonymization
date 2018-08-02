@@ -67,7 +67,6 @@ public class DbDeidentifyController {
                                 @RequestParam("host") String host,
                                 @RequestParam("port") String port,
                                 @RequestParam("databaseName") String databaseName){
-        System.out.println("开始查询");
         return dbDeidentifyService.getInfo(dbType,host,port,databaseName);
     }
 

@@ -107,7 +107,7 @@
 			{
 				"EN_Name":"BirthLocalityCode",
 				"CH_Name":"出生地址-市代码",
-				"type":"EI",
+				"type":"QI_Geographic",
 				"description":"出生市（区）镇代码"
 			},
 			{
@@ -125,7 +125,7 @@
 			{
 				"EN_Name":"DeathLocalityCode",
 				"CH_Name":"死亡地址-市代码",
-				"type":"EI",
+				"type":"QI_Geographic",
 				"description":"死亡时所处市（区）代码"
 			},
 			{
@@ -1343,13 +1343,7 @@
 			{
 				"EN_Name":"AnesthesiaStartDatetime",
 				"CH_Name":"麻醉开始日期时间",
-				"type":"QI_Number",
-				"description":"麻醉开始日期时间"
-			},
-			{
-				"EN_Name":"AnesthesiaStartDatetime",
-				"CH_Name":"麻醉开始日期时间",
-				"type":"QI_Number",
+				"type":"QI_Date",
 				"description":"麻醉开始日期时间"
 			}
 		]
@@ -1926,7 +1920,7 @@
 			{
 				"EN_Name":"ConfirmationDate",
 				"CH_Name":"体检确认日期",
-				"type":"QI_Number",
+				"type":"QI_Date",
 				"description":"体检确认日期"
 			},
 			{

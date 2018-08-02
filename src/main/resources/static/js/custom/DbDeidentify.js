@@ -145,11 +145,16 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce) {
                     $scope.wuliao();
                 }
             }
-            ,200)
+            ,500)
     };
-    
+
+    var timeout;
     $scope.pollDbInfo=function () {
-            $timeout(
+        if(timeout) {
+            $timeout.cancel(timeout);
+        }
+        timeout=$timeout(
+            function () {
                 $http({
                     method:"GET",
                     url:"/getInfo",
@@ -161,21 +166,19 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce) {
                     }
                 }).then(
                     function success(response) {
-                        console.log(response.data)
                         if(response.data.length!=0)
-                        $scope.DbInfo=response.data;
+                            $scope.DbInfo=response.data;
                         document.getElementById('msg_end').scrollIntoView(false);
                         document.getElementById('msg_end').scrollTop;
                         if($scope.pollflag==true){
                             $scope.pollDbInfo();
                         }
-
                     },
                     function errorCallBack(response){
                         console.log(response.data);
                     }
                 )
-                ,1000);
+            },2000)
     };
 
     $scope.getContentHtml=function(content)
