@@ -162,6 +162,13 @@
 			<artifactId>httpcore</artifactId>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/colt/colt -->
+		<dependency>
+			<groupId>colt</groupId>
+			<artifactId>colt</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
