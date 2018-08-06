@@ -17,15 +17,14 @@ public class LaplaceNoise {
                                              double flu){
         if(col.size()==0) return true;
         if(flu<=0) return true;
-        for(int i=0;i<col.size();i++){
-            int colume=col.get(i);
+        for(int Column : col){
             //寻找最大值和最小值
             double max=Double.MIN_VALUE;
             double min=Double.MAX_VALUE;
             for(int j=0;j<data.get(0).size();j++){
                 try {
-                    max=Double.valueOf(data.get(colume).get(j))>max? Double.valueOf(data.get(colume).get(j)):max;
-                    min=Double.valueOf(data.get(colume).get(j))<min? Double.valueOf(data.get(colume).get(j)):min;
+                    max=Double.valueOf(data.get(Column).get(j))>max? Double.valueOf(data.get(Column).get(j)):max;
+                    min=Double.valueOf(data.get(Column).get(j))<min? Double.valueOf(data.get(Column).get(j)):min;
                 }catch (Exception e){//直接跳过该单元格
                 }
             }
@@ -34,13 +33,13 @@ public class LaplaceNoise {
             String format="";
             for(int j=0;j<data.get(0).size();j++){
                 try{
-                    if(data.get(colume).get(j).split("\\.").length==1) format="%.0f";
-                    else format="%."+data.get(colume).get(j).split("\\.")[1].length()+"f";
-                    Double value=Double.valueOf(data.get(colume).get(j));
+                    if(data.get(Column).get(j).split("\\.").length==1) format="%.0f";
+                    else format="%."+data.get(Column).get(j).split("\\.")[1].length()+"f";
+                    Double value=Double.valueOf(data.get(Column).get(j));
                     value=value+noiseBuilder()*rang;
                     value=value<min?min:value;
                     value=value>max?max:value;
-                    data.get(colume).set(j,String.format(format,value));
+                    data.get(Column).set(j,String.format(format,value));
                 }catch (Exception e){//直接跳过该单元格
                 }
             }

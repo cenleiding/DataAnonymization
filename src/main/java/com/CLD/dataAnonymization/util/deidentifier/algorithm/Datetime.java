@@ -36,10 +36,10 @@ public class Datetime {
                     dayRule(data,col);
                     break;
                 case YEAR:
-
+                    yearRule(data,col);
                     break;
                 case NOISE:
-
+                    noiseRule(data,col);
                     break;
             }
 
@@ -66,11 +66,10 @@ public class Datetime {
      */
     private static Boolean yearRule(ArrayList<ArrayList<String>> data,
                                     ArrayList<Integer> col){
-        for(int i=0;i<col.size();i++) {
-            int colume = col.get(i);
+        for(int Column : col ) {
             for(int j=0;j<data.get(0).size();j++){
-                String[] t=data.get(colume).get(j).split("-");
-                if (t.length==3) data.get(colume).set(j,t[0]);
+                String[] t=data.get(Column).get(j).split("/");
+                if (t.length==3) data.get(Column).set(j,t[0]);
             }
         }
         return true;
@@ -86,16 +85,15 @@ public class Datetime {
      */
     private static Boolean noiseRule(ArrayList<ArrayList<String>> data,
                                      ArrayList<Integer> col){
-        for(int i=0;i<col.size();i++) {
-            int colume = col.get(i);
+        for(int Column : col) {
             for(int j=0;j<data.get(0).size();j++){
-                String[] t=data.get(colume).get(j).split("-");
+                String[] t=data.get(Column).get(j).split("/");
                 if (t.length==3) {
                     int year= Calendar.getInstance().get(Calendar.YEAR);
                     int y=Integer.parseInt(t[0]);
-                    if((year-y)>89) data.get(colume).set(j, "大于90年");
-                    else if ((year-y)<14)data.get(colume).set(j, "小于14岁");
-                    else data.get(colume).set(j,t[0]);
+                    if((year-y)>89) data.get(Column).set(j, "大于90年");
+                    else if ((year-y)<14)data.get(Column).set(j, "小于14岁");
+                    else data.get(Column).set(j,t[0]);
                 }
             }
         }
@@ -109,27 +107,26 @@ public class Datetime {
     /**
      * 该方法用于转换xls,xlsx的时间戳格式，
      * 并去除时分秒信息,
-     * 并统一为 yyyy-MM-dd 格式
+     * 并统一为 yyyy/MM/dd 格式
      * @return
      */
     private static Boolean datetimeClear(ArrayList<ArrayList<String>> data,
                                          ArrayList<Integer> col){
         Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*[\\.]?[\\d]*$");
-        for(int i=0;i<col.size();i++){
-            int colume=col.get(i);
+        for(int Column : col){
             for(int j=0;j<data.get(0).size();j++){
-                if ((data.get(colume).get(j)==null)||(data.get(colume).get(j).equals(""))) continue;
-                if (pattern.matcher(data.get(colume).get(j)).matches()){//判断是否为xls时间戳形式
-                    String[] t=data.get(colume).get(j).split("\\.");
+                if ((data.get(Column).get(j)==null)||(data.get(Column).get(j).equals(""))) continue;
+                if (pattern.matcher(data.get(Column).get(j)).matches()){//判断是否为xls时间戳形式
+                    String[] t=data.get(Column).get(j).split("\\.");
                     String format = "yyyy-MM-dd";
                     SimpleDateFormat sdf = new SimpleDateFormat(format);
-                    data.get(colume).set(j,sdf.format(new Date((long)(((Double.valueOf(t[0])-70*365-19)*86400-8*3600)*1000))));
+                    data.get(Column).set(j,sdf.format(new Date((long)(((Double.valueOf(t[0])-70*365-19)*86400-8*3600)*1000))));
                 }
-                data.get(colume).set(j, data.get(colume).get(j)
+                data.get(Column).set(j, data.get(Column).get(j)
                         .split(" ")[0]
-                        .replace("/","-")
-                        .replace("年","-")
-                        .replace("月","-")
+                        .replace("-","/")
+                        .replace("年","/")
+                        .replace("月","/")
                         .replace("日",""));
             }
         }

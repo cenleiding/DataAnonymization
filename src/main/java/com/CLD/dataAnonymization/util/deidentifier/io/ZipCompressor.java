@@ -1,4 +1,4 @@
-package com.CLD.dataAnonymization.util.deidentifier;
+package com.CLD.dataAnonymization.util.deidentifier.io;
 
 import java.io.BufferedInputStream;
 import java.io.File;

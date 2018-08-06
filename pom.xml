@@ -169,6 +169,13 @@
 			<version>1.2.0</version>
 		</dependency>
 
+		<!--ARX匿名工具包 -->
+		<dependency>
+			<groupId>com.deidentifier.arx</groupId>
+			<artifactId>arx</artifactId>
+			<version>3.7.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

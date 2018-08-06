@@ -4,7 +4,7 @@ import com.CLD.dataAnonymization.model.FieldInfo;
 import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
 import com.CLD.dataAnonymization.util.deidentifier.io.FileResolve;
 import com.CLD.dataAnonymization.util.deidentifier.IOAdapter;
-import com.CLD.dataAnonymization.util.deidentifier.ZipCompressor;
+import com.CLD.dataAnonymization.util.deidentifier.io.ZipCompressor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
