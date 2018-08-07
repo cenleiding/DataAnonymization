@@ -52,7 +52,7 @@ public class Encrypt {
      * @param src 源数据
      * @return 16进制密文
      */
-    public static String encryptMode(String src,String password) {
+    private static String encryptMode(String src,String password) {
         try {
             SecretKey deskey = new SecretKeySpec(build3DesKey(password), Algorithm);    //生成密钥
             Cipher c1 = Cipher.getInstance(Algorithm);    //实例化负责加密/解密的Cipher工具类
@@ -73,7 +73,7 @@ public class Encrypt {
      * @param src 16进制密文
      * @return    明文
      */
-    public static String decryptMode(String src,String password) {
+    private static String decryptMode(String src,String password) {
         try {
             SecretKey deskey = new SecretKeySpec(build3DesKey(password), Algorithm);
             Cipher c1 = Cipher.getInstance(Algorithm);

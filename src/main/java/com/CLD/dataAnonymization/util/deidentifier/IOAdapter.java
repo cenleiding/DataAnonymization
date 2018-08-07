@@ -1,6 +1,6 @@
 package com.CLD.dataAnonymization.util.deidentifier;
 
-import com.CLD.dataAnonymization.util.deidentifier.resources.ResourcesRead;
+import com.CLD.dataAnonymization.util.deidentifier.resources.ResourcesReader;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class IOAdapter {
             if(fieldList.get(i).get(1).equals("UI"))            UI.add(fieldList.get(i).get(0));
         }
         try{
-            Geographic= ResourcesRead.readAddress().get(0);
+            Geographic= ResourcesReader.readAddress().get(0);
             data=Hippa.Identity("SafeHarbor",data,EI,QI_Geographic,QI_Date,QI_Number,QI_String,UI,Geographic);
         }catch (Exception e){
             e.printStackTrace();
@@ -72,8 +72,8 @@ public class IOAdapter {
         }
 
         try{
-            Geographic.addAll(ResourcesRead.readAddress().get(0));
-            Geographic.addAll(ResourcesRead.readAddress().get(1));
+            Geographic.addAll(ResourcesReader.readAddress().get(0));
+            Geographic.addAll(ResourcesReader.readAddress().get(1));
             data=Hippa.Identity("LimitedSet",data,EI,QI_Geographic,QI_Date,QI_Number,QI_String,UI,Geographic);
         }catch (Exception e){
             e.printStackTrace();

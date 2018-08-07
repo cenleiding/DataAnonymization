@@ -17,7 +17,7 @@ public class Geography {
 
     public static Boolean geographyHandle(ArrayList<ArrayList<String>> data,
                                           ArrayList<Integer> col,
-                                          ArrayList<ArrayList<String>> geography,
+                                          HashMap<String,ArrayList<String>> geography,
                                           ArrayList<ArrayList<HashMap<String,String>>> proInfo,
                                           GeographyLevel level){
         if(col.size()==0) return true;
@@ -26,8 +26,8 @@ public class Geography {
         try {
             // 地址分类信息加载
             ArrayList<String> address=new ArrayList<String>();
-            address.addAll(geography.get(0));
-            if(level==GeographyLevel.SmallCity) address.addAll(geography.get(1));
+            address.addAll(geography.get("bigCity"));
+            if(level==GeographyLevel.SmallCity) address.addAll(geography.get("smallCity"));
 
             // 地址信息处理
             for(int Column : col){

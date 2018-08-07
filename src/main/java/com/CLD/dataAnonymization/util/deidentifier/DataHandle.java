@@ -11,30 +11,32 @@ public class DataHandle {
 
     //数据
     private ArrayList<ArrayList<String>>                 data             =       null;
+    //标题行
+    private String[]                                     header           =       null;
     //泛化层次结构
     private HashMap<String,ArrayList<ArrayList<String>>> hierarchy        =       null;
     //地理信息
-    private ArrayList<ArrayList<String>>                 Geographic       =       null;
+    private HashMap<String,ArrayList<String>>            geographic       =       null;
     //字段分类总表
     private ArrayList<ArrayList<String>>                 fieldList        =       null;
 
-    private ArrayList<String>                            EI               =       null;
+    private HashSet<String>                              EI               =       null;
 
-    private ArrayList<String>                            QI_Geographic    =       null;
+    private HashSet<String>                              QI_Geographic    =       null;
 
-    private ArrayList<String>                            QI_DateRecord    =       null;
+    private HashSet<String>                              QI_DateRecord    =       null;
 
-    private ArrayList<String>                            QI_DateAge       =       null;
+    private HashSet<String>                              QI_DateAge       =       null;
 
-    private ArrayList<String>                            QI_Link          =       null;
+    private HashSet<String>                              QI_Link          =       null;
 
-    private ArrayList<String>                            QI_String        =       null;
+    private HashSet<String>                              QI_String        =       null;
 
-    private ArrayList<String>                            QI_Number        =       null;
+    private HashSet<String>                              QI_Number        =       null;
 
-    private ArrayList<String>                            SI_String        =       null;
+    private HashSet<String>                              SI_String        =       null;
 
-    private ArrayList<String>                            SI_Number        =       null;
+    private HashSet<String>                              SI_Number        =       null;
 
 
     /**
@@ -51,6 +53,7 @@ public class DataHandle {
             this.data.add(column);
         }
         dataClear();
+        setHeader();
     }
 
     /**
@@ -66,6 +69,7 @@ public class DataHandle {
             this.data.add(column);
         }
         dataClear();
+        setHeader();
     }
 
     /**
@@ -82,6 +86,7 @@ public class DataHandle {
             this.data.add(column);
         }
         dataClear();
+        setHeader();
     }
 
     /**
@@ -91,6 +96,7 @@ public class DataHandle {
     public DataHandle(ArrayList<ArrayList<String>> data){
         setData(data);
         dataClear();
+        setHeader();
     }
 
     /**
@@ -131,6 +137,7 @@ public class DataHandle {
             newData.add(column);
         }
         data=newData;
+        setHeader();
         return true;
     }
 
@@ -143,16 +150,16 @@ public class DataHandle {
      * 用于对字段列表进行分类存储
      * @return
      */
-    public Boolean classifyFieldList(){
-        EI              =        new ArrayList<String>();
-        QI_DateAge      =        new ArrayList<String>();
-        QI_DateRecord   =        new ArrayList<String>();
-        QI_Geographic   =        new ArrayList<String>();
-        QI_Link         =        new ArrayList<String>();
-        QI_Number       =        new ArrayList<String>();
-        QI_String       =        new ArrayList<String>();
-        SI_Number       =        new ArrayList<String>();
-        SI_String       =        new ArrayList<String>();
+    private Boolean classifyFieldList(){
+        EI              =        new HashSet<String>();
+        QI_DateAge      =        new HashSet<String>();
+        QI_DateRecord   =        new HashSet<String>();
+        QI_Geographic   =        new HashSet<String>();
+        QI_Link         =        new HashSet<String>();
+        QI_Number       =        new HashSet<String>();
+        QI_String       =        new HashSet<String>();
+        SI_Number       =        new HashSet<String>();
+        SI_String       =        new HashSet<String>();
         for(int i=0;i<fieldList.size();i++){
             if(fieldList.get(i).get(1).equals("EI"))               EI.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("QI_DateAge"))       QI_DateAge.add(fieldList.get(i).get(0));
@@ -164,6 +171,18 @@ public class DataHandle {
             if(fieldList.get(i).get(1).equals("SI_Number"))        SI_Number.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("SI_String"))        SI_String.add(fieldList.get(i).get(0));
         }
+        return true;
+    }
+
+    /**
+     * 该方法用于生成数据头
+     * @return
+     */
+    private Boolean setHeader(){
+        this.header=new String[data.size()];
+        for(int i=0;i<data.size();i++)
+            header[i]=data.get(i).get(0);
+
         return true;
     }
 
@@ -220,10 +239,21 @@ public class DataHandle {
         };
     }
 
+    public void setGeographic(HashMap<String,ArrayList<String>> geographic) {
+        this.geographic = geographic;
+    }
+
+    public void setGeographic(ArrayList<ArrayList<String>> geographic) {
+        this.geographic=new HashMap<String,ArrayList<String>>();
+        this.geographic.put("bigCity",geographic.get(0));
+        this.geographic.put("smallCity",geographic.get(1));
+    }
+
     public void setData(ArrayList<ArrayList<String>> data) {
         this.data = data;
         dataClear();
     }
+
 
     public HashMap<String, ArrayList<ArrayList<String>>> getHierarchy() {
         return hierarchy;
@@ -233,51 +263,56 @@ public class DataHandle {
         this.hierarchy = hierarchy;
     }
 
+    public void addHierarchy(String name,ArrayList<ArrayList<String>> h){
+        if (hierarchy==null) hierarchy=new HashMap<String, ArrayList<ArrayList<String>>>();
+        hierarchy.put(name,h);
+    }
+
     public ArrayList<ArrayList<String>> getFieldList() {
         return fieldList;
     }
 
-    public ArrayList<String> getEI() {
+    public HashSet<String> getEI() {
         return EI;
     }
 
-    public ArrayList<String> getQI_Geographic() {
+    public HashSet<String> getQI_Geographic() {
         return QI_Geographic;
     }
 
-    public ArrayList<String> getQI_DateRecord() {
+    public HashSet<String> getQI_DateRecord() {
         return QI_DateRecord;
     }
 
-    public ArrayList<String> getQI_DateAge() {
+    public HashSet<String> getQI_DateAge() {
         return QI_DateAge;
     }
 
-    public ArrayList<String> getQI_Link() {
+    public HashSet<String> getQI_Link() {
         return QI_Link;
     }
 
-    public ArrayList<String> getQI_String() {
+    public HashSet<String> getQI_String() {
         return QI_String;
     }
 
-    public ArrayList<String> getQI_Number() {
+    public HashSet<String> getQI_Number() {
         return QI_Number;
     }
 
-    public ArrayList<String> getSI_String() {
+    public HashSet<String> getSI_String() {
         return SI_String;
     }
 
-    public ArrayList<String> getSI_Number() {
+    public HashSet<String> getSI_Number() {
         return SI_Number;
     }
 
-    public ArrayList<ArrayList<String>> getGeographic() {
-        return Geographic;
+    public HashMap<String,ArrayList<String>> getGeographic() {
+        return geographic;
     }
 
-    public void setGeographic(ArrayList<ArrayList<String>> geographic) {
-        Geographic = geographic;
+    public String[] getHeader() {
+        return header;
     }
 }

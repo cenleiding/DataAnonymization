@@ -7,19 +7,20 @@ import com.alibaba.fastjson.JSONObject;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * 该类用于读取资源文件
  * @Author CLD
  * @Date 2018/5/10 14:28
  **/
-public class ResourcesRead {
+public class ResourcesReader {
 
     /**
      * 读取资源文件中的地理信息文件
      * @return
      */
-    public static ArrayList<ArrayList<String>> readAddress() throws FileNotFoundException {
+    public static HashMap<String,ArrayList<String>> readAddress() throws FileNotFoundException {
         InputStream is=new Object(){
             public InputStream get(){
                 return this.getClass().getResourceAsStream("./Address.json");
@@ -27,12 +28,34 @@ public class ResourcesRead {
             }
         }.get();
         JSONObject jsonObject= FileResolve.readerObjectJson(is);
-        ArrayList<ArrayList<String>> addressList=new ArrayList<ArrayList<String>>();
+        HashMap<String,ArrayList<String>> addressList=new HashMap<String,ArrayList<String>>();
         ArrayList<String> bigCity=jsonArrayToArrayList(jsonObject.getJSONArray("BigCity"));
         ArrayList<String> smallCity=jsonArrayToArrayList(jsonObject.getJSONArray("SmallCity"));
-        addressList.add(bigCity);
-        addressList.add(smallCity);
+        addressList.put("bigCity",bigCity);
+        addressList.put("smallCity",smallCity);
         return addressList;
+    }
+
+    /**
+     * 读取资源文件中的默认字段表
+     * @return
+     * @throws FileNotFoundException
+     */
+    public static ArrayList<ArrayList<String>> readFields() throws FileNotFoundException {
+        InputStream is=new Object(){
+            public InputStream get(){
+                return this.getClass().getResourceAsStream("./Original.json");
+            }
+        }.get();
+        JSONArray jsonArray=FileResolve.readerArrayJson(is);
+        ArrayList<ArrayList<String>> fieldsList=new ArrayList<ArrayList<String>>();
+        for (int i=0;i<jsonArray.size();i++){
+            ArrayList<String> field=new ArrayList<String>();
+            field.add(jsonArray.getJSONObject(i).getString("fieldName"));
+            field.add(jsonArray.getJSONObject(i).getString("fieldType"));
+            fieldsList.add(field);
+        }
+        return fieldsList;
     }
 
     /**

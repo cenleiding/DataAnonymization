@@ -1,0 +1,7974 @@
+[
+  {
+    "fieldName": "管理申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "CURRENTATTENDINGDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "提交时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "出院日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "BIRTHCOUNTY_CODE",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "patwardcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "wardid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "作废操作人",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requesterdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "examtime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "麻醉助手2姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nationalityoffather",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "creatorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "demographicdetailsdeathdatacitytownlocalityname",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "报告人电子邮件",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "委托人名字",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DATETIMERESULTISSUED",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "RRESIDENTDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "新副主任医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "followupidentifierid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "demographicdetailsdeathdatacountryname",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "coderid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "第一巡回护士id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CREATEDATE",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "文档内容",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "出生地",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "BIRTHCITY_NAME",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "birthcountryname",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "操作者",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "原主任医师编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "FIRSTCREATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "CONTENTTEXT",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "Surgical doctor two(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "OPERATINGROOM_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "IDENTITYCARDNO",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "医疗机构名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "通讯地址",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "药嘱id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "SCHEDULEDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "lastmodifiername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "result",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "roomname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "图像存储绝对路径",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "admdeptdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "检查所见",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "主任医师编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "住院号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "建立人编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "stopdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "his处方号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "检验日期及时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "CONSULTREQUESTIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "病历文档id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "dischargedatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "LASTMODIFIEDTIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "报告人",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "detupydirectorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requestdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "INTENDEDCONSULTDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requesterprovider",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "BED_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "dateofdiagnosis",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "orderperformschemeno",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "detaildetupydirectorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "消息id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "birthcityname",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "druggistrecheckid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "新住院医师编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "主任姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "startdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "结算日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "REQUESTORORDERIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "会诊医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SETTLEMENTNUMBER",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "deviceidentifier",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "unburdingdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "医嘱内容",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "建档人员id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "接生医生1代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "firsteditorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "姓名拼音",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "住院医生id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "orderingdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "checkorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "NATIONALITY_NAME",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "nursinggroupidcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "处方模板id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "fathercredentialsnumber",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "mobilephone",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "细胞表型id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "reportermail",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "currentresidentdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "primarynursename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "减负时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "RECORDER_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "fatherethnicgroup",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "demographicdetailsprofession",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "REQUESTERORGANIZATION",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "checkdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "质控员姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "护理站",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检验日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "businessphoneidentificationofthemedium",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assistantoperatorthree",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "qcdoctorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "主治医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "directorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "费用申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "LASTOPERATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "hisrequestid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "评分人员id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "当事人三姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CHECKDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "attendingphysiciancode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "creategorupname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "modifystaffid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SUGGEST",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "婚姻状态",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "lastmodifiedtime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "接生护士1代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "consultdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检查号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "orderid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "单位电话号码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "组织编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "receiverprovidername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "第三助手",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "四助姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "OPERATIONREQUESTED",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "WARD_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nurseonecode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "金额",
+    "fieldType": "SI_Number"
+  },
+  {
+    "fieldName": "执行人代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requesterid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "其他诊断",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "createdoctorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后一次操作者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "streetname",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "receivesampledatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "BARCREATDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "体检医生编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requestwardname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "performwardcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "vaccinationbyname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "REPORTER_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "开医嘱医生代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "工作单位",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "申请医师",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "事件经过",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "检查申请执行最晚日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "fetchdrugdate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "imagesimageabsolutepath",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "申请医生代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "demographicdetailsnationlityname",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "手术医生id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "birthtowncode",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "anesthesiaassistantid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "进修医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "报告者所在病区",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "householdno",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Receiver provider1(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Order identifier(en)",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "his门诊号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "第二巡回护士姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "doctorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ATTENDINGPHYSICIAN_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "detaildoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病人编号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "接生护士1姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "第一助手",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "报告者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "作废时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "PATIENTNAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病历分配时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "surgicaldoctortwoid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "phonenumber",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "mobelphoneidentificationofthemedium",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术间",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "预约医生代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PRESCRIPTIONDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "创建者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ASSISTANTOPERATORFOUR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ORDERINGDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检验者编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reportdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "birthlocalityname",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "birthcountycode",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "检查日期及时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "病区名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "encounteridentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "ASSISTANTOPERATORTWO_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "住院或门诊号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "examinername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "护理意见",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "assistantoperatortwo",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病人名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "patientid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "settlementnumber",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assistantoperatortwoname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病床",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "plannedexecdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "floorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "INSTRUMENTNURSETWO_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "structuredtimingstartdate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "发生时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "第一助手代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "开单人员名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "patname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术开始日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "AUDITINGPHYSICIAN_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requestedidentifierid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "auditingphysicianname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "orderno",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "vaccinatorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "提醒时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "syndrom",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "OPERATIVEDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "datetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "检查时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "删除时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "drugsdispensingrequestidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "performenddatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "currentdeputydoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "评分者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "接标时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "复核药师id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "inspectionnurseonename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检查结束时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "imagedatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "druggistcheckname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "hisprescid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "手术日期及时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "barcreatdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "emrfirstpageid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "radiotherapyidentifierid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "contactpersonname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "medicationinstructionidid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "接生医生1姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "condition",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "NURSINGGROUPID_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "建筑楼",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "复审医生名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "远程浏览路径",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "开处方医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "archievetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "FLOOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "scheduleidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "permcountycode",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "REPORTER",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "transfusionidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "reportdeptphone",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "anesthetistid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "用户id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "his就诊id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "请求医生编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "admissiondatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "接生机构名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "sourcebedcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "申请人id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "手术台代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "scheduledatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "ETHNICGROUP_CODE",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "校对停医嘱护士代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "母亲姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "仪器编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "maritalstatuscode",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "FETCHDRUGPERSON_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "通信地址",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "doctor",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "editdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "qcexpecttime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "COSTS",
+    "fieldType": "SI_Number"
+  },
+  {
+    "fieldName": "editetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "PREVIOUSDEPUTYDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "documentidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "报告人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "relevantclinicdiag",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "invoiceno",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "qcnurseid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "报告者电话",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "申请医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "关注时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "创建者所在医疗组名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "二助姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Request datetime(en)",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "instimagingexaminationrequest$requestoridentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "患者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "计费员代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operationdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "floorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "receiveridentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "previousattendingdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "住院医师编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "主治医生",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "firstoperationnursename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "LATESTDATESERVICEREQUIRED",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "录入日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "体检结果",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "wardname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "STOPEDDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "结算操作人",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "原住院医师编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "phonenohome",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "firstassistantid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Instrument nurse one(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "记录者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检验申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "settlementoperatorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "副主任医生",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检验号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "enddatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "ASSISTANTANESTHETISTTWO_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "anesthesiaassistant2id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "审核医师代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "settlementdate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "addressnumber",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "deputydirectorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "examstopdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "qcdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "CURRENTDEPUTYDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "EXCUTEDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "楼层",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "MODIFYDATE",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "第一器械护士id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "attendingdoctor",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assistantoperatorfourname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "军官证号码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "录入人员id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "testcheckername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "dateofdie",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "配血医嘱申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "操作日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "RECEIVERPROVIDER_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "primaryphysicianname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "护理站名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CHECKREPORTER_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reporter",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "receiverorganization",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "druggistrecheckname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operativedoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "datetimetestpreferred",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "责任护士id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "诊断id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "原副主任医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "creatercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "第三助手代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "处方项目id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "visittime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "rresidentdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assistantanesthetisttwoname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Patient identifier(en)",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "PREVIOUSRESIDENTDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "detailrresidentdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "校对停医嘱护士姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "预约地点",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "createdby",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "办公电话",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "患者医保",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "dateofbirth",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "接收会诊申请时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "操作者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "治疗组id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SCHEDULEIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "EXAMSTOPDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "operatingroomnumbername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "细胞治疗id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "chargeaccountno",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "district",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "麻醉助手姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reporterphone",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "caretime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "IMAGEIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "BIRTHDATE",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "病历提交时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "testcause",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "REPRESENTATIONRELATIVEPATH",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "医生id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "新主治医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检查医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "stopdatetimeplan",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "入院日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "mailingaddresscityurban",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "检验报告号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "接种者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "druggistdispensename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "治疗申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "结算单号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "datetimeservice",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "报告人编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "化疗开始时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "Date of last Occurrence(en)",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "新主任医师编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最新一次操作",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "mailingcity",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "DIRECTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "instrumentcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "NAMEPHONETIC",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "receivereqdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "medicationorderidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "scheduleloaction",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "主任编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SURGICALDOCTORTWO_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "createdate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "lastmodifiedby",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "执行人名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CURRENTDIRECTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "开单人员代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "发病日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "stopdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PERMCOUNTY_NAME",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "adminpatientadmission$encounteridentifierid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "operationonsiteoperationtablename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nameofmother",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "associationreportername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "consultingdoctor",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "审核医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "校对停止医嘱护士名称及编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "户籍地址县",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "firsteditordatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "初次报告日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "计费员姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ENCOUNTERIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "examidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "检查申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "手术结束日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "医嘱序号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "insuranceinsuranceidentifierid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "contentxml",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "queuetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "ORDERCONTENT_NAME",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "nurseworkstationname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "联系地址",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "医嘱下达时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "表观治疗id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "modifydate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "Assistant operator two(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "latestdateservicerequired",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "DETAILDETUPYDIRECTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "actorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "destinationwardcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "patientrequirements",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "inputdatetimeofstartedorder",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "firsteditorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nurseonename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "医嘱编号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "报告浏览路径",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SCHEDULELOACTION",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "就诊id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "editor",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术医生2姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "imagerelativepath",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "datetimetestcheck",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "surgicaldoctortwoname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "recorddatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "领药时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "检查系统厂商标识",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CONSULTINGDOCTOR",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "doctoronecode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "BIRTHTOWN_CODE",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "民族代码",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "操作人员姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "录入者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operationid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "startdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "createwardid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "performedstaffname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "计划停止日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "开单人员",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "IMAGEDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "secondsupplynursename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "deathlocalityname",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "处方申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "代办人证件号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "editorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病历xml",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "reminddatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "开单员姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "examsystemid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requesterproviedername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "mailingaddressstreetname",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "收样时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "birthcitycode",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "出生地址国",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "CHECKDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SETTLEMENTOPERATOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "质控医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "zipcode",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "chargedatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "报告医师代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "第二助手代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "demographicdetailsethnicbackgroundcode",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "creater",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "护理站编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "调配药师id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "testactorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "providedrugpersoncode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "操作者代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "bedcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后修改人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reportid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "datetimeofcollection",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "记录时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "orderitem",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "bodysign",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "businessphone",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "receiverorderidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "报告备注",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "预约号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "buildingcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病房号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "体征数值对应时间点",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "预约时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "emrassigntime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "诊断医生名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requirements",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "检查医师代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "mandatoridentitycard",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "diagnosisidentifierid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "手术间代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CREATEDBY_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "encounterid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "INSTRUMENT_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requestordatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "CANCLEDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nursinggroupidname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "TIMEPOINT",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "建档人员",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "录入时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "lastmodifiedbyname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "checktime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "systemdate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "计费日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "上次入院就诊号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "Encounter identifier1(en)",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "审核人编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "orderingdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CURRENTRESIDENTDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "deaddate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "receiverorderidentifierid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "居民健康卡号码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "editerid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "dateoffirstreport",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "停止医嘱医生及编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "巡台护士2代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "invoicenumber",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "INSPECTIONNURSEONE_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "lastoperatername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assistantoperatoroneid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "his住院号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "assignedpatientlocationroomcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "sourcewardname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Receiver order identifier(en)",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "emailaddress",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "planneddischarge",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "开医嘱医生及编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CHECKOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病例xml",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "maritalstatusname",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "出生地址",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "hisvisitid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "质控日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "就诊号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "actorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "邮编",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "reqpphysiciancode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "汇总时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "party3name",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检查诊断",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "currentdeputydoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "latestdatetimetestrequired",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "ETHNICGROUP_NAME",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "committime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "healthcardissuearea",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "入科日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "编辑者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "createwardname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "qcbegintime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "fourthassistantname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "receiverorganizationname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "destinationbedname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "edittime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "nursingidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "createtime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "检验时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "lasteditorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "qcnursename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "patientname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "detailscosts",
+    "fieldType": "SI_Number"
+  },
+  {
+    "fieldName": "fromwardname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "fathername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "通信地址乡（镇、街道办事处）",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "开医嘱录入日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "auditingphysicianid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "INSPECTIONNURSETWO",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "电子邮件地址",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "体征数值对应的时间点",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "拼音",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reportername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "实习医生id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后一次保存或提交的时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "healthinsuranceid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "麻醉开始日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "居民健康证号码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "mobelphone",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "建立时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "detaildoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "委托人身份证",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "AUDITINGPHYSICIAN",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后打印时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "PROVIDEDRUGDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "REPORTER_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "BIRTHTOWN_NAME",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "specimendetailshandlingandprocessingdateandtimeofcollection",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "mothername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "attendingdocatorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术室",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "接生护士2代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CURRENTATTENDINGDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "会诊时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "最后一次修改时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "护理组",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PREADMITNUMBER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "recordingdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "PASSPORTNO",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "examdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "BADNO_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "dischargedetailsdischargingward",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "样本采样日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "病人号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "operativedepartmentcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "homephone",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "anesthesiadoctorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "detupydirectorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "REQUESTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "备注",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "报告医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PLANNEDDISCHARGE",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "REQUESTERDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "detaildetupydirectorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "编辑时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "getratedate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "CONSULTCONTENT",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "副主任编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reviewername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "patientidentifierid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "contentxmluri",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "接诊医生编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "医嘱申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "工作日志时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "委托人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "死亡日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "最后一次执行时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "admittingdoctorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "国籍",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "vaccinatorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "scheduleddatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "DATEOFRESOLUTION",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "父亲民族",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "diagnosisdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "memo",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "开处方时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "NATIONALITY_CODE",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "最后一次执行日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "ATTENDINGDOCTOR",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "healthcareidentifieridentifiermaindataid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "死亡地址国",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "母亲证件号码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "homephoneidentificationofthemedium",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病房",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "instrumentnursetwo",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "RECORDER_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "输血日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "护理组id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "party1name",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "医嘱号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "inscardid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "secondmedianame",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "编辑者代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "诊断日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "报告医师",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "患者病区名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "internsdoctorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "FETCHDRUGDATE",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "birthplace",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "Assistant anesthetist two(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术医师2代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "台次",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检查医师",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PRESCRIPTIONIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "ORGANIZATIONIDENTIFIER",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PREVIOUSDIRECTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "examreqid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "Requester organization(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后录入时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "ip地址",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assistantoperatorone",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "educationbackground",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "requestercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "RECEIVESAMPLEDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "FLOOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "receiverprovidercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "户籍地址镇",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "requestororderidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "摆药申请单号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "病床名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最新一次操作者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "lastacctingdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "dateofresolution",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "PERFORMER_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "接种者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "histestid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "STARTEDDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "editername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "mailingaddressaddressdescription",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "incidentprocess",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "workplace",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "OPERATINGROOM_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "EXAMSYSTEMID",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "申请时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "审核药师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operationtablename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "审核人",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "examstartdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "thirdassistantname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "BIRTHCITY_CODE",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "deathdate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "recorderid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "frombedcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "媒质名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "患者id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "ATTENDINGDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后一次操作时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "mac地址",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ADMITTINGDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reporteremail",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "residentdoctorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "orderedstaffname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "新生儿id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "PREVIOUSATTENDINGDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "填写医生的编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "记录者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "居民户口簿号码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "prescriptionidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "编辑日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "operator2id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "secondsupplynurseid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "birthcountyname",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "imageabsolutepath",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ratersname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "verifiername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "instrumentnursetwoname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "birthtownname",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "organizationidentifier",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "his急症号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "LATESTDATETIMETESTREQUIRED",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "评分时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "新病区名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "死亡时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "停医嘱医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检测时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "拟请医生代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检验目的",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "requestorid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "编码员姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "摆药申请人id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "primarynurseid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "医疗机构",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "死亡地址国代码",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "ethnicgroupname",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "INTENDEDCONSULTPLACE",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "ordercontentcode",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "登记时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "lastmodifiercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "联系方式",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "receiverorganizationid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "testtime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "startorderenterdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "demographicdetailsnationlitycode",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "接生护士2姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "addressofhousehold",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "dateoflastoccurrence",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "lastoperaterid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "母亲国籍",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "Request doctor(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operatingroomnumbercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "校对开始医嘱护士名称及编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DETAILSCOSTS",
+    "fieldType": "SI_Number"
+  },
+  {
+    "fieldName": "婚姻状况",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "Requester provider2(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "stoporderenterdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "离院日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "assistantoperatorfourid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nativeplace",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "病区",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "入科时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "开医嘱医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "emrcommittime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "DOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "医嘱ID(en)",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "schedulelocation",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "发药药师id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "处置申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "DETAILDETUPYDIRECTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "就诊时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "requestername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "buildingname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "工作日志id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "mothercredentialsnumber",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "样本收到日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "最后修改人员",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "demographicdetailsbirthdatacitytownlocalityname",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "testreqid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "医疗保险证号码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "performdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "随访id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "检验者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "deputydirectorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "instrumentname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PERMCITY_CODE",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "随访日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "DETAILRRESIDENTDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "endtime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "ASSISTANTOPERATORTHREE_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requestwardcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "复审医生编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "三助id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assistantoperatorthreeid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "consultrequestid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "操作日期及时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "reportidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "sourcebedname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "staffname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ethnicgroupcode",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "最后一次计价时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "报告机构代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "审核时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "PERMCOUNTY_CODE",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "填写医生的姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后一次操作者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "doctor1name",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病历内容（文本）",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "OPERATIONTABLE_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "exammemo",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "patientidentifieridentifiermaindataid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "床号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "输注日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "militaryid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DATEOFDISCHARGE",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "addresscity",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "医嘱备注",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "DEADDATE",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "评分人员姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "OPERATINGROOMNUMBER_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "护理申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "入院病情",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "拟请医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "primaryphysiciancode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PERFORMER_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Anesthetist(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "审核者编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "exitdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "领药人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operativedoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "关联性报告人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "dateofpositiveresult",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "DOCUMENTIDENTIFIER",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "ADMITTINGDOCTOR",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "患者联系电话",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检查描述",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "consultcontent",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "idoffather",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "internsdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "examinerid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "providedrugpersonname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "REPRESENTATIONABSOLUTEPATH",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "邮政编码",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "ANESTHETIST_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "detaildirectorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "INVOICENUMBER",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SCHEDULELOCATION",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "出生地址国代码",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "deathtime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "representationabsolutepath",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "INPUTDATETIMEOFSTARTEDORDER",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "ENDDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "停医嘱录入日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "comment",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "previousattendingdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "inspectionnursetwoname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "deputydoctor",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "orderidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "处方下达时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "testcheckercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病例文档id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "lasteditorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "idofmother",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "报告单位联系人",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "editedtime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "scheduledoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "MOBILEPHONE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "dateofonset",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "starttime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "requestedidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "ACCOUNTCREATEDATE",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "actorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nurse2name",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "新住院医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "原主任医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "macaddress",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "admittingdoctor",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "mailingdistrict",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "mailingaddressnumber",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "testactorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "profession",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "Operative Doctor(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "dateofdiagnose",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "患者病区代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "诊断医生编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "第二器械护士姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "detailrresidentdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "deathlocalitycode",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "fathernationality",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "麻醉医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "creategorupid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Requester provider(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "预处理时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "DIETIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "patientwardname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "职业",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "主治医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "器械护士1代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "预约医生名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "主治医生编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "signature",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "INSPECTIONNURSETWO_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "报告人联系电话",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "orderdate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "CHECKDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requesterorderidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "INSTRUMENT_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "原病区代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "lastoperatercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检查者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "anesthetist",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DETAILDIRECTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "副主任医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "plannedstopdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "审核人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "mothernationality",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "newbornidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "documentcontenturi",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "receiverproviderid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "化验申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "sourcewardcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "首页中xml文件内容",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "检查备注",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "原床位编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reportunitcontactperson",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "proxyidentitycardno",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后一次计价日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "拟定会诊",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "最后修改人员姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "原主治医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PERFORMDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "lastmodifydate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "instlaboratorytestrequest$requestoridentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "CURRENTDEPUTYDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "REQUESTDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "namenamefullname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "dateofdischarge",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "CURRENTRESIDENTDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "质控护士姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "接诊医生",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术医师2",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术医师1",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "recordidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "模板创建日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "sequence",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operationidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "一助姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "stopdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检查者代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "录入人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "新床位编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Receiver organization1(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "druggistdeployid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "modifydatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "checkreportercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "testorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "新病区代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "体检日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "EMAILADDRESS",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "secondpath",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "medianame",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "EMRFIRSTPAGEID",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "mailingaddresspostalcode",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "doctoronename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "frombedlabel",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "druggistdispenseid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "relevantlabtest",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "INVOICENO",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "执行员姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "审核日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "体检确认日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "手持电话",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "修改人id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "receivername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "出院日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "最后录入者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "permtownname",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "assignedpatientlocationwardname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ASSISTANTANESTHETISTTWO",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PERMTOWN_NAME",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "创建者所在病区名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "报告审核者",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "raterscode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PLANTOSTOP",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "PREVIOUSATTENDINGDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术报告号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "EXAMDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "建档人员姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "REQUESTORIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "报告存储绝对路径",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SOURCEWARD_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "datetimetestexcuted",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "SURGICALDOCTORONE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病历显示时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "录入者",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病案首页id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "病案首页模板id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "operativedepartmentname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后一次结算时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "physicalexamid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "通信地址村（街、路、弄等）",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "报告id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "机构编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ASSISTANTOPERATORTHREE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nationality",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "开处方医生id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "associationreporterid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "previousresidentdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assistantoperatoronename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "recordername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "计费单创建日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "最后执行时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "instprescription$prescriptionidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "出院病区",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "住院医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "examview",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "质控员id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "prescriptionnumber",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "双亲/照料者被告知的计划出院的日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "现住址",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "签名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reqdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "GETRATEDATE",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "patientidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "nameoffather",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "performscheduledatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "BADNO_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后修改人id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "createdbyid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "patientidentified",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "doctortwoname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "BUILDING_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "lastsettlementdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "执行医嘱病区名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "用户姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "directorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "停止日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "enterdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "检验号码",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "巡台护士1代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "预约医生",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "followupdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "reqpphysicianname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "submitdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "scheduledoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "母亲证件号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "INSPECTIONNURSEONE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CREATEDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "Encounter identifier(en)",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "photo",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SCHEDULEDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "visitid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "Surgical doctor one(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "父亲证件号码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "四助id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "orderexcuteidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "检验报告日期及时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "医生编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "permcityname",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "通信地址门牌号码",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "cashiercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "INPUTDATETIMEOFSTOPPEDORDER",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "assessment",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "报告机构名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "inspectionnursetwo",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "actionip",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "INSTRUMENTNURSEONE_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "执行结束日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "testorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "首页内容",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "RECEIVERORGANIZATION_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requesterproviederid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "接种时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "fromwardcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ASSISTANTOPERATORONE_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "userpwd",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "报告者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "出生地址市",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "assistantanesthetisttwo",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "器械护士1",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "器械护士2",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "处方时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "出生地县",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "电子邮件",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "secondoperationnurseid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "demographicdetailsmaritalstatuscode",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "Inspection nurse two(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "IMAGEABSOLUTEPATH",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "destinationbedcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operativedetailsanesthesiastartdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "datetimeresultissued",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "birthaddress",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "reportercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "instdrugsdispensing$drugsdispensingrequestidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "specimendetailshandlingandprocessingdateandtimeofreceipt",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "hisvisitsubid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "demographicdetailsbirthdatacountryofbirthname",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "起始日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "SEQUENCE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "床位编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DEPUTYDOCTOR",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "创建者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "bedlabel",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "收费时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "recorder",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "医嘱号码",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "处方id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "创建者所在医疗组id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "发药时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "SURGICALDOCTORONE_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "instrumentnurseone",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "执行者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "体检号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "prescriptiondatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "LASTOPERATER_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "报告日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "username",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operatingroomcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "career",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "doctor2name",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "RESULTSQUENCE",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "DETAILRRESIDENTDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "inspectionnursetwoid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "residentdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "performername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "REQUESTDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "firstsupplynurseid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "anesthesiastartdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "检验医师",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "母亲民族",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "nationlity",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "记录者",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病房名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "VISITID",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "stoppingdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "stopnursename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "记录最新一次操作时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "EXAMIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "cancledoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operationonsiteoperatingroomcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病人所在病区名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nationalityname",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "orderedstaffcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "doctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "firstpath",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病房编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "mandatorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "firstoperationnurseid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "fetchdrugpersoncode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "dietidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "CHARGEACCOUNTNO",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operationtime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "出院病房",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "his住院号/门诊号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "reporturl",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "原副主任医师编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "主任医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "LASTPRINTTIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "COMMENT",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "主治医生id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reqdoctorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "managementidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "Assistant operator one(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "STARTNURSE_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "previousdeputydoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "复核药师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "surgicaldoctortwo",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "motherethnicgroup",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "STOPNURSE_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reporterwardname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "原病区名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "会诊申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "emrdocumentdetailid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "firstmedianame",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operationtablecode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "评分者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "obsremrdocument$documentid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "requestorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "HEALTHCARDNO",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "申请人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "recordid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "家庭电话号码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "申请医生id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ORDERIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "新副主任医师编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nationalityofmother",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "临床诊断",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "logid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "手术医师1代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "RECORDDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "第二巡回护士id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "主任id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "doctorgroupid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "eventtime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "CHARGEDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "拟定会诊时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "血糖序号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "报告者代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "患者ID",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "病人号信息",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "SOURCEBED_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "instoperationrequest$requestoridentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "intendedconsultdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "lastperformdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "laetoperatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "PREVIOUSDIRECTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CHECKOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "firstcreatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "其它医嘱申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "最后修改日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "anesthetistname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "进修医师id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nursegroupid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ATTENDINGDOCATOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "patientidentitycardno",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reportdate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "录入者名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nurse1id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "attendingdoctorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "父亲证件号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "examdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ASSISTANTOPERATORTWO",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "consultingdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assistantoperatortwoid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "preprocessdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "预约日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "副主任姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requestoridentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "auditingphysician",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "执行者代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "麻醉助手2id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "plantostop",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "assistantoperatorfour",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "报告时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "doctor2id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "对应处方ID",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "Performer(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "会诊医生id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "laboratorytestresultidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "修改人员工号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "计划执行时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "计划开始日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "用户密码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "执行单号码",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "timepoint",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "resultid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "检查医生",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "OPERATIONTABLE_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "inspectioninstitution",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reportedid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "检查单位名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "continuingphysicianid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "addressofcurrent",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "体检医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "STOPPINGDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "审核医师",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "deleteactor",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "REQUESTERORGANIZATION_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "麻醉助手id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "STOPNURSE_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "REQUESTERORDERIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "ANESTHETIST",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "停医嘱医生代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "联系人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "显示时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "fourthassistantid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术室代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "质控医生id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病历内容",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "hisexamid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "identitycardno",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "startnursename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "patientwardcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "detaildirectorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PERMTOWN_CODE",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "ordercontentname",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "执行医嘱病区代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "计划执行日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "OPERATINGROOMNUMBER_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assignedpatientlocationwardcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "条码日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "examid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "emrdocumentid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "intendedconsultdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "执行人代码及名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "诊断日期和时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "cellphenotypeidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "Assistant anesthetist one(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "发票号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operatingroomno",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "新床位标签",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "体征记录表主键",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "校对开医嘱护士姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "handletime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "检查仪器信息",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Perform Date/Time(en)1",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "EXAMITEMMEMO",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "感染结束时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "医嘱状态备注",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "病人医疗账户编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Instrument nurse two(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "器械护士2代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "报告存储相对路径",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "执行时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "体征",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "DESTINATIONBED_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "RECEIVERORGANIZATION",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "structuredtimingstopdate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "idofcreator",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "drugdispensingrequestid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "cancledoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术医生代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "doctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "籍贯",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "病区名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "删除者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "联系电话",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "deletedatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "permtowncode",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "obsrnewborn$newbornidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "fetchdrugpersonname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "preadmitnumber",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "operationonsiteoperatingroomnumbercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "STARTNURSE_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病区编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "NATIVEPLACE",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "infectionenddatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "居民身份证号码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "representationrelativepath",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病人编码",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "ipaddress",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "拟定会诊地点",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "第一器械护士姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "请求医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "TESTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "摆药申请病区名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nursetwoname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "his摆药申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "visitdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "计划停止时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "intendedoperationdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "原始检验号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "ASSISTANTANESTHETISTONE_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "postalcode",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "计划执行日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "detailchecktime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "DETAILDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术医生2id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DETUPYDIRECTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "demographicdetailsbirthdatacitytownlocalitycode",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "assignedpatientlocationbedname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "feeid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "住院医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "操作人员id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "建档人id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "recieverproviderid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "母亲就诊号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "母亲病人号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "PERMCITY_NAME",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "录入者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "deputydoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "birthdate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "requesterorganizationid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "phonenomobile",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assistantanesthetistonename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "healthcardno",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "issues",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "ethniccode",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "原住院医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "staffcode",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "MANDATORNAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ASSISTANTANESTHETISTONE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "demographicdetailsbirthdatabirthdate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "personname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PRESCRIPTIONNUMBER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "医嘱执行单序列号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "datetimeofstoppedorder",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "operator2name",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "surgicaldoctoronename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "医嘱取消人",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "AGGREGATEDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "directorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "巡台护士1",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "thirdassistantid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "dateoflastreport",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "巡台护士2",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病人所在病区代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检查开始时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "disposeidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "治愈时间及日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "调配药师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "dateandortimeservicerequired",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "receiverid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "phone",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "原床位标签",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DOCUMENTCONTENT_URI",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "操作者ip",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "住院医生编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "会诊医生",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "操作者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assistantanesthetisttwoid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "qcdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "体检医生代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operatorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "REQUESTDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "医保卡发卡地区",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "执行人员代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "mailingaddresssuburbtownlocality",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "床号编号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "护理问题",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "laetoperatername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ROOM_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Patient identifier2(en)",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "申请日期及时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "PATIENTID",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "physicalexamvisitidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "checkreportername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "校对开医嘱护士代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "obsrcellphenotype$cellphenotypeidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "申请日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "lastoperatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "chemotherapyidentifierid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "anesthesiaassistantname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "委托人证件号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": " XML文件内容",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "EXAMDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "vaccinationdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "二级存储路径",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "二助id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "拟定手术时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "DATEOFONSET",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "currentattendingdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DATETIMETESTEXCUTED",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "PROVIDEDRUGPERSON_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "druggistcheckid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reviewercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "组织机构编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DESTINATIONWARD_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "admitdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "最后一次操作",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "INSCARDID",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "组织结构编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "adminpatientadmission$patientidentifierid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "REQUESTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "计费员id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后一次保存或提交的操作者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DOCTORNAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PRESCID",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "mobilephoneidentificationofthemedium",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "mailingaddressdistrict",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "testreceipttime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "病人id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "requesterprovidername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "录入者代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "新主任医师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "recordercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DETAILDIRECTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "文化程度",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "记录的日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "审核者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "一级存储媒质",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "drugreceivename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "patientwardid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "第一巡回护士姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "民族",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "INSTRUMENTNURSEONE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "录入人员姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "临床症状",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "demographicdetailsmaritalstatusname",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "imagesimagedatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "attendingdocatorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "resultsquence",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "inspectionnurseoneid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "starteddatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "启用临床路径时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "patienthealthcare",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "计划停止日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "修改人员姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "建议",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "新主治医师编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DATEOFDIAGNOSIS",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "checkstartdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "评估",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "死亡地址市代码",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "手术室名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "imageidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "chargecost",
+    "fieldType": "SI_Number"
+  },
+  {
+    "fieldName": "userid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "拟定手术日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "diagnosisid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "NURSINGGROUPID_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SURGICALDOCTORTWO",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "documentid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "datetimeissued",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "currentresidentdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "操作时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "aggregatedatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "病案首页ID",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "stopeddatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "PREVIOUSDEPUTYDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "BED_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "checkorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "midwiferyinstitutionsname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "dateofillstart",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "suburbtownlocality",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "父亲国籍",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "诊断来源医生",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "OPERATIVEDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SETTLEMENTDATE",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "处方号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "ethnicgroupoffather",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "RESIDENTDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "passportno",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DESTINATIONWARD_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "excutedatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "examdesc",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "首次确诊时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "ATTENDINGPHYSICIAN_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "RECEIVERORDERIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "副主任医师编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "摆药申请人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "therapyidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "LASTOPERATER_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "institutionname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "IMAGERELATIVEPATH",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "建立人名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requestidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "epigenetictherapyidentifierid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "healthcareid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "出生地乡镇",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "cashiername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "actor",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "admittingdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DATETIMESERVICE",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "attendingphysicianname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "修改人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "bloodmatchingidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "手术医生名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "建档人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "party2name",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "建档日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "退出临床路径时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "operationonsiteoperationtablecode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "MANDATORIDENTITYCARD",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "inspectionnurseone",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "申请备忘",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "SOURCEWARD_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检验医师代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "HEALTHCARDISSUEAREA",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "第二助手",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "术前诊断",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "assistantanesthetistone",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "showtime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "examitemmemo",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "病区代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "出生地址市代码",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "testidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "第二器械护士id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "previousresidentdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "操作者工号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "outpatientno",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "ptiid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "surgicaldoctorone",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "prescriptionid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "patwardname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "RESIDENTDOCTOR",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "INTENDEDCONSULTDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SCHEDULEDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "体检就诊号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "performwardname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "stopnursecode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "creatorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "代办人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "INTENDEDCONSULTDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "bedname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "demographicdetailsdeathdatacitytownlocalitycode",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "physicalexampatientidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "examinercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "编辑者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "停止日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "实习医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病情摘要",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "接生医生2代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "providedrugdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "摆药申请病区代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "permanentaddr",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "obsrchemotherapy$chemotherapyidentifierid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "accountcreatedate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "signs",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "requestdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "examdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "firstsupplynursename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Memo(en)1",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "inpatientno",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "doctortwo code",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "户籍地址市",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "dischargingward",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "出生时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "mailingaddress",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "creategroupname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "performercode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "RRESIDENTDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "demographicdetailsdeathdatacountrycode",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "roomcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病人证件号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operatorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "badnocode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ASSISTANTOPERATORFOUR",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DATEOFLASTOCCURRENCE",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "druggistdeployname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PATIENTIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "checkdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SOURCEBED_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "demographicdetailsdeathdatadeathdate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "病例内容",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "PATIENTIDENTIFIED",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "员工代码",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "RECEIVERPROVIDER_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "当事人二姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ATTENDINGDOCATOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "createdbycode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "creatername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "MEMO",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "namephonetic",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "SYSTEMDATE",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "dailylogdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "representationuri",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "体检病人号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "requesterorganizationname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "doctor1id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "体检医生名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "director",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "归档时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "检查日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "permcountyname",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "相关化验结果",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "Receiver identifier(en)",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "事件发生时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "insuranceid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "编码员id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "体征记录表",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "birthcountrycode",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "deputydoctorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "第四助手代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "电话",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "messageid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "执行人员名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "放疗id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "reportunitcontactpersonphone",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "FETCHDRUGPERSON_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "手术间号码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ethnicgroup",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "idnumberidentifiermaindataid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "执行日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "ORGANISATIONIDENTIFIER",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "creator",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "一级存储路径",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "移动电话号码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "previousdirectorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "suggestion",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "申请机构名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "datetimeofreceipt",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "REQUESTERPROVIDER",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "RECEIVERIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "inputdatetimeofstoppedorder",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "停医嘱录入时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "infectionstartdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "operationonsiteoperatingroomname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "stoppingdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "计费日期时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "currentdirectorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "prescid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "DETAILCHECKTIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "demographicdetailseducationbackground",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "nurse2id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检测出阳性日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "DOCTOR",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "结束时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "ACTIONDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "ethnicgroupofmother",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "起始日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "创建者所在病区id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "主任医生",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "diagnosis",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "instrumentnurseoneid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "BUSINESSPHONE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "voideddate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "lasteditordatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "发药药师姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "执行开始日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "报告内容",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "感染开始时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "SHOWTIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "报告单位联系人电话",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operationrequested",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "父亲姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "放疗结束时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "记录者代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "照片",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "TESTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "firstassistantname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "通信地址县（地区）",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "organisationidentifier",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "STARTDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "drugreceivedatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "permcitycode",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "PREVIOUSRESIDENTDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ASSISTANTOPERATORONE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "饮食申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "lastmodifieddate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "责任护士姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "codername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "接诊医生姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "BUILDING_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "operatingtable",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "接生医生2姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "审核药师id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "发药人",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reqdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "出生日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "MEDIANAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "创建时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "previousdeputydoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "contenttext",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "输血号码",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "保健号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "lastmodifiedbyid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "secondassistantname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "birthlocalitycode",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "死亡地址市",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "nation",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "obsrcelltherapy$requestedidentifierid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "检查目的",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "intendedconsultplace",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "手术号码",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "previousdirectorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "newbornid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "secondoperationnursename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "家庭电话",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "continuingphysicianname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "员工姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "instrumentid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "occurrencedatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "resultdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "destinationwardname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "医嘱校对时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "INSTRUMENTNURSETWO",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "加入队列时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "医疗机构代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "phonenobusiness",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "receiverprovider",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "图像存储相对路径",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "报告者电子邮箱",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "执行人姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "editorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reportid ",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "开始时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "actordatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "预计完成时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "operationrequestid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "主治医师编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "registerdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "proxyname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "datetimeservicerequired",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "his就诊序号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "DETUPYDIRECTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CHECKTIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "email",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最新一次操作者名字",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "intendedconsultdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "badnoname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requestdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "examrequested",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "PERMANENTADDR",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "副主任id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DISCHARGINGWARD",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DEPUTYDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "createdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "账户创建时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "DETAILDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "checkdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "检验医师名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "createdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "模板创建时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "vaccinationbyid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "原主治医师编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "HOMEPHONE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "诊疗建议",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "CONSULTINGDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CONTENTXML_URI",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "reporterid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "testid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "患者病区id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "demographicdetailsbirthdatabirthaddressdescription",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "关联药嘱号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "degree",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "operatingroomname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "residentdoctor",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "templateid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "质控开始时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "voidedby",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "诊断医生",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检验设备号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requestid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "REGISTERDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "nurseworkstationcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "放疗开始时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "STOPPINGDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "取药时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "病历文档详细表主键",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "nationalitycode",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "婚姻状况代码",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "laetoperaterid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "出结果时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "OPERATIONDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "取药人",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "patientcondition",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "settlementoperatorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requestorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "内容XML",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "anesthesiadoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "修改时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "Requester organization2(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DIRECTOR",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "currentdirectorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "三助姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ROOM_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "医嘱id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "begintime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "consultdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "receiverorderid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "REQUESTORDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "emergencyno",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "patientphoneno",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "出生地市",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "currentattendingdoctorcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "当事人一姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病床号",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "nurse1name",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Assistant operator four(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "createdbyname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "户籍地址",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "通信地址市（地区）",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "SETTLEMENTOPERATOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后修改人员id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "startdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后订正日期",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "relevantdiag",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "总金额",
+    "fieldType": "SI_Number"
+  },
+  {
+    "fieldName": "NURSINGIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "费用",
+    "fieldType": "SI_Number"
+  },
+  {
+    "fieldName": "原始检查号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "startnursecode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "reproterdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "performedstaffcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "录入人id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "一助id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "REQUESTERPROVIDER_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "patientcareer",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "拟请医生",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "PROVIDEDRUGPERSON_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "住院医生",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "rresidentdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CREATEDBY_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后录入者姓名",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "requesterorganization",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "instrumentnurseonename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "WARD_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "consultrequestidentifier",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "ORDERINGDOCTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "REQUESTEDIDENTIFIER",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "EXAMSTARTDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "wardcode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "患者职业",
+    "fieldType": "SI_String"
+  },
+  {
+    "fieldName": "demographicdetailsethnicbackgroundname",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "手术台",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Assistant operator three(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "surgicaldoctoroneid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CREATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "手术申请号",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "化疗结束时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "就诊ID",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "DIRECTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CONSULTDATETIME",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "CANCLEDOCTOR_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DATETIMETESTCHECK",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "Inspection nurse one(en)",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assistantanesthetistoneid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "suggest",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "confirmationdate",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "申请机构代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "conditionsummary",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "creategroupid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "instrumentnursetwoid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "母亲病人id",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "examdiag",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "第四助手",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "床号标签",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "idnumber",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "Requestor Identifier(en)",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "CHECKREPORTER_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "anesthesiaassistant2name",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "consultdoctorid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "actiondatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "imagesimagerelativepath",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "CONDITIONSUMMARY",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "CURRENTDIRECTOR_CODE",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检查者id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ptmid",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "lastprinttime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "modifystaffname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "performstartdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "nursetwocode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "testdatetime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "BIRTHCOUNTY_NAME",
+    "fieldType": "QI_Geographic"
+  },
+  {
+    "fieldName": "创建者名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "麻醉医生id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "检查报告备注",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "申请备注",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "复审医生代码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "institutioncode",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "demographicdetailsbirthdatacountryofbirthcode",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "secondassistantid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "病人ID",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "MILITARYID",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "purpose",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "operationonsiteoperatingroomnumbername",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "emailaddressidentificationofthemedium",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "serialno",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "关联性报告人编码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "开医嘱录入时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "RECEIVERPROVIDER",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ORDERCONTENT_CODE",
+    "fieldType": "UI"
+  },
+  {
+    "fieldName": "reporterphoneno",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "质控护士id",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "DESTINATIONBED_NAME",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "costs",
+    "fieldType": "SI_Number"
+  },
+  {
+    "fieldName": "verifierid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "最后一次保存或提交的操作者名字",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "cost",
+    "fieldType": "SI_Number"
+  },
+  {
+    "fieldName": "实际完成时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "出院时间",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "attendingdoctorname",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "护照号码",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "执行者名称",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "ethnicname",
+    "fieldType": "QI_String"
+  },
+  {
+    "fieldName": "deviceid",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "assistantoperatorthreename",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "EXAMREQUESTED",
+    "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "检验人",
+    "fieldType": "EI"
+  },
+  {
+    "fieldName": "qcactualtime",
+    "fieldType": "QI_Date"
+  },
+  {
+    "fieldName": "修改日期",
+    "fieldType": "QI_Date"
+  }
+]
