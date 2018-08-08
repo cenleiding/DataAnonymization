@@ -15,14 +15,20 @@ import java.util.ArrayList;
  */
 public class XlsWriter {
 
+    private ArrayList<ArrayList<ArrayList<String>>> outdata=null;
+
+    private String path;
+
+    public XlsWriter(ArrayList<ArrayList<ArrayList<String>>> outdata, String path){
+        this.outdata=outdata;
+        this.path=path;
+    }
     /**
      * 三维表单输入,XLS导出
-     * @param path
-     * @param outdata
      * @return
      * @throws IOException
      */
-    public static boolean writerXls(String path,ArrayList<ArrayList<ArrayList<String>>> outdata) throws IOException{
+    public boolean writer() throws IOException{
         boolean isSuccess=true;
         HSSFWorkbook wb = new HSSFWorkbook();
         for(int k=0;k<outdata.size()-1;k++){

@@ -30,22 +30,22 @@ public class Geography {
             if(level==GeographyLevel.SmallCity) address.addAll(geography.get("smallCity"));
 
             // 地址信息处理
-            for(int Column : col){
-                for(int j=0;j<data.get(0).size();j++){
-                    if ((data.get(Column).get(j) == null) || (data.get(Column).get(j).equals(""))) continue;
-                    if(!pattern.matcher(data.get(Column).get(j)).matches()){
+            for(int column : col){
+                for(int j=1;j<data.get(column).size();j++){
+                    if ((data.get(column).get(j) == null) || (data.get(column).get(j).equals(""))) continue;
+                    if(!pattern.matcher(data.get(column).get(j)).matches()){
                         value="";
                         for(int k=0;k<address.size();k++){
-                            if(data.get(Column).get(j).indexOf(address.get(k))!=-1)
+                            if(data.get(column).get(j).indexOf(address.get(k))!=-1)
                                 value+=address.get(k);
                         }
                     }else{
-                        value=data.get(Column).get(j).substring(0,4)+"**";
+                        value=data.get(column).get(j).substring(0,4)+"**";
                     }
                     HashMap<String,String> info=new HashMap<String,String>();
-                    info.put(new String(data.get(Column).get(j)),value);
+                    info.put(new String(data.get(column).get(j)),value);
                     proInfo.get(j).add(info);
-                    data.get(Column).set(j,value);
+                    data.get(column).set(j,value);
                 }
             }
 

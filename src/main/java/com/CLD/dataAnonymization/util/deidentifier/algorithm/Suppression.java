@@ -22,12 +22,12 @@ public class Suppression {
                                             ArrayList<ArrayList<HashMap<String,String>>> proInfo){
         if (col.size()==0) return true;
         try{
-            for(int Column : col){
-                for(int j=0;j<data.get(0).size();j++){
+            for(int column : col){
+                for(int j=1;j<data.get(column).size();j++){
                     HashMap<String,String> info=new HashMap<String,String>();
-                    info.put(new String(data.get(Column).get(j)),"***");
+                    info.put(new String(data.get(column).get(j)),"***");
                     proInfo.get(j).add(info);
-                    data.get(Column).set(j,"***");
+                    data.get(column).set(j,"***");
                 }
             }
         }catch (Exception e){

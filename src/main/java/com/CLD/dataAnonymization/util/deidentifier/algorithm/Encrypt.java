@@ -22,14 +22,14 @@ public class Encrypt {
                                         ArrayList<Integer> col,
                                         String password,
                                         ArrayList<ArrayList<HashMap<String,String>>> proInfo){
-        for(int Column : col){
-            for(int i=0;i<data.get(0).size();i++){
+        for(int column : col){
+            for(int i=1;i<data.get(column).size();i++){
                 HashMap<String,String> info=new HashMap<String,String>();
-                String O=data.get(Column).get(i);
-                String E=encryptMode(data.get(Column).get(i),password);
+                String O=data.get(column).get(i);
+                String E=encryptMode(data.get(column).get(i),password);
                 info.put(O,E);
                 proInfo.get(i).add(info);
-                data.get(Column).set(i,E);
+                data.get(column).set(i,E);
             }
         }
         return true;
@@ -38,9 +38,9 @@ public class Encrypt {
     public static Boolean decryptHandle(ArrayList<ArrayList<String>> data,
                                         ArrayList<Integer> col,
                                         String password){
-        for(int Column : col){
-            for(int i=0;i<data.get(0).size();i++){
-                data.get(Column).set(i,decryptMode(data.get(Column).get(i),password));
+        for(int column : col){
+            for(int i=1;i<data.get(column).size();i++){
+                data.get(column).set(i,decryptMode(data.get(column).get(i),password));
             }
         }
         return true;

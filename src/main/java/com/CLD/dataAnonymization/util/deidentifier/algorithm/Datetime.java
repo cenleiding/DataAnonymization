@@ -56,10 +56,10 @@ public class Datetime {
      */
     private static Boolean yearRule(ArrayList<ArrayList<String>> data,
                                     ArrayList<Integer> col){
-        for(int Column : col ) {
-            for(int j=0;j<data.get(0).size();j++){
-                String[] t=data.get(Column).get(j).split("/");
-                if (t.length==3) data.get(Column).set(j,t[0]);
+        for(int column : col ) {
+            for(int j=1;j<data.get(column).size();j++){
+                String[] t=data.get(column).get(j).split("/");
+                if (t.length==3) data.get(column).set(j,t[0]);
             }
         }
         return true;
@@ -75,15 +75,15 @@ public class Datetime {
      */
     private static Boolean noiseRule(ArrayList<ArrayList<String>> data,
                                      ArrayList<Integer> col){
-        for(int Column : col) {
-            for(int j=0;j<data.get(0).size();j++){
-                String[] t=data.get(Column).get(j).split("/");
+        for(int column : col) {
+            for(int j=1;j<data.get(column).size();j++){
+                String[] t=data.get(column).get(j).split("/");
                 if (t.length==3) {
                     int year= Calendar.getInstance().get(Calendar.YEAR);
                     int y=Integer.parseInt(t[0]);
-                    if((year-y)>89) data.get(Column).set(j, "大于90年");
-                    else if ((year-y)<14)data.get(Column).set(j, "小于14岁");
-                    else data.get(Column).set(j,t[0]);
+                    if((year-y)>89) data.get(column).set(j, "大于90年");
+                    else if ((year-y)<14)data.get(column).set(j, "小于14岁");
+                    else data.get(column).set(j,t[0]);
                 }
             }
         }

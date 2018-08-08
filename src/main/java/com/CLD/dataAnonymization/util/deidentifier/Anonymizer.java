@@ -22,6 +22,11 @@ public class Anonymizer {
 
     private Configuration configuration;
 
+    public Anonymizer(DataHandle dataHandle){
+        this.dataHandle=dataHandle;
+        this.configuration=new Configuration();
+    }
+
     public Anonymizer(DataHandle dataHandle, Configuration configuration){
         this.dataHandle=dataHandle;
         this.configuration=configuration;
@@ -85,6 +90,8 @@ public class Anonymizer {
      */
     private Boolean runLevel_1(){
         ArrayList<ArrayList<HashMap<String,String>>> proInfo=new ArrayList<ArrayList<HashMap<String,String>>>();
+        for(int i=0;i<dataHandle.getData().get(0).size();i++)
+            proInfo.add(new ArrayList<HashMap<String,String>>());
         ArrayList<Integer> column=null;
         ArrayList<Integer> k_col=new ArrayList<Integer>();
         ArrayList<Integer> t_col=new ArrayList<Integer>();
@@ -115,7 +122,7 @@ public class Anonymizer {
         //处理准标识符的字符串信息
         k_col=selectTypeColumn(dataHandle.getQI_String());
         Tcloseness.tClosenessHandle(dataHandle.getData(),k_col,t_col,configuration.getK_small(),
-                configuration.getT(),configuration.getSuppressionLimit_small(),dataHandle.getHierarchy());
+                configuration.getT(),configuration.getSuppressionLimit_level1(),dataHandle.getHierarchy());
 
         //SI 敏感信息不处理
         //处理UI非结构化信息
@@ -132,6 +139,8 @@ public class Anonymizer {
      */
     private Boolean runLevel_2(){
         ArrayList<ArrayList<HashMap<String,String>>> proInfo=new ArrayList<ArrayList<HashMap<String,String>>>();
+        for(int i=0;i<dataHandle.getData().get(0).size();i++)
+            proInfo.add(new ArrayList<HashMap<String,String>>());
         ArrayList<Integer> column=null;
         ArrayList<Integer> k_col=new ArrayList<Integer>();
         ArrayList<Integer> t_col=new ArrayList<Integer>();
@@ -163,12 +172,12 @@ public class Anonymizer {
 
         //处理敏感信息的数据信息
         column=selectTypeColumn(dataHandle.getSI_Number());
-
+        Microaggregation.microaggregationHandle(dataHandle.getData(),column,configuration.getMicroaggregation());
 
         //处理敏感信息的字符串信息
         t_col=selectTypeColumn(dataHandle.getSI_String());
         Tcloseness.tClosenessHandle(dataHandle.getData(),k_col,t_col,configuration.getK_big(),
-                configuration.getT(),configuration.getSuppressionLimit_big(),dataHandle.getHierarchy());
+                configuration.getT(),configuration.getSuppressionLimit_level2(),dataHandle.getHierarchy());
 
         //处理UI非结构化信息
         //             //
@@ -257,9 +266,9 @@ public class Anonymizer {
                     }
                     data.get(i).set(j, data.get(i).get(j)
                             .split(" ")[0]
-                            .replace("-","/")
-                            .replace("年","/")
-                            .replace("月","/")
+                            .replace("-","-")
+                            .replace("年","-")
+                            .replace("月","-")
                             .replace("日",""));
                 }
                 pattern=Pattern.compile("\\d{4}-\\d{1,2}-\\d{1,2}");

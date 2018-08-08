@@ -106,7 +106,8 @@ public class FileResolve {
      * @throws IOException
      */
     public static boolean writerXls(String path,ArrayList<ArrayList<ArrayList<String>>> outdata) throws IOException{
-        return writerXls(path,outdata);
+        XlsWriter xlsWriter=new XlsWriter(outdata,path);
+        return xlsWriter.writer();
     }
 
     /**

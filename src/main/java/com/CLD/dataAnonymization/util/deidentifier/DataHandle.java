@@ -1,5 +1,8 @@
 package com.CLD.dataAnonymization.util.deidentifier;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.*;
 
 /**
@@ -100,8 +103,29 @@ public class DataHandle {
     }
 
     /**
+     * 构造器
+     * @param resultSet
+     */
+    public DataHandle(ResultSet resultSet){
+        try {
+            this.data=new ArrayList<ArrayList<String>>();
+            ResultSetMetaData rsmd=resultSet.getMetaData();
+            while (resultSet.next()){
+                ArrayList<String> row=new ArrayList<String>();
+                for(int i=1;i<=rsmd.getColumnCount();i++)
+                    row.add(resultSet.getString(i));
+                this.data.add(row);
+            }
+            dataTranspose();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * 进行数据清洗，将null值，空值转换为""
      * 对数据进行补全形成矩阵
+     * 将全空行，列移除
      * @return
      */
     public Boolean dataClear(){
@@ -119,6 +143,17 @@ public class DataHandle {
                         data.get(i).get(j).toLowerCase().equals("null") ||
                         data.get(i).get(j).replace(" ","").length()==0)
                     data.get(i).set(j,"");
+
+        //清理空行列
+        for(int t=0;t<2;t++){
+            for(int i=0;i<data.size();i++){
+                Boolean sign=true;
+                for(int j=0;j<data.get(i).size();j++)
+                    if(!data.get(i).get(j).equals("")) sign=false;
+                if(sign) data.remove(i);
+            }
+            dataTranspose();
+        }
 
         return true;
     }
@@ -143,6 +178,7 @@ public class DataHandle {
 
     public void setFieldList(ArrayList<ArrayList<String>> fieldList) {
         this.fieldList = fieldList;
+        fieldStandard();
         classifyFieldList();
     }
 
@@ -164,7 +200,7 @@ public class DataHandle {
             if(fieldList.get(i).get(1).equals("EI"))               EI.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("QI_DateAge"))       QI_DateAge.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("QI_DateRecord"))    QI_DateRecord.add(fieldList.get(i).get(0));
-            if(fieldList.get(i).get(1).equals("QI_Geographic"))    QI_Geographic.add(fieldList.get(i).get(0));
+            if(fieldList.get(i).get(1).equals("QI_Geography"))    QI_Geographic.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("QI_Link"))          QI_Link.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("QI_Number"))        QI_Number.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("QI_String"))        QI_String.add(fieldList.get(i).get(0));
@@ -266,6 +302,21 @@ public class DataHandle {
     public void addHierarchy(String name,ArrayList<ArrayList<String>> h){
         if (hierarchy==null) hierarchy=new HashMap<String, ArrayList<ArrayList<String>>>();
         hierarchy.put(name,h);
+    }
+
+    /**
+     * 用于将字段统一化
+     * @return
+     */
+    private void fieldStandard(){
+        for(int i=0;i<fieldList.size();i++){
+            fieldList.get(i).set(0,fieldList.get(i).get(0)
+                    .toLowerCase()
+                    .replace(".","")
+                    .replace("_","")
+                    .replace("-","")
+                    .replace("*",""));
+        }
     }
 
     public ArrayList<ArrayList<String>> getFieldList() {

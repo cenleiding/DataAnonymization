@@ -25,9 +25,11 @@ public class Configuration {
 
      private Double                 t                        =      0.2d;
 
-     private Double                 suppressionLimit_small   =      0.02d;
+     private Double                 suppressionLimit_level1  =      0.9d;
 
-     private Double                 suppressionLimit_big     =      0.05d;
+     private Double                 suppressionLimit_level2  =      0.9d;
+
+     private Integer                microaggregation         =      10;
 
 
     public AnonymousLevel getLevel() {
@@ -86,19 +88,27 @@ public class Configuration {
         this.t = t;
     }
 
-    public Double getSuppressionLimit_small() {
-        return suppressionLimit_small;
+    public Double getSuppressionLimit_level1() {
+        return suppressionLimit_level1;
     }
 
-    public void setSuppressionLimit_small(Double suppressionLimit_small) {
-        this.suppressionLimit_small = suppressionLimit_small;
+    public void setSuppressionLimit_level1(Double suppressionLimit_level1) {
+        this.suppressionLimit_level1 = suppressionLimit_level1;
     }
 
-    public Double getSuppressionLimit_big() {
-        return suppressionLimit_big;
+    public Double getSuppressionLimit_level2() {
+        return suppressionLimit_level2;
     }
 
-    public void setSuppressionLimit_big(Double suppressionLimit_big) {
-        this.suppressionLimit_big = suppressionLimit_big;
+    public void setSuppressionLimit_level2(Double suppressionLimit_level2) {
+        this.suppressionLimit_level2 = suppressionLimit_level2;
+    }
+
+    public Integer getMicroaggregation() {
+        return microaggregation;
+    }
+
+    public void setMicroaggregation(Integer microaggregation) {
+        this.microaggregation = microaggregation;
     }
 }

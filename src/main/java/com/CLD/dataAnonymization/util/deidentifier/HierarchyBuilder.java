@@ -56,7 +56,7 @@ public class HierarchyBuilder {
             ArrayList<String> h=new ArrayList<String>();
             String d= data.get(col).get(i);
             if(d.equals("")){
-                for(int j=0;i<6;j++)
+                for(int j=0;j<6;j++)
                 h.add("***");
             }else {
                 h.add(d);

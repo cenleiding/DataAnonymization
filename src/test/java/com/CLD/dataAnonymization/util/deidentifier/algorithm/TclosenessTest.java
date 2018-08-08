@@ -32,7 +32,8 @@ public class TclosenessTest {
 
 
         ArrayList<Integer> kcol=new ArrayList<Integer>();
-        kcol.add(0);kcol.add(1);
+        kcol.add(0);
+        kcol.add(1);
         ArrayList<Integer> tcol=new ArrayList<Integer>();
         tcol.add(2);
 
@@ -158,6 +159,11 @@ public class TclosenessTest {
         hierarchy.put("disease",diseaseh);
 
         Tcloseness.tClosenessHandle(data,kcol,tcol,2,0.6,0.0,hierarchy);
+        for(int i=0;i<data.get(0).size();i++){
+            System.out.println();
+            for(int j=0;j<data.size();j++)
+                System.out.print(data.get(j).get(i)+" ");
+        }
     }
 
 }

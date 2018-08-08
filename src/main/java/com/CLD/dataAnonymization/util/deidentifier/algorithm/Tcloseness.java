@@ -3,9 +3,14 @@ package com.CLD.dataAnonymization.util.deidentifier.algorithm;
 import org.deidentifier.arx.*;
 import org.deidentifier.arx.criteria.HierarchicalDistanceTCloseness;
 import org.deidentifier.arx.criteria.KAnonymity;
+import org.deidentifier.arx.exceptions.RollbackRequiredException;
+import org.deidentifier.arx.metric.Metric;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @description:该类提供T-closeness方法，当不存在敏感信息时退化为K-anonymous.
@@ -22,6 +27,7 @@ public class Tcloseness {
                                            Double T,
                                            Double SuppressionLimit,
                                            HashMap<String,ArrayList<ArrayList<String>>> hierarchy){
+        if(kcol.size()==0) return true;
         try {
         Data arxData=Data.create(dataInstall(data,kcol,tcol));
         HashMap<String,AttributeType.Hierarchy> hierarchyHashMap= getHierarchyMap(hierarchy);
@@ -30,13 +36,28 @@ public class Tcloseness {
         ARXConfiguration config = ARXConfiguration.create();
         setConfig(data,tcol,hierarchyHashMap,config,K,T,SuppressionLimit);
         ARXResult result = anonymizer.anonymize(arxData, config);
-        updataData(data,result,kcol,tcol);
+        DataHandle optimum = result.getOutput();
+        localRecoding(result,optimum,SuppressionLimit);
+        updataData(data,optimum,kcol,tcol);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("T-closeness 失败！");
             return false;
         }
         return true;
+    }
+
+    /**
+     * 局部重编码
+     * @param result
+     * @param optimum
+     */
+    private static void localRecoding(ARXResult result, DataHandle optimum,Double SuppressionLimit) {
+        try {
+            result.optimizeIterativeFast(optimum, 1-SuppressionLimit);
+        } catch (RollbackRequiredException e) {
+            optimum = result.getOutput();
+        }
     }
 
     /**
@@ -53,11 +74,11 @@ public class Tcloseness {
         ArrayList<Integer> col= (ArrayList<Integer>) kcol.clone();
         col.addAll(tcol);
         for(int i=0;i<data.get(0).size();i++){
-            String[] S=new String[col.size()];
-            for(int Column : col){
-                S[Column]=data.get(Column).get(i);
+            String[] s=new String[col.size()];
+            for(int c=0;c<col.size();c++){
+                s[c]=data.get(col.get(c)).get(i);
             }
-            outData.add(S);
+            outData.add(s);
         }
         return outData;
     }
@@ -128,32 +149,34 @@ public class Tcloseness {
          for(int tcolumn:tcol){
              config.addPrivacyModel(new HierarchicalDistanceTCloseness(data.get(tcolumn).get(0), T, hierarchyHashMap.get(data.get(tcolumn).get(0))));
          }
-         config.setSuppressionLimit(0);
+         config.setSuppressionLimit(SuppressionLimit);
+         config.setQualityModel(Metric.createLossMetric(0));
         return true;
      }
 
     /**
      * 该方法用于更新变换后的数据
      * @param data
-     * @param result
+     * @param optimum
      * @param kcol
      * @param tcol
      * @return
      */
      private static Boolean updataData(ArrayList<ArrayList<String>> data,
-                                       ARXResult result,
+                                       DataHandle optimum,
                                        ArrayList<Integer> kcol,
                                        ArrayList<Integer> tcol
                                        ){
          ArrayList<Integer> col= (ArrayList<Integer>) kcol.clone();
          col.addAll(tcol);
-         Iterator<String[]> transformed = result.getOutput(false).iterator();
+         Iterator<String[]> transformed = optimum.iterator();
          int row=0;
          while (transformed.hasNext()) {
              String[] strings=transformed.next();
              for(int i=0;i<col.size();i++){
-                 data.get(col.get(i)).set(row++,strings[i]);
+                 data.get(col.get(i)).set(row,strings[i]);
              }
+             row++;
          }
          return true;
      }

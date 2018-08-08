@@ -17,29 +17,29 @@ public class LaplaceNoise {
                                              double flu){
         if(col.size()==0) return true;
         if(flu<=0) return true;
-        for(int Column : col){
+        for(int column : col){
             //寻找最大值和最小值
             double max=Double.MIN_VALUE;
             double min=Double.MAX_VALUE;
-            for(int j=0;j<data.get(0).size();j++){
+            for(int j=1;j<data.get(column).size();j++){
                 try {
-                    max=Double.valueOf(data.get(Column).get(j))>max? Double.valueOf(data.get(Column).get(j)):max;
-                    min=Double.valueOf(data.get(Column).get(j))<min? Double.valueOf(data.get(Column).get(j)):min;
+                    max=Double.valueOf(data.get(column).get(j))>max? Double.valueOf(data.get(column).get(j)):max;
+                    min=Double.valueOf(data.get(column).get(j))<min? Double.valueOf(data.get(column).get(j)):min;
                 }catch (Exception e){//直接跳过该单元格
                 }
             }
             //添加噪声
             double rang=(max-min)*flu;
             String format="";
-            for(int j=0;j<data.get(0).size();j++){
+            for(int j=1;j<data.get(column).size();j++){
                 try{
-                    if(data.get(Column).get(j).split("\\.").length==1) format="%.0f";
-                    else format="%."+data.get(Column).get(j).split("\\.")[1].length()+"f";
-                    Double value=Double.valueOf(data.get(Column).get(j));
+                    if(data.get(column).get(j).split("\\.").length==1) format="%.0f";
+                    else format="%."+data.get(column).get(j).split("\\.")[1].length()+"f";
+                    Double value=Double.valueOf(data.get(column).get(j));
                     value=value+noiseBuilder()*rang;
                     value=value<min?min:value;
                     value=value>max?max:value;
-                    data.get(Column).set(j,String.format(format,value));
+                    data.get(column).set(j,String.format(format,value));
                 }catch (Exception e){//直接跳过该单元格
                 }
             }
