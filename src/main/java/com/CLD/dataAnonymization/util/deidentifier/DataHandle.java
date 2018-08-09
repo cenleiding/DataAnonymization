@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class DataHandle {
 
-    //数据
+    //数据 以行为单位进行存储
     private ArrayList<ArrayList<String>>                 data             =       null;
     //标题行
     private String[]                                     header           =       null;
@@ -40,6 +40,8 @@ public class DataHandle {
     private HashSet<String>                              SI_String        =       null;
 
     private HashSet<String>                              SI_Number        =       null;
+
+    private HashSet<String>                              UI        =       null;
 
 
     /**
@@ -116,7 +118,8 @@ public class DataHandle {
                     row.add(resultSet.getString(i));
                 this.data.add(row);
             }
-            dataTranspose();
+            dataClear();
+            setHeader();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -196,6 +199,7 @@ public class DataHandle {
         QI_String       =        new HashSet<String>();
         SI_Number       =        new HashSet<String>();
         SI_String       =        new HashSet<String>();
+        UI              =        new HashSet<String>();
         for(int i=0;i<fieldList.size();i++){
             if(fieldList.get(i).get(1).equals("EI"))               EI.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("QI_DateAge"))       QI_DateAge.add(fieldList.get(i).get(0));
@@ -206,6 +210,7 @@ public class DataHandle {
             if(fieldList.get(i).get(1).equals("QI_String"))        QI_String.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("SI_Number"))        SI_Number.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("SI_String"))        SI_String.add(fieldList.get(i).get(0));
+            if(fieldList.get(i).get(1).equals("UI"))               UI.add(fieldList.get(i).get(0));
         }
         return true;
     }
@@ -227,19 +232,19 @@ public class DataHandle {
     }
 
     public String[][] getDataAsArray2(){
-        String [][] outData=new String[data.get(0).size()][data.size()];
-        for(int i=0;i<data.get(0).size();i++)
-            for(int j=0;j<data.size();j++)
-                outData[i][j]=data.get(j).get(i);
+        String [][] outData=new String[data.size()][data.get(0).size()];
+        for(int i=0;i<data.size();i++)
+            for(int j=0;j<data.get(i).size();j++)
+                outData[i][j]=data.get(i).get(j);
         return outData;
     }
 
     public List<String[]> getDataAsListArray(){
         List<String[]> outData=new ArrayList<String[]>();
-        for(int i=0;i<data.get(0).size();i++){
-            String[] s=new String[data.size()];
-            for(int j=0;j<data.size();j++)
-                s[j]=data.get(j).get(i);
+        for(int i=0;i<data.size();i++){
+            String[] s=new String[data.get(i).size()];
+            for(int j=0;j<data.get(i).size();j++)
+                s[j]=data.get(i).get(j);
             outData.add(s);
         }
         return outData;
@@ -252,15 +257,15 @@ public class DataHandle {
 
             @Override
             public boolean hasNext() {
-                return pos<data.get(0).size();
+                return pos<data.size();
             }
 
             @Override
             public String[] next() throws NoSuchElementException {
                 if (hasNext()) {
-                    String[] strings=new String[data.size()];
-                    for(int i=0;i<data.size();i++)
-                        strings[i]=data.get(i).get(pos);
+                    String[] strings=new String[data.get(pos).size()];
+                    for(int i=0;i<data.get(pos).size();i++)
+                        strings[i]=data.get(pos).get(i);
                     pos++;
                     return strings;
                 } else {
@@ -357,6 +362,10 @@ public class DataHandle {
 
     public HashSet<String> getSI_Number() {
         return SI_Number;
+    }
+
+    public HashSet<String> getUI() {
+        return UI;
     }
 
     public HashMap<String,ArrayList<String>> getGeographic() {

@@ -19,14 +19,12 @@ public class Suppression {
      */
     public static Boolean suppressionHandle(ArrayList<ArrayList<String>> data,
                                             ArrayList<Integer> col,
-                                            ArrayList<ArrayList<HashMap<String,String>>> proInfo){
+                                            ArrayList<HashMap<String,String>> proInfo){
         if (col.size()==0) return true;
         try{
             for(int column : col){
                 for(int j=1;j<data.get(column).size();j++){
-                    HashMap<String,String> info=new HashMap<String,String>();
-                    info.put(new String(data.get(column).get(j)),"***");
-                    proInfo.get(j).add(info);
+                    proInfo.get(j).put(new String(data.get(column).get(j)),"***");
                     data.get(column).set(j,"***");
                 }
             }

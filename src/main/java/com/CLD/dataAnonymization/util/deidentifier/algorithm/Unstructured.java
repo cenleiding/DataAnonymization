@@ -1,6 +1,7 @@
-package com.CLD.dataAnonymization.util.deidentifier;
+package com.CLD.dataAnonymization.util.deidentifier.algorithm;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,13 +12,29 @@ import java.util.regex.Pattern;
  **/
 public class Unstructured {
 
+
+    public static Boolean unstructuredHandle(ArrayList<ArrayList<String>> data,
+                                             ArrayList<Integer> col,
+                                             ArrayList<HashMap<String,String>> proInfo,
+                                             HashMap<String,ArrayList<String>> geographic){
+        ArrayList<String> geo=new ArrayList<String>();
+        geo.addAll(geographic.get("bigCity"));
+        geo.addAll(geographic.get("smallCity"));
+        for(int column : col ) {
+            for(int j=1;j<data.get(column).size();j++) {
+                data.get(column).set(j,identity(data.get(column).get(j),proInfo.get(j),geo));
+            }
+        }
+        return true;
+    }
+
     /**
      * @param data           待处理数据
      * @param info           已知可处理字段
-     * @param Geographic     地理限制范围
+     * @param geographic     地理限制范围
      * @return
      */
-    public static String identity(String data, ArrayList<String> info,ArrayList<String>Geographic){
+    public static String identity(String data, HashMap<String,String> info,ArrayList<String>geographic){
         Pattern p=null;
         Matcher m=null;
 
@@ -28,7 +45,7 @@ public class Unstructured {
             Pattern p1=Pattern.compile("\\s*[\\u4e00-\\u9fa5]*$");
             Matcher m1=p1.matcher(m.group());
             m1.find();
-            info.add(m1.group().replace(" ", ""));
+            info.put(m1.group().replace(" ", ""),"***");
             data=data.replace(m.group(), "姓    名: ***");
         }
 
@@ -57,7 +74,7 @@ public class Unstructured {
             Pattern p1=Pattern.compile("\\d+");
             Matcher m1=p1.matcher(m.group());
             m1.find();
-            info.add(m1.group().replace(" ", ""));
+            info.put(m1.group().replace(" ", ""),"***");
             data=data.replace(m.group(), "住 院 号: *****");
         }
         //医师签名
@@ -67,7 +84,7 @@ public class Unstructured {
             Pattern p1=Pattern.compile("\\s*[\\u4e00-\\u9fa5]*$");
             Matcher m1=p1.matcher(m.group());
             m1.find();
-            info.add(m1.group().replace(" ", ""));
+            info.put(m1.group().replace(" ", ""),"***");
             data=data.replace(m.group(), "医 师 签 名: ***");
         }
         //主治医师
@@ -77,7 +94,7 @@ public class Unstructured {
             Pattern p1=Pattern.compile("\\s*[\\u4e00-\\u9fa5]*$");
             Matcher m1=p1.matcher(m.group());
             m1.find();
-            info.add(m1.group().replace(" ", ""));
+            info.put(m1.group().replace(" ", ""),"***");
             data=data.replace(m.group(), "主 治 医 师: ***");
         }
         //住院医师
@@ -87,7 +104,7 @@ public class Unstructured {
             Pattern p1=Pattern.compile("\\s*[\\u4e00-\\u9fa5]*$");
             Matcher m1=p1.matcher(m.group());
             m1.find();
-            info.add(m1.group().replace(" ", ""));
+            info.put(m1.group().replace(" ", ""),"***");
             data=data.replace(m.group(), "住 院 医 师: ***");
         }
         //责任护师
@@ -97,7 +114,7 @@ public class Unstructured {
             Pattern p1=Pattern.compile("\\s*[\\u4e00-\\u9fa5]*$");
             Matcher m1=p1.matcher(m.group());
             m1.find();
-            info.add(m1.group().replace(" ", ""));
+            info.put(m1.group().replace(" ", ""),"***");
             data=data.replace(m.group(), "责 任 护 师: ***");
         }
         //上级医师
@@ -107,7 +124,7 @@ public class Unstructured {
             Pattern p1=Pattern.compile("\\s*[\\u4e00-\\u9fa5]*$");
             Matcher m1=p1.matcher(m.group());
             m1.find();
-            info.add(m1.group().replace(" ", ""));
+            info.put(m1.group().replace(" ", ""),"***");
             data=data.replace(m.group(), "上 级 医 师: ***");
         }
         //主管医师
@@ -117,7 +134,7 @@ public class Unstructured {
             Pattern p1=Pattern.compile("\\s*[\\u4e00-\\u9fa5]*$");
             Matcher m1=p1.matcher(m.group());
             m1.find();
-            info.add(m1.group().replace(" ", ""));
+            info.put(m1.group().replace(" ", ""),"***");
             data=data.replace(m.group(), "主 管 医 师: ***");
         }
         //病房
@@ -140,17 +157,17 @@ public class Unstructured {
             Matcher m1=p1.matcher(m.group());
             m1.find();
             String value="";
-            for(int k=0;k<Geographic.size();k++){
-                if(m1.group().indexOf(Geographic.get(k))!=-1)
-                    value+=Geographic.get(k);
+            for(int k=0;k<geographic.size();k++){
+                if(m1.group().indexOf(geographic.get(k))!=-1)
+                    value+=geographic.get(k);
             }
             data=data.replace(m.group(),  "出 生 地 ："+value);
         }
 
         //移除历史信息
-        for (int i = 0; i < info.size() ; i++) {
-            if (!info.get(i).equals(""))
-            data=data.replace(info.get(i),"***");
+        for (String inf:info.keySet()) {
+            if (!inf.replace(" ","").equals(""))
+            data=data.replaceAll(inf,info.get(inf));
         }
         return data;
     }

@@ -226,8 +226,8 @@ public class Hippa {
                                  ArrayList<String> Geographic,
                                  int col){
         for(int i=1;i<data.size();i++){
-            if ((data.get(i).get(col) != null) && (!data.get(i).get(col).equals("")))
-                data.get(i).set(col,Unstructured.identity(data.get(i).get(col),deleteInfo.get(i),Geographic));
+//            if ((data.get(i).get(col) != null) && (!data.get(i).get(col).equals("")))
+//                data.get(i).set(col, Unstructured.identity(data.get(i).get(col),deleteInfo.get(i),Geographic));
         }
     }
 

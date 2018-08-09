@@ -15,12 +15,10 @@ public class AnonymizerTest {
     public void anonymize() throws Exception {
         ArrayList<ArrayList<String>> data= FileResolve.readerXlsx("C:\\Users\\CLD\\Desktop\\i.xlsx").get(0);
         DataHandle dataHandle=new DataHandle(data);
-        dataHandle.dataTranspose();
         Configuration configuration=new Configuration();
         configuration.setLevel(Configuration.AnonymousLevel.Level2);
         Anonymizer anonymizer=new Anonymizer(dataHandle,configuration);
         anonymizer.anonymize();
-        dataHandle.dataTranspose();
 
         ArrayList<ArrayList<ArrayList<String>>> workbook=new ArrayList<ArrayList<ArrayList<String>>>();
         ArrayList<ArrayList<String>> names=new ArrayList<ArrayList<String>>();

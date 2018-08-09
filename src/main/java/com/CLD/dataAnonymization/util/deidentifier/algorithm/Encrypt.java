@@ -21,21 +21,19 @@ public class Encrypt {
     public static Boolean encryptHandle(ArrayList<ArrayList<String>> data,
                                         ArrayList<Integer> col,
                                         String password,
-                                        ArrayList<ArrayList<HashMap<String,String>>> proInfo){
+                                        ArrayList<HashMap<String,String>> proInfo){
         for(int column : col){
             for(int i=1;i<data.get(column).size();i++){
-                HashMap<String,String> info=new HashMap<String,String>();
                 String O=data.get(column).get(i);
                 String E=encryptMode(data.get(column).get(i),password);
-                info.put(O,E);
-                proInfo.get(i).add(info);
+                proInfo.get(i).put(O,E);
                 data.get(column).set(i,E);
             }
         }
         return true;
     }
 
-    public static Boolean decryptHandle(ArrayList<ArrayList<String>> data,
+    private static Boolean decryptHandle(ArrayList<ArrayList<String>> data,
                                         ArrayList<Integer> col,
                                         String password){
         for(int column : col){

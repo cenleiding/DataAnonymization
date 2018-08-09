@@ -38,5 +38,9 @@
   {
     "fieldName": "身高",
     "fieldType": "QI_Number"
+  },
+  {
+    "fieldName": "ContentText",
+    "fieldType": "UI"
   }
 ]

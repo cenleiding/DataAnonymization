@@ -7,6 +7,8 @@ package com.CLD.dataAnonymization.util.deidentifier;
  */
 public class main {
     public static void main(String[] args){
-        System.out.println(Double.valueOf("+11.4"));
+       String a="2";
+       String b="12234";
+        System.out.println(b.replaceAll(a,""));
     }
 }

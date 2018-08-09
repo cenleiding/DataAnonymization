@@ -32,22 +32,19 @@ public class Anonymizer {
         this.configuration=configuration;
     }
 
-    public Anonymizer(ArrayList<ArrayList<String>> data){
-        this.dataHandle=new DataHandle(data);
-        this.configuration=new Configuration();
-    }
-
     /**
      * 匿名化驱动
      * @return
      */
     public ArrayList<ArrayList<String>> anonymize(){
         try{
+            dataHandle.dataTranspose();
             dataArrange();
             if(configuration.getLevel()==Configuration.AnonymousLevel.Level1)
                 runLevel_1();
             if(configuration.getLevel()==Configuration.AnonymousLevel.Level2)
                 runLevel_2();
+            dataHandle.dataTranspose();
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -89,9 +86,9 @@ public class Anonymizer {
      * @return
      */
     private Boolean runLevel_1(){
-        ArrayList<ArrayList<HashMap<String,String>>> proInfo=new ArrayList<ArrayList<HashMap<String,String>>>();
+        ArrayList<HashMap<String,String>> proInfo=new ArrayList<HashMap<String,String>>();
         for(int i=0;i<dataHandle.getData().get(0).size();i++)
-            proInfo.add(new ArrayList<HashMap<String,String>>());
+            proInfo.add(new HashMap<String,String>());
         ArrayList<Integer> column=null;
         ArrayList<Integer> k_col=new ArrayList<Integer>();
         ArrayList<Integer> t_col=new ArrayList<Integer>();
@@ -125,9 +122,11 @@ public class Anonymizer {
                 configuration.getT(),configuration.getSuppressionLimit_level1(),dataHandle.getHierarchy());
 
         //SI 敏感信息不处理
+
         //处理UI非结构化信息
-        //             //
-        /////////////////
+        column=selectTypeColumn(dataHandle.getUI());
+        Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getGeographic());
+
 
         return true;
     }
@@ -138,9 +137,9 @@ public class Anonymizer {
      * @return
      */
     private Boolean runLevel_2(){
-        ArrayList<ArrayList<HashMap<String,String>>> proInfo=new ArrayList<ArrayList<HashMap<String,String>>>();
+        ArrayList<HashMap<String,String>> proInfo=new ArrayList<HashMap<String,String>>();
         for(int i=0;i<dataHandle.getData().get(0).size();i++)
-            proInfo.add(new ArrayList<HashMap<String,String>>());
+            proInfo.add(new HashMap<String,String>());
         ArrayList<Integer> column=null;
         ArrayList<Integer> k_col=new ArrayList<Integer>();
         ArrayList<Integer> t_col=new ArrayList<Integer>();
@@ -180,8 +179,8 @@ public class Anonymizer {
                 configuration.getT(),configuration.getSuppressionLimit_level2(),dataHandle.getHierarchy());
 
         //处理UI非结构化信息
-        //             //
-        /////////////////
+        column=selectTypeColumn(dataHandle.getUI());
+        Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getGeographic());
 
         return true;
     }

@@ -2,6 +2,7 @@ package com.CLD.dataAnonymization.service.deidentifyTarget.apiDeidentify;
 
 import com.CLD.dataAnonymization.model.FieldInfo;
 import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
+import com.CLD.dataAnonymization.util.deidentifier.EasyAnonymizeAdapter;
 import com.CLD.dataAnonymization.util.deidentifier.IOAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,8 @@ public class ApiDeidentifyServiceImpl implements ApiDeidentifyService{
         }
         ArrayList<ArrayList<String>> data=dataParseService.requestDataToArrayList(req);
         ArrayList<HashMap<String,String>> outData=new ArrayList<HashMap<String, String>>();
-        data= IOAdapter.ToSafeHarbor(data,fieldList);
+//        data= IOAdapter.ToSafeHarbor(data,fieldList);
+        data= EasyAnonymizeAdapter.ToLevel_1(data,fieldList);
         for(int i=1;i<data.size();i++){
             HashMap<String,String> map=new HashMap<String, String>();
             for(int j=0;j<data.get(0).size();j++){

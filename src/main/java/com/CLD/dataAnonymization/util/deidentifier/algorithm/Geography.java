@@ -18,7 +18,7 @@ public class Geography {
     public static Boolean geographyHandle(ArrayList<ArrayList<String>> data,
                                           ArrayList<Integer> col,
                                           HashMap<String,ArrayList<String>> geography,
-                                          ArrayList<ArrayList<HashMap<String,String>>> proInfo,
+                                          ArrayList<HashMap<String,String>> proInfo,
                                           GeographyLevel level){
         if(col.size()==0) return true;
         String value;
@@ -42,9 +42,7 @@ public class Geography {
                     }else{
                         value=data.get(column).get(j).substring(0,4)+"**";
                     }
-                    HashMap<String,String> info=new HashMap<String,String>();
-                    info.put(new String(data.get(column).get(j)),value);
-                    proInfo.get(j).add(info);
+                    proInfo.get(j).put(new String(data.get(column).get(j)),value);
                     data.get(column).set(j,value);
                 }
             }
