@@ -1,7 +1,7 @@
 package com.CLD.dataAnonymization;
 
 import com.CLD.dataAnonymization.dao.h2.repository.UsageFieldClassifyRepository;
-import com.CLD.dataAnonymization.service.systemManage.Reset.NodeResetService;
+import com.CLD.dataAnonymization.service.systemManage.reset.NodeResetService;
 import com.CLD.dataAnonymization.service.systemManage.initialize.ResourcesFileInitializeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;

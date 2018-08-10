@@ -4733,7 +4733,7 @@
 						_fnAddData( settings, aData[i] );
 					}
 	
-					// Reset the init display for cookie saving. We've already done
+					// reset the init display for cookie saving. We've already done
 					// a filter, and therefore cleared it before. So we need to make
 					// it appear 'fresh'
 					settings.iInitDisplayStart = iAjaxStart;
@@ -7613,7 +7613,7 @@
 	 * Reload tables from the Ajax data source. Note that this function will
 	 * automatically re-draw the table when the remote data has been loaded.
 	 *
-	 * @param {boolean} [reset=true] Reset (default) or hold the current paging
+	 * @param {boolean} [reset=true] reset (default) or hold the current paging
 	 *   position. A full re-sort and re-filter is performed when this method is
 	 *   called, which is why the pagination reset is the default action.
 	 * @returns {DataTables.Api} this
