@@ -1,4 +1,4 @@
-var app = angular.module("fieldModifyApp", ['angular-popups']);
+var app = angular.module("fieldModifyApp", ['angular-popups','headApp']);
 app.controller("fieldModifyCtrl", function($scope,$http,$timeout,$q) {
 
     $scope.fromName;

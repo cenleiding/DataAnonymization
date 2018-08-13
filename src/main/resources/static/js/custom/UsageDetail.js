@@ -1,4 +1,4 @@
-var app = angular.module("usageDetailApp", []);
+var app = angular.module("usageDetailApp", ['headApp']);
 app.controller("usageDetailCtrl", function($scope,$http,$timeout,$q) {
 
     $scope.userIp;

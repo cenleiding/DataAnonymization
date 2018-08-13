@@ -1,4 +1,4 @@
-var app = angular.module("FileProcessingApp", ['ngFileUpload']);
+var app = angular.module("FileProcessingApp", ['ngFileUpload','headApp']);
 app.controller("FileProcessingCtrl",function ($scope, Upload,$http,$timeout) {
 
     $scope.progress = 0;
@@ -82,6 +82,4 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,$timeout) {
         });
     }
 
-
-
-});
+})

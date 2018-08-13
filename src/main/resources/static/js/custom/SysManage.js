@@ -1,4 +1,4 @@
-var app = angular.module("sysManageApp", ['angular-popups']);
+var app = angular.module("sysManageApp", ['angular-popups','headApp']);
 app.controller("sysManageCtrl", function($scope,$http,$timeout,$q) {
 
     $scope.jdbackUp=function () {

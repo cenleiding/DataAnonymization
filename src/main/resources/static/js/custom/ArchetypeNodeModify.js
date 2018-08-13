@@ -1,4 +1,4 @@
-var app = angular.module("archetypeNodeModifyApp", ['angular-popups']);
+var app = angular.module("archetypeNodeModifyApp", ['angular-popups','headApp']);
 app.controller("archetypeNodeModifyCtrl", function($scope,$http,$timeout,$q) {
 
     $scope.archetypeList;

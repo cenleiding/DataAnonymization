@@ -1,4 +1,4 @@
-var app = angular.module("expandNodeModifyApp", ['angular-popups']);
+var app = angular.module("expandNodeModifyApp", ['angular-popups','headApp']);
 app.controller("expandNodeModifyCtrl", function($scope,$http,$timeout,$q) {
 
     $scope.selectFile="";

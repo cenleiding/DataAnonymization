@@ -1,4 +1,4 @@
-var app = angular.module("privacyFieldOverViewApp", []);
+var app = angular.module("privacyFieldOverViewApp", ['headApp']);
 app.controller("privacyFieldOverViewCtrl", function($scope,$http,$timeout,$q) {
 
     var fields;

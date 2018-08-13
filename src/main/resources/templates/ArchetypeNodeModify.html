@@ -31,6 +31,7 @@
     <script src="/js/angular.min.js"></script>
     <script src="/js/angular-popups.js"></script>
     <script src="/js/custom/ArchetypeNodeModify.js"></script>
+    <script src="/js/custom/Head.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -42,13 +43,15 @@
 
 <body>
 
-<div id="wrapper" data-ng-app="archetypeNodeModifyApp" data-ng-controller="archetypeNodeModifyCtrl">
+<div id="wrapper" data-ng-app="archetypeNodeModifyApp" >
 
     <!-- Navigation -->
-    <div ng-include="'/htmlTemplates/Head.html'"></div>
+    <div  data-ng-controller="headCtrl">
+        <ng-include src="'/htmlTemplates/Head.html'"></ng-include>
+    </div>
 
     <!-- Page Content -->
-    <div  id="page-wrapper">
+    <div  id="page-wrapper"  data-ng-controller="archetypeNodeModifyCtrl">
         <div class="container-fluid">
             <div class="row  page-header">
                 <div class="col-lg-2">

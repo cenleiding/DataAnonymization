@@ -33,6 +33,8 @@
     <script src="/js/angular.min.js"></script>
     <script src="/js/angular-popups.js"></script>
     <script src="/js/custom/ExpandNodeModify.js"></script>
+    <script src="/js/custom/Head.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -44,13 +46,15 @@
 
 <body>
 
-<div id="wrapper" data-ng-app="expandNodeModifyApp" data-ng-controller="expandNodeModifyCtrl">
+<div id="wrapper" data-ng-app="expandNodeModifyApp">
 
     <!-- Navigation -->
-    <div ng-include="'/htmlTemplates/Head.html'"></div>
+    <div  data-ng-controller="headCtrl">
+        <ng-include src="'/htmlTemplates/Head.html'"></ng-include>
+    </div>
 
     <!-- Page Content -->
-    <div  id="page-wrapper">
+    <div  id="page-wrapper"   data-ng-controller="expandNodeModifyCtrl">
         <div class="container-fluid">
             <div class="row  page-header">
                 <div class="col-lg-2">

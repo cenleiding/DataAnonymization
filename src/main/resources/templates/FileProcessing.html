@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -29,6 +29,7 @@
     <script src="/js/dataTables.buttons.min.js"></script>
     <script src="/js/dataTables.select.min.js"></script>
     <script src="/js/angular.min.js"></script>
+    <script src="/js/custom/Head.js"></script>
     <script src="/js/custom/FileProcessing.js"></script>
     <script src="/js/ng-file-upload.min.js"></script>
     <script src="/js/ng-file-upload-shim.min.js"></script>
@@ -44,13 +45,14 @@
 
 <body>
 
-<div id="wrapper" data-ng-app="FileProcessingApp" data-ng-controller="FileProcessingCtrl">
-
+<div id="wrapper" data-ng-app="FileProcessingApp">
     <!-- Navigation -->
-    <div ng-include="'/htmlTemplates/Head.html'"></div>
+    <div  data-ng-controller="headCtrl">
+        <ng-include src="'/htmlTemplates/Head.html'"></ng-include>
+    </div>
 
     <!-- Page Content -->
-    <div class="ng-scope" id="page-wrapper">
+    <div class="ng-scope" id="page-wrapper"  data-ng-controller="FileProcessingCtrl">
         <div class="container padding-top-120">
             <h3> 文件上传</h3>
             <hr>

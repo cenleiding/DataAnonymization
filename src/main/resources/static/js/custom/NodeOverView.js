@@ -1,4 +1,4 @@
-var app = angular.module("nodeOverViewApp", []);
+var app = angular.module("nodeOverViewApp", ['headApp']);
 app.controller("nodeOverViewCtrl", function($scope,$http,$timeout,$q) {
 
     var percentage;

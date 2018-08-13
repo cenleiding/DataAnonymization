@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="padding-left: 60px" ng-controller="registeredCtrl">
+    <h2 class="form-signin-heading">用户注册</h2>
+    <hr style="color: black;background-color: black;border-color: black;width: 300px;margin-left: 0px;margin-right: 0px">
+    <div style="padding-right: 15px;padding-left: 15px">
+        <div class="input-group" style="width: 270px;height: 40px">
+            <span class="input-group-addon" style="font-weight: bolder;width: 70px">用户名</span>
+            <input type="text" ng-model="user" style="height: inherit" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+        </div>
+        <br>
+        <div class="input-group" style="width: 270px;height: 40px">
+            <span class="input-group-addon"style="font-weight: bolder;width: 70px">密码</span>
+            <input type="password" ng-model="password"  style="height: inherit" class="form-control" placeholder="Password" aria-describedby="sizing-addon1">
+        </div>
+        <div class="row" style="padding-top: 25px;padding-bottom: 10px">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-8">
+                <button data-ng-click="register()" class="btn btn-lg btn-primary btn-block" >注&nbsp&nbsp册</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

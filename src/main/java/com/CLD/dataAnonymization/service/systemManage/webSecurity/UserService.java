@@ -27,4 +27,17 @@ public class UserService implements UserDetailsService {
         }
         return systemUser;
     }
+
+    public Boolean addUser(String username,String password){
+        SystemUser systemUser=systemUserRepository.findByUsername(username);
+        if (systemUser == null) {
+            SystemUser newUser=new SystemUser();
+            newUser.setUsername(username);
+            newUser.setPassword(password);
+            newUser.setRole("USER");
+            systemUserRepository.save(newUser);
+           return true;
+        }
+        return false;
+    }
 }

@@ -1,4 +1,4 @@
-var app = angular.module("privacyFieldModifyApp", []);
+var app = angular.module("privacyFieldModifyApp", ['headApp']);
 app.controller("privacyFieldModifyCtrl", function($scope,$http,$timeout,$q) {
 
     $scope.fields;

@@ -32,6 +32,8 @@
     <script src="/js/ng-file-upload.min.js"></script>
     <script src="/js/ng-file-upload-shim.min.js"></script>
     <script src="/js/custom/DbDeidentify.js"></script>
+    <script src="/js/custom/Head.js"></script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,13 +45,15 @@
 </head>
 
 <body>
-<div id="wrapper" data-ng-app="DbDeidentifyApp" data-ng-controller="DbDeidentifyCtrl">
+<div id="wrapper" data-ng-app="DbDeidentifyApp" >
 
     <!-- Navigation -->
-    <div ng-include="'/htmlTemplates/Head.html'"></div>
+    <div  data-ng-controller="headCtrl">
+        <ng-include src="'/htmlTemplates/Head.html'"></ng-include>
+    </div>
 
     <!-- Page Content -->
-    <div id="page-wrapper">
+    <div id="page-wrapper" data-ng-controller="DbDeidentifyCtrl">
         <div class="container-fluid">
             <h3>数据库匿名化</h3>
             <hr>

@@ -13,6 +13,8 @@
     <link href="/css/metisMenu.min.css" rel="stylesheet">
     <link href="/css/sb-admin-2.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/ngDialog.min.css" rel="stylesheet" >
+    <link href="/css/ngDialog-theme-default.min.css" rel="stylesheet">
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -20,7 +22,11 @@
     <script src="/js/sb-admin-2.js"></script>
     <script src="/js/highcharts.js"></script>
     <script src="/js/angular.min.js"></script>
+    <script src="/js/ngDialog.min.js"></script>
     <script src="/js/custom/Login.js"></script>
+    <script src="/js/custom/Head.js"></script>
+    <script src="/js/custom/Registered.js"></script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -30,12 +36,14 @@
     <![endif]-->
 </head>
 <body>
-<div id="wrapper" data-ng-app="loginApp" data-ng-controller="loginCtrl" >
+<div id="wrapper" data-ng-app="loginApp">
     <!-- Navigation -->
-<div ng-include="'/htmlTemplates/Head.html'"></div>
+    <div data-ng-controller="headCtrl">
+        <ng-include src="'/htmlTemplates/Head.html'"></ng-include>
+    </div>
     <!-- Page Content -->
-    <div  id="page-wrapper" style="height: inherit;padding-left: 0px;padding-right: 0">
-        <div class="container-fluid" style="background: url(img/login.jpg);background-size:100% 100%;background-repeat:no-repeat;height:800px;">
+    <div  id="page-wrapper"  data-ng-controller="loginCtrl"  style="height: inherit;padding-left: 0px;padding-right: 0">
+        <div class="container-fluid" style="background: url(img/login.jpg);background-size:100% 100%;background-repeat:no-repeat;height:900px;">
             <div class="row" style="">
                 <div class="col-lg-8"></div>
                 <div class="col-lg-3" style="padding-top: 10%">
@@ -54,16 +62,16 @@
                                     <span class="input-group-addon"style="font-weight: bolder;width: 70px">密码</span>
                                     <input type="password" id="password" name="password"  style="height: inherit" class="form-control" placeholder="Password" aria-describedby="sizing-addon1">
                                 </div>
-                                <div class="row" style="padding-top: 25px;padding-bottom: 10px">
+                                <div class="row" style="padding-top: 25px;padding-bottom: 7px">
                                     <div class="col-lg-1"></div>
                                     <div class="col-lg-8">
-                                        <button style="" class="btn btn-lg btn-primary btn-block" type="submit">登&nbsp&nbsp入</button>
+                                        <button class="btn btn-lg btn-primary btn-block" type="submit">登&nbsp&nbsp入</button>
                                     </div>
                                     <div class="col-lg-2" style="padding-top: 20px;padding-left: 0px">
-                                        <input type="submit" value="注册" style="border:0;cursor:pointer;background-color:transparent;" />
+                                        <button type="button" data-ng-click="registered()" style="border:0;cursor:pointer;background-color:transparent;width: 50px;font-weight: bold">注册</button>
                                     </div>
                                 </div>
-                                <div th:if="${param.error}"style="padding-left: 55px">
+                                <div th:if="${param.error}"style="padding-left: 60px">
                                     <label style="color: red">用户名或密码错误</label>
                                 </div>
                             </div>

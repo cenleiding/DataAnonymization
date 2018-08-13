@@ -1,4 +1,4 @@
-var app = angular.module("usageOverViewApp", []);
+var app = angular.module("usageOverViewApp", ['headApp']);
 app.controller("usageOverViewCtrl", function($scope,$http,$timeout,$q) {
 
     $scope.usenum=0;

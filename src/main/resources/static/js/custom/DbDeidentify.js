@@ -1,4 +1,4 @@
-var app = angular.module("DbDeidentifyApp", []);
+var app = angular.module("DbDeidentifyApp", ['headApp']);
 app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce) {
 
     $scope.selectDbType="MySql";

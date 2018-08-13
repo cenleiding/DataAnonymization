@@ -20,6 +20,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
  * @Author CLD
  * @Date 2018/8/10 15:40
  */
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) //开启security注解
