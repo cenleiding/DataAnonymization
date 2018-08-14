@@ -14,7 +14,7 @@ public class ArchetypeNodeClassify {
 
     @Id
     @GeneratedValue
-    private Long ID;
+    private Long id;
 
     private String nodeName;
 
@@ -30,12 +30,12 @@ public class ArchetypeNodeClassify {
     @Column(length = 2500)
     private String description;
 
-    public Long getID() {
-        return ID;
+    public Long getId() {
+        return id;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNodeName() {

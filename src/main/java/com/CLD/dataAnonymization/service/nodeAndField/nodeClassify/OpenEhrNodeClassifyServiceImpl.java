@@ -153,7 +153,7 @@ public class OpenEhrNodeClassifyServiceImpl implements OpenEhrNodeClassifyServic
             archetypeNodeInfo.setNodeName(archetypeNodeClassify.getNodeName());
             archetypeNodeInfo.setNodePath(archetypeNodeClassify.getNodePath());
             archetypeNodeInfo.setNodeType(archetypeNodeClassify.getNodeType());
-            archetypeNodeInfo.setId(String.valueOf(archetypeNodeClassify.getID()));
+            archetypeNodeInfo.setId(String.valueOf(archetypeNodeClassify.getId()));
             archetypeNodeInfoList.add(archetypeNodeInfo);
         }
         return archetypeNodeInfoList;

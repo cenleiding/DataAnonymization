@@ -4,13 +4,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @description: 系统用户
@@ -24,11 +22,15 @@ public class SystemUser implements UserDetails {
     @GeneratedValue
     private Long id;
 
+    @Column(unique = true)
     private String username;
 
     private String password;
 
     private String role;
+
+    @OneToMany(mappedBy = "systemUser")
+    private Set<FieldClassifyList> fieldClassifyListSet;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -89,5 +91,13 @@ public class SystemUser implements UserDetails {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Set<FieldClassifyList> getFieldClassifyListSet() {
+        return fieldClassifyListSet;
+    }
+
+    public void setFieldClassifyListSet(Set<FieldClassifyList> fieldClassifyListSet) {
+        this.fieldClassifyListSet = fieldClassifyListSet;
     }
 }

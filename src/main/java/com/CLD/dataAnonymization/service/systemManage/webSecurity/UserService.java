@@ -30,7 +30,7 @@ public class UserService implements UserDetailsService {
 
     public Boolean addUser(String username,String password){
         SystemUser systemUser=systemUserRepository.findByUsername(username);
-        if (systemUser == null) {
+        if (systemUser == null || username.trim()!="" || password.trim()!="") {
             SystemUser newUser=new SystemUser();
             newUser.setUsername(username);
             newUser.setPassword(password);
