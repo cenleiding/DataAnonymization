@@ -1,8 +1,9 @@
 package com.CLD.dataAnonymization.dao.h2.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @description: 该表用于存放字段名和其分类的映射关系
@@ -22,18 +23,6 @@ public class FieldClassify {
     private String fieldType;
 
     private String fromName;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private FieldClassifyList fieldClassifyList;
-
-    public FieldClassifyList getFieldClassifyList() {
-        return fieldClassifyList;
-    }
-
-    @JsonBackReference
-    public void setFieldClassifyList(FieldClassifyList fieldClassifyList) {
-        this.fieldClassifyList = fieldClassifyList;
-    }
 
     public long getID() {
         return ID;

@@ -1,6 +1,6 @@
 package com.CLD.dataAnonymization;
 
-import com.CLD.dataAnonymization.service.systemManage.webSecurity.UserService;
+import com.CLD.dataAnonymization.service.systemManage.webSecurity.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -71,7 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService systemUserService() {
-        return new UserService();
+        return new UserServiceImpl();
     }
 
 }

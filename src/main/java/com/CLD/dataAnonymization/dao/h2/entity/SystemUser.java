@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @description: 系统用户
@@ -28,9 +27,6 @@ public class SystemUser implements UserDetails {
     private String password;
 
     private String role;
-
-    @OneToMany(mappedBy = "systemUser")
-    private Set<FieldClassifyList> fieldClassifyListSet;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -93,11 +89,4 @@ public class SystemUser implements UserDetails {
         this.role = role;
     }
 
-    public Set<FieldClassifyList> getFieldClassifyListSet() {
-        return fieldClassifyListSet;
-    }
-
-    public void setFieldClassifyListSet(Set<FieldClassifyList> fieldClassifyListSet) {
-        this.fieldClassifyListSet = fieldClassifyListSet;
-    }
 }

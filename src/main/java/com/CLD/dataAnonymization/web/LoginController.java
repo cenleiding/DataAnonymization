@@ -1,6 +1,6 @@
 package com.CLD.dataAnonymization.web;
 
-import com.CLD.dataAnonymization.service.systemManage.webSecurity.UserService;
+import com.CLD.dataAnonymization.service.systemManage.webSecurity.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +20,7 @@ import java.util.HashMap;
 public class LoginController {
 
     @Autowired
-    UserService userService;
+    UserServiceImpl userServiceImpl;
 
     @RequestMapping("/login")
     public String login(){
@@ -47,7 +47,7 @@ public class LoginController {
     @ResponseBody
     public HashMap register(@Param("username")String username,@Param("password") String password){
         HashMap<String,String> flag=new HashMap<String,String>();
-        if(userService.addUser(username,password)){
+        if(userServiceImpl.addUser(username,password)){
             flag.put("flag","1");
         }else {
             flag.put("flag","0");

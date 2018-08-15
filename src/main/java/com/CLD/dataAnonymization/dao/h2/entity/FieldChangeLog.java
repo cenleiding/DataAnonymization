@@ -1,7 +1,5 @@
 package com.CLD.dataAnonymization.dao.h2.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -24,18 +22,6 @@ public class FieldChangeLog {
 
     @Column(length = 8000)
     private String changeLog;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private FieldClassifyList fieldClassifyList;
-
-    public FieldClassifyList getFieldClassifyList() {
-        return fieldClassifyList;
-    }
-
-    @JsonBackReference
-    public void setFieldClassifyList(FieldClassifyList fieldClassifyList) {
-        this.fieldClassifyList = fieldClassifyList;
-    }
 
     public Long getId() {
         return id;

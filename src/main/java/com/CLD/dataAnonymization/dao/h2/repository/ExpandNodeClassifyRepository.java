@@ -24,4 +24,5 @@ public interface ExpandNodeClassifyRepository extends JpaRepository<ExpandNodeCl
 
     public List<ExpandNodeClassify> findByExpandNameIsNotOrFromNameIsNot(String expandName,String fromName);
 
+    public List<ExpandNodeClassify> findByExpandName(String expandName);
 }

@@ -162,28 +162,28 @@ public class OpenEhrNodeClassifyServiceImpl implements OpenEhrNodeClassifyServic
     @Override
     public List<String> updataNodeInfo(List<ArchetypeNodeInfo> archetypeNodeInfoList,String archetypeName) {
         List<String> outList=new ArrayList<String>();
-        if(archetypeNodeInfoList ==null || archetypeName.equals("")) return null;
-        List<ArchetypeNodeClassify> archetypeNodeClassifyList = archetypeNodeClassifyRepository.findByArchetypeNameIsNot(archetypeName);
-
-        for(ArchetypeNodeInfo archetypeNodeInfo:archetypeNodeInfoList){
-            ArchetypeNodeClassify archetypeNodeClassify =new ArchetypeNodeClassify();
-            archetypeNodeClassify.setArchetypeName(archetypeNodeInfo.getArchetypeName());
-            archetypeNodeClassify.setArchetypeId(archetypeNodeInfo.getArchetypeId());
-            archetypeNodeClassify.setDescription(archetypeNodeInfo.getDescription());
-            archetypeNodeClassify.setNodeName(archetypeNodeInfo.getNodeName());
-            archetypeNodeClassify.setNodePath(archetypeNodeInfo.getNodePath());
-            archetypeNodeClassify.setNodeType(archetypeNodeInfo.getNodeType());
-            archetypeNodeClassifyList.add(archetypeNodeClassify);
-        }
-        //进入NodeToField模块
-        outList=nodeToFieldService.ArcheTypeNodeToField(archetypeNodeClassifyList);
-        if(outList.size()!=0) return outList;
-        outList.add("Original字段表更新成功！");
-
-        //保存节点更改
-        archetypeNodeClassifyRepository.deleteAll();
-        archetypeNodeClassifyRepository.saveAll(archetypeNodeClassifyList);
-        outList.add("原型表："+archetypeName+"更新成功！");
+//        if(archetypeNodeInfoList ==null || archetypeName.equals("")) return null;
+//        List<ArchetypeNodeClassify> archetypeNodeClassifyList = archetypeNodeClassifyRepository.findByArchetypeNameIsNot(archetypeName);
+//
+//        for(ArchetypeNodeInfo archetypeNodeInfo:archetypeNodeInfoList){
+//            ArchetypeNodeClassify archetypeNodeClassify =new ArchetypeNodeClassify();
+//            archetypeNodeClassify.setArchetypeName(archetypeNodeInfo.getArchetypeName());
+//            archetypeNodeClassify.setArchetypeId(archetypeNodeInfo.getArchetypeId());
+//            archetypeNodeClassify.setDescription(archetypeNodeInfo.getDescription());
+//            archetypeNodeClassify.setNodeName(archetypeNodeInfo.getNodeName());
+//            archetypeNodeClassify.setNodePath(archetypeNodeInfo.getNodePath());
+//            archetypeNodeClassify.setNodeType(archetypeNodeInfo.getNodeType());
+//            archetypeNodeClassifyList.add(archetypeNodeClassify);
+//        }
+//        //进入NodeToField模块
+//        outList=nodeToFieldService.ArcheTypeNodeToField(archetypeNodeClassifyList);
+//        if(outList.size()!=0) return outList;
+//        outList.add("Original字段表更新成功！");
+//
+//        //保存节点更改
+//        archetypeNodeClassifyRepository.deleteAll();
+//        archetypeNodeClassifyRepository.saveAll(archetypeNodeClassifyList);
+//        outList.add("原型表："+archetypeName+"更新成功！");
 
         return outList;
     }

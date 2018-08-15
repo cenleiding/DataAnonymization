@@ -2,6 +2,7 @@ package com.CLD.dataAnonymization.service.nodeAndField.fieldClassify;
 
 import com.CLD.dataAnonymization.dao.h2.entity.ArchetypeBasisFieldClassify;
 import com.CLD.dataAnonymization.dao.h2.entity.ExpandBasisFieldClassify;
+import com.CLD.dataAnonymization.model.FieldFormMap;
 import com.CLD.dataAnonymization.model.FieldInfo;
 
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ public interface FieldClassifyService {
                                           List<ExpandBasisFieldClassify> expandBasisFieldClassifyList);
 
     public List<String> getFromNameList();
+
+    public List<FieldFormMap> getFromNameMap();
 
     public List<FieldInfo> getFieldByFromName(String fromName);
 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:color="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>数据匿名中心</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/metisMenu.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" >
+    <link href="/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/css/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="/css/select.dataTables.min.css" rel="stylesheet">
+    <link href="/css/editor.dataTables.min.css" rel="stylesheet">
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-select.min.js"></script>
+    <script src="/js/metisMenu.min.js"></script>
+    <script src="/js/sb-admin-2.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.buttons.min.js"></script>
+    <script src="/js/dataTables.select.min.js"></script>
+    <script src="/js/dataTables.editor.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-popups.js"></script>
+    <script src="/js/custom/FieldFormShow.js"></script>
+    <script src="/js/custom/Head.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div id="wrapper"  data-ng-app="fieldFormShowApp">
+
+    <!-- Navigation -->
+    <div  data-ng-controller="headCtrl">
+        <ng-include src="'/htmlTemplates/Head.html'"></ng-include>
+    </div>
+
+    <!-- Page Content -->
+    <div id="page-wrapper" data-ng-controller="fieldFormShowCtrl">
+        <div class="container-fluid">
+            <div class="row  page-header">
+                <div class="col-lg-2">
+                    <h1>表单查看</h1>
+                </div>
+                <div class="col-lg-8">
+                    <select id="Select" class="selectpicker" data-width="auto" data-live-search="true" data-size="10"></select>
+                </div>
+                <div class="col-lg-2" style="text-align: right">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+
+</div>
+</body>
+</html>

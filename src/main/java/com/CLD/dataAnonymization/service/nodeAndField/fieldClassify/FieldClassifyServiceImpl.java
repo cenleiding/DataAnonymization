@@ -2,10 +2,10 @@ package com.CLD.dataAnonymization.service.nodeAndField.fieldClassify;
 
 import com.CLD.dataAnonymization.dao.h2.entity.ArchetypeBasisFieldClassify;
 import com.CLD.dataAnonymization.dao.h2.entity.ExpandBasisFieldClassify;
+import com.CLD.dataAnonymization.dao.h2.entity.FieldClassifyList;
 import com.CLD.dataAnonymization.dao.h2.entity.UsageFieldClassify;
-import com.CLD.dataAnonymization.dao.h2.repository.ArchetypeBasisFieldClassifyRepository;
-import com.CLD.dataAnonymization.dao.h2.repository.ExpandBasisFieldClassifyRepository;
-import com.CLD.dataAnonymization.dao.h2.repository.UsageFieldClassifyRepository;
+import com.CLD.dataAnonymization.dao.h2.repository.*;
+import com.CLD.dataAnonymization.model.FieldFormMap;
 import com.CLD.dataAnonymization.model.FieldInfo;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -47,6 +47,11 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
     @Autowired
     ExpandBasisFieldClassifyRepository expandBasisFieldClassifyRepository;
 
+    @Autowired
+    FieldClassifyListRepository fieldClassifyListRepository;
+
+    @Autowired
+    FieldClassifyRepository fieldClassifyRepository;
 
     @Override
     public List<String> createOrignalFrom() {
@@ -99,6 +104,25 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
     public List<String> getFromNameList() {
         return usageFieldClassifyRepository.getFromName();
     }
+
+    @Override
+    public List<FieldFormMap> getFromNameMap(){
+        List<FieldFormMap> fieldFormMapList=new ArrayList<FieldFormMap>();
+        List<String> userNameList=fieldClassifyListRepository.getUserName();
+        for(String userName:userNameList){
+            FieldFormMap fieldFormMap=new FieldFormMap();
+            fieldFormMap.setUserName(userName);
+            Map<String,String> map=new HashMap<String,String>();
+            List<FieldClassifyList> fieldClassifyListList=fieldClassifyListRepository.findByUserName(userName);
+            for(FieldClassifyList fieldClassifyList:fieldClassifyListList){
+                map.put(fieldClassifyList.getFormName(),fieldClassifyList.getDescription());
+            }
+            fieldFormMap.setFormNameAndDes(map);
+            fieldFormMapList.add(fieldFormMap);
+        }
+        return fieldFormMapList;
+    }
+
 
     @Override
     public List<FieldInfo> getFieldByFromName(String fromName) {
@@ -171,8 +195,10 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
     }
 
     @Override
-    public Boolean deleteFromByName(String fromName) {
-        usageFieldClassifyRepository.deleteByFromName(fromName);
+    public Boolean deleteFromByName(String formName) {
+        usageFieldClassifyRepository.deleteByFromName(formName);
+        fieldClassifyListRepository.deleteByFormName(formName);
+        fieldClassifyRepository.deleteByFromName(formName);
         return true;
     }
 

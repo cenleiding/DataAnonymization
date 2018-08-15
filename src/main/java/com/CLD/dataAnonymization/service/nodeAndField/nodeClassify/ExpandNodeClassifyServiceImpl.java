@@ -155,28 +155,28 @@ public class ExpandNodeClassifyServiceImpl implements ExpandNodeClassifyService 
     @Override
     public List<String> updataNodeInfo(List<ExpandNodeInfo> expandNodeInfoList, String fileName, String fromName) {
         List<String> outList=new ArrayList<String>();
-        if(fileName ==null || fileName.equals("") || fromName ==null || fromName.equals(""))return null;
-        List<ExpandNodeClassify> expandNodeClassifyList=expandNodeClassifyRepository.findByExpandNameIsNotOrFromNameIsNot(fileName,fromName);
-        for(ExpandNodeInfo expandNodeInfo:expandNodeInfoList){
-            ExpandNodeClassify expandNodeClassify=new ExpandNodeClassify();
-            expandNodeClassify.setNodeType(expandNodeInfo.getNodeType());
-            expandNodeClassify.setEN_name(expandNodeInfo.getEN_name());
-            expandNodeClassify.setCH_name(expandNodeInfo.getCH_name());
-            expandNodeClassify.setDescription(expandNodeInfo.getDescription());
-            expandNodeClassify.setFromName(expandNodeInfo.getFromName());
-            expandNodeClassify.setExpandName(expandNodeInfo.getExpandName());
-            expandNodeClassifyList.add(expandNodeClassify);
-        }
-        //进入NodeToField模块
-        outList=nodeToFieldService.ExpandNodeToField(expandNodeClassifyList);
-        System.out.println(outList);
-        if(outList.size()!=0) return outList;
-        outList.add("Original字段表更新成功！");
-
-        //保存节点更改
-        expandNodeClassifyRepository.deleteAll();
-        expandNodeClassifyRepository.saveAll(expandNodeClassifyList);
-        outList.add("文件："+fileName+"表："+fromName+"更新成功！");
+//        if(fileName ==null || fileName.equals("") || fromName ==null || fromName.equals(""))return null;
+//        List<ExpandNodeClassify> expandNodeClassifyList=expandNodeClassifyRepository.findByExpandNameIsNotOrFromNameIsNot(fileName,fromName);
+//        for(ExpandNodeInfo expandNodeInfo:expandNodeInfoList){
+//            ExpandNodeClassify expandNodeClassify=new ExpandNodeClassify();
+//            expandNodeClassify.setNodeType(expandNodeInfo.getNodeType());
+//            expandNodeClassify.setEN_name(expandNodeInfo.getEN_name());
+//            expandNodeClassify.setCH_name(expandNodeInfo.getCH_name());
+//            expandNodeClassify.setDescription(expandNodeInfo.getDescription());
+//            expandNodeClassify.setFormName(expandNodeInfo.getFormName());
+//            expandNodeClassify.setExpandName(expandNodeInfo.getExpandName());
+//            expandNodeClassifyList.add(expandNodeClassify);
+//        }
+//        //进入NodeToField模块
+//        outList=nodeToFieldService.ExpandNodeToField(expandNodeClassifyList);
+//        System.out.println(outList);
+//        if(outList.size()!=0) return outList;
+//        outList.add("Original字段表更新成功！");
+//
+//        //保存节点更改
+//        expandNodeClassifyRepository.deleteAll();
+//        expandNodeClassifyRepository.saveAll(expandNodeClassifyList);
+//        outList.add("文件："+fileName+"表："+fromName+"更新成功！");
 
         return outList;
     }

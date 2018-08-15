@@ -1,9 +1,6 @@
 package com.CLD.dataAnonymization.dao.h2.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * @description: 字段表列表
@@ -27,40 +24,6 @@ public class FieldClassifyList {
 
     @Column(length = 1000)
     private String description;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private SystemUser systemUser;
-
-    @OneToMany(mappedBy = "fieldClassifyList")
-    private Set<FieldClassify> fieldClassifySet;
-
-    @OneToMany(mappedBy = "fieldClassifyList")
-    private Set<FieldChangeLog> fieldChangeLogSet;
-
-    public SystemUser getSystemUser() {
-        return systemUser;
-    }
-
-    @JsonBackReference
-    public void setSystemUser(SystemUser systemUser) {
-        this.systemUser = systemUser;
-    }
-
-    public Set<FieldClassify> getFieldClassifySet() {
-        return fieldClassifySet;
-    }
-
-    public void setFieldClassifySet(Set<FieldClassify> fieldClassifySet) {
-        this.fieldClassifySet = fieldClassifySet;
-    }
-
-    public Set<FieldChangeLog> getFieldChangeLogSet() {
-        return fieldChangeLogSet;
-    }
-
-    public void setFieldChangeLogSet(Set<FieldChangeLog> fieldChangeLogSet) {
-        this.fieldChangeLogSet = fieldChangeLogSet;
-    }
 
     public Long getId() {
         return id;

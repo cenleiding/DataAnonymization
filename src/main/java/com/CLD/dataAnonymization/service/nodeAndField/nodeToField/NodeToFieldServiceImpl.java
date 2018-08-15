@@ -1,13 +1,7 @@
 package com.CLD.dataAnonymization.service.nodeAndField.nodeToField;
 
-import com.CLD.dataAnonymization.dao.h2.entity.ArchetypeBasisFieldClassify;
-import com.CLD.dataAnonymization.dao.h2.entity.ArchetypeNodeClassify;
-import com.CLD.dataAnonymization.dao.h2.entity.ExpandBasisFieldClassify;
-import com.CLD.dataAnonymization.dao.h2.entity.ExpandNodeClassify;
-import com.CLD.dataAnonymization.dao.h2.repository.ArchetypeBasisFieldClassifyRepository;
-import com.CLD.dataAnonymization.dao.h2.repository.ArchetypeNodeClassifyRepository;
-import com.CLD.dataAnonymization.dao.h2.repository.ExpandBasisFieldClassifyRepository;
-import com.CLD.dataAnonymization.dao.h2.repository.ExpandNodeClassifyRepository;
+import com.CLD.dataAnonymization.dao.h2.entity.*;
+import com.CLD.dataAnonymization.dao.h2.repository.*;
 import com.CLD.dataAnonymization.model.TemplateNodeInfo;
 import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
 import com.alibaba.fastjson.JSON;
@@ -39,11 +33,9 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
 
     @Value("${clever.template.deploy}")
     private String clever_template_deploy;
-//    ="http://172.16.100.63:8000/clever-rest/template/deploy/record/latest";
 
     @Value("${clever.template.mapping}")
     private String clever_template_mapping;
-//    ="http://172.16.100.63:8000/clever-rest/template/mapping/";
 
     @Autowired
     ArchetypeBasisFieldClassifyRepository archetypeBasisFieldClassifyRepository;
@@ -60,13 +52,15 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
     @Autowired
     FieldClassifyService fieldClassifyService;
 
-    @Override
-    public List<String> ArcheTypeNodeToField() {
-        return ArcheTypeNodeToField(archetypeNodeClassifyRepository.findAll());
-    }
+    @Autowired
+    FieldClassifyRepository fieldClassifyRepository;
+
+    @Autowired
+    FieldClassifyListRepository fieldClassifyListRepository;
 
     @Override
-    public List<String> ArcheTypeNodeToField(List<ArchetypeNodeClassify> archetypeNodeClassifyList) {
+    public List<String> ArcheTypeNodeToField() {
+        List<ArchetypeNodeClassify> archetypeNodeClassifyList=archetypeNodeClassifyRepository.findAll();
         List<String> outList=new ArrayList<String>();
         Map<String,String> nodeMap=new HashMap<String,String>();
         Map<String,String> fieldMap=new HashMap<String,String>();
@@ -99,7 +93,7 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
             if(nodeMap.get(pathAndId)!=null){
                 if(db_field!=null&&!db_field.equals("")){
                     if(fieldMap.keySet().contains(db_field)&&!fieldMap.get(db_field).equals(nodeMap.get(pathAndId)))
-                       outList.add("节点"+pathAndId+"敏感程度冲突！");
+                        outList.add("节点"+pathAndId+"敏感程度冲突！");
                     fieldMap.put(db_field,nodeMap.get(pathAndId));
                     pathMap.put(db_field,pathMap.get(db_field)==null?pathAndId:pathMap.get(db_field)+";"+pathAndId);
                 }
@@ -120,88 +114,82 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
         }
         if(outList.size()!=0) return outList;
 
-        //生成镜像表
-        List<ArchetypeBasisFieldClassify> archetypeBasisFieldClassifyList=new ArrayList<ArchetypeBasisFieldClassify>();
+        //添加字段列表
+        fieldClassifyListRepository.deleteByFormName("OpenEhr字段表");
+        FieldClassifyList fieldClassifyList=new FieldClassifyList();
+        fieldClassifyList.setUserName("");
+        fieldClassifyList.setDescription("这是基于openEhr的数据库字段分类！");
+        fieldClassifyList.setFather("");
+        fieldClassifyList.setFormName("OpenEhr字段表");
+        fieldClassifyListRepository.save(fieldClassifyList);
+
+        //存入FieldClassify表
+        fieldClassifyRepository.deleteByFromName("OpenEhr字段表");
         for (String key:fieldMap.keySet()){
             if(fieldMap.get(key)!=null && !fieldMap.get(key).equals("NI")){
-                ArchetypeBasisFieldClassify archetypeBasisFieldClassify=new ArchetypeBasisFieldClassify();
-                archetypeBasisFieldClassify.setArchetypePath(pathMap.get(key));
-                archetypeBasisFieldClassify.setFieldName(key);
-                archetypeBasisFieldClassify.setFieldType(fieldMap.get(key));
-                archetypeBasisFieldClassifyList.add(archetypeBasisFieldClassify);
+                FieldClassify fieldClassify=new FieldClassify();
+                fieldClassify.setFieldType(fieldMap.get(key));
+                fieldClassify.setFieldName(key);
+                fieldClassify.setFromName("OpenEhr字段表");
+                fieldClassifyRepository.save(fieldClassify);
             }
         }
-        //调用生成可用字段表方法
-        outList=fieldClassifyService.createOrignalFrom(archetypeBasisFieldClassifyList,null);
-        if(outList.size()!=0) return outList;
-
-        //存储字段分类
-        archetypeBasisFieldClassifyRepository.deleteAll();
-        archetypeBasisFieldClassifyRepository.saveAll(archetypeBasisFieldClassifyList);
 
         return outList;
     }
 
     @Override
     public List<String> ExpandNodeToField() {
-        return ExpandNodeToField(expandNodeClassifyRepository.findAll());
-    }
-
-    @Override
-    public List<String> ExpandNodeToField(List<ExpandNodeClassify> expandNodeClassifyList) {
-        List<String> outList=new ArrayList<String>();
-        Map<String,String> fieldMap=new HashMap<String,String>();
-        Map<String,String> expandFromMap=new HashMap<String, String>();
-        for(ExpandNodeClassify expandNodeClassify:expandNodeClassifyList){
-            String EN_name=expandNodeClassify.getEN_name()
-                    .toLowerCase()
-                    .replace(".","")
-                    .replace("_","")
-                    .replace("-","")
-                    .replace("*","");
-            String CH_name=expandNodeClassify.getCH_name()
-                    .toLowerCase()
-                    .replace(".","")
-                    .replace("_","")
-                    .replace("-","")
-                    .replace("*","");
-            if(EN_name!=null&&!EN_name.equals("")){
-                if(fieldMap.keySet().contains(EN_name)&&!fieldMap.get(EN_name).equals(expandNodeClassify.getNodeType()))
-                    outList.add(expandFromMap.get(EN_name)+";"+expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName()+"字段："+EN_name+"冲突！");
-                fieldMap.put(EN_name,expandNodeClassify.getNodeType());
-                expandFromMap.put(EN_name,expandFromMap.get(EN_name)==null?
-                        expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName():
-                        expandFromMap.get(EN_name)+";"+expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName());
+        List<String> expandNameList= expandNodeClassifyRepository.getExpandName();
+        List<String> errorList=new ArrayList<String>();
+        for(String expandName:expandNameList){
+            Map<String,String> fieldMap=new HashMap<String,String>();
+            List<ExpandNodeClassify> expandNodeClassifyList=expandNodeClassifyRepository.findByExpandName(expandName);
+            for(ExpandNodeClassify expandNodeClassify:expandNodeClassifyList){
+                String EN_name=expandNodeClassify.getEN_name()
+                        .toLowerCase()
+                        .replace(".","")
+                        .replace("_","")
+                        .replace("-","")
+                        .replace("*","");
+                String CH_name=expandNodeClassify.getCH_name()
+                        .toLowerCase()
+                        .replace(".","")
+                        .replace("_","")
+                        .replace("-","")
+                        .replace("*","");
+                if(EN_name!=null&&!EN_name.equals("")){
+                    if(fieldMap.keySet().contains(EN_name)&&!fieldMap.get(EN_name).equals(expandNodeClassify.getNodeType()))
+                        errorList.add("字段："+EN_name+"冲突！");
+                    fieldMap.put(EN_name,expandNodeClassify.getNodeType());
+                }
+                if(CH_name!=null&&!CH_name.equals("")){
+                    if(fieldMap.keySet().contains(CH_name)&&!fieldMap.get(CH_name).equals(expandNodeClassify.getNodeType()))
+                        errorList.add("字段："+CH_name+"冲突！");
+                    fieldMap.put(CH_name,expandNodeClassify.getNodeType());
+                }
             }
-            if(CH_name!=null&&!CH_name.equals("")){
-                if(fieldMap.keySet().contains(CH_name)&&!fieldMap.get(CH_name).equals(expandNodeClassify.getNodeType()))
-                    outList.add(expandFromMap.get(CH_name)+";"+expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName()+"字段："+CH_name+"冲突！");
-                fieldMap.put(CH_name,expandNodeClassify.getNodeType());
-                expandFromMap.put(CH_name,expandFromMap.get(CH_name)==null?
-                        expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName():
-                        expandFromMap.get(CH_name)+";"+expandNodeClassify.getExpandName()+"/"+expandNodeClassify.getFromName());
+            if(errorList.size()!=0) return errorList;
+            String formName=expandName.split("\\.")[0];
+            //添加字段列表
+            fieldClassifyListRepository.deleteByFormName(formName);
+            FieldClassifyList fieldClassifyList=new FieldClassifyList();
+            fieldClassifyList.setUserName("");
+            fieldClassifyList.setDescription("这是"+formName+"的数据库字段分类！");
+            fieldClassifyList.setFather("");
+            fieldClassifyList.setFormName(formName);
+            fieldClassifyListRepository.save(fieldClassifyList);
+            //存储
+            fieldClassifyRepository.deleteByFromName(formName);
+            for (String key:fieldMap.keySet()){
+                FieldClassify fieldClassify=new FieldClassify();
+                fieldClassify.setFromName(formName);
+                fieldClassify.setFieldName(key);
+                fieldClassify.setFieldType(fieldMap.get(key));
+                fieldClassifyRepository.save(fieldClassify);
             }
-           }
-
-        if(outList.size()!=0) return outList;
-
-        //生成镜像表
-        List<ExpandBasisFieldClassify> expandBasisFieldClassifyList=new ArrayList<ExpandBasisFieldClassify>();
-        for (String key:fieldMap.keySet()){
-            ExpandBasisFieldClassify expandBasisFieldClassify=new ExpandBasisFieldClassify();
-            expandBasisFieldClassify.setExpandFromName(expandFromMap.get(key));
-            expandBasisFieldClassify.setFieldName(key);
-            expandBasisFieldClassify.setFieldType(fieldMap.get(key));
-            expandBasisFieldClassifyList.add(expandBasisFieldClassify);
         }
-        //调用生成可用字段表方法
-        outList=fieldClassifyService.createOrignalFrom(null,expandBasisFieldClassifyList);
-        if(outList.size()!=0) return outList;
-        //存储字段分类
-        expandBasisFieldClassifyRepository.deleteAll();
-        expandBasisFieldClassifyRepository.saveAll(expandBasisFieldClassifyList);
-
-        return outList;
+        return errorList;
     }
 
 

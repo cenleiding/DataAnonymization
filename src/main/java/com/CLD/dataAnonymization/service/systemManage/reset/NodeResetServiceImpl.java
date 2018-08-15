@@ -41,7 +41,7 @@ public class NodeResetServiceImpl implements NodeResetService {
         archetypeBasisFieldClassifyRepository.deleteAll();
         expandBasisFieldClassifyRepository.deleteAll();
         outList=nodeToFieldService.ArcheTypeNodeToField();
-            outList.addAll(nodeToFieldService.ExpandNodeToField());
+        outList.addAll(nodeToFieldService.ExpandNodeToField());
         return outList;
     }
 }
