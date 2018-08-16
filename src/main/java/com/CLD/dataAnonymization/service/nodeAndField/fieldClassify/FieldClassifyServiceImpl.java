@@ -1,11 +1,8 @@
 package com.CLD.dataAnonymization.service.nodeAndField.fieldClassify;
 
-import com.CLD.dataAnonymization.dao.h2.entity.ArchetypeBasisFieldClassify;
-import com.CLD.dataAnonymization.dao.h2.entity.ExpandBasisFieldClassify;
-import com.CLD.dataAnonymization.dao.h2.entity.FieldClassifyList;
-import com.CLD.dataAnonymization.dao.h2.entity.UsageFieldClassify;
+import com.CLD.dataAnonymization.dao.h2.entity.*;
 import com.CLD.dataAnonymization.dao.h2.repository.*;
-import com.CLD.dataAnonymization.model.FieldFormMap;
+import com.CLD.dataAnonymization.model.FieldFormInfo;
 import com.CLD.dataAnonymization.model.FieldInfo;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -15,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -52,6 +50,12 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
 
     @Autowired
     FieldClassifyRepository fieldClassifyRepository;
+
+    @Autowired
+    FieldClassifyUsageCountRepository fieldClassifyUsageCountRepository;
+
+    @Autowired
+    FieldChangeLogRepository fieldChangeLogRepository;
 
     @Override
     public List<String> createOrignalFrom() {
@@ -106,21 +110,31 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
     }
 
     @Override
-    public List<FieldFormMap> getFromNameMap(){
-        List<FieldFormMap> fieldFormMapList=new ArrayList<FieldFormMap>();
-        List<String> userNameList=fieldClassifyListRepository.getUserName();
-        for(String userName:userNameList){
-            FieldFormMap fieldFormMap=new FieldFormMap();
-            fieldFormMap.setUserName(userName);
-            Map<String,String> map=new HashMap<String,String>();
-            List<FieldClassifyList> fieldClassifyListList=fieldClassifyListRepository.findByUserName(userName);
-            for(FieldClassifyList fieldClassifyList:fieldClassifyListList){
-                map.put(fieldClassifyList.getFormName(),fieldClassifyList.getDescription());
+    public List<FieldFormInfo> getFieldFormInfo(){
+        List<FieldFormInfo> fieldFormInfoList =new ArrayList<FieldFormInfo>();
+        List<FieldClassifyList> fieldClassifyListList=fieldClassifyListRepository.findAll();
+        for(FieldClassifyList fieldClassifyList:fieldClassifyListList){
+            FieldClassifyUsageCount fieldClassifyUsageCount=fieldClassifyUsageCountRepository.findByFormName(fieldClassifyList.getFormName());
+            List<FieldChangeLog> fieldChangeLogList=fieldChangeLogRepository.findByFormName(fieldClassifyList.getFormName());
+            Long createTime=Long.MAX_VALUE;
+            Long lastChangeTime= Long.MIN_VALUE;
+            for(FieldChangeLog fieldChangeLog:fieldChangeLogList){
+                if(fieldChangeLog.getDateTime().getTime()<createTime) createTime=fieldChangeLog.getDateTime().getTime();
+                if(fieldChangeLog.getDateTime().getTime()>lastChangeTime) lastChangeTime=fieldChangeLog.getDateTime().getTime();
             }
-            fieldFormMap.setFormNameAndDes(map);
-            fieldFormMapList.add(fieldFormMap);
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+            FieldFormInfo fieldFormInfo =new FieldFormInfo();
+            fieldFormInfo.setUserName(fieldClassifyList.getUserName());
+            fieldFormInfo.setFormName(fieldClassifyList.getFormName());
+            fieldFormInfo.setCreateTime(sdf.format(new Date(createTime)));
+            fieldFormInfo.setLastChangeTime(sdf.format(new Date(lastChangeTime)));
+            fieldFormInfo.setDescription(fieldClassifyList.getDescription());
+            fieldFormInfo.setFather(fieldClassifyList.getFather());
+            fieldFormInfo.setUsageCount(String.valueOf(fieldClassifyUsageCount.getCount()));
+
+            fieldFormInfoList.add(fieldFormInfo);
         }
-        return fieldFormMapList;
+        return fieldFormInfoList;
     }
 
 
@@ -198,9 +212,81 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
     public Boolean deleteFromByName(String formName) {
         usageFieldClassifyRepository.deleteByFromName(formName);
         fieldClassifyListRepository.deleteByFormName(formName);
-        fieldClassifyRepository.deleteByFromName(formName);
+        fieldClassifyRepository.deleteByFormName(formName);
         return true;
     }
+
+    @Override
+    public Map<String,Double> getFieldOverViewByFormName(String formName){
+        Map<String,Double> map=new HashMap<String,Double>();
+        List<FieldClassify> fieldClassifyList=fieldClassifyRepository.findByFormName(formName);
+        Double EI= Double.valueOf(0);
+        Double QI_Link= Double.valueOf(0);
+        Double QI_Geography= Double.valueOf(0);
+        Double QI_DateRecord= Double.valueOf(0);
+        Double QI_DateAge= Double.valueOf(0);
+        Double QI_Number= Double.valueOf(0);
+        Double QI_String= Double.valueOf(0);
+        Double SI_Number= Double.valueOf(0);
+        Double SI_String= Double.valueOf(0);
+        Double UI=Double.valueOf(0);
+        Double sum= Double.valueOf(0);
+        for(FieldClassify fieldClassify:fieldClassifyList){
+            if(fieldClassify.getFieldType().equals("EI")) EI++;
+            if(fieldClassify.getFieldType().equals("QI_Link")) QI_Link++;
+            if(fieldClassify.getFieldType().equals("QI_Geography")) QI_Geography++;
+            if(fieldClassify.getFieldType().equals("QI_DateRecord")) QI_DateRecord++;
+            if(fieldClassify.getFieldType().equals("QI_DateAge")) QI_DateAge++;
+            if(fieldClassify.getFieldType().equals("QI_Number")) QI_Number++;
+            if(fieldClassify.getFieldType().equals("QI_String")) QI_String++;
+            if(fieldClassify.getFieldType().equals("SI_Number")) SI_Number++;
+            if(fieldClassify.getFieldType().equals("SI_String")) SI_String++;
+            if(fieldClassify.getFieldType().equals("UI")) UI++;
+        }
+        sum=EI+QI_DateAge+QI_DateRecord+QI_Geography+QI_Link+QI_Number+QI_String+SI_Number+SI_String+UI;
+        map.put("EI",(Double)(EI/sum));
+        map.put("QI_Link",(Double)(QI_Link/sum));
+        map.put("QI_Geography",(Double)(QI_Geography/sum));
+        map.put("QI_DateRecord",(Double)(QI_DateRecord/sum));
+        map.put("QI_DateAge",(Double)(QI_DateAge/sum));
+        map.put("QI_Number",(Double)(QI_Number/sum));
+        map.put("QI_String",(Double)(QI_String/sum));
+        map.put("SI_Number",(Double)(SI_Number/sum));
+        map.put("SI_String",(Double)(SI_String/sum));
+        map.put("UI",(Double)(UI/sum));
+        map.put("SUM",sum);
+        return map;
+    }
+
+    @Override
+    public Map<String,List<String>> getFieldDetailByFormName(String formName){
+        Map<String,List<String>> map=new HashMap<String,List<String>>();
+        map.put("EI",new ArrayList<String>());
+        map.put("QI_Link",new ArrayList<String>());
+        map.put("QI_Geography",new ArrayList<String>());
+        map.put("QI_DateRecord",new ArrayList<String>());
+        map.put("QI_DateAge",new ArrayList<String>());
+        map.put("QI_Number",new ArrayList<String>());
+        map.put("QI_String",new ArrayList<String>());
+        map.put("SI_Number",new ArrayList<String>());
+        map.put("SI_String",new ArrayList<String>());
+        map.put("UI",new ArrayList<String>());
+        List<FieldClassify> fieldClassifyList=fieldClassifyRepository.findByFormName(formName);
+        for(FieldClassify fieldClassify:fieldClassifyList){
+            if(fieldClassify.getFieldType().equals("EI")) map.get("EI").add(fieldClassify.getFieldName());
+            if(fieldClassify.getFieldType().equals("QI_Link")) map.get("QI_Link").add(fieldClassify.getFieldName());
+            if(fieldClassify.getFieldType().equals("QI_Geography")) map.get("QI_Geography").add(fieldClassify.getFieldName());
+            if(fieldClassify.getFieldType().equals("QI_DateRecord")) map.get("QI_DateRecord").add(fieldClassify.getFieldName());
+            if(fieldClassify.getFieldType().equals("QI_DateAge")) map.get("QI_DateAge").add(fieldClassify.getFieldName());
+            if(fieldClassify.getFieldType().equals("QI_Number")) map.get("QI_Number").add(fieldClassify.getFieldName());
+            if(fieldClassify.getFieldType().equals("QI_String")) map.get("QI_String").add(fieldClassify.getFieldName());
+            if(fieldClassify.getFieldType().equals("SI_Number")) map.get("SI_Number").add(fieldClassify.getFieldName());
+            if(fieldClassify.getFieldType().equals("SI_String")) map.get("SI_String").add(fieldClassify.getFieldName());
+            if(fieldClassify.getFieldType().equals("UI")) map.get("UI").add(fieldClassify.getFieldName());
+        }
+        return map;
+    }
+
 
     @Override
     public Boolean FileToDB() {

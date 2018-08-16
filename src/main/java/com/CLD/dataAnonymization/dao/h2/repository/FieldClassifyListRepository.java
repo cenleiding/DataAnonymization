@@ -28,4 +28,6 @@ public interface FieldClassifyListRepository extends JpaRepository<FieldClassify
     public void deleteByFormName(String formName);
 
     public List<FieldClassifyList> findByUserName(String userName);
+
+    public FieldClassifyList findByFormName(String formName);
 }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * @description:
@@ -17,5 +18,7 @@ public interface FieldClassifyRepository extends JpaRepository<FieldClassify,Lon
 
     @Transactional
     @Modifying
-    public void deleteByFromName(String fromName);
+    public void deleteByFormName(String formName);
+
+    public List<FieldClassify> findByFormName(String formName);
 }

@@ -2,11 +2,12 @@ package com.CLD.dataAnonymization.service.nodeAndField.fieldClassify;
 
 import com.CLD.dataAnonymization.dao.h2.entity.ArchetypeBasisFieldClassify;
 import com.CLD.dataAnonymization.dao.h2.entity.ExpandBasisFieldClassify;
-import com.CLD.dataAnonymization.model.FieldFormMap;
+import com.CLD.dataAnonymization.model.FieldFormInfo;
 import com.CLD.dataAnonymization.model.FieldInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 该类用于生成、操作可用匿名字段表
@@ -22,7 +23,7 @@ public interface FieldClassifyService {
 
     public List<String> getFromNameList();
 
-    public List<FieldFormMap> getFromNameMap();
+    public List<FieldFormInfo> getFieldFormInfo();
 
     public List<FieldInfo> getFieldByFromName(String fromName);
 
@@ -31,6 +32,10 @@ public interface FieldClassifyService {
     public List<String> updataField(List<FieldInfo> fieldInfoList, String newFromName);
 
     public Boolean deleteFromByName(String fromName);
+
+    public Map<String,Double> getFieldOverViewByFormName(String formName);
+
+    public Map<String,List<String>> getFieldDetailByFormName(String formName);
 
     /**
      * 该方法将文件形式的字段表，存入数据库

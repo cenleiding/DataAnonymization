@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +58,12 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
 
     @Autowired
     FieldClassifyListRepository fieldClassifyListRepository;
+
+    @Autowired
+    FieldChangeLogRepository fieldChangeLogRepository;
+
+    @Autowired
+    FieldClassifyUsageCountRepository fieldClassifyUsageCountRepository;
 
     @Override
     public List<String> ArcheTypeNodeToField() {
@@ -114,7 +121,7 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
         }
         if(outList.size()!=0) return outList;
 
-        //添加字段列表
+        //添加FieldClassifyList
         fieldClassifyListRepository.deleteByFormName("OpenEhr字段表");
         FieldClassifyList fieldClassifyList=new FieldClassifyList();
         fieldClassifyList.setUserName("");
@@ -124,16 +131,32 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
         fieldClassifyListRepository.save(fieldClassifyList);
 
         //存入FieldClassify表
-        fieldClassifyRepository.deleteByFromName("OpenEhr字段表");
+        fieldClassifyRepository.deleteByFormName("OpenEhr字段表");
         for (String key:fieldMap.keySet()){
             if(fieldMap.get(key)!=null && !fieldMap.get(key).equals("NI")){
                 FieldClassify fieldClassify=new FieldClassify();
                 fieldClassify.setFieldType(fieldMap.get(key));
                 fieldClassify.setFieldName(key);
-                fieldClassify.setFromName("OpenEhr字段表");
+                fieldClassify.setFormName("OpenEhr字段表");
                 fieldClassifyRepository.save(fieldClassify);
             }
         }
+
+        //创建FieldChangeLog
+        fieldChangeLogRepository.deleteByFormName("OpenEhr字段表");
+        FieldChangeLog fieldChangeLog=new FieldChangeLog();
+        fieldChangeLog.setChangeLog("");
+        fieldChangeLog.setDateTime(new Date(new java.util.Date().getTime()));
+        fieldChangeLog.setFormName("OpenEhr字段表");
+        fieldChangeLog.setDescription("创建表单");
+        fieldChangeLogRepository.save(fieldChangeLog);
+
+        //创建FieldClassifyUsageCount
+        fieldClassifyUsageCountRepository.deleteByFormName("OpenEhr字段表");
+        FieldClassifyUsageCount fieldClassifyUsageCount=new FieldClassifyUsageCount();
+        fieldClassifyUsageCount.setCount(0);
+        fieldClassifyUsageCount.setFormName("OpenEhr字段表");
+        fieldClassifyUsageCountRepository.save(fieldClassifyUsageCount);
 
         return outList;
     }
@@ -171,7 +194,7 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
             }
             if(errorList.size()!=0) return errorList;
             String formName=expandName.split("\\.")[0];
-            //添加字段列表
+            //添加FieldClassifyList
             fieldClassifyListRepository.deleteByFormName(formName);
             FieldClassifyList fieldClassifyList=new FieldClassifyList();
             fieldClassifyList.setUserName("");
@@ -179,15 +202,30 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
             fieldClassifyList.setFather("");
             fieldClassifyList.setFormName(formName);
             fieldClassifyListRepository.save(fieldClassifyList);
-            //存储
-            fieldClassifyRepository.deleteByFromName(formName);
+            //存入FieldClassify表
+            fieldClassifyRepository.deleteByFormName(formName);
             for (String key:fieldMap.keySet()){
                 FieldClassify fieldClassify=new FieldClassify();
-                fieldClassify.setFromName(formName);
+                fieldClassify.setFormName(formName);
                 fieldClassify.setFieldName(key);
                 fieldClassify.setFieldType(fieldMap.get(key));
                 fieldClassifyRepository.save(fieldClassify);
             }
+            //创建FieldChangeLog
+            fieldChangeLogRepository.deleteByFormName(formName);
+            FieldChangeLog fieldChangeLog=new FieldChangeLog();
+            fieldChangeLog.setChangeLog("");
+            fieldChangeLog.setDateTime(new Date(new java.util.Date().getTime()));
+            fieldChangeLog.setFormName(formName);
+            fieldChangeLog.setDescription("创建表单");
+            fieldChangeLogRepository.save(fieldChangeLog);
+
+            //创建FieldClassifyUsageCount
+            fieldClassifyUsageCountRepository.deleteByFormName(formName);
+            FieldClassifyUsageCount fieldClassifyUsageCount=new FieldClassifyUsageCount();
+            fieldClassifyUsageCount.setCount(0);
+            fieldClassifyUsageCount.setFormName(formName);
+            fieldClassifyUsageCountRepository.save(fieldClassifyUsageCount);
         }
         return errorList;
     }

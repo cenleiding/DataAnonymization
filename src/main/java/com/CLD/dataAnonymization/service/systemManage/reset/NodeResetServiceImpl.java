@@ -38,8 +38,6 @@ public class NodeResetServiceImpl implements NodeResetService {
         List<String> outList=new ArrayList<String>();
         openEhrNodeClassifyService.FileToDB();
         expandNodeClassifyService.FileToDB();
-        archetypeBasisFieldClassifyRepository.deleteAll();
-        expandBasisFieldClassifyRepository.deleteAll();
         outList=nodeToFieldService.ArcheTypeNodeToField();
         outList.addAll(nodeToFieldService.ExpandNodeToField());
         return outList;

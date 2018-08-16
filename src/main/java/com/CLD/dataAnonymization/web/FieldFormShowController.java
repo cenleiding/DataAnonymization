@@ -1,13 +1,15 @@
 package com.CLD.dataAnonymization.web;
 
-import com.CLD.dataAnonymization.model.FieldFormMap;
+import com.CLD.dataAnonymization.model.FieldFormInfo;
 import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description:
@@ -25,9 +27,21 @@ public class FieldFormShowController {
         return "FieldFormShow";
     }
 
-    @RequestMapping("/getFromNameMap")
+    @RequestMapping("/getFieldFormInfo")
     @ResponseBody
-    public List<FieldFormMap> getFromNameMap(){
-        return fieldClassifyService.getFromNameMap();
+    public List<FieldFormInfo> getFieldFormInfo(){
+        return fieldClassifyService.getFieldFormInfo();
+    }
+
+    @RequestMapping("/getFieldOverViewByFormName")
+    @ResponseBody
+    public Map<String,Double> getFieldOverViewByFormName(@Param("formName")String formName){
+        return fieldClassifyService.getFieldOverViewByFormName(formName);
+    }
+
+    @RequestMapping("/getFieldDetailByFormName")
+    @ResponseBody
+    public Map<String,List<String>>getFieldDetailByFormName(@Param("formName")String formName){
+        return fieldClassifyService.getFieldDetailByFormName(formName);
     }
 }

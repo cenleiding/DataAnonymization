@@ -59,7 +59,7 @@ public class InitApplicationRunner implements ApplicationRunner{
         nodeResetService.NodeReset();
 
         //用户初始化
-        if(userService.getUser()==null)
+        if(userService.getUser().size()==0)
         userService.addUser(userName,password);
 
     }

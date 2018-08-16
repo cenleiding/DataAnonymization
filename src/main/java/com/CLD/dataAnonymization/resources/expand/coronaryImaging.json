@@ -17,7 +17,7 @@
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"患者的主索引号"
 			},
 			{
@@ -29,7 +29,7 @@
 			{
 				"EN_Name":"BirthDate",
 				"CH_Name":"出生日期",
-				"type":"QI_Date",
+				"type":"QI_DateAge",
 				"description":"本人出生当天的公元纪年日期"
 			},
 			{
@@ -65,13 +65,13 @@
 			{
 				"EN_Name":"Profession",
 				"CH_Name":"职业",
-				"type":"SI_String",
+				"type":"QI_String",
 				"description":"职业名称"
 			},
 			{
 				"EN_Name":"EducationBackground",
 				"CH_Name":"文化程度",
-				"type":"SI_String",
+				"type":"QI_String",
 				"description":"文化程度情况"
 			},
 			{
@@ -89,7 +89,7 @@
 			{
 				"EN_Name":"BirthAddress",
 				"CH_Name":"出生地址",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"出生详细地址如：××省××市××县××镇"
 			},
 			{
@@ -107,31 +107,31 @@
 			{
 				"EN_Name":"BirthLocalityCode",
 				"CH_Name":"出生地址-市代码",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"出生市（区）镇代码"
 			},
 			{
 				"EN_Name":"BirthLocalityName",
 				"CH_Name":"出生地址-市",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"出生市（区）镇名称"
 			},
 			{
 				"EN_Name":"DeathDate",
 				"CH_Name":"死亡时间",
-				"type":"QI_Date",
+				"type":"QI_DateAge",
 				"description":"患者死亡时间"
 			},
 			{
 				"EN_Name":"DeathLocalityCode",
 				"CH_Name":"死亡地址-市代码",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"死亡时所处市（区）代码"
 			},
 			{
 				"EN_Name":"DeathLocalityName",
 				"CH_Name":"死亡地址-市",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"死亡时所处市（区）名称"
 			}
 		]
@@ -154,13 +154,13 @@
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"患者的主索引号"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":""
 			},
 			{
@@ -202,13 +202,13 @@
 			{
 				"EN_Name":"AdmitDateTime",
 				"CH_Name":"就诊时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"就诊时间"
 			},
 			{
 				"EN_Name":"AdmittingDoctorId",
 				"CH_Name":"接诊医生编码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"门诊的接诊医生代码"
 			},
 			{
@@ -220,7 +220,7 @@
 			{
 				"EN_Name":"ResidentDoctorId",
 				"CH_Name":"住院医师编码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"住院医师工号"
 			},
 			{
@@ -232,7 +232,7 @@
 			{
 				"EN_Name":"AttendingDoctorId",
 				"CH_Name":"主治医师编码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"主治医师工号"
 			},
 			{
@@ -244,7 +244,7 @@
 			{
 				"EN_Name":"DirectorId",
 				"CH_Name":"主任医师编码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"主任医师工号"
 			},
 			{
@@ -256,7 +256,7 @@
 			{
 				"EN_Name":"DeputyDoctorId",
 				"CH_Name":"副主任医师编码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"副主任医师工号"
 			},
 			{
@@ -286,43 +286,43 @@
 			{
 				"EN_Name":"MailingAddress",
 				"CH_Name":"通讯地址",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"患者通讯地址全称描述"
 			},
 			{
 				"EN_Name":"MailingCity",
 				"CH_Name":"通信地址市（地区）",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"通讯地址的详细描述，包括市（地区）"
 			},
 			{
 				"EN_Name":"MailingDistrict",
 				"CH_Name":"通信地址-县（地区）",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"通讯地址的详细描述，包括县（区）"
 			},
 			{
 				"EN_Name":"SuburbTownLocality",
 				"CH_Name":"通信地址乡（镇、街道办事处）",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"通讯地址的详细描述，包括省（自治区、直辖市）"
 			},
 			{
 				"EN_Name":"StreetName",
 				"CH_Name":"通信地址村（街、路、弄等）",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"通讯地址的详细描述，包括乡（镇、街道办事处）"
 			},
 			{
 				"EN_Name":"AddressNumber",
 				"CH_Name":"通信地址-门牌号码",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"通讯地址的详细描述，包括门牌号码"
 			},
 			{
 				"EN_Name":"PostalCode",
 				"CH_Name":"邮政编码",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"对应通信地址的邮政编码"
 			},
 			{
@@ -363,13 +363,13 @@
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"患者的主索引号"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊号"
 			},
 			{
@@ -387,43 +387,43 @@
 			{
 				"EN_Name":"MailingAddress",
 				"CH_Name":"通讯地址",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"患者通讯地址描述"
 			},
 			{
 				"EN_Name":"AddressCity",
 				"CH_Name":"通信地址市（地区）",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"联系人的通讯地址的详细描述，包括市（地区）"
 			},
 			{
 				"EN_Name":"District",
 				"CH_Name":"通信地址-县（地区）",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"联系人的通讯地址的详细描述，包括县（区）"
 			},
 			{
 				"EN_Name":"SuburbTownLocality",
 				"CH_Name":"通信地址乡（镇、街道办事处）",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"联系人的通讯地址的详细描述，包括乡（镇、街道办事处）"
 			},
 			{
 				"EN_Name":"StreetName",
 				"CH_Name":"通信地址村（街、路、弄等）",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"联系人的通讯地址的详细描述，包括村（街、路、弄等）"
 			},
 			{
 				"EN_Name":"AddressNumber",
 				"CH_Name":"通信地址-门牌号码",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"联系人的通讯地址的详细描述，包括门牌号码"
 			},
 			{
 				"EN_Name":"PostalCode",
 				"CH_Name":"邮政编码",
-				"type":"QI_Geographic",
+				"type":"QI_Geography",
 				"description":"对应通信地址的邮政编码"
 			},
 			{
@@ -464,19 +464,19 @@
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"患者的主索引号"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊号"
 			},
 			{
 				"EN_Name":"DiagnosisId",
 				"CH_Name":"诊断ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"标识一条诊断记录"
 			},
 			{
@@ -488,7 +488,7 @@
 			{
 				"EN_Name":"DoctorCode",
 				"CH_Name":"诊断医生编码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"诊断医生编码"
 			},
 			{
@@ -500,7 +500,7 @@
 			{
 				"EN_Name":"DateOfDiagnosis",
 				"CH_Name":"诊断日期和时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"诊断日期和时间"
 			}
 		]
@@ -523,25 +523,25 @@
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"患者的主索引号"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊号"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"唯一标识一条医嘱"
 			},
 			{
 				"EN_Name":"DateTimeServiceRequired",
 				"CH_Name":"医嘱下达时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"医嘱下达时间"
 			},
 			{
@@ -559,7 +559,7 @@
 			{
 				"EN_Name":"OrderingDoctorCode",
 				"CH_Name":"开医嘱医生代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"开医嘱医生代码"
 			},
 			{
@@ -571,7 +571,7 @@
 			{
 				"EN_Name":"StoppingDoctorCode",
 				"CH_Name":"停医嘱医生代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"停医嘱医生代码"
 			},
 			{
@@ -583,25 +583,25 @@
 			{
 				"EN_Name":"StartedDatetime",
 				"CH_Name":"起始日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"起始日期时间"
 			},
 			{
 				"EN_Name":"PlanToStop",
 				"CH_Name":"计划停止日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"计划停止日期时间"
 			},
 			{
 				"EN_Name":"InputDatetimeOfStartedOrder",
 				"CH_Name":"开医嘱录入日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"开医嘱录入日期时间"
 			},
 			{
 				"EN_Name":"DatetimeOfStoppedOrder",
 				"CH_Name":"停医嘱录入日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"停医嘱录入日期时间"
 			}
 		]
@@ -624,31 +624,31 @@
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"患者的主索引号"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊号"
 			},
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"检查申请号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"检查申请号"
 			},
 			{
 				"EN_Name":"OrderIdentifier",
 				"CH_Name":"医嘱序号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"医嘱序号"
 			},
 			{
 				"EN_Name":"DateTimeServiceRequired",
 				"CH_Name":"申请日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"申请日期时间"
 			},
 			{
@@ -660,7 +660,7 @@
 			{
 				"EN_Name":"RequesterId",
 				"CH_Name":"申请医生代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"申请医生代码"
 			},
 			{
@@ -684,14 +684,20 @@
 			{
 				"EN_Name":"ReceiverID",
 				"CH_Name":"检查医师代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"检查医师代码"
 			},
 			{
 				"EN_Name":"ExamId",
 				"CH_Name":"检查号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"检查号"
+			},
+			{
+				"EN_Name":"AuxiliaryDiagnosis",
+				"CH_Name":"辅助诊断",
+				"type":"UI",
+				"description":"辅助诊断"
 			}
 		]
 	},
@@ -713,19 +719,19 @@
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"检查申请号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"检查申请号"
 			},
 			{
 				"EN_Name":"ReceiverOrderId",
 				"CH_Name":"检查号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"对应检查图像表检查号"
 			},
 			{
 				"EN_Name":"DatetimeIssued",
 				"CH_Name":"报告日期",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"报告日期"
 			},
 			{
@@ -766,31 +772,31 @@
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"患者的主索引号"
 			},
 			{
 				"EN_Name":"EncounterIdentifier",
 				"CH_Name":"就诊号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊号"
 			},
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"检验申请号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"用于唯一标识一次检验申请"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"医嘱ID"
 			},
 			{
 				"EN_Name":"DatetimeTestPreferred",
 				"CH_Name":"申请日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"医生开检验申请单的时间"
 			},
 			{
@@ -802,31 +808,25 @@
 			{
 				"EN_Name":"RequesterCode",
 				"CH_Name":"申请医生代码",
-				"type":"EI",
-				"description":"申请医生代码"
-			},
-			{
-				"EN_Name":"RequesterCode",
-				"CH_Name":"申请医生代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"申请医生代码"
 			},
 			{
 				"EN_Name":"TestId",
 				"CH_Name":"检验号码",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"检验号码"
 			},
 			{
 				"EN_Name":"DateTimeOfCollection",
 				"CH_Name":"样本采样日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"护士采集时间"
 			},
 			{
 				"EN_Name":"DateTimeOfReceipt",
 				"CH_Name":"样本收到日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"检验科收到样本的时间"
 			}
 		]
@@ -849,19 +849,19 @@
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"检验申请号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"检验申请表中申请号"
 			},
 			{
 				"EN_Name":"TestId",
 				"CH_Name":"检验号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"检验号"
 			},
 			{
 				"EN_Name":"ResultId",
 				"CH_Name":"检验报告号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"检验报告号"
 			},
 			{
@@ -873,13 +873,13 @@
 			{
 				"EN_Name":"DatetimeTestExcuted",
 				"CH_Name":"检验日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"检验日期时间"
 			},
 			{
 				"EN_Name":"DatetimeResultIssued",
 				"CH_Name":"检验报告日期及时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"结果产生的日期和时间。"
 			},
 			{
@@ -909,7 +909,7 @@
 			{
 				"EN_Name":"AuditingPhysicianId",
 				"CH_Name":"审核医师代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"审核医师代码"
 			},
 			{
@@ -944,43 +944,49 @@
 			{
 				"EN_Name":"PrescriptionId",
 				"CH_Name":"处方ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"处方ID"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterIdentifier",
 				"CH_Name":"就诊ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"医嘱ID"
+			},
+			{
+				"EN_Name":"Costs",
+				"CH_Name":"费用",
+				"type":"SI_Number",
+				"description":"费用"
 			},
 			{
 				"EN_Name":"DateAndOrTimeServiceRequired",
 				"CH_Name":"处方下达时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"处方下达时间"
 			},
 			{
 				"EN_Name":"DateAndOrTimeServiceRequired",
 				"CH_Name":"处方下达时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"处方下达时间"
 			}
 		]
 	},
 	{
-		"fromName":"处方基本信息",
+		"fromName":"体征记录信息",
 		"fields":[
 			{
 				"EN_Name":"InstitutionCode",
@@ -997,31 +1003,31 @@
 			{
 				"EN_Name":"RecordId",
 				"CH_Name":"体征记录表",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"体征记录表"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"TimePoint",
 				"CH_Name":"体征数值对应时间点",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"体征数值对应时间点"
 			},
 			{
 				"EN_Name":"RecorderCode",
 				"CH_Name":"记录者代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"记录者代码"
 			},
 			{
@@ -1033,7 +1039,7 @@
 			{
 				"EN_Name":"RecordDatetime",
 				"CH_Name":"记录的日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"记录的日期时间"
 			}
 		]
@@ -1056,25 +1062,25 @@
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"手术申请号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"手术申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"医嘱ID"
 			},
 			{
@@ -1086,7 +1092,7 @@
 			{
 				"EN_Name":"OperativeDoctorCode",
 				"CH_Name":"手术医生代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"手术医生代码"
 			},
 			{
@@ -1098,7 +1104,7 @@
 			{
 				"EN_Name":"DateAndOrTimeServiceRequired",
 				"CH_Name":"拟定手术日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"拟定手术日期时间"
 			},
 			{
@@ -1116,25 +1122,25 @@
 			{
 				"EN_Name":"RequestDatetime",
 				"CH_Name":"申请日期及时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"申请日期及时间"
 			},
 			{
 				"EN_Name":"StartDatetime",
 				"CH_Name":"手术开始日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"手术开始日期时间"
 			},
 			{
 				"EN_Name":"EndDatetime",
 				"CH_Name":"手术结束日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"手术结束日期时间"
 			},
 			{
 				"EN_Name":"SurgicalDoctorOneId",
 				"CH_Name":"手术医师1代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"手术医师1代码"
 			},
 			{
@@ -1146,7 +1152,7 @@
 			{
 				"EN_Name":"SurgicalDoctorTwoId",
 				"CH_Name":"手术医师2代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"手术医师2代码"
 			},
 			{
@@ -1158,7 +1164,7 @@
 			{
 				"EN_Name":"AssistantOperatorOneId",
 				"CH_Name":"第一助手代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"第一助手代码"
 			},
 			{
@@ -1170,7 +1176,7 @@
 			{
 				"EN_Name":"AssistantAnesthetistTwoId",
 				"CH_Name":"第二助手代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"第二助手代码"
 			},
 			{
@@ -1182,7 +1188,7 @@
 			{
 				"EN_Name":"AssistantOperatorThreeId",
 				"CH_Name":"第三助手代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"第三助手代码"
 			},
 			{
@@ -1194,7 +1200,7 @@
 			{
 				"EN_Name":"AssistantOperatorFourId",
 				"CH_Name":"第四助手代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"第四助手代码"
 			},
 			{
@@ -1206,7 +1212,7 @@
 			{
 				"EN_Name":"InstrumentNurseOneId",
 				"CH_Name":"器械护士1代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"器械护士1代码"
 			},
 			{
@@ -1218,7 +1224,7 @@
 			{
 				"EN_Name":"InstrumentNurseTwoId",
 				"CH_Name":"器械护士2代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"器械护士2代码"
 			},
 			{
@@ -1230,7 +1236,7 @@
 			{
 				"EN_Name":"InspectionNurseOneId",
 				"CH_Name":"巡台护士1代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"巡台护士1代码"
 			},
 			{
@@ -1242,7 +1248,7 @@
 			{
 				"EN_Name":"InspectionNurseTwoId",
 				"CH_Name":"巡台护士2代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"巡台护士2代码"
 			},
 			{
@@ -1252,9 +1258,45 @@
 				"description":"巡台护士2"
 			},
 			{
+				"EN_Name":"OperatingRoomNumberCode",
+				"CH_Name":"手术间代码",
+				"type":"EI",
+				"description":"手术间代码"
+			},
+			{
+				"EN_Name":"OperatingRoomNumberName",
+				"CH_Name":"手术间",
+				"type":"EI",
+				"description":"手术间"
+			},
+			{
+				"EN_Name":"OperatingRoomCode",
+				"CH_Name":"手术室代码",
+				"type":"EI",
+				"description":"手术室代码"
+			},
+			{
+				"EN_Name":"OperatingRoomName",
+				"CH_Name":"手术室",
+				"type":"EI",
+				"description":"手术室"
+			},
+			{
+				"EN_Name":"OperationTableCode",
+				"CH_Name":"手术台代码",
+				"type":"EI",
+				"description":"手术台代码"
+			},
+			{
+				"EN_Name":"OperationTableName",
+				"CH_Name":"手术台",
+				"type":"EI",
+				"description":"手术台"
+			},
+			{
 				"EN_Name":"AnesthetistId",
 				"CH_Name":"麻醉医生ID",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"麻醉医生ID"
 			},
 			{
@@ -1266,7 +1308,7 @@
 			{
 				"EN_Name":"AssistantAnesthetistOneId",
 				"CH_Name":"麻醉助手ID",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"麻醉助手ID"
 			},
 			{
@@ -1278,7 +1320,7 @@
 			{
 				"EN_Name":"AssistantAnesthetistTwoId",
 				"CH_Name":"麻醉助手2ID",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"麻醉助手2ID"
 			},
 			{
@@ -1290,7 +1332,7 @@
 			{
 				"EN_Name":"OperationDatetime",
 				"CH_Name":"手术日期及时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"手术日期及时间"
 			}
 		]
@@ -1313,37 +1355,37 @@
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"手术申请号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"手术申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OperationId",
 				"CH_Name":"手术号码",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"手术号码"
 			},
 			{
 				"EN_Name":"ReportedId",
 				"CH_Name":"手术报告号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"手术报告号"
 			},
 			{
 				"EN_Name":"AnesthesiaStartDatetime",
 				"CH_Name":"麻醉开始日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"麻醉开始日期时间"
 			}
 		]
@@ -1366,37 +1408,37 @@
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"手术申请号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"手术申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"如果是根据医嘱进入输血信息，记录相应的医嘱ID"
 			},
 			{
 				"EN_Name":"StartDatetime",
 				"CH_Name":"输血日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"输血日期时间"
 			},
 			{
 				"EN_Name":"StartDatetime",
 				"CH_Name":"输血日期时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"输血日期时间"
 			}
 		]
@@ -1419,25 +1461,25 @@
 			{
 				"EN_Name":"NursingIdentifier",
 				"CH_Name":"护理申请号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"护理申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"医嘱ID"
 			},
 			{
@@ -1445,6 +1487,12 @@
 				"CH_Name":"护理意见",
 				"type":"UI",
 				"description":"护理意见"
+			},
+			{
+				"EN_Name":"Issues",
+				"CH_Name":"护理问题",
+				"type":"UI",
+				"description":"护理问题"
 			}
 		]
 	},
@@ -1466,37 +1514,37 @@
 			{
 				"EN_Name":"TherapyIdentifier",
 				"CH_Name":"治疗申请号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"治疗申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"医嘱ID"
 			},
 			{
 				"EN_Name":"PlannedExecDatetime",
 				"CH_Name":"计划执行时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"计划执行时间"
 			},
 			{
 				"EN_Name":"PlannedStopDatetime",
 				"CH_Name":"计划停止时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"计划停止时间"
 			},
 			{
@@ -1525,37 +1573,37 @@
 			{
 				"EN_Name":"DietIdentifier",
 				"CH_Name":"饮食申请号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"饮食申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"医嘱ID"
 			},
 			{
 				"EN_Name":"PlannedExecDatetime",
 				"CH_Name":"计划执行时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"计划执行时间"
 			},
 			{
 				"EN_Name":"PlannedStopDatetime",
 				"CH_Name":"计划停止时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"计划停止时间"
 			},
 			{
@@ -1584,37 +1632,37 @@
 			{
 				"EN_Name":"BloodMatchingIdentifier",
 				"CH_Name":"配血医嘱申请号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"配血医嘱申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"医嘱ID"
 			},
 			{
 				"EN_Name":"PlannedExecDatetime",
 				"CH_Name":"计划执行时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"计划执行时间"
 			},
 			{
 				"EN_Name":"PlannedStopDatetime",
 				"CH_Name":"计划停止时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"计划停止时间"
 			},
 			{
@@ -1643,19 +1691,19 @@
 			{
 				"EN_Name":"FeeId",
 				"CH_Name":"费用申请号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"费用申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊ID"
 			},
 			{
@@ -1684,25 +1732,25 @@
 			{
 				"EN_Name":"ConsultRequestId",
 				"CH_Name":"会诊申请号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"会诊申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderIdentifier",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"医嘱ID"
 			},
 			{
@@ -1720,7 +1768,7 @@
 			{
 				"EN_Name":"IntendedConsultDateTime",
 				"CH_Name":"拟定会诊时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"拟定会诊时间"
 			},
 			{
@@ -1749,19 +1797,19 @@
 			{
 				"EN_Name":"DocumentId",
 				"CH_Name":"病历文档ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病历文档ID"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊ID"
 			},
 			{
@@ -1802,25 +1850,25 @@
 			{
 				"EN_Name":"EmrFirstPageId",
 				"CH_Name":"病案首页ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病案首页ID"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"TemplateId",
 				"CH_Name":"病案首页模板ID",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"病案首页模板ID"
 			},
 			{
@@ -1838,7 +1886,7 @@
 			{
 				"EN_Name":"FirstCreateTime",
 				"CH_Name":"创建时间",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"创建时间"
 			}
 		]
@@ -1867,7 +1915,7 @@
 			{
 				"EN_Name":"PhysicalExamId",
 				"CH_Name":"体检号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"体检号"
 			},
 			{
@@ -1879,7 +1927,7 @@
 			{
 				"EN_Name":"CreaterCode",
 				"CH_Name":"建立人编码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"建立人编码"
 			},
 			{
@@ -1914,19 +1962,19 @@
 			{
 				"EN_Name":"PhysicalExamId",
 				"CH_Name":"体检号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"体检号"
 			},
 			{
 				"EN_Name":"ConfirmationDate",
 				"CH_Name":"体检确认日期",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"体检确认日期"
 			},
 			{
 				"EN_Name":"ExamDoctorCode",
 				"CH_Name":"体检医生编码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"体检医生编码"
 			},
 			{
@@ -1938,7 +1986,7 @@
 			{
 				"EN_Name":"ReviewerCode",
 				"CH_Name":"复审医生编码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"复审医生编码"
 			},
 			{
@@ -1967,19 +2015,19 @@
 			{
 				"EN_Name":"PhysicalExamId",
 				"CH_Name":"体检号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"体检号"
 			},
 			{
 				"EN_Name":"ExamDatetime",
 				"CH_Name":"体检日期",
-				"type":"QI_Date",
+				"type":"QI_DateRecord",
 				"description":"体检日期"
 			},
 			{
 				"EN_Name":"PrimaryPhysicianCode",
 				"CH_Name":"体检医生编码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"体检医生编码"
 			},
 			{
@@ -2008,7 +2056,7 @@
 			{
 				"EN_Name":"PhysicalExamId",
 				"CH_Name":"体检号",
-				"type":"QI_Number",
+				"type":"QI_Link",
 				"description":"体检号"
 			},
 			{

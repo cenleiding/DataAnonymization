@@ -16,12 +16,14 @@ public class FieldChangeLog {
     @GeneratedValue
     private Long id;
 
-    private String fromName;
+    private String formName;
 
     private Date dateTime;
 
     @Column(length = 8000)
     private String changeLog;
+
+    private String description;
 
     public Long getId() {
         return id;
@@ -31,12 +33,12 @@ public class FieldChangeLog {
         this.id = id;
     }
 
-    public String getFromName() {
-        return fromName;
+    public String getFormName() {
+        return formName;
     }
 
-    public void setFromName(String fromName) {
-        this.fromName = fromName;
+    public void setFormName(String formName) {
+        this.formName = formName;
     }
 
     public Date getDateTime() {
@@ -53,5 +55,13 @@ public class FieldChangeLog {
 
     public void setChangeLog(String changeLog) {
         this.changeLog = changeLog;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -22,7 +22,7 @@ public class FieldClassify {
 
     private String fieldType;
 
-    private String fromName;
+    private String formName;
 
     public long getID() {
         return ID;
@@ -48,11 +48,11 @@ public class FieldClassify {
         this.fieldType = fieldType;
     }
 
-    public String getFromName() {
-        return fromName;
+    public String getFormName() {
+        return formName;
     }
 
-    public void setFromName(String fromName) {
-        this.fromName = fromName;
+    public void setFormName(String formName) {
+        this.formName = formName;
     }
 }
