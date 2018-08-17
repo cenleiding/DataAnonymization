@@ -1110,7 +1110,7 @@
 			{
 				"EN_Name":"RequestDoctorCode",
 				"CH_Name":"申请医生代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"申请医生工号"
 			},
 			{

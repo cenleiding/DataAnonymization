@@ -6,7 +6,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0028]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
@@ -24,7 +24,7 @@
       {
         "nodeName":"Action Datetime",
         "nodePath": "/protocol[at0015]/items[at0016]/value",
-        "type":"QI_Date",
+        "type":"QI_DateRecord",
         "description":"The start date and/or time for the procedure. This will indicate the scheduled date/time when recorded against the 'Appointment scheduled' care pathway step or the actual Start date/time in the 'Examination performed' step."
       },
       {
@@ -36,13 +36,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0029]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Consult request identifier",
         "nodePath": "/links[at0030]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -54,7 +54,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0017]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
@@ -66,7 +66,7 @@
       {
       "nodeName":"Action datetime",
       "nodePath": "/protocol[at0002]/items[at0003]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -78,13 +78,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Blood matching identifier",
         "nodePath": "/links[at0019]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -96,13 +96,13 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0016]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"Action datetime",
       "nodePath": "/protocol[at0002]/items[at0003]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -114,13 +114,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0017]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Diet identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -132,7 +132,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0027]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
@@ -144,7 +144,7 @@
       {
       "nodeName":"Perform Date/Time",
       "nodePath": "/protocol[at0017]/items[at0018]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"The perform date and/or time for the order."
       },
       {
@@ -156,13 +156,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0028]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Drugs dispensing request identifier",
         "nodePath": "/links[at0029]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -174,7 +174,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0017]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
@@ -192,7 +192,7 @@
       {
       "nodeName":"Action datetime",
       "nodePath": "/protocol[at0002]/items[at0003]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -204,13 +204,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Dispose identifier",
         "nodePath": "/links[at0019]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -222,13 +222,13 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0025]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"Edit date/time",
       "nodePath": "/protocol[at0015]/items[at0016]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -240,13 +240,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0026]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"EMR first page id",
         "nodePath": "/links[at0027]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -258,13 +258,13 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0026]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"Edit date/time",
       "nodePath": "/protocol[at0015]/items[at0016]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -276,13 +276,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0027]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Document ID",
         "nodePath": "/links[at0028]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -294,7 +294,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0017]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
@@ -306,7 +306,7 @@
       {
       "nodeName":"Action datetime",
       "nodePath": "/protocol[at0002]/items[at0003]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -318,13 +318,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Fee identifier",
         "nodePath": "/links[at0019]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -336,13 +336,13 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0024]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"Action datetime",
       "nodePath": "/protocol[at0015]/items[at0016]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -354,13 +354,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0025]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Requester order identifier",
         "nodePath": "/links[at0026]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -372,13 +372,13 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0024]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"Action datetime",
       "nodePath": "/protocol[at0015]/items[at0016]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -390,13 +390,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0025]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Requestor identifier",
         "nodePath": "/links[at0026]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -408,7 +408,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0017]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
@@ -420,7 +420,7 @@
       {
       "nodeName":"Action datetime",
       "nodePath": "/protocol[at0002]/items[at0003]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -432,13 +432,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Management identifier",
         "nodePath": "/links[at0019]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -450,7 +450,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0016]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
@@ -468,13 +468,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0017]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Nursing identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -486,13 +486,13 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0024]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"Start date/time",
       "nodePath": "/protocol[at0015]/items[at0016]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -504,13 +504,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0025]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Requested identifier",
         "nodePath": "/links[at0026]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -522,7 +522,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0022]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
@@ -534,7 +534,7 @@
       {
       "nodeName":"Action datetime",
       "nodePath": "/protocol[at0030]/items[at0043]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"The datetime of action."
       },
       {
@@ -546,13 +546,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0046]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Medication instruction id",
         "nodePath": "/links[at0047]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -564,7 +564,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0028]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
@@ -576,7 +576,7 @@
       {
       "nodeName":"Perform Date/Time",
       "nodePath": "/protocol[at0017]/items[at0018]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"The datetime of action."
       },
       {
@@ -588,13 +588,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0029]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Order excute identifier",
         "nodePath": "/links[at0030]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -606,7 +606,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0017]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
@@ -618,7 +618,7 @@
       {
       "nodeName":"Action datetime",
       "nodePath": "/protocol[at0002]/items[at0003]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -630,13 +630,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Prescription identifier",
         "nodePath": "/links[at0019]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -648,7 +648,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0017]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
@@ -672,13 +672,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Request identifier",
         "nodePath": "/links[at0019]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -690,13 +690,13 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0016]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"Action datetime",
       "nodePath": "/protocol[at0002]/items[at0003]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -708,13 +708,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0017]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Therapy identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -726,13 +726,13 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0030]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"Action datetime",
       "nodePath": "/protocol[at0023]/items[at0024]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -744,13 +744,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0031]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Transfusion identifier",
         "nodePath": "/links[at0032]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -762,7 +762,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0028]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
@@ -786,13 +786,13 @@
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0029]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       },
       {
         "nodeName":"Order identifier",
         "nodePath": "/links[at0030]",
-        "type":"QI_Number",
+        "type":"QI_Link",
         "description":"*"
       }
     ]
@@ -804,25 +804,25 @@
       {
       "nodeName":"Result Squence",
       "nodePath": "/data[at0001]/items[at0002]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"答案序号"
       },
       {
       "nodeName":"Encounter Identifier",
       "nodePath": "/data[at0001]/items[at0006]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
       "nodeName":"Patient Identifier",
       "nodePath": "/data[at0001]/items[at0007]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人号"
       },
       {
       "nodeName":"create Datetime",
       "nodePath": "/data[at0001]/items[at0009]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"创建时间"
       },
       {
@@ -834,19 +834,19 @@
       {
       "nodeName":"Modify Date",
       "nodePath": "/data[at0001]/items[at0011]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"修改时间"
       },
       {
       "nodeName":"System Date",
       "nodePath": "/data[at0001]/items[at0012]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"系统时间"
       },
       {
       "nodeName":"Document Identifier",
       "nodePath": "/data[at0001]/items[at0013]/value",
-      "type":"QI_Date",
+      "type":"QI_Link",
       "description":"档案编号"
       }
     ]
@@ -876,7 +876,7 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0047]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人编号"
       }
     ]
@@ -888,31 +888,31 @@
       {
       "nodeName":"patientId",
       "nodePath": "/subject[at0059]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人编号"
       },
       {
       "nodeName":"Date of Onset",
       "nodePath": "/data[at0001]/items[at0003]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"首次确诊时间"
       },
       {
       "nodeName":"Date of last Occurrence",
       "nodePath": "/data[at0001]/items[at0018]/items[at0020]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"The date / time of the last occurrence of the problem.(en)"
       },
       {
       "nodeName":"Date of Resolution",
       "nodePath": "/data[at0001]/items[at0030]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"治愈时间及日期"
       },
       {
       "nodeName":"Date of diagnosis",
       "nodePath": "/data[at0001]/items[at0048]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"诊断日期和时间"
       },
       {
@@ -936,7 +936,7 @@
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0060]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       }
     ]
@@ -954,13 +954,13 @@
       {
       "nodeName":"Patient Identifier",
       "nodePath": "/protocol[at0001]/items[at0003]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人号"
       },
       {
       "nodeName":"Encounter Identifier",
       "nodePath": "/protocol[at0001]/items[at0004]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
@@ -978,7 +978,7 @@
       {
       "nodeName":"Edit DateTime",
       "nodePath": "/protocol[at0001]/items[at0011]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"记录时间"
       }
     ]
@@ -996,13 +996,13 @@
       {
       "nodeName":"Encounter Identifier",
       "nodePath": "/protocol[at0001]/items[at0003]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
       "nodeName":"Patient Identifier",
       "nodePath": "/protocol[at0001]/items[at0005]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人号"
       },
       {
@@ -1020,7 +1020,7 @@
       {
       "nodeName":"Action DateTime",
       "nodePath": "/protocol[at0001]/items[at0008]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"操作时间"
       }
     ]
@@ -1032,7 +1032,7 @@
       {
       "nodeName":"Image DateTime",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0019]/items[at0006]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"检查日期时间"
       },
       {
@@ -1050,7 +1050,7 @@
       {
       "nodeName":"Receiver order identifier(en)",
       "nodePath": "/protocol[at0014]/items[at0016]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"The local identifier assigned to the examination order by the order filler, usually by the Radiology Information System (RIS). Usually equivalent to the HL7 Filler Order Number."
       },
       {
@@ -1068,7 +1068,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0021]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人号"
       },
       {
@@ -1086,13 +1086,13 @@
       {
       "nodeName":"Show time",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]/items[at0013]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"显示时间"
       },
       {
       "nodeName":"Last operate time",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]/items[at0017]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"最后一次操作时间"
       },
       {
@@ -1108,7 +1108,7 @@
       "description":"*"
       },
       {
-      "nodeName":"Detail Detupy  Director",
+      "nodeName":"Detail Detupy Director",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]/items[at0026]/value",
       "type":"EI",
       "description":"*"
@@ -1128,7 +1128,7 @@
       {
       "nodeName":"Detail Check Time",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]/items[at0030]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -1138,7 +1138,7 @@
       "description":"*"
       },
       {
-      "nodeName":"Detupy  Director",
+      "nodeName":"Detupy Director",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0032]/value",
       "type":"EI",
       "description":"*"
@@ -1164,19 +1164,19 @@
       {
       "nodeName":"Create Time",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0037]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
       "nodeName":"Check Time",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0038]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
       "nodeName":"Last Operate Time",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0039]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -1188,7 +1188,7 @@
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0022]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       }
     ]
@@ -1206,7 +1206,7 @@
       {
       "nodeName":"DateTime result issued",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0024]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"结果发布时的日期时间"
       },
       {
@@ -1218,7 +1218,7 @@
       {
       "nodeName":"Requester order identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0028]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"申请号"
       },
       {
@@ -1230,25 +1230,25 @@
       {
       "nodeName":"Receiver order identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0031]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"检查号"
       },
       {
       "nodeName":"Report identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0033]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"报告号"
       },
       {
       "nodeName":"Image identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0034]/items[at0035]/value",
-      "type":"EI",
+      "type":"QI_Link",
       "description":"影像ID"
       },
       {
       "nodeName":"Image DateTime",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0034]/items[at0039]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"成像日期"
       }
     ]
@@ -1266,7 +1266,7 @@
       {
       "nodeName":"DateTime result issued",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0024]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"结果发布时的日期时间"
       },
       {
@@ -1278,7 +1278,7 @@
       {
       "nodeName":"Requester order identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0028]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"申请号"
       },
       {
@@ -1290,25 +1290,25 @@
       {
       "nodeName":"Receiver order identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0031]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"检查号"
       },
       {
       "nodeName":"Report identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0033]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"报告号"
       },
       {
       "nodeName":"Image identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0034]/items[at0035]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"影像ID"
       },
       {
       "nodeName":"Image DateTime",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0034]/items[at0039]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"成像日期"
       }
     ]
@@ -1320,19 +1320,19 @@
       {
       "nodeName":"Image DateTime",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0019]/items[at0006]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"检查日期时间"
       },
       {
       "nodeName":"Receiver order identifier",
       "nodePath": "/protocol[at0014]/items[at0016]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"检查号"
       },
       {
       "nodeName":"Image identifier",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0019]/items[at0020]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"影像号"
       },
       {
@@ -1362,31 +1362,31 @@
       {
       "nodeName":"Visit Id",
       "nodePath": "/data[at0001]/events[at0005]/data[at0006]/items[at0007]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"Patient Id",
       "nodePath": "/data[at0001]/events[at0005]/data[at0006]/items[at0008]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"Admission Date Time",
       "nodePath": "/data[at0001]/events[at0005]/data[at0006]/items[at0010]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
       "nodeName":"Latest Operation Date Time",
       "nodePath": "/data[at0001]/events[at0005]/data[at0006]/items[at0011]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
       "nodeName":"Latest Reduction Date Time",
       "nodePath": "/data[at0001]/events[at0005]/data[at0006]/items[at0012]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -1422,7 +1422,7 @@
       {
       "nodeName":"Day of Latest Operation",
       "nodePath": "/data[at0001]/events[at0005]/data[at0006]/items[at0019]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       }
     ]
@@ -1434,7 +1434,7 @@
       {
       "nodeName":"DateTime issued",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"报告日期"
       },
       {
@@ -1446,7 +1446,7 @@
       {
       "nodeName":"Receiver order identifier",
       "nodePath": "/protocol[at0014]/at0014[at0016]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"检查号"
       },
       {
@@ -1464,25 +1464,25 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0029]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人号"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0030]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
       "nodeName":"Order identifier",
       "nodePath": "/links[at0031]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"医嘱号"
       },
       {
       "nodeName":"Requester Order identifier",
       "nodePath": "/links[at0032]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"检查申请号"
       },
       {
@@ -1500,7 +1500,7 @@
       {
       "nodeName":"Check datetime",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0036]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"审核日期"
       },
       {
@@ -1524,7 +1524,7 @@
       {
       "nodeName":"Time point",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0007]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"体征数值对应的时间点"
       },
       {
@@ -1536,19 +1536,19 @@
       {
       "nodeName":"Record datetime",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"记录的日期时间"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0014]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人号信息"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0015]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
@@ -1566,7 +1566,7 @@
       {
       "nodeName":"Datetime test excuted",
       "nodePath": "/protocol[at0004]/items[at0.15]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"检验日期时间"
       },
       {
@@ -1578,7 +1578,7 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0.22]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人号"
       },
       {
@@ -1596,31 +1596,31 @@
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0.85]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Encounter identifier(en)"
       },
       {
       "nodeName":"Requestor order identifier",
       "nodePath": "/links[at0.88]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"化验申请号"
       },
       {
       "nodeName":"Requestor identifier",
       "nodePath": "/protocol[at0004]/items[at0062]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"检验申请号"
       },
       {
       "nodeName":"Datetime result issued",
       "nodePath": "/protocol[at0004]/items[at0075]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"出结果时间"
       },
       {
       "nodeName":"Datetime test Check",
       "nodePath": "/protocol[at0004]/items[at0.100]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"审核时间"
       },
       {
@@ -1638,7 +1638,7 @@
       {
       "nodeName":"Receive sample dateTime",
       "nodePath": "/protocol[at0004]/items[at0.103]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"接标时间"
       },
       {
@@ -1656,7 +1656,7 @@
       {
       "nodeName":"EMR first page id",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"EMR first page id"
       },
       {
@@ -1680,25 +1680,25 @@
       {
       "nodeName":"First create time",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"First create time"
       },
       {
       "nodeName":"Last modified time",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"Last modified time"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0011]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Patient identifier"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0012]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Encounter identifier"
       }
     ]
@@ -1710,13 +1710,13 @@
       {
       "nodeName":"Exam start date time",
       "nodePath": "/data[at0001]/events[at0002]/data[at0005]/items[at0006]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"检查开始时间"
       },
       {
       "nodeName":"Exam stop date time",
       "nodePath": "/data[at0001]/events[at0002]/data[at0005]/items[at0008]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"检查结束时间"
       },
       {
@@ -1764,7 +1764,7 @@
       {
       "nodeName":"Check datetime",
       "nodePath": "/data[at0001]/events[at0002]/data[at0005]/items[at0020]/items[at0036]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"审核日期"
       },
       {
@@ -1794,31 +1794,31 @@
       {
       "nodeName":"Receiver order identifier",
       "nodePath":"/protocol[at0055]/items[at0056]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"检查号"
       },
       {
       "nodeName":"Requester Order identifier",
       "nodePath":"/links[at0059]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"检查申请号"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0060]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
       "nodeName":"Schedule identifier",
       "nodePath":"/data[at0001]/events[at0002]/data[at0005]/items[at0064]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"预约号"
       },
       {
       "nodeName":"Schedule datetime",
       "nodePath":"/data[at0001]/events[at0002]/data[at0005]/items[at0066]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"预约时间"
       },
       {
@@ -1830,19 +1830,19 @@
       {
       "nodeName":"Schedule loaction",
       "nodePath":"/data[at0001]/events[at0002]/data[at0005]/items[at0068]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"预约地点"
       },
       {
       "nodeName":"Register datetime",
       "nodePath":"/data[at0001]/events[at0002]/data[at0005]/items[at0076]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"登记时间"
       },
       {
       "nodeName":"Requester datetime",
       "nodePath":"/data[at0001]/events[at0002]/data[at0005]/items[at0078]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"申请时间"
       }
     ]
@@ -1854,13 +1854,13 @@
       {
       "nodeName":"Image DateTime",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"Specific date/time the imaging examination was performed."
       },
       {
       "nodeName":"Image identifier",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
@@ -1878,7 +1878,7 @@
       {
       "nodeName":"Receiver order identifier",
       "nodePath": "/protocol[at0013]/items[at0014]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       }
     ]
@@ -1890,25 +1890,25 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0019]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"Follow-up Datetime",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
       "nodeName":"Follow up identifier",
       "nodePath": "/protocol[at0017]/items[at0018]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0020]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       }
     ]
@@ -1920,7 +1920,7 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at1059]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       }
     ]
@@ -1932,7 +1932,7 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0027]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       }
     ]
@@ -1944,7 +1944,7 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0035]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       }
     ]
@@ -1956,7 +1956,7 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0010]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       }
     ]
@@ -1968,7 +1968,7 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0021]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       }
     ]
@@ -1980,13 +1980,13 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0006]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"occured datetime",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       }
     ]
@@ -1998,7 +1998,7 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at1060]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       }
     ]
@@ -2010,19 +2010,19 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0.27]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"ischemic stroke diagnosis datetime",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0.11]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"缺血性卒中诊断日期时间"
       },
       {
       "nodeName":"hemorrhagic stroke diagnosis datetime",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0.13]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"出血性中风诊断日期"
       }
     ]
@@ -2034,13 +2034,13 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0.48]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"diagnosis datetime",
 	  "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0.14]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       }
     ]
@@ -2052,13 +2052,13 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0.50]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"diagnosis datetime",
 	  "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0.13]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       }
     ]
@@ -2070,13 +2070,13 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0.38]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"diagnosis datetime",
 	  "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0.11]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       }
     ]
@@ -2088,13 +2088,13 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0.23]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"*"
       },
       {
       "nodeName":"occured datetime",
 	  "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0.18]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       }
     ]
@@ -2112,13 +2112,13 @@
       {
       "nodeName":"patient Identifier",
       "nodePath": "protocol[at0001]/items[at0004]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人号"
       },
       {
       "nodeName":"Encounter Identifier",
       "nodePath": "protocol[at0001]/items[at0005]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
@@ -2130,7 +2130,7 @@
       {
       "nodeName":"Date of Birth",
       "nodePath": "protocol[at0001]/items[at0008]/value",
-      "type":"QI_Date",
+      "type":"QI_DateAge",
       "description":"出生日期"
       },
       {
@@ -2148,25 +2148,25 @@
       {
       "nodeName":"Identity Card No",
       "nodePath": "protocol[at0001]/items[at0013]/value",
-      "type":"QI_Number",
+      "type":"EI",
       "description":"身份证号"
       },
       {
       "nodeName":"degree",
       "nodePath": "protocol[at0001]/items[at0015]/value",
-      "type":"SI_String",
+      "type":"QI_String",
       "description":"文化程度"
       },
       {
       "nodeName":"Patient  place Belong",
       "nodePath": "protocol[at0001]/items[at0016]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"患者居住地点"
       },
       {
       "nodeName":"Address Of household",
       "nodePath": "protocol[at0001]/items[at0017]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"家庭地址"
       },
       {
@@ -2178,31 +2178,31 @@
       {
       "nodeName":"Career",
       "nodePath": "protocol[at0001]/items[at0019]/value",
-      "type":"SI_String",
+      "type":"QI_String",
       "description":"患者职业"
       },
       {
       "nodeName":"Work Place",
       "nodePath": "protocol[at0001]/items[at0020]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"工作地点"
       },
       {
       "nodeName":"Date Of Ill Start",
       "nodePath": "protocol[at0001]/items[at0025]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"发病日期"
       },
       {
       "nodeName":"Date Of diagnose",
       "nodePath": "protocol[at0001]/items[at0026]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"诊断日期"
       },
       {
       "nodeName":"Date Of Die",
       "nodePath": "protocol[at0001]/items[at0028]/value",
-      "type":"QI_Date",
+      "type":"QI_DateAge",
       "description":"死亡时间"
       },
       {
@@ -2214,7 +2214,7 @@
       {
       "nodeName":"Date Of Positive Result",
       "nodePath": "protocol[at0001]/items[at0036]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"检测出阳性日期"
       },
       {
@@ -2244,13 +2244,13 @@
       {
       "nodeName":"Date Of First Report",
       "nodePath": "protocol[at0001]/items[at0041]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"首次报告日期"
       },
       {
       "nodeName":"Date Of Last Update",
       "nodePath": "protocol[at0001]/items[at0042]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"最后报告日期"
       }
     ]
@@ -2262,19 +2262,19 @@
       {
       "nodeName":"Order Identifier",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0003]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"医嘱ID"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0012]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人ID"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0013]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊ID"
       },
       {
@@ -2286,19 +2286,19 @@
       {
       "nodeName":"Started datetime",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0018]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"开始时间"
       },
       {
       "nodeName":"Plan to stop",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0019]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"计划停止日期时间"
       },
       {
       "nodeName":"Stoped datetime",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0020]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"停止日期时间"
       },
       {
@@ -2316,13 +2316,13 @@
       {
       "nodeName":"Input datetime of started order",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0028]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"开医嘱录入时间"
       },
       {
       "nodeName":"Input datetime of stopped order",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0029]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"停医嘱录入时间"
       },
       {
@@ -2370,7 +2370,7 @@
       {
       "nodeName":"Operation DateTime",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0009]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"手术日期及时间"
       },
       {
@@ -2400,13 +2400,13 @@
       {
       "nodeName":"Start DateTime",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0016]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"手术开始日期时间"
       },
       {
       "nodeName":"End DateTime",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0017]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"手术结束日期时间"
       },
       {
@@ -2466,19 +2466,19 @@
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0031]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊ID"
       },
       {
       "nodeName":"Requested identifier",
       "nodePath": "/links[at0032]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"手术申请号"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0033]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人ID"
       },
       {
@@ -2520,7 +2520,7 @@
       {
       "nodeName":"Consult request identifier",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0003]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"会诊申请号"
       },
       {
@@ -2532,31 +2532,31 @@
       {
       "nodeName":"Intended consult date time",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0007]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"Intended consult date time"
       },
       {
       "nodeName":"Intended consult place",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0008]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"Intended consult place"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0011]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"患者ID"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0012]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊ID"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0013]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"医嘱ID"
       },
       {
@@ -2580,7 +2580,7 @@
       {
       "nodeName":"Consult date time",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0023]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"会诊时间"
       },
       {
@@ -2598,7 +2598,7 @@
       {
       "nodeName":"Prescription identifier",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0003]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"处方号"
       },
       {
@@ -2628,25 +2628,25 @@
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0031]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
       "nodeName":"Order identifier",
       "nodePath": "/links[at0032]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"医嘱号"
       },
       {
       "nodeName":"Prescription Datetime",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0033]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"处方时间"
       },
       {
       "nodeName":"Last print time",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0042]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"最后打印时间"
       },
       {
@@ -2658,25 +2658,25 @@
       {
       "nodeName":"patient Identifier",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0012]/items[at0050]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人ID"
       },
       {
       "nodeName":"encounter Identifier",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0012]/items[at0051]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊ID"
       },
       {
       "nodeName":"Patient Identifier",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0055]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人号"
       },
       {
       "nodeName":"Provide Drug Datetime",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0058]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"发药时间"
       },
       {
@@ -2688,19 +2688,19 @@
       {
       "nodeName":"Aggregate Datetime",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0060]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"汇总时间"
       },
       {
       "nodeName":"Get Rate Date",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0061]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"收费时间"
       },
       {
       "nodeName":"Fetch Drug Date",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0062]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"取药时间"
       },
       {
@@ -2724,7 +2724,7 @@
       {
       "nodeName":"doctor_id",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0066]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"开单医生ID"
       },
       {
@@ -2748,7 +2748,7 @@
       {
       "nodeName":"Schedule datetime",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.17]/items[at0.20]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"预约时间"
       },
       {
@@ -2760,19 +2760,19 @@
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0.23]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人号"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0.24]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0.25]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"医嘱编号"
       },
       {
@@ -2790,7 +2790,7 @@
       {
       "nodeName":"Schedule location",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.17]/items[at0.34]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"预约地点"
       },
       {
@@ -2802,25 +2802,25 @@
       {
       "nodeName":"Exam identifier",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.17]/items[at0.36]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"检查号"
       },
       {
       "nodeName":"Requestor Identifier",
       "nodePath":"/protocol[at0008]/items[at0010]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Requestor Identifier"
       },
       {
       "nodeName":"Requestor Date time",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0040]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"申请日期时间"
       },
       {
       "nodeName":"Exam requested",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.17]/items[at0121.1]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"检查申请号"
       },
       {
@@ -2850,7 +2850,7 @@
       {
       "nodeName":"ORDERIDENTIFIER",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.17]/items[at0.51]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"医嘱号"
       }
     ]
@@ -2886,25 +2886,25 @@
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0.161]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Patient identifier"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0.162]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0.163]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"医嘱号"
       },
       {
       "nodeName":"Requestor Identifier",
       "nodePath":"/protocol[at0008]/items[at0010]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"检验申请号"
       },
       {
@@ -2916,13 +2916,13 @@
       {
       "nodeName":"Latest DateTime test required",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0144.1]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"最后执行时间"
       },
       {
       "nodeName":"Bar creat datetime",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.172]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"条码日期"
       },
       {
@@ -2940,13 +2940,13 @@
       {
       "nodeName":"Request datetime",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.149]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"Request datetime"
       },
       {
       "nodeName":"Request doctor",
       "nodePath":"/links[at0.168]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Order identifier"
       },
       {
@@ -2964,37 +2964,37 @@
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0.166]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Patient identifier"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0.167]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Encounter identifier"
       },
       {
       "nodeName":"Requestor Identifier",
       "nodePath":"/protocol[at0008]/items[at0010]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Requestor Identifier"
       },
       {
       "nodeName":"Receiver identifier",
       "nodePath":"/protocol[at0008]/items[at0011]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Receiver identifier"
       },
       {
       "nodeName":"Date time service",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0040]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"申请时间"
       },
       {
       "nodeName":"Operation requested",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.155]/items[at0121.1]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"手术申请号"
       },
       {
@@ -3030,25 +3030,25 @@
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0035]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Patient identifier"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0036]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Encounter identifier"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0037]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Order identifier"
       },
       {
       "nodeName":"Nursing identifier",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0038]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Nursing identifier"
       }
     ]
@@ -3066,31 +3066,31 @@
       {
       "nodeName":"Charge datetime",
       "nodePath":"/data[at0001]/items[at0016]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"计费日期时间"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/subject[at0017]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人ID"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0018]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0019]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"医嘱号"
       },
       {
       "nodeName":"Prescription number",
       "nodePath":"/data[at0001]/items[at0020]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"处方号"
       },
       {
@@ -3108,7 +3108,7 @@
       {
       "nodeName":"Settlement date",
       "nodePath":"/data[at0001]/items[at0029]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"结算日期"
       },
       {
@@ -3120,7 +3120,7 @@
       {
       "nodeName":"Presc id",
       "nodePath":"/data[at0001]/items[at0031]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"对应处方ID"
       }
     ]
@@ -3132,19 +3132,19 @@
       {
       "nodeName":"charge account no",
       "nodePath":"/data[at0001]/items[at0002]/value",
-      "type":"EI",
+      "type":"QI_Link",
       "description":"病人医疗账户编号"
       },
       {
       "nodeName":"Patient id",
       "nodePath":"/data[at0001]/items[at0003]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人ID"
       },
       {
       "nodeName":"Visit id",
       "nodePath":"/data[at0001]/items[at0004]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
@@ -3156,13 +3156,13 @@
       {
       "nodeName":"Settlement date",
       "nodePath":"/data[at0001]/items[at0020]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"结算日期"
       },
       {
       "nodeName":"Account create date",
       "nodePath":"/data[at0001]/items[at0021]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"账户创建时间"
       },
       {
@@ -3198,19 +3198,19 @@
       {
       "nodeName":"Patient id",
       "nodePath":"/data[at0001]/items[at0002]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人ID"
       },
       {
       "nodeName":"Visit id",
       "nodePath":"/data[at0001]/items[at0003]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
       "nodeName":"Charge account no",
       "nodePath":"/data[at0001]/items[at0004]/value",
-      "type":"EI",
+      "type":"QI_Link",
       "description":"病人医疗账户编号"
       },
       {
@@ -3228,7 +3228,7 @@
       {
       "nodeName":"Patient id",
       "nodePath":"/data[at0001]/items[at0007]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人ID"
       },
       {
@@ -3246,31 +3246,31 @@
       {
       "nodeName":"Birth date",
       "nodePath":"/data[at0001]/items[at0013]/value",
-      "type":"QI_Date",
+      "type":"QI_DateAge",
       "description":"出生日期"
       },
       {
       "nodeName":"Birth place",
       "nodePath":"/data[at0001]/items[at0014]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"出生地"
       },
       {
       "nodeName":"Birth city",
       "nodePath":"/data[at0001]/items[at0016]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"出生地-市"
       },
       {
       "nodeName":"Birth county",
       "nodePath":"/data[at0001]/items[at0017]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"出生地-县"
       },
       {
       "nodeName":"Birth town",
       "nodePath":"/data[at0001]/items[at0018]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"出生地-乡镇"
       },
       {
@@ -3324,43 +3324,43 @@
       {
       "nodeName":"Native place",
       "nodePath":"/data[at0001]/items[at0035]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"籍贯"
       },
       {
       "nodeName":"Permanent addr",
       "nodePath":"/data[at0001]/items[at0036]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"户籍地址"
       },
       {
       "nodeName":"Perm city",
       "nodePath":"/data[at0001]/items[at0038]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"户籍地址-市"
       },
       {
       "nodeName":"Perm county",
       "nodePath":"/data[at0001]/items[at0039]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"户籍地址-县"
       },
       {
       "nodeName":"Perm town",
       "nodePath":"/data[at0001]/items[at0040]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"户籍地址-镇"
       },
       {
       "nodeName":"Dead date",
       "nodePath":"/data[at0001]/items[at0048]/value",
-      "type":"QI_Date",
+      "type":"QI_DateAge",
       "description":"死亡时间"
       },
       {
       "nodeName":"Create date",
       "nodePath":"/data[at0001]/items[at0049]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"建档日期"
       },
       {
@@ -3372,7 +3372,7 @@
       {
       "nodeName":"Health card issue area",
       "nodePath":"/data[at0001]/items[at0052]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"医保卡发卡地区"
       },
       {
@@ -3408,7 +3408,7 @@
       {
       "nodeName":"Excute datetime",
       "nodePath":"/data[at0001]/items[at0007]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"Excute datetime"
       },
       {
@@ -3480,19 +3480,19 @@
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0021]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Patient identifier"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0022]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Encounter identifier"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0023]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"Order identifier"
       },
       {
@@ -3510,7 +3510,7 @@
       {
       "nodeName":"Date of discharge",
       "nodePath":"/data[at0003]/items[at0004]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"出院日期"
       },
       {
@@ -3534,25 +3534,25 @@
       {
       "nodeName":"Planned Discharge",
       "nodePath":"/data[at0003]/items[at0069]/items[at0062]/items[at0071]/items[at0081]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"双亲/照料者被告知的计划出院的日期"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0085]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"病人号"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0086]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0087]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"医嘱号"
       },
       {
@@ -3570,7 +3570,7 @@
       {
       "nodeName":"Pre-admit number",
       "nodePath":"/data[at0001]/items[at0024]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"上次入院就诊号"
       },
       {
@@ -3606,7 +3606,7 @@
       {
       "nodeName":"Admit date/time",
       "nodePath":"/data[at0001]/items[at0035]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"入院时间"
       },
       {
@@ -3624,7 +3624,7 @@
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/data[at0001]/items[at0042]/value",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"就诊号"
       },
       {
@@ -3696,7 +3696,7 @@
       {
       "nodeName":"Mailing address",
       "nodePath":"/data[at0001]/items[at0058]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"地址信息"
       },
       {
@@ -3732,7 +3732,7 @@
       {
       "nodeName":"mailing address",
       "nodePath":"/items[at0011]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"mailing address"
       },
       {
@@ -3756,7 +3756,7 @@
       {
       "nodeName":"Business address",
       "nodePath":"/items[at0015]/value",
-      "type":"QI_Geographic",
+      "type":"QI_Geography",
       "description":"Business address"
       }
     ]
@@ -3774,13 +3774,13 @@
       {
       "nodeName":"Date sent",
       "nodePath":"/items[at0006]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"Date sent"
       },
       {
       "nodeName":"Recipient identifier",
       "nodePath":"/items[at0011]/items[at0010]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"Recipient identifier"
       }
     ]
@@ -3792,7 +3792,7 @@
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath":"/subject[at0029]",
-      "type":"QI_Number",
+      "type":"QI_Link",
       "description":"PATIENT_IDENTIFIED"
       }
     ]

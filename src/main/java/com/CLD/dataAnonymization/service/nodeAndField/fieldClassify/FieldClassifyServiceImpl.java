@@ -110,6 +110,11 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
     }
 
     @Override
+    public List<String> getFromNameListByUserName(String userName){
+        return fieldClassifyListRepository.getFormNameByUserName(userName);
+    }
+
+    @Override
     public List<FieldFormInfo> getFieldFormInfo(){
         List<FieldFormInfo> fieldFormInfoList =new ArrayList<FieldFormInfo>();
         List<FieldClassifyList> fieldClassifyListList=fieldClassifyListRepository.findAll();

@@ -23,6 +23,8 @@ public interface FieldClassifyService {
 
     public List<String> getFromNameList();
 
+    public List<String> getFromNameListByUserName(String userName);
+
     public List<FieldFormInfo> getFieldFormInfo();
 
     public List<FieldInfo> getFieldByFromName(String fromName);

@@ -4,7 +4,8 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
 
     $scope.selectInfo=[];
     $scope.formNameList=[];
-    $scope.dataTableSet_ALL=[];
+    $scope.dataTableSet_ALL={'ALL':[]};
+    $scope.selectType=["ALL","EI","QI_Link","QI_Geography","QI_DateRecord","QI_DateAge","QI_Number","QI_String","SI_Number","SI_String","UI"];
 
     $scope.description=""
     $scope.createTime=""
@@ -13,7 +14,7 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
     $scope.usageCount=""
     $scope.userName=""
 
-    $scope.spanFlag=false;
+    var percentage={"SUM":0}
     var Accounting=[
         ["EI",0],
         ["QI_Link",0],
@@ -48,7 +49,7 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
                     $scope.selectInfo.push(i);
                     for(var j in formMap){
                         if(formMap[j].userName==(i)){
-                            select.append("<option data-icon='glyphicon glyphicon-file' data-subtext=("+formMap[j].description+")>"
+                            select.append("<option value='"+formMap[j].formName+"' data-icon='glyphicon glyphicon-file' data-subtext=("+formMap[j].description+")>"
                                 +formMap[j].formName+ "</option>");
                             var info={};
                             info['formName']=formMap[j].formName;
@@ -64,8 +65,9 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
 
                 }
 
-                $('.selectpicker').selectpicker('val','un');
-                $('.selectpicker').selectpicker('refresh');
+                $("#Select").selectpicker('refresh');
+                $("#Select").selectpicker('val', $scope.selectInfo[1].formName);
+                refresh(1);
             },
             function errorCallback(response){
                 alert("获取列表失败！")
@@ -74,7 +76,8 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
 
     })()
 
-    $("#Select").on('changed.bs.select',function (e,c) {
+    //用于刷新表单和图
+    var refresh=function (c) {
         $scope.description=$scope.selectInfo[c].description
         $scope.createTime=$scope.selectInfo[c].createTime
         $scope.lastChangeTime=$scope.selectInfo[c].lastChangeTime
@@ -83,7 +86,6 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
         $scope.userName=$scope.selectInfo[c].userName
         if($scope.father=="") $scope.father="原生模板"
         if($scope.userName=="") $scope.userName="系统样本"
-        $scope.spanFlag=1
         $http({
             method:'GET',
             url:"/getFieldOverViewByFormName",
@@ -93,7 +95,7 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
             for(var a in Accounting){
                 Accounting[a][1]=percentage[Accounting[a][0]];
             }
-            $scope.createcharts();
+            createcharts();
         }, function errorCallback(response) {
             // 请求失败执行代码
         });
@@ -103,25 +105,38 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
             url:"/getFieldDetailByFormName",
             params:{formName:$scope.selectInfo[c].formName}
         }).then(function successCallback(response) {
-            data=response.data;
+            var data=response.data;
+            var all=[];
             for(var i in data){
+                var t=[];
                 for(var j in data[i]){
                     var d=[];
                     d.push(data[i][j]);
                     d.push(i);
-                    $scope.dataTableSet_ALL.push(d);
+                    t.push(d);
                 }
+                all=all.concat(t);
+                $scope.dataTableSet_ALL[i]=t;
             }
-            datatableDraw();
+            $scope.dataTableSet_ALL['ALL']=all;
+            datatableDraw(all);
         }, function errorCallback(response) {
             // 请求失败执行代码
         });
+    }
+
+    $("#Select").on('changed.bs.select',function (e,c) {
+        refresh(c);
+    })
+
+    $("#typeSelect").on('changed.bs.select',function (e,c){
+        datatableDraw($scope.dataTableSet_ALL[$scope.selectType[c]]);
     })
 
     //dataTable
-    var datatableDraw=function(){
+    var datatableDraw=function(data){
         dataTable=$('#dataTable').dataTable( {
-            "data": $scope.dataTableSet_ALL,
+            "data": data,
             "autoWidth": true,
             "destroy": true,
             "bLengthChange":false,
@@ -134,7 +149,7 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
     }
 
     //highcharts 图表
-    $scope.createcharts=function () {
+    var createcharts=function () {
         $('#container').highcharts({
             credits:{enabled:false},
             chart: {
@@ -169,5 +184,9 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
             }]
         });
     };
+
+
+        datatableDraw([]);
+        createcharts();
 }
 )

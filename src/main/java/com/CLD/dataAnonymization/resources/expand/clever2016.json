@@ -308,7 +308,7 @@
 			{
 				"EN_Name":"Performer_Code",
 				"CH_Name":"执行人员代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"执行人员代码"
 			},
 			{
@@ -402,7 +402,7 @@
 			{
 				"EN_Name":"Performer_Code",
 				"CH_Name":"执行人员代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"执行人员代码"
 			},
 			{

@@ -137,7 +137,7 @@
 			{
 				"EN_Name":"DEATH_TIME",
 				"CH_Name":"死亡时间",
-				"type":"QI_DateRecord",
+				"type":"QI_DateAge",
 				"description":"死亡时间"
 			},
 			{
@@ -1809,7 +1809,7 @@
 			{
 				"EN_Name":"CREATE_DOCTOR_ID",
 				"CH_Name":"创建者ID",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"创建者ID"
 			},
 			{
@@ -2165,7 +2165,7 @@
 			{
 				"EN_Name":"MODIFY_STAFF_ID",
 				"CH_Name":"修改人员工号",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"修改人员工号"
 			},
 			{
@@ -6305,7 +6305,7 @@
 			{
 				"EN_Name":"REPORTER_ID",
 				"CH_Name":"报告者代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"报告者代码"
 			},
 			{
@@ -6424,7 +6424,7 @@
 			{
 				"EN_Name":"REPORTER_ID",
 				"CH_Name":"报告者代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"报告者代码"
 			},
 			{

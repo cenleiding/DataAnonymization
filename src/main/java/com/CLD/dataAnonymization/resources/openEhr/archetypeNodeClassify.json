@@ -2358,7 +2358,7 @@
       {
       "nodeName":"Organization identifier",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0043]/value",
-      "type":"QI_Link",
+      "type":"EI",
       "description":"组织机构编码"
       }
     ]
@@ -2586,7 +2586,7 @@
       {
       "nodeName":"organization Identifier",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0024]/value",
-      "type":"QI_Link",
+      "type":"EI",
       "description":"机构编码"
       }
     ]
@@ -3210,7 +3210,7 @@
       {
       "nodeName":"Charge account no",
       "nodePath":"/data[at0001]/items[at0004]/value",
-      "type":"EI",
+      "type":"QI_Link",
       "description":"病人医疗账户编号"
       },
       {

@@ -31,7 +31,7 @@
     <script src="/js/highcharts.js"></script>
     <script src="/js/angular.min.js"></script>
     <script src="/js/angular-popups.js"></script>
-    <script src="/js/custom/FieldFormShow.js"></script>
+    <script src="/js/custom/MyFieldForm.js"></script>
     <script src="/js/custom/Head.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -45,7 +45,7 @@
 
 <body>
 
-<div id="wrapper"  data-ng-app="fieldFormShowApp">
+<div id="wrapper"  data-ng-app="myFieldFormApp">
 
     <!-- Navigation -->
     <div  data-ng-controller="headCtrl">
@@ -53,18 +53,37 @@
     </div>
 
     <!-- Page Content -->
-    <div id="page-wrapper" data-ng-controller="fieldFormShowCtrl">
+    <div id="page-wrapper" data-ng-controller="myFieldFormCtrl">
         <div class="container-fluid">
             <div class="row  page-header">
                 <div class="col-lg-2" style="width: auto">
-                    <h1>表单查看</h1>
+                    <h1>我的表单</h1>
                 </div>
-                <div class="col-lg-3" style="padding-top: 25px">
-                    <select id="Select" class="selectpicker" data-width="auto" data-live-search="true" data-size="10"></select>
-                </div>
-                <div class="col-lg-3" style="padding-left: 25px;padding-top: 30px"></div>
             </div>
             <div class="row">
+                <div class="col-lg-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">表单列表</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div ng-repeat="x in formNameList" class="alert alert-info" role="alert" style="padding-top: 10px;padding-bottom: 10px;padding-left: 10px;padding-right: 5px">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <span style="font-size: 13px;font-weight: bold">{{x}}</span>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input data-ng-click="editForm(x)" title='编辑' type="image" src="/img/edit.png" style="display: inline-block;width: 15px;height: 15px" />
+                                        <input data-ng-click="deleteForm(x)" title='删除' type="image" src="/img/delete.png" style="display: inline-block;width: 15px;height: 15px" />
+                                    </div>
+                                </div>
+                               </div>
+                            <div class="alert alert-info" role="alert" style="text-align:center;padding-top: 5px;padding-bottom: 5px;padding-left: 10px;padding-right: 5px;margin-bottom: 0px">
+                                <button type="button" data-ng-click="create()" style="border:0;cursor:pointer;background-color:transparent;font-weight: bolder">添加新的表单</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-6">
                     <div class="panel panel-info">
                         <div class="panel-heading">
@@ -111,17 +130,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6" >
+
+                <div class="col-lg-4" >
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <h3 class="panel-title">字段分布图</h3>
                         </div>
                         <div class="panel-body">
-                            <div id="container" style="min-width:670px;height:670px"></div>
+                            <div id="container" style="min-width:300px;height:300px"></div>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">修改日志</h3>
+                        </div>
+                        <div class="panel-body">
                         </div>
                     </div>
                 </div>
-
             </div>
 
         </div>
