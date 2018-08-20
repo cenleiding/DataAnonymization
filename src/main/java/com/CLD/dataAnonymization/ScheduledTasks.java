@@ -22,6 +22,6 @@ public class ScheduledTasks {
 
     @Scheduled(initialDelay = 1000,fixedDelay = 86400000)
     public void updataFields() throws FileNotFoundException, UnsupportedEncodingException {
-         nodeToFieldService.ArcheTypeNodeToField();
+//         nodeToFieldService.ArcheTypeNodeToField();
     }
 }

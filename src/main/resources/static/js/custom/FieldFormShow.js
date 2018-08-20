@@ -1,4 +1,4 @@
-var app = angular.module("fieldFormShowApp", ['angular-popups','headApp']);
+var app = angular.module("fieldFormShowApp", ['headApp']);
 app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
 
 

@@ -27,6 +27,8 @@ public interface FieldClassifyService {
 
     public List<FieldFormInfo> getFieldFormInfo();
 
+    public FieldFormInfo getFieldFormInfoByFormName(String formName);
+
     public List<FieldInfo> getFieldByFromName(String fromName);
 
     public ArrayList<ArrayList<String>> getUseFieldByFromName(String fromName);

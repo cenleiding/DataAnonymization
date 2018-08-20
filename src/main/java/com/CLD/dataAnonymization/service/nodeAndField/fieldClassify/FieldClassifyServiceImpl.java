@@ -142,6 +142,29 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
         return fieldFormInfoList;
     }
 
+    @Override
+    public FieldFormInfo getFieldFormInfoByFormName(String formName){
+        FieldFormInfo fieldFormInfo=new FieldFormInfo();
+        FieldClassifyList fieldClassifyList=fieldClassifyListRepository.findByFormName(formName);
+        FieldClassifyUsageCount fieldClassifyUsageCount=fieldClassifyUsageCountRepository.findByFormName(formName);
+        List<FieldChangeLog> fieldChangeLogList=fieldChangeLogRepository.findByFormName(formName);
+        Long createTime=Long.MAX_VALUE;
+        Long lastChangeTime= Long.MIN_VALUE;
+        for(FieldChangeLog fieldChangeLog:fieldChangeLogList){
+            if(fieldChangeLog.getDateTime().getTime()<createTime) createTime=fieldChangeLog.getDateTime().getTime();
+            if(fieldChangeLog.getDateTime().getTime()>lastChangeTime) lastChangeTime=fieldChangeLog.getDateTime().getTime();
+        }
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        fieldFormInfo.setUserName(fieldClassifyList.getUserName());
+        fieldFormInfo.setFormName(fieldClassifyList.getFormName());
+        fieldFormInfo.setCreateTime(sdf.format(new Date(createTime)));
+        fieldFormInfo.setLastChangeTime(sdf.format(new Date(lastChangeTime)));
+        fieldFormInfo.setDescription(fieldClassifyList.getDescription());
+        fieldFormInfo.setFather(fieldClassifyList.getFather());
+        fieldFormInfo.setUsageCount(String.valueOf(fieldClassifyUsageCount.getCount()));
+        return fieldFormInfo;
+    }
+
 
     @Override
     public List<FieldInfo> getFieldByFromName(String fromName) {

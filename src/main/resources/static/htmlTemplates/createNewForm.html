@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="padding-left: 20px;width: 500px" ng-controller="createNewFormCtrl">
+    <h2 class="form-signin-heading">新表创建</h2>
+    <hr style="color: black;background-color: black;border-color: black;width: 500px;margin-left: 0px;margin-right: 0px">
+    <div class="input-group" style="width: 450px;">
+        <span class="input-group-addon"style="font-weight: bold;width: 120px" >模板选择：</span>
+        <select id="Select" class="selectpicker form-control" data-live-search="true" data-size="10" "></select>
+    </div>
+    <br>
+    <div class="input-group" style="width: 450px;">
+        <span class="input-group-addon"style="font-weight: bold;width: 120px" >命名：</span>
+        <input type="text" class="form-control" ng-value="formNewName" ng-model="formNewName"  >
+    </div>
+    <br>
+    <div class="input-group" style="width: 450px;">
+        <span class="input-group-addon"style="font-weight: bold;width: 120px" >描述：</span>
+        <input type="text" class="form-control" ng-model="description" placeholder="对于新建表单的描述~" aria-describedby="basic-addon1">
+    </div>
+    <div align="center" style="padding-top: 40px">
+        <button data-ng-click="create()" class="btn btn-lg btn-primary btn-block" style="width: 200px" ">创&nbsp&nbsp建</button>
+    </div>
+</div>
+</body>
+</html>
+

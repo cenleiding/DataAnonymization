@@ -13,12 +13,15 @@
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/metisMenu.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" >
+    <link href="/css/bootstrap-select.min.css" rel="stylesheet" >
     <link href="/css/sb-admin-2.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet" >
     <link href="/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="/css/buttons.dataTables.min.css" rel="stylesheet">
     <link href="/css/select.dataTables.min.css" rel="stylesheet">
+    <link href="/css/editor.dataTables.min.css" rel="stylesheet">
+    <link href="/css/ngDialog.min.css" rel="stylesheet" >
+    <link href="/css/ngDialog-theme-default.min.css" rel="stylesheet">
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -28,11 +31,14 @@
     <script src="/js/jquery.dataTables.min.js"></script>
     <script src="/js/dataTables.buttons.min.js"></script>
     <script src="/js/dataTables.select.min.js"></script>
+    <script src="/js/dataTables.editor.min.js"></script>
     <script src="/js/highcharts.js"></script>
     <script src="/js/angular.min.js"></script>
-    <script src="/js/angular-popups.js"></script>
+    <script src="/js/ngDialog.min.js"></script>
     <script src="/js/custom/MyFieldForm.js"></script>
     <script src="/js/custom/Head.js"></script>
+    <script src="/js/custom/createNewForm.js"></script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -66,7 +72,7 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">表单列表</h3>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="max-height:700px;overflow-y: auto ">
                             <div ng-repeat="x in formNameList" class="alert alert-info" role="alert" style="padding-top: 10px;padding-bottom: 10px;padding-left: 10px;padding-right: 5px">
                                 <div class="row">
                                     <div class="col-lg-8">
@@ -77,9 +83,9 @@
                                         <input data-ng-click="deleteForm(x)" title='删除' type="image" src="/img/delete.png" style="display: inline-block;width: 15px;height: 15px" />
                                     </div>
                                 </div>
-                               </div>
+                            </div>
                             <div class="alert alert-info" role="alert" style="text-align:center;padding-top: 5px;padding-bottom: 5px;padding-left: 10px;padding-right: 5px;margin-bottom: 0px">
-                                <button type="button" data-ng-click="create()" style="border:0;cursor:pointer;background-color:transparent;font-weight: bolder">添加新的表单</button>
+                                <button type="button" data-ng-click="createNewForm()" style="border:0;cursor:pointer;background-color:transparent;font-weight: bolder">添加新的表单</button>
                             </div>
                         </div>
                     </div>
@@ -114,18 +120,26 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-info">
+                    <div class="panel panel-info" >
                         <div class="panel-heading">
                             <h3 class="panel-title">字段详情查看</h3>
                         </div>
-                        <div class="panel-body">
-                            <div class="col-lg-3" style="position: absolute; z-index: 1;">
+                        <div class="panel-body" >
+                            <div style="position: absolute; z-index: 1;padding-left: 300px">
                                 <select  id="typeSelect" class="selectpicker" data-width="auto"  data-size="8">
                                     <option ng-repeat="x in selectType">{{x}}</option>
                                 </select>
                             </div>
                             <div style="position: relative;z-index: 0;">
-                                <table cellpadding="0" cellspacing="0" border="0" class="display" id="dataTable"></table>
+                                <table id="table" class="display" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>字段名</th>
+                                        <th>字段类型</th>
+                                    </tr>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -137,14 +151,25 @@
                             <h3 class="panel-title">字段分布图</h3>
                         </div>
                         <div class="panel-body">
-                            <div id="container" style="min-width:300px;height:300px"></div>
+                            <div id="container" style="min-width:350px;height:350px"></div>
                         </div>
                     </div>
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <h3 class="panel-title">修改日志</h3>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="max-height:265px;overflow-y: auto">
+                            <div ng-repeat="x in fieldChangeLog" class="alert alert-info" role="alert" style="padding-top: 10px;padding-bottom: 10px;padding-left: 10px;padding-right: 5px">
+                                <div class="row">
+                                    <div class="col-lg-10">
+                                        <span style="font-size: 13px;font-weight:bold;" >修改时间:</span><p style="display: inline-block;padding-left: 5px;font-size: 14px;margin-bottom: 0px">{{x.dateTime}}</p>
+                                        <span style="font-size: 13px;font-weight:bold;" >描述:</span><p style="display: inline-block;padding-left: 5px;font-size: 14px;margin-bottom: 0px">{{x.description}}</p>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input data-ng-click="lookChangeLog(x.changeLog)" title='查看详情' type="image" src="/img/look.png" style="display: inline-block;width: 20px;height: 20px" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

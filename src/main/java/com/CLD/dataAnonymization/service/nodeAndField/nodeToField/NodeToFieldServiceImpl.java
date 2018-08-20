@@ -145,7 +145,7 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
         //创建FieldChangeLog
         fieldChangeLogRepository.deleteByFormName("OpenEhr字段表");
         FieldChangeLog fieldChangeLog=new FieldChangeLog();
-        fieldChangeLog.setChangeLog("");
+        fieldChangeLog.setChangeLog("创建表单");
         fieldChangeLog.setDateTime(new Date(new java.util.Date().getTime()));
         fieldChangeLog.setFormName("OpenEhr字段表");
         fieldChangeLog.setDescription("创建表单");

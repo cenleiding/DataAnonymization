@@ -51,16 +51,16 @@ public class InitApplicationRunner implements ApplicationRunner{
     public void run(ApplicationArguments args) throws Exception {
 
         //文件初始化
-        resourcesFileInitializeService.InitializeResourcesFile();
+//        resourcesFileInitializeService.InitializeResourcesFile();
 //
 //        //字段表，Original表创建
 //        List<String> fieldList=usageFieldClassifyRepository.getFormName();
 //        if(fieldList.size()==0)
-        nodeResetService.NodeReset();
+//        nodeResetService.NodeReset();
 
         //用户初始化
-        if(userService.getUser().size()==0)
-        userService.addUser(userName,password);
+//        if(userService.getUser().size()==0)
+//        userService.addUser(userName,password);
 
     }
 
