@@ -1,4 +1,4 @@
-var app = angular.module("myFieldFormApp", ['headApp','ngDialog','createNewFormApp']);
+var app = angular.module("myFieldFormApp", ['headApp','ngDialog','createNewFormApp',,'deleteFormApp']);
 app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
 
     $scope.formNameList=[];
@@ -146,9 +146,33 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
         ngDialog.open({
             template: '/htmlTemplates/createNewForm.html',
             className: 'ngdialog-theme-default',
+            controller: 'createNewFormCtrl',
             width:540,
-            height: 400,});
+            height: 400,})
+            .closePromise.then(function(value) {
+                location.reload();
+                console.log("d:",value.$dialog.scope());
+        });
     }
+
+    $scope.deleteForm=function(formName){
+        ngDialog.open({
+            template: '/htmlTemplates/deleteForm.html',
+            className: 'ngdialog-theme-default',
+            controller: 'deleteFormCtrl',
+            resolve: {//传参
+                dep: function() {
+                    return formName;
+                }
+            },
+            width:330,
+            height: 130,})
+            .closePromise.then(function(value) {
+                location.reload();
+                console.log("d:",value.$dialog.scope());
+        });
+    }
+
 
     $scope.lookChangeLog=function(changeLog){
         alert("修改:\n"+changeLog);
@@ -161,9 +185,7 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
         getFieldChangeLogByFormName(formName);
     }
 
-    $scope.deleteForm=function(formName){
-        alert(formName);
-    }
+
 
 
     //重画datatables

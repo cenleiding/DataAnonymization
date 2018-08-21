@@ -23,6 +23,9 @@ public interface FieldClassifyListRepository extends JpaRepository<FieldClassify
     @Query(value = "select f.formName from FieldClassifyList f where f.userName=?1")
     public List<String> getFormNameByUserName(String userName);
 
+    @Query(value = "select f.formName from FieldClassifyList f")
+    public List<String> getFormName();
+
     @Transactional
     @Modifying
     public void deleteByFormName(String formName);

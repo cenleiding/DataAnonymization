@@ -64,6 +64,19 @@ app.controller("createNewFormCtrl", function($scope,$http) {
     });
 
     $scope.create=function () {
-        alert($scope.selectFormName+"......"+$scope.formNewName+"......"+$scope.description);
+        $http({
+            url:"/MyFieldForm/createForm",
+            method:"GET",
+            params:{formName:$scope.formNewName,
+                    father:$scope.selectFormName,
+                    description:$scope.description}
+        }).then(
+            function success(response) {
+                if(response.data[0]==="添加成功！")
+                    $scope.closeThisDialog()
+                else alert(response.data);
+            },
+            function error(response) {}
+        )
     }
 })

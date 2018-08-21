@@ -41,6 +41,8 @@ public interface FieldClassifyService {
 
     public Map<String,List<String>> getFieldDetailByFormName(String formName);
 
+    public Boolean createFrom(String formName,String father,String userName,String description);
+
     /**
      * 该方法将文件形式的字段表，存入数据库
      * @return

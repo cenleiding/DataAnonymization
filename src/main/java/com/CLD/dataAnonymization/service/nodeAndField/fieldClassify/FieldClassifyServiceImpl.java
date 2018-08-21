@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -241,6 +242,8 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
         usageFieldClassifyRepository.deleteByFromName(formName);
         fieldClassifyListRepository.deleteByFormName(formName);
         fieldClassifyRepository.deleteByFormName(formName);
+        fieldChangeLogRepository.deleteByFormName(formName);
+        fieldClassifyUsageCountRepository.deleteByFormName(formName);
         return true;
     }
 
@@ -313,6 +316,52 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
             if(fieldClassify.getFieldType().equals("UI")) map.get("UI").add(fieldClassify.getFieldName());
         }
         return map;
+    }
+
+
+    @Override
+    @Transactional
+    public Boolean createFrom(String formName,String father,String userName,String description){
+        try{
+            //
+            FieldClassifyList fieldClassifyList=new FieldClassifyList();
+            fieldClassifyList.setFormName(formName);
+            fieldClassifyList.setFather(father);
+            fieldClassifyList.setDescription(description);
+            fieldClassifyList.setUserName(userName);
+            fieldClassifyListRepository.save(fieldClassifyList);
+
+            //
+            FieldChangeLog fieldChangeLog=new FieldChangeLog();
+            fieldChangeLog.setDescription("创建表单");
+            fieldChangeLog.setFormName(formName);
+            fieldChangeLog.setDateTime(new java.sql.Date(new Date().getTime()));
+            fieldChangeLog.setChangeLog("创建表单");
+            fieldChangeLogRepository.save(fieldChangeLog);
+
+            //
+            FieldClassifyUsageCount fieldClassifyUsageCount=new FieldClassifyUsageCount();
+            fieldClassifyUsageCount.setFormName(formName);
+            fieldClassifyUsageCount.setCount(0);
+            fieldClassifyUsageCountRepository.save(fieldClassifyUsageCount);
+
+            //
+            List<FieldClassify> fieldClassifyList1=fieldClassifyRepository.findByFormName(father);
+            List<FieldClassify> newFieldClassifyList=new ArrayList<FieldClassify>();
+            for(FieldClassify fieldClassify:fieldClassifyList1){
+                FieldClassify newfieldClassify=new FieldClassify();
+                newfieldClassify.setFormName(formName);
+                newfieldClassify.setFieldType(fieldClassify.getFieldType());
+                newfieldClassify.setFieldName(fieldClassify.getFieldName());
+                newFieldClassifyList.add(newfieldClassify);
+            }
+            fieldClassifyRepository.saveAll(newFieldClassifyList);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
 

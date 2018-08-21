@@ -214,7 +214,7 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
             //创建FieldChangeLog
             fieldChangeLogRepository.deleteByFormName(formName);
             FieldChangeLog fieldChangeLog=new FieldChangeLog();
-            fieldChangeLog.setChangeLog("");
+            fieldChangeLog.setChangeLog("创建表单");
             fieldChangeLog.setDateTime(new Date(new java.util.Date().getTime()));
             fieldChangeLog.setFormName(formName);
             fieldChangeLog.setDescription("创建表单");

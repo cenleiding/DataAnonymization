@@ -13,8 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @description:
@@ -66,10 +65,51 @@ public class MyFieldFormController {
     public Map<String,Double> getFieldOverViewByFormName(@Param("formName")String formName){
         return fieldClassifyService.getFieldOverViewByFormName(formName);
     }
+
     @RequestMapping("/getFieldChangeLogByFormName")
     @ResponseBody
-     public List<FieldChangeLog> getFieldChangeLogByFormName(@Param("formName")String formName){
-         return fieldChangeLogRepository.findByFormName(formName);
-     }
+    public List<FieldChangeLog> getFieldChangeLogByFormName(@Param("formName")String formName){
+        return fieldChangeLogRepository.findByFormName(formName);
+    }
+
+    @RequestMapping("/deleteFieldFormByFormName")
+    @ResponseBody
+    public Boolean deleteFieldFormByFormName(@Param("formName") String formName){
+        return fieldClassifyService.deleteFromByName(formName);
+    }
+
+    @RequestMapping("/createForm")
+    @ResponseBody
+    public List<String> createForm(@Param("formName")String formName,
+                                   @Param("father")String father,
+                                   @Param("description")String description){
+        List<String> outInfo=new ArrayList<String>();
+        Set<String> formNameSet=new HashSet<String>(fieldClassifyListRepository.getFormName());
+        if(formNameSet.contains(formName)){
+            outInfo.add("表名已存在！");
+            return outInfo;
+        }
+        if(!formNameSet.contains(father)){
+            outInfo.add("模板不存在！");
+            return outInfo;
+        }
+        String userName="";
+        try{
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+                    .getAuthentication()
+                    .getPrincipal();
+            userName=userDetails.getUsername();
+        }catch(Exception e){
+            outInfo.add("非法用户名！");
+            return  outInfo;
+        }
+        if(fieldClassifyService.createFrom(formName,father,userName,description)==true){
+            outInfo.add("添加成功！");
+            return outInfo;
+        }else {
+            outInfo.add("添加失败！");
+            return outInfo;
+        }
+    }
 
 }

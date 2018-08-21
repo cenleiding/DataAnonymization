@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="" ng-controller="createNewFormCtrl">
+    <div class="row">
+        <div>
+            <span style="font-size: large;font-weight: bold;padding-left: 15px">目标：</span>
+            <span>{{formName}}</span>
+        </div>
+        <div class="col-lg-1">
+            <img src="/img/danger.png" style="height: 30px;width: 30px">
+        </div>
+        <div class="col-lg-10" style="padding-top: 5px">
+            <span style="font-size: large;font-weight: bolder;padding-left: 15px;">注意：删除后将无法复原！</span>
+        </div>
+    </div>
+    <div align="center" style="padding-top: 15px">
+        <button type="button" class="btn btn-danger" data-ng-click="delete()" >确认删除</button>
+    </div>
+</div>
+</body>
+</html>
