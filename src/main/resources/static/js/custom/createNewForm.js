@@ -43,9 +43,8 @@ app.controller("createNewFormCtrl", function($scope,$http) {
                     }
 
                 }
-
-                $("#Select").selectpicker('refresh');
                 $("#Select").selectpicker('val', $scope.selectInfo[1].formName);
+                $("#Select").selectpicker('refresh');
                 $scope.selectFormName=$scope.selectInfo[1].formName;
                 $scope.formNewName=$scope.selectInfo[1].formName+"_"+Date.parse(new Date());
             },

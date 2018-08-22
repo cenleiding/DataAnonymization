@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="" >
+    <div>
+        <div>
+            <span style="font-size: large;font-weight: bold;padding-left: 15px">表单：</span>
+            <span>{{newFormDetail.formName}}</span>
+        </div>
+        <div style="padding-top: 5px">
+            <span style="font-size: large;font-weight: bold;padding-left: 15px">更改原因：</span>
+            <input ng-value="logDescription" ng-model="logDescription" style="">
+        </div>
+        <div class="row" style="padding-top: 5px">
+            <div class="col-lg-1">
+                <img src="/img/danger.png" style="height: 30px;width: 30px">
+            </div>
+            <div class="col-lg-10" style="padding-top: 5px">
+                <span style="font-size: large;font-weight: bolder;padding-left: 15px;">注意：修改之后将无法还原！</span>
+            </div>
+        </div>
+    </div>
+    <div align="center" style="padding-top: 15px">
+        <button type="button" class="btn btn-warning" data-ng-click="delete()" >确认修改</button>
+    </div>
+</div>
+</body>
+</html>

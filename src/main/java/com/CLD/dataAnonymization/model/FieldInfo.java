@@ -13,8 +13,6 @@ public class FieldInfo {
 
     private String fieldType;
 
-    private String fromName;
-
     public String getId() {
         return id;
     }
@@ -39,11 +37,4 @@ public class FieldInfo {
         this.fieldType = fieldType;
     }
 
-    public String getFromName() {
-        return fromName;
-    }
-
-    public void setFromName(String fromName) {
-        this.fromName = fromName;
-    }
 }

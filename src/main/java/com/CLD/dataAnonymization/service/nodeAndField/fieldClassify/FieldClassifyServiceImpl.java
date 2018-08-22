@@ -175,7 +175,6 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
             FieldInfo fieldInfo=new FieldInfo();
             fieldInfo.setFieldName(usageFieldClassify.getFieldName());
             fieldInfo.setFieldType(usageFieldClassify.getFieldType());
-            fieldInfo.setFromName(usageFieldClassify.getFromName());
             fieldInfo.setId(String.valueOf(usageFieldClassify.getID()));
             fieldInfoList.add(fieldInfo);
         }
@@ -198,23 +197,7 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
     @Override
     public List<String> updataField(List<FieldInfo> fieldInfoList, String newFromName) {
         List<String> outList=new ArrayList<String>();
-        if(fieldInfoList.get(0).getFieldType()==null){
-            outList.add("请指定类型");
-            return outList;
-        }
-        if(fieldInfoList==null ||fieldInfoList.get(0).getFromName().equals("Original")) {
-            outList.add("Original表无法修改");
-            return outList;
-        }
-        List<String> fromNameList= usageFieldClassifyRepository.getFromName();
-        if(!fieldInfoList.get(0).getFromName().equals(newFromName)&&fromNameList.contains(newFromName)){
-            outList.add(newFromName+"表名重复!");
-            return outList;
-        }
-        if(newFromName.equals("null") || newFromName.replace(" ","").equals("")){
-            outList.add("表名不能为空");
-            return outList;
-        }
+
         //检验字段是否可行(不能有重复字段)
         Set<String> fields=new HashSet<String>();
         for(FieldInfo fieldInfo:fieldInfoList){
@@ -223,8 +206,6 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
         }
         if(outList.size()!=0) return outList;
         //
-        String fromName=fieldInfoList.get(0).getFromName();
-        usageFieldClassifyRepository.deleteByFromName(fromName);
         for(FieldInfo fieldInfo:fieldInfoList){
             if(fieldInfo.getFieldName()==null||fieldInfo.getFieldType()==null) continue;
             UsageFieldClassify usageFieldClassify =new UsageFieldClassify();
@@ -237,14 +218,123 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
         return outList;
     }
 
+    @Transactional
+    @Override
+    public List<String> updateFieldFormInfo(List<FieldInfo> fieldInfoList, String newFormName,String oldFormName,String newDescription,String logDescription){
+        List<String> outList=new ArrayList<String>();
+        try {
+
+            //判断新表名是否可用
+            if(!newFormName.equals(oldFormName)){
+                List<String> formNameList=fieldClassifyListRepository.getFormName();
+                if(formNameList.contains(newFormName)){
+                    outList.add("表名已存在！");
+                    return outList;
+                }
+            }
+            //判断字段是否冲突
+            Map<String,String> fieldMap=new HashMap<String,String>();
+            for(FieldInfo fieldInfo:fieldInfoList){
+                String fieldName=fieldInfo.getFieldName()
+                        .toLowerCase()
+                        .replace(".","")
+                        .replace("_","")
+                        .replace("-","")
+                        .replace("*","");
+                if(fieldMap.keySet().contains(fieldName)&&!fieldMap.get(fieldName).equals(fieldInfo.getFieldType()))
+                    outList.add("字段"+fieldInfo.getFieldName()+"冲突/r/n");
+                else fieldMap.put(fieldName,fieldInfo.getFieldType());
+            }
+            if(outList.size()!=0) return outList;
+            //存fieldChangeLog
+            String log="";
+            FieldChangeLog fieldChangeLog=new FieldChangeLog();
+            fieldChangeLog.setDescription(logDescription);
+            fieldChangeLog.setDateTime(new java.sql.Date(new Date().getTime()));
+            fieldChangeLog.setFormName(newFormName);
+            if(!newFormName.equals(oldFormName))
+                log+="重命名："+oldFormName+"-->"+newFormName+"/r/n";
+            List<FieldClassify> oldFieldClassify=fieldClassifyRepository.findByFormName(oldFormName);
+            Set<String> fieldSet=new HashSet<String>(fieldMap.keySet());
+            for(FieldClassify fieldClassify:oldFieldClassify){
+                if(!fieldMap.keySet().contains(fieldClassify.getFieldName()))
+                    log+="移除字段："+fieldClassify.getFieldName()+"/r/n";
+                else if(fieldMap.keySet().contains(fieldClassify.getFieldName())&&!fieldMap.get(fieldClassify.getFieldName()).equals(fieldClassify.getFieldType()))
+                    log+="改变字段："+fieldClassify.getFieldName()+" "+fieldClassify.getFieldType()+"-->"+fieldMap.get(fieldClassify.getFieldName())+"/r/n";
+                else
+                    fieldSet.remove(fieldClassify.getFieldName());
+            }
+            if(fieldSet.size()!=0){
+                log+="增加字段：";
+                for(String s:fieldSet)
+                    log+=s+"  ";
+            }
+            fieldChangeLog.setChangeLog(log);
+            fieldChangeLogRepository.save(fieldChangeLog);
+            List<FieldChangeLog> fieldChangeLogList=fieldChangeLogRepository.findByFormName(oldFormName);
+            fieldChangeLogRepository.deleteByFormName(oldFormName);
+            for(FieldChangeLog fieldChangeLog1:fieldChangeLogList)
+                fieldChangeLog1.setFormName(newFormName);
+            fieldChangeLogRepository.flush();
+            fieldChangeLogRepository.saveAll(fieldChangeLogList);
+            //存fieldClassify
+            List<FieldClassify> fieldClassifyList=new ArrayList<FieldClassify>();
+            for(String s:fieldMap.keySet()){
+                FieldClassify fieldClassify=new FieldClassify();
+                fieldClassify.setFieldName(s);
+                fieldClassify.setFieldType(fieldMap.get(s));
+                fieldClassify.setFormName(newFormName);
+                fieldClassifyList.add(fieldClassify);
+            }
+            fieldClassifyRepository.deleteByFormName(oldFormName);
+            fieldClassifyRepository.flush();
+            fieldClassifyRepository.saveAll(fieldClassifyList);
+            //存fieldClassfyList
+            FieldClassifyList fieldClassifyList1=fieldClassifyListRepository.findByFormName(oldFormName);
+            fieldClassifyList1.setDescription(newDescription);
+            fieldClassifyList1.setFormName(newFormName);
+            fieldClassifyListRepository.save(fieldClassifyList1);
+            //存fieldUsageCount
+            FieldClassifyUsageCount fieldClassifyUsageCount=fieldClassifyUsageCountRepository.findByFormName(oldFormName);
+            fieldClassifyUsageCountRepository.deleteByFormName(oldFormName);
+            fieldClassifyUsageCount.setFormName(newFormName);
+            fieldClassifyUsageCountRepository.flush();
+            fieldClassifyUsageCountRepository.save(fieldClassifyUsageCount);
+        }catch (Exception e){
+            e.printStackTrace();
+            outList.add("更新失败！");
+            return outList;
+        }
+        outList.add("更新成功！");
+        return outList;
+    }
+
     @Override
     public Boolean deleteFromByName(String formName) {
-        usageFieldClassifyRepository.deleteByFromName(formName);
-        fieldClassifyListRepository.deleteByFormName(formName);
-        fieldClassifyRepository.deleteByFormName(formName);
-        fieldChangeLogRepository.deleteByFormName(formName);
-        fieldClassifyUsageCountRepository.deleteByFormName(formName);
-        return true;
+        try {
+            usageFieldClassifyRepository.deleteByFromName(formName);
+            fieldClassifyListRepository.deleteByFormName(formName);
+            fieldClassifyRepository.deleteByFormName(formName);
+            fieldChangeLogRepository.deleteByFormName(formName);
+            fieldClassifyUsageCountRepository.deleteByFormName(formName);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Transactional
+    @Override
+    public Boolean deleteFormByFormNameAndUserName(String formName,String userName){
+        try {
+            fieldClassifyListRepository.deleteByFormNameAndUserName(formName,userName);
+            fieldClassifyRepository.deleteByFormName(formName);
+            fieldChangeLogRepository.deleteByFormName(formName);
+            fieldClassifyUsageCountRepository.deleteByFormName(formName);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override

@@ -35,7 +35,11 @@ public interface FieldClassifyService {
 
     public List<String> updataField(List<FieldInfo> fieldInfoList, String newFromName);
 
+    public List<String> updateFieldFormInfo(List<FieldInfo> fieldInfoList, String newFormName,String oldFormName,String newDescription,String logDescription);
+
     public Boolean deleteFromByName(String fromName);
+
+    public Boolean deleteFormByFormNameAndUserName(String formName,String userName);
 
     public Map<String,Double> getFieldOverViewByFormName(String formName);
 

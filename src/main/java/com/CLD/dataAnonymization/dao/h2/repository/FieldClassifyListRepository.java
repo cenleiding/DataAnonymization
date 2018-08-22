@@ -30,6 +30,10 @@ public interface FieldClassifyListRepository extends JpaRepository<FieldClassify
     @Modifying
     public void deleteByFormName(String formName);
 
+    @Transactional
+    @Modifying
+    public void deleteByFormNameAndUserName(String formName,String userName);
+
     public List<FieldClassifyList> findByUserName(String userName);
 
     public FieldClassifyList findByFormName(String formName);

@@ -4,13 +4,16 @@ import com.CLD.dataAnonymization.dao.h2.entity.FieldChangeLog;
 import com.CLD.dataAnonymization.dao.h2.repository.FieldChangeLogRepository;
 import com.CLD.dataAnonymization.dao.h2.repository.FieldClassifyListRepository;
 import com.CLD.dataAnonymization.model.FieldFormInfo;
+import com.CLD.dataAnonymization.model.FieldInfo;
 import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
@@ -75,7 +78,17 @@ public class MyFieldFormController {
     @RequestMapping("/deleteFieldFormByFormName")
     @ResponseBody
     public Boolean deleteFieldFormByFormName(@Param("formName") String formName){
-        return fieldClassifyService.deleteFromByName(formName);
+        try{
+            String userName="";
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+                    .getAuthentication()
+                    .getPrincipal();
+            userName=userDetails.getUsername();
+            fieldClassifyService.deleteFormByFormNameAndUserName(formName,userName);
+            return true;
+        }catch(Exception e){
+            return  false;
+        }
     }
 
     @RequestMapping("/createForm")
@@ -112,4 +125,13 @@ public class MyFieldFormController {
         }
     }
 
+    @RequestMapping(value = "/updateFieldForm",method = RequestMethod.POST)
+    @ResponseBody
+    public List<String> updateFieldForm(@Param("newFormName") String newFormName,
+                                        @Param("oldFormName") String oldFormName,
+                                        @Param("newDescription") String newDescription,
+                                        @Param("logDescription") String logDescription,
+                                        @RequestBody List<FieldInfo> fieldInfoList){
+        return fieldClassifyService.updateFieldFormInfo(fieldInfoList,newFormName,oldFormName,newDescription,logDescription);
+    }
 }

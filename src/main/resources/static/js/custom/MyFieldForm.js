@@ -1,11 +1,24 @@
-var app = angular.module("myFieldFormApp", ['headApp','ngDialog','createNewFormApp',,'deleteFormApp']);
+var app = angular.module("myFieldFormApp", ['headApp','ngDialog','createNewFormApp','deleteFormApp','saveChangeApp']);
 app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
 
     $scope.formNameList=[];
     $scope.fieldData=[];
-    $scope.dataTableSet_ALL={'ALL':[]};
+    $scope.dataTableSet_ALL={
+        'ALL':[],
+        "EI":[],
+        "QI_Link":[],
+        "QI_Geography":[],
+        "QI_DateRecord":[],
+        "QI_DateAge":[],
+        "QI_Number":[],
+        "QI_String":[],
+        "SI_Number":[],
+        "SI_String":[],
+        "UI":[]};
     $scope.selectType=["ALL","EI","QI_Link","QI_Geography","QI_DateRecord","QI_DateAge","QI_Number","QI_String","SI_Number","SI_String","UI"];
 
+    $scope.newFormName="";
+    $scope.formName="";
     $scope.description="";
     $scope.createTime="";
     $scope.lastChangeTime="";
@@ -13,6 +26,7 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
     $scope.usageCount="";
     $scope.userName="";
 
+    var typeSelect="ALL";
     var percentage={"SUM":0}
     var Accounting=[
         ["EI",0],
@@ -31,6 +45,12 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
 
     var table=$('#table').DataTable();
 
+    $( document ).ready(function() {
+        $('#typeSelect').selectpicker('val', 'ALL');
+        $('#typeSelect').selectpicker('refresh');
+        datatableDraw();
+        createcharts();
+    });
 
 
     (function () {
@@ -51,8 +71,35 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
     })()
 
     $("#typeSelect").on('changed.bs.select',function (e,c){
-        $scope.fieldData=[]
+        updateForm();
+        typeSelect=$scope.selectType[c];
+        datatableDraw($scope.selectType[c]);
     })
+
+    var updateForm=function () {
+        if (typeSelect==="ALL"){
+            $scope.dataTableSet_ALL={
+                'ALL':[],
+                "EI":[],
+                "QI_Link":[],
+                "QI_Geography":[],
+                "QI_DateRecord":[],
+                "QI_DateAge":[],
+                "QI_Number":[],
+                "QI_String":[],
+                "SI_Number":[],
+                "SI_String":[],
+                "UI":[]};
+        }
+        $scope.dataTableSet_ALL[typeSelect]=[]
+        $scope.dataTableSet_ALL["ALL"]=[]
+        table.data().each(function (p) {
+            $scope.dataTableSet_ALL[p.fieldType].push(p);
+        });
+        for(var i in $scope.dataTableSet_ALL){
+            $scope.dataTableSet_ALL["ALL"]=$scope.dataTableSet_ALL["ALL"].concat($scope.dataTableSet_ALL[i])
+        }
+    }
 
     var getFieldFormInfoByFormName=function (formName) {
         $http(
@@ -155,6 +202,7 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
         });
     }
 
+
     $scope.deleteForm=function(formName){
         ngDialog.open({
             template: '/htmlTemplates/deleteForm.html',
@@ -173,19 +221,42 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
         });
     }
 
+    $scope.saveChange=function () {
+        updateForm();
+        var newFormDetail={}
+        newFormDetail.newDescription=$scope.description;
+        newFormDetail.oldFormName=$scope.formName;
+        newFormDetail.newFormName=$scope.newFormName;
+        newFormDetail.field=$scope.dataTableSet_ALL["ALL"];
+        ngDialog.open({
+            template: '/htmlTemplates/saveChange.html',
+            className: 'ngdialog-theme-default',
+            controller: 'saveChangeCtrl',
+            resolve: {//传参
+                dep: function() {
+                    return  newFormDetail;
+                }
+            },
+            width:350,
+            height: 180,})
+            .closePromise.then(function(value) {
+            location.reload();
+            console.log("d:",value.$dialog.scope());
+        });
+    }
 
     $scope.lookChangeLog=function(changeLog){
         alert("修改:\n"+changeLog);
     }
 
     $scope.editForm=function (formName) {
+        $scope.newFormName=formName;
+        $scope.formName=formName;
         getFieldFormInfoByFormName(formName);
         getFieldDetailByFormName(formName);
         getFieldOverViewByFormName(formName);
         getFieldChangeLogByFormName(formName);
     }
-
-
 
 
     //重画datatables
@@ -231,9 +302,7 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
             },
             buttons: [
                 { extend: "create", editor: editor,text: "添加" },
-                { extend: "edit",   editor: editor,text: "编辑" },
                 { extend: "remove", editor: editor,text: "删除" },
-                { text: "保存",action:function(){$scope.dialogShow();}}
             ]
         });
 
@@ -280,10 +349,6 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
             }]
         });
     };
-
-
-    datatableDraw();
-    createcharts();
 
 
 })
