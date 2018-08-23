@@ -1,4 +1,6 @@
-package com.CLD.dataAnonymization.util.deidentifier;
+package com.CLD.dataAnonymization.util.deidentifier.algorithm;
+
+import com.CLD.dataAnonymization.util.deidentifier.DataHandle;
 
 import java.util.ArrayList;
 import java.util.HashMap;

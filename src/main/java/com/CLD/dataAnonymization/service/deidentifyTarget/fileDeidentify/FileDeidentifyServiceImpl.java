@@ -1,9 +1,12 @@
 package com.CLD.dataAnonymization.service.deidentifyTarget.fileDeidentify;
 
+import com.CLD.dataAnonymization.model.AnonymizeConfigure;
 import com.CLD.dataAnonymization.model.FieldInfo;
 import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
+import com.CLD.dataAnonymization.util.deidentifier.Anonymizer;
+import com.CLD.dataAnonymization.util.deidentifier.Configuration;
+import com.CLD.dataAnonymization.util.deidentifier.DataHandle;
 import com.CLD.dataAnonymization.util.deidentifier.io.FileResolve;
-import com.CLD.dataAnonymization.util.deidentifier.IOAdapter;
 import com.CLD.dataAnonymization.util.deidentifier.io.ZipCompressor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,14 +33,9 @@ public class FileDeidentifyServiceImpl implements FileDeidentifyService {
     FieldClassifyService fieldClassifyService;
 
     @Override
-    public String FileDeidentify(MultipartHttpServletRequest re, HttpServletRequest rq, String level) throws Exception {
-        return FileDeidentify(re,rq,level,"Original");
-    }
-
-    @Override
-    public String FileDeidentify(MultipartHttpServletRequest re, HttpServletRequest rq, String level,String fieldFromName) throws Exception {
-
-        List<FieldInfo> fieldInfoList=fieldClassifyService.getFieldByFromName(fieldFromName);
+    public String FileDeidentify(MultipartHttpServletRequest re, HttpServletRequest rq, AnonymizeConfigure anonymizeConfigure) throws Exception {
+        //准备匿名字段表
+        List<FieldInfo> fieldInfoList=fieldClassifyService.getFieldByFromName(anonymizeConfigure.getFieldFormName());
         ArrayList<ArrayList<String>> fieldList=new ArrayList<ArrayList<String>>();
         for(FieldInfo fieldInfo:fieldInfoList){
             ArrayList<String> field=new ArrayList<String>();
@@ -45,53 +43,66 @@ public class FileDeidentifyServiceImpl implements FileDeidentifyService {
             field.add(fieldInfo.getFieldType());
             fieldList.add(field);
         }
+
+        //准备文件暂存路径
         String time=String.valueOf(System.currentTimeMillis());
         String savePath =rq.getSession().getServletContext().getRealPath("/identityFiles/"+time);
         FileResolve.createFile(savePath);
 
+        //匿名化配置
+        Configuration configuration=new Configuration();
+        if(anonymizeConfigure.getLevel().equals("l"))
+            configuration.setLevel(Configuration.AnonymousLevel.Level1);
+        else
+            configuration.setLevel(Configuration.AnonymousLevel.Level2);
+        configuration.setEncryptPassword(anonymizeConfigure.getEncryptPassword());
+        configuration.setK_big(Integer.valueOf(anonymizeConfigure.getK_big()));
+        configuration.setK_small(Integer.valueOf(anonymizeConfigure.getK_small()));
+        configuration.setMicroaggregation(Integer.valueOf(anonymizeConfigure.getMicroaggregation()));
+        configuration.setNoiseScope_big(Double.valueOf(anonymizeConfigure.getNoiseScope_big()));
+        configuration.setNoiseScope_small(Double.valueOf(anonymizeConfigure.getNoiseScope_small()));
+        configuration.setSuppressionLimit_level1(Double.valueOf(anonymizeConfigure.getSuppressionLimit_level1()));
+        configuration.setSuppressionLimit_level2(Double.valueOf(anonymizeConfigure.getSuppressionLimit_level2()));
+        configuration.setT(Double.valueOf(anonymizeConfigure.getT()));
+
+        //文件处理
         MultiValueMap<String, MultipartFile> files=re.getMultiFileMap();
         for(String key:files.keySet()) {
             MultipartFile file = files.getFirst(key);
             String filename = file.getOriginalFilename();
             if(filename.endsWith(".csv")){
-                ArrayList<ArrayList<String>> data=new ArrayList<ArrayList<String>>();
-                data= FileResolve.readerCsv(file.getInputStream());
-                if(level.toLowerCase().equals("s"))
-                    data= IOAdapter.ToSafeHarbor(data,fieldList);
-                if(level.toLowerCase().equals("l"))
-                    data= IOAdapter.ToLimitedSet(data,fieldList);
-                FileResolve.writerCsv(savePath+"\\"+level+filename,data);
+                DataHandle dataHandle=new DataHandle(FileResolve.readerCsv(file.getInputStream()));
+                Anonymizer anonymizer=new Anonymizer(dataHandle,configuration);
+                anonymizer.anonymize();
+                FileResolve.writerCsv(savePath+"\\"+anonymizeConfigure.getLevel()+filename,dataHandle.getData());
             }
             if(filename.endsWith(".xls")){
-                ArrayList<ArrayList<ArrayList<String>>> data=new ArrayList<ArrayList<ArrayList<String>>>();
-                data=FileResolve.readerXls(file.getInputStream());
-                data=clearData(data);
-                if(level.toLowerCase().equals("s"))
-                    for (int i = 0; i <data.size()-1 ; i++)
-                        data.set(i, IOAdapter.ToSafeHarbor(data.get(i),fieldList));
-                if(level.toLowerCase().equals("l"))
-                    for (int i = 0; i <data.size()-1 ; i++)
-                        data.set(i, IOAdapter.ToLimitedSet(data.get(i),fieldList));
-                FileResolve.writerXlsx(savePath+"\\"+level+filename+"x",data);
+                ArrayList<ArrayList<ArrayList<String>>> data=FileResolve.readerXls(file.getInputStream());
+                for (int i = 0; i <data.size()-1 ; i++){
+                    DataHandle dataHandle=new DataHandle(data.get(i));
+                    Anonymizer anonymizer=new Anonymizer(dataHandle,configuration);
+                    anonymizer.anonymize();
+                    data.set(i,dataHandle.getData());
+                }
+                FileResolve.writerXlsx(savePath+"\\"+anonymizeConfigure.getLevel()+filename+"x",data);
             }
             if(filename.endsWith(".xlsx")){
-                ArrayList<ArrayList<ArrayList<String>>> data=new ArrayList<ArrayList<ArrayList<String>>>();
-                data=FileResolve.readerXlsx(file.getInputStream());
-                data=clearData(data);
-                if(level.toLowerCase().equals("s"))
-                    for (int i = 0; i <data.size()-1 ; i++)
-                        data.set(i, IOAdapter.ToSafeHarbor(data.get(i),fieldList));
-                if(level.toLowerCase().equals("l"))
-                    for (int i = 0; i <data.size()-1 ; i++)
-                        data.set(i, IOAdapter.ToLimitedSet(data.get(i),fieldList));
-                FileResolve.writerXlsx(savePath+"\\"+level+filename,data);
+                ArrayList<ArrayList<ArrayList<String>>> data=FileResolve.readerXlsx(file.getInputStream());
+                for (int i = 0; i <data.size()-1 ; i++){
+                    DataHandle dataHandle=new DataHandle(data.get(i));
+                    Anonymizer anonymizer=new Anonymizer(dataHandle,configuration);
+                    anonymizer.anonymize();
+                    data.set(i,dataHandle.getData());
+                }
+                FileResolve.writerXlsx(savePath+"\\"+anonymizeConfigure.getLevel()+filename,data);
             }
         }
 
+        //处理文件打包存储
         ZipCompressor zc = new ZipCompressor(savePath+".zip");
         zc.compress(savePath);
         FileResolve.deleteFile(savePath);
-        //延时300秒清空zip 文件
+        //延时1天清空zip 文件
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
@@ -101,31 +112,29 @@ public class FileDeidentifyServiceImpl implements FileDeidentifyService {
             }
         };
         Timer timer = new Timer();
-        long delay = 300*1000;
+        long delay = 24*60*60*1000;
         timer.schedule(task, delay);
 
         return "/identityFiles/"+time+".zip";
     }
 
-    /**
-     * 对数据进行整理，补填空缺，去除空行
-     * @param data
-     * @return
-     */
-    private  ArrayList<ArrayList<ArrayList<String>>> clearData(ArrayList<ArrayList<ArrayList<String>>> data){
-        for(int i=0;i<data.size()-1;i++){
-            for(int j=0;j<data.get(i).size();j++){
-                boolean isEnpty=true;
-                for(int k=0;k<data.get(i).get(0).size();k++){
-                    if(data.get(i).get(j).size()<=k) data.get(i).get(j).add("");
-                    if(data.get(i).get(j).get(k)!="") isEnpty=false;
-                }
-                if(isEnpty) {//去除空行
-                    data.get(i).remove(j);
-                    j--;
-                }
-            }
-        }
-        return data;
+    @Override
+    public AnonymizeConfigure getAnonymizeConfigure() {
+        AnonymizeConfigure anonymizeConfigure=new AnonymizeConfigure();
+        Configuration configuration=new Configuration();
+        anonymizeConfigure.setEncryptPassword(configuration.getEncryptPassword());
+        anonymizeConfigure.setFieldFormName("");
+        anonymizeConfigure.setK_big(String.valueOf(configuration.getK_big()));
+        anonymizeConfigure.setK_small(String.valueOf(configuration.getK_small()));
+        anonymizeConfigure.setLevel(String.valueOf(configuration.getLevel()));
+        anonymizeConfigure.setFieldFormName("");
+        anonymizeConfigure.setMicroaggregation(String.valueOf(configuration.getMicroaggregation()));
+        anonymizeConfigure.setNoiseScope_big(String.valueOf(configuration.getNoiseScope_big()));
+        anonymizeConfigure.setNoiseScope_small(String.valueOf(configuration.getNoiseScope_small()));
+        anonymizeConfigure.setSuppressionLimit_level1(String.valueOf(configuration.getSuppressionLimit_level1()));
+        anonymizeConfigure.setSuppressionLimit_level2(String.valueOf(configuration.getSuppressionLimit_level2()));
+        anonymizeConfigure.setT(String.valueOf(configuration.getT()));
+        return null;
     }
+
 }

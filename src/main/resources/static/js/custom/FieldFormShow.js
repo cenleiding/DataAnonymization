@@ -14,6 +14,7 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
     $scope.usageCount=""
     $scope.userName=""
 
+    var select = $("#Select");
     var percentage={"SUM":0}
     var Accounting=[
         ["EI",0],
@@ -36,35 +37,20 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
             }
         ).then(
             function successCallback(response){
-                var select = $("#Select");
                 var formMap=response.data;
                 var userNameMap={};
                 var info;
                 for(var i in formMap)
                     userNameMap[formMap[i].userName]="";
+                select.append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>系统样本</option>");
+                $scope.selectInfo.push("");
+                tra("",formMap)
                 for(var i in userNameMap){
-                    var userName=i;
-                    if (userName=="") userName="系统样本";
-                    select.append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>"+userName+"</option>");
+                    if (i=="") continue;
+                    select.append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>"+i+"</option>");
                     $scope.selectInfo.push(i);
-                    for(var j in formMap){
-                        if(formMap[j].userName==(i)){
-                            select.append("<option value='"+formMap[j].formName+"' data-icon='glyphicon glyphicon-file' data-subtext=("+formMap[j].description+")>"
-                                +formMap[j].formName+ "</option>");
-                            var info={};
-                            info['formName']=formMap[j].formName;
-                            info['description']=formMap[j].description;
-                            info['createTime']=formMap[j].createTime;
-                            info['lastChangeTime']=formMap[j].lastChangeTime;
-                            info['father']=formMap[j].father;
-                            info['usageCount']=formMap[j].usageCount;
-                            info['userName']=formMap[j].userName;
-                            $scope.selectInfo.push(info);
-                        }
-                    }
-
+                    tra(i,formMap)
                 }
-
                 $("#Select").selectpicker('refresh');
                 $("#Select").selectpicker('val', $scope.selectInfo[1].formName);
                 refresh(1);
@@ -73,8 +59,25 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
                 alert("获取列表失败！")
             }
         )
-
     })()
+
+    var tra=function (i,formMap) {
+        for(var j in formMap){
+            if(formMap[j].userName==(i)){
+                select.append("<option value='"+formMap[j].formName+"' data-icon='glyphicon glyphicon-file' data-subtext=("+formMap[j].description+")>"
+                    +formMap[j].formName+ "</option>");
+                var info={};
+                info['formName']=formMap[j].formName;
+                info['description']=formMap[j].description;
+                info['createTime']=formMap[j].createTime;
+                info['lastChangeTime']=formMap[j].lastChangeTime;
+                info['father']=formMap[j].father;
+                info['usageCount']=formMap[j].usageCount;
+                info['userName']=formMap[j].userName;
+                $scope.selectInfo.push(info);
+            }
+        }
+    }
 
     //用于刷新表单和图
     var refresh=function (c) {

@@ -1,5 +1,5 @@
-var app = angular.module("FileProcessingApp", ['ngFileUpload','headApp']);
-app.controller("FileProcessingCtrl",function ($scope, Upload,$http,$timeout) {
+var app = angular.module("FileProcessingApp", ['ngFileUpload',,'ngDialog','headApp','anonymizeConfigureApp']);
+app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog) {
 
     $scope.progress = 0;
     $scope.uploadstate=false;
@@ -9,36 +9,68 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,$timeout) {
     $scope.fromName="";
     $scope.selectTypelevel="s";
     $scope.selectFromName="Original";
+    $scope.selectInfo=[];
+
+    var select = $("#fromName");
 
     (function (){
-        $http({
-            method:'GET',
-            url:"/getFromNameList"
-        }).then(
-            function successCallback (response) {
-                $scope.fromName=response.data;
-                var select = $("#fromName");
-                for (var i = 0; i < $scope.fromName.length; i++) {
-                    select.append("<option value='"+$scope.fromName[i]+"'>"
-                        + $scope.fromName[i] + "</option>");
+        $http(
+        {
+            method:"GET",
+            url:"/getFieldFormInfo"
+        }
+        ).then(
+            function successCallback(response){
+                var formMap=response.data;
+                var userNameMap={};
+                var info;
+                for(var i in formMap)
+                    userNameMap[formMap[i].userName]="";
+                select.append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>系统样本</option>");
+                $scope.selectInfo.push("");
+                tra("",formMap)
+                for(var i in userNameMap){
+                    if (i=="") continue;
+                    select.append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>"+i+"</option>");
+                    $scope.selectInfo.push(i);
+                    tra(i,formMap)
                 }
-                $('#fromName').selectpicker('val','Original');
-                $('.selectpicker').selectpicker('refresh');
+                $("#fromName").selectpicker('refresh');
+                $("#fromName").selectpicker('val', $scope.selectInfo[1].formName);
             },
-            function errorCallback (response) {
-                console.log("获取字段表单失败！");
+            function errorCallback(response){
+                alert("获取列表失败！")
             }
-        );
+        )
         $("[data-toggle='popover']").popover();
     })();
 
+
+    var tra=function (i,formMap) {
+        for(var j in formMap){
+            if(formMap[j].userName==(i)){
+                select.append("<option value='"+formMap[j].formName+"' data-icon='glyphicon glyphicon-file' data-subtext=("+formMap[j].description+")>"
+                    +formMap[j].formName+ "</option>");
+                var info={};
+                info['formName']=formMap[j].formName;
+                info['description']=formMap[j].description;
+                info['createTime']=formMap[j].createTime;
+                info['lastChangeTime']=formMap[j].lastChangeTime;
+                info['father']=formMap[j].father;
+                info['usageCount']=formMap[j].usageCount;
+                info['userName']=formMap[j].userName;
+                $scope.selectInfo.push(info);
+            }
+        }
+    }
+
     $("#typeLevel").change(function(evt){
-        if(evt.currentTarget.value==="l") alert("注意：当前选择方式为有限数据集！处理文件只供内部使用！！")
+        if(evt.currentTarget.value==="l") alert("注意：当前选择为研究性数据！处理文件只供内部使用！！")
         $scope.progress= 0;
     });
 
     $("#fromName").on('changed.bs.select', function (e,c) {
-        $scope.selectFromName=$scope.fromName[c];
+        $scope.selectFromName=$scope.selectInfo[c];
     });
 
     $(":file").change(function(){
@@ -65,7 +97,7 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,$timeout) {
         $scope.loadingImg="img/file_loading.gif";
         file.upload =
             Upload.upload({
-                url: '/filecontent',
+                url: '/FileProcessing/filecontent',
                 data: {level:$scope.selectTypelevel,
                        fieldFromName:$scope.selectFromName},
                 file: file
@@ -82,4 +114,16 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,$timeout) {
         });
     }
 
+    $scope.anonymizeConfigure=function () {
+        ngDialog.open({
+            template: '/htmlTemplates/AnonymizeConfigure.html',
+            className: 'ngdialog-theme-default',
+            controller: 'anonymizeConfigureCtrl',
+            width:700,
+            height: 500,})
+            .closePromise.then(function(value) {
+            location.reload();
+            console.log("d:",value.$dialog.scope());
+        });
+    }
 })

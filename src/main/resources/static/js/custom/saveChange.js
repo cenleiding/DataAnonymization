@@ -4,7 +4,7 @@ app.controller("saveChangeCtrl", function($scope,$http,dep) {
 $scope.newFormDetail=dep;
 $scope.logDescription=""
 
-    $scope.delete=function(){
+    $scope.saveChange=function(){
 
         $http(
             {
@@ -26,7 +26,7 @@ $scope.logDescription=""
                     alert(response.data)
             },
             function error() {
-                alert("删除失败！")
+                alert("更新失败！")
             }
         )
 

@@ -210,7 +210,7 @@ public class Hippa {
                                  int col){
         for(int i=1;i<data.size();i++){
             deleteInfo.get(i).add(data.get(i).get(col));
-            data.get(i).set(col,EncryptUtil.encryptMode(data.get(i).get(col)));
+//            data.get(i).set(col,EncryptUtil.encryptMode(data.get(i).get(col)));
         }
     }
 

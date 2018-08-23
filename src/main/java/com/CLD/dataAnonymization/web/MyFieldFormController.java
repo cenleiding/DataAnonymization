@@ -36,7 +36,7 @@ public class MyFieldFormController {
     @Autowired
     FieldChangeLogRepository fieldChangeLogRepository;
 
-    @RequestMapping("/MyFieldForm")
+    @RequestMapping("")
     public String myFieldForm(){
         return "MyFieldForm";
     }

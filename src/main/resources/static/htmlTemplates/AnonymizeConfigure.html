@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div style="padding-left: 20px;width: 500px">
+    <h2 class="form-signin-heading">属性配置</h2>
+    <hr style="color: black;background-color: black;border-color: black;width: 500px;margin-left: 0px;margin-right: 0px">
+    <ul class="nav nav-tabs">
+        <li role="presentation" ng-class="{active:showFlg}"><a data-ng-click="showFlg=!showFlg">匿名方式一</a></li>
+        <li role="presentation" ng-class="{active:!showFlg}"><a data-ng-click="showFlg=!showFlg">匿名方式二</a></li>
+    </ul>
+    <div ng-show="showFlg">
+        <div>
+            <span>加密密码：</span>
+            <input type="text" ng-model="config.encryptPassword" style="height: inherit">
+        </div>
+        <div>
+            <span>等价类K值：</span>
+        </div>
+    </div>
+    <div ng-show="!showFlg">
+        2222
+    </div>
+</div>
+
+</body>
+</html>

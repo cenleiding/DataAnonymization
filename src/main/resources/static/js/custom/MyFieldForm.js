@@ -25,6 +25,7 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
     $scope.father="";
     $scope.usageCount="";
     $scope.userName="";
+    $scope.ifedit=false;
 
     var typeSelect="ALL";
     var percentage={"SUM":0}
@@ -250,6 +251,7 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
     }
 
     $scope.editForm=function (formName) {
+        $scope.ifedit=true;
         $scope.newFormName=formName;
         $scope.formName=formName;
         getFieldFormInfoByFormName(formName);

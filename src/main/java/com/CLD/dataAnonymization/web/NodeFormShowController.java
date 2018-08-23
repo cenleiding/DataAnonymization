@@ -1,27 +1,48 @@
 package com.CLD.dataAnonymization.web;
 
+import com.CLD.dataAnonymization.model.ArchetypeNodeInfo;
 import com.CLD.dataAnonymization.model.ExpandNodeInfo;
 import com.CLD.dataAnonymization.service.nodeAndField.nodeClassify.ExpandNodeClassifyService;
+import com.CLD.dataAnonymization.service.nodeAndField.nodeClassify.OpenEhrNodeClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
 /**
- * 该控制器用于控制拓展节点
+ * @description:
  * @Author CLD
- * @Date 2018/6/5 10:56
- **/
+ * @Date 2018/8/23 12:16
+ */
 @Controller
-public class ExpandNodeModifyController {
+@RequestMapping("/NodeFormShow")
+public class NodeFormShowController {
+
+    @Autowired
+    OpenEhrNodeClassifyService openEhrNodeClassifyService;
 
     @Autowired
     ExpandNodeClassifyService expandNodeClassifyService;
 
-    @RequestMapping("/ExpandNodeModify")
-    public String expandNodeModify(){
-        return "ExpandNodeModify";
+    @RequestMapping("")
+    public String NodeFormShow(){
+        return "NodeFormShow";
+    }
+
+    @RequestMapping(value = "/GetArchetypeName", method = RequestMethod.GET)
+    @ResponseBody
+    public List<String> getArchetypeName(){
+        return openEhrNodeClassifyService.getArchetypeName();
+    }
+
+    @RequestMapping(value = "/GetArchetypeNodeInfoByName",method = RequestMethod.GET)
+    @ResponseBody
+    public List<ArchetypeNodeInfo> getArchetypeNodeInfoByName(@RequestParam("archetypeName") String archetypeName){
+        return openEhrNodeClassifyService.getArchetypeNodeInfoByName(archetypeName);
     }
 
     @RequestMapping(value = "/getExpandFileName",method = RequestMethod.GET)
@@ -43,11 +64,4 @@ public class ExpandNodeModifyController {
         return expandNodeClassifyService.getNodeInfoByName(fileName,fromName);
     }
 
-    @RequestMapping(value = "/updataExpandNodeInfo",method = RequestMethod.POST)
-    @ResponseBody
-    public List<String> updataNodeInfo(@RequestBody List<ExpandNodeInfo> expandNodeInfoList,
-                                       @RequestParam("fileName") String fileName,
-                                       @RequestParam("fromName") String fromName){
-        return expandNodeClassifyService.updataNodeInfo(expandNodeInfoList,fileName,fromName);
-    }
 }
