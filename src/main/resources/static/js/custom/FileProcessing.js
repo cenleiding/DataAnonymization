@@ -8,8 +8,8 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog) {
     $scope.loadingImg="img/zip.png";
     $scope.fromName="";
     $scope.selectTypelevel="s";
-    $scope.selectFromName="Original";
     $scope.selectInfo=[];
+    $scope.config={};
 
     var select = $("#fromName");
 
@@ -37,9 +37,25 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog) {
                 }
                 $("#fromName").selectpicker('refresh');
                 $("#fromName").selectpicker('val', $scope.selectInfo[1].formName);
+                $scope.config.fieldFormName=$scope.selectInfo[1].formName;
+                $scope.config.level="Level1";
             },
             function errorCallback(response){
                 alert("获取列表失败！")
+            }
+        )
+        //获取配置
+        $http(
+            {
+                url:"/FileProcessing/getAnonymizeConfigure",
+                method:"GET"
+            }
+        ).then(
+            function success(response) {
+                $scope.config=response.data;
+            },
+            function error() {
+                alert("获取配置失败！")
             }
         )
         $("[data-toggle='popover']").popover();
@@ -65,12 +81,13 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog) {
     }
 
     $("#typeLevel").change(function(evt){
-        if(evt.currentTarget.value==="l") alert("注意：当前选择为研究性数据！处理文件只供内部使用！！")
+        if(evt.currentTarget.value==="Level1") alert("注意：当前选择为研究性数据！处理文件只供内部使用！！");
+        $scope.config.level=evt.currentTarget.value;
         $scope.progress= 0;
     });
 
     $("#fromName").on('changed.bs.select', function (e,c) {
-        $scope.selectFromName=$scope.selectInfo[c];
+        $scope.config.fieldFormName=$scope.selectInfo[c].formName;
     });
 
     $(":file").change(function(){
@@ -98,14 +115,13 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog) {
         file.upload =
             Upload.upload({
                 url: '/FileProcessing/filecontent',
-                data: {level:$scope.selectTypelevel,
-                       fieldFromName:$scope.selectFromName},
+                data: $scope.config,
                 file: file
             });
 
         file.upload.then(function (response) {
             $scope.loadingImg="img/zip.png";
-            $scope.path=response.data[0];
+            $scope.path=response.data.url;
         }, function (response) {
             if (response.status > 0)
                 $scope.errorMsg = response.status + ': ' + response.data;
@@ -119,11 +135,15 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog) {
             template: '/htmlTemplates/AnonymizeConfigure.html',
             className: 'ngdialog-theme-default',
             controller: 'anonymizeConfigureCtrl',
-            width:700,
-            height: 500,})
+            resolve: {//传参
+                dep: function() {
+                    return  $scope.config;
+                }
+            },
+            width:450,
+            height: 550,})
             .closePromise.then(function(value) {
-            location.reload();
-            console.log("d:",value.$dialog.scope());
+                $scope.config=value.$dialog.scope().config;
         });
     }
 })

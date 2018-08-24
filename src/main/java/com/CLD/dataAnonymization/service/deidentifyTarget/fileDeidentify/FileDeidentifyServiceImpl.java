@@ -16,10 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * 该类用于处理文件类型数据
@@ -33,7 +30,21 @@ public class FileDeidentifyServiceImpl implements FileDeidentifyService {
     FieldClassifyService fieldClassifyService;
 
     @Override
-    public String FileDeidentify(MultipartHttpServletRequest re, HttpServletRequest rq, AnonymizeConfigure anonymizeConfigure) throws Exception {
+    public String FileDeidentify(MultipartHttpServletRequest re, HttpServletRequest rq) throws Exception {
+        //获得配置文件
+        Map<String,String[]> parameterMap=re.getParameterMap();
+        AnonymizeConfigure anonymizeConfigure=new AnonymizeConfigure();
+        anonymizeConfigure.setFieldFormName(parameterMap.get("fieldFormName")[0]);
+        anonymizeConfigure.setLevel(parameterMap.get("level")[0]);
+        anonymizeConfigure.setEncryptPassword(parameterMap.get("encryptPassword")[0]);
+        anonymizeConfigure.setK_big(parameterMap.get("k_big")[0]);
+        anonymizeConfigure.setK_small(parameterMap.get("k_small")[0]);
+        anonymizeConfigure.setMicroaggregation(parameterMap.get("microaggregation")[0]);
+        anonymizeConfigure.setNoiseScope_big(parameterMap.get("noiseScope_big")[0]);
+        anonymizeConfigure.setNoiseScope_small(parameterMap.get("noiseScope_small")[0]);
+        anonymizeConfigure.setSuppressionLimit_level1(parameterMap.get("suppressionLimit_level1")[0]);
+        anonymizeConfigure.setSuppressionLimit_level2(parameterMap.get("suppressionLimit_level2")[0]);
+        anonymizeConfigure.setT(parameterMap.get("t")[0]);
         //准备匿名字段表
         List<FieldInfo> fieldInfoList=fieldClassifyService.getFieldByFromName(anonymizeConfigure.getFieldFormName());
         ArrayList<ArrayList<String>> fieldList=new ArrayList<ArrayList<String>>();
@@ -51,7 +62,7 @@ public class FileDeidentifyServiceImpl implements FileDeidentifyService {
 
         //匿名化配置
         Configuration configuration=new Configuration();
-        if(anonymizeConfigure.getLevel().equals("l"))
+        if(anonymizeConfigure.getLevel().equals("Level1"))
             configuration.setLevel(Configuration.AnonymousLevel.Level1);
         else
             configuration.setLevel(Configuration.AnonymousLevel.Level2);
@@ -127,14 +138,13 @@ public class FileDeidentifyServiceImpl implements FileDeidentifyService {
         anonymizeConfigure.setK_big(String.valueOf(configuration.getK_big()));
         anonymizeConfigure.setK_small(String.valueOf(configuration.getK_small()));
         anonymizeConfigure.setLevel(String.valueOf(configuration.getLevel()));
-        anonymizeConfigure.setFieldFormName("");
         anonymizeConfigure.setMicroaggregation(String.valueOf(configuration.getMicroaggregation()));
         anonymizeConfigure.setNoiseScope_big(String.valueOf(configuration.getNoiseScope_big()));
         anonymizeConfigure.setNoiseScope_small(String.valueOf(configuration.getNoiseScope_small()));
         anonymizeConfigure.setSuppressionLimit_level1(String.valueOf(configuration.getSuppressionLimit_level1()));
         anonymizeConfigure.setSuppressionLimit_level2(String.valueOf(configuration.getSuppressionLimit_level2()));
         anonymizeConfigure.setT(String.valueOf(configuration.getT()));
-        return null;
+        return anonymizeConfigure;
     }
 
 }

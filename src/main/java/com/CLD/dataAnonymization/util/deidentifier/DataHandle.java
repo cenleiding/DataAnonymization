@@ -99,7 +99,7 @@ public class DataHandle {
      * @param data
      */
     public DataHandle(ArrayList<ArrayList<String>> data){
-        setData(data);
+        this.data = data;
         dataClear();
         setHeader();
     }
@@ -132,6 +132,7 @@ public class DataHandle {
      * @return
      */
     public Boolean dataClear(){
+
         //方阵补全
         int max=0;
         for(int i=0;i<data.size();i++)
@@ -155,6 +156,9 @@ public class DataHandle {
                     if(!data.get(i).get(j).equals("")) sign=false;
                 if(sign) data.remove(i);
             }
+            //防止为全空数据集
+            if (data.size()==0)
+                data=new ArrayList<ArrayList<String>>(){{add(new ArrayList<String>(){{add("NULL");}});}};
             dataTranspose();
         }
 
