@@ -19,6 +19,7 @@ import java.util.Set;
  * @Date 2018/4/16 15:26
  **/
 @Controller
+@RequestMapping("/ApiUsage")
 public class ApiUsageController {
 
     @Autowired

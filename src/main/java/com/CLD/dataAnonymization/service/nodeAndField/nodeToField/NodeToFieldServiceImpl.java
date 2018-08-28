@@ -3,7 +3,6 @@ package com.CLD.dataAnonymization.service.nodeAndField.nodeToField;
 import com.CLD.dataAnonymization.dao.h2.entity.*;
 import com.CLD.dataAnonymization.dao.h2.repository.*;
 import com.CLD.dataAnonymization.model.TemplateNodeInfo;
-import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -39,19 +38,10 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
     private String clever_template_mapping;
 
     @Autowired
-    ArchetypeBasisFieldClassifyRepository archetypeBasisFieldClassifyRepository;
-
-    @Autowired
     ArchetypeNodeClassifyRepository archetypeNodeClassifyRepository;
 
     @Autowired
     ExpandNodeClassifyRepository expandNodeClassifyRepository;
-
-    @Autowired
-    ExpandBasisFieldClassifyRepository expandBasisFieldClassifyRepository;
-
-    @Autowired
-    FieldClassifyService fieldClassifyService;
 
     @Autowired
     FieldClassifyRepository fieldClassifyRepository;
@@ -92,7 +82,7 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
                     .replace("-","")
                     .replace("*","");
             String ch_field=nodeList.get(i).getCh_name();
-            if(ch_field!=null) ch_field=ch_field
+            if(ch_field!=null) ch_field=ch_field.toLowerCase()
                     .replace(".","")
                     .replace("_","")
                     .replace("-","")
@@ -123,6 +113,7 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
 
         //添加FieldClassifyList
         fieldClassifyListRepository.deleteByFormName("OpenEhr字段表");
+        fieldClassifyListRepository.flush();
         FieldClassifyList fieldClassifyList=new FieldClassifyList();
         fieldClassifyList.setUserName("");
         fieldClassifyList.setDescription("这是基于openEhr的数据库字段分类！");
@@ -132,18 +123,22 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
 
         //存入FieldClassify表
         fieldClassifyRepository.deleteByFormName("OpenEhr字段表");
+        fieldClassifyRepository.flush();
+        List<FieldClassify> fieldClassifyList1=new ArrayList<FieldClassify>();
         for (String key:fieldMap.keySet()){
             if(fieldMap.get(key)!=null && !fieldMap.get(key).equals("NI")){
                 FieldClassify fieldClassify=new FieldClassify();
                 fieldClassify.setFieldType(fieldMap.get(key));
                 fieldClassify.setFieldName(key);
                 fieldClassify.setFormName("OpenEhr字段表");
-                fieldClassifyRepository.save(fieldClassify);
+                fieldClassifyList1.add(fieldClassify);
             }
         }
+        fieldClassifyRepository.saveAll(fieldClassifyList1);
 
         //创建FieldChangeLog
         fieldChangeLogRepository.deleteByFormName("OpenEhr字段表");
+        fieldChangeLogRepository.flush();
         FieldChangeLog fieldChangeLog=new FieldChangeLog();
         fieldChangeLog.setChangeLog("创建表单");
         fieldChangeLog.setDateTime(new Date(new java.util.Date().getTime()));
@@ -153,6 +148,7 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
 
         //创建FieldClassifyUsageCount
         fieldClassifyUsageCountRepository.deleteByFormName("OpenEhr字段表");
+        fieldClassifyUsageCountRepository.flush();
         FieldClassifyUsageCount fieldClassifyUsageCount=new FieldClassifyUsageCount();
         fieldClassifyUsageCount.setCount(0);
         fieldClassifyUsageCount.setFormName("OpenEhr字段表");

@@ -58,7 +58,7 @@ public class Datetime {
                                     ArrayList<Integer> col){
         for(int column : col ) {
             for(int j=1;j<data.get(column).size();j++){
-                String[] t=data.get(column).get(j).split("/");
+                String[] t=data.get(column).get(j).split("-");
                 if (t.length==3) data.get(column).set(j,t[0]);
             }
         }
@@ -77,7 +77,7 @@ public class Datetime {
                                      ArrayList<Integer> col){
         for(int column : col) {
             for(int j=1;j<data.get(column).size();j++){
-                String[] t=data.get(column).get(j).split("/");
+                String[] t=data.get(column).get(j).split("-");
                 if (t.length==3) {
                     int year= Calendar.getInstance().get(Calendar.YEAR);
                     int y=Integer.parseInt(t[0]);

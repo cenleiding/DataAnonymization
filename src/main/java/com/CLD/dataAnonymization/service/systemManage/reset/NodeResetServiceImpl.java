@@ -1,7 +1,5 @@
 package com.CLD.dataAnonymization.service.systemManage.reset;
 
-import com.CLD.dataAnonymization.dao.h2.repository.ArchetypeBasisFieldClassifyRepository;
-import com.CLD.dataAnonymization.dao.h2.repository.ExpandBasisFieldClassifyRepository;
 import com.CLD.dataAnonymization.service.nodeAndField.nodeClassify.ExpandNodeClassifyService;
 import com.CLD.dataAnonymization.service.nodeAndField.nodeClassify.OpenEhrNodeClassifyService;
 import com.CLD.dataAnonymization.service.nodeAndField.nodeToField.NodeToFieldService;
@@ -26,12 +24,6 @@ public class NodeResetServiceImpl implements NodeResetService {
 
     @Autowired
     NodeToFieldService nodeToFieldService;
-
-    @Autowired
-    ArchetypeBasisFieldClassifyRepository archetypeBasisFieldClassifyRepository;
-
-    @Autowired
-    ExpandBasisFieldClassifyRepository expandBasisFieldClassifyRepository;
 
     @Override
     public List<String> NodeReset() {

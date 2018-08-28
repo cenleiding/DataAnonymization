@@ -8,7 +8,7 @@ app.controller("usageOverViewCtrl", function($scope,$http,$timeout,$q) {
     (function () {
         $http({
             method:'GET',
-            url:"/getUsageOverView"
+            url:"/ApiUsage/getUsageOverView"
         }).then(
             function (response) {
                 $scope.overViewData=response.data;

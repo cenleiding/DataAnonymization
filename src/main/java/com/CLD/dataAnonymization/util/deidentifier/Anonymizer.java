@@ -265,7 +265,8 @@ public class Anonymizer {
                     }
                     data.get(i).set(j, data.get(i).get(j)
                             .split(" ")[0]
-                            .replace("-","-")
+                            .replace("\\","-")
+                            .replace("/","-")
                             .replace("年","-")
                             .replace("月","-")
                             .replace("日",""));

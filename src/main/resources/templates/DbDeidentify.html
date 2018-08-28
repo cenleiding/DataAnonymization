@@ -19,6 +19,9 @@
     <link href="/css/sb-admin-2.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/css/custom/style.css" rel="stylesheet" type="text/css">
+    <link href="/css/ngDialog.min.css" rel="stylesheet" >
+    <link href="/css/ngDialog-theme-default.min.css" rel="stylesheet">
+    <link href="/css/rzslider.min.css" rel="stylesheet" >
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -31,8 +34,12 @@
     <script src="/js/angular.min.js"></script>
     <script src="/js/ng-file-upload.min.js"></script>
     <script src="/js/ng-file-upload-shim.min.js"></script>
+    <script src="/js/ngDialog.min.js"></script>
+    <script src="/js/rzslider.min.js"></script>
     <script src="/js/custom/DbDeidentify.js"></script>
-    <script src="/js/custom/Head.js"></script>
+    <script src="/htmlTemplates/Head.js"></script>
+    <script src="/htmlTemplates/AnonymizeConfigure.js"></script>
+
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -58,14 +65,18 @@
             <h3>数据库匿名化</h3>
             <hr>
             <div style="padding-top: 10px;padding-bottom: 40px">
-                <label style="font-size:16px;padding-left: 15px">匿名化方式:&nbsp&nbsp</label>
-                <select id="DeidentityMethod" data-ng-model="selectMethod"  class="selectpicker " data-width="200PX" >
-                    <option value="SafeHarbor">安全屋</option>
-                    <option value="LimitedSet">有限数据集</option>
-                    <option value="" disabled="disabled">t-临近</option>
-                </select>
-                <label style="font-size:16px;padding-left: 15px">匿名字段表:&nbsp&nbsp</label>
-                <select id="formName" class="selectpicker " data-width="200PX" ></select>
+                <div>
+                    <label style="font-size:15px;padding-right: 8px;width: 90px">匿名方式:</label>
+                    <select id="typeLevel"data-ng-model="selectTypelevel"  class="selectpicker " data-width="250PX" data-size="10">
+                        <option value="Level1" data-subtext="研究向数据" select="selected">匿名方式一</option>
+                        <option value="Level2" data-subtext="发布向数据">匿名方式二</option>
+                    </select>
+                    <input data-ng-click="anonymizeConfigure(x)" title='配置' type="image" src="/img/Configuration.png" style="display: inline-block;width: 25px;height: 25px;margin-left: 120px" />
+                </div>
+                <div style="padding-top: 25px">
+                    <label style="font-size:15px;padding-right: 8px;width: 90px">匿名字段表:</label>
+                    <select id="fromName" class="selectpicker" data-width="auto" data-live-search="true" data-size="10"></select>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-1"></div>

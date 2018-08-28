@@ -34,12 +34,12 @@
     <script src="/js/dataTables.select.min.js"></script>
     <script src="/js/angular.min.js"></script>
     <script src="/js/ngDialog.min.js"></script>
-    <script src="/js/custom/Head.js"></script>
-    <script src="/js/custom/FileProcessing.js"></script>
-    <script src="/js/custom/AnonymizeConfigure.js"></script>
     <script src="/js/ng-file-upload.min.js"></script>
     <script src="/js/ng-file-upload-shim.min.js"></script>
     <script src="/js/rzslider.min.js"></script>
+    <script src="/htmlTemplates/Head.js"></script>
+    <script src="/htmlTemplates/AnonymizeConfigure.js"></script>
+    <script src="/js/custom/FileProcessing.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -61,14 +61,20 @@
     <!-- Page Content -->
     <div class="ng-scope" id="page-wrapper"  data-ng-controller="FileProcessingCtrl">
         <div class="container padding-top-120">
-            <h3> 文件上传</h3>
-            <input data-ng-click="anonymizeConfigure(x)" title='配置' type="image" src="/img/edit.png" style="display: inline-block;width: 15px;height: 15px" />
+            <div class="row">
+                <div class="col-lg-11">
+                    <h3> 文件上传</h3>
+                </div>
+                <div class="col-lg-1">
+                    <input data-ng-click="anonymizeConfigure(x)" title='配置' type="image" src="/img/Configuration.png" style="display: inline-block;width: 25px;height: 25px;margin-top: 25px" />
+                </div>
+            </div>
             <hr>
             <form name="uploadForm"   method="post" enctype="multipart/form-data">
                 <div>
                     <!--  <input type="file" name="uploadFile" /> -->
                     <div class="row">
-                        <div class="col-md-3" >
+                        <div class="col-md-2" >
                             <div class="box">
                                 <input type="file" ngf-select multiple data-ng-model="files" name="files" id="file-1" class="inputfile inputfile-2" data-multiple-caption="{count} files selected" />
                                 <label for="file-1" title="注意！" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="只能处理excel,CSV文件。" >
@@ -77,7 +83,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-5" style="text-align: center;">
+                        <div class="col-md-6" style="text-align: center;">
                             <label style="font-size:15px;padding-right: 8px">匿名字段表:</label>
                             <select id="fromName" class="selectpicker" data-width="auto" data-live-search="true" data-size="10"></select>
                         </div>

@@ -19,18 +19,18 @@ public class HierarchyBuilder {
      * @return
      */
     public static Boolean checkHierarchy(DataHandle dataHandle){
-        String[]        header         =  dataHandle.getHeader();
+        ArrayList<ArrayList<String>> data  =  dataHandle.getData();
         HashSet<String> QI_DateRecord  =  dataHandle.getQI_DateRecord();
         HashSet<String> QI_String      =  dataHandle.getQI_String();
         HashSet<String> SI_String      =  dataHandle.getSI_String();
         HashMap<String,ArrayList<ArrayList<String>>> hierarchy=dataHandle.getHierarchy();
-        for(int i=0;i<header.length;i++){
-            String h=header[i].toLowerCase()
+        for(int i=0;i<data.size();i++) {
+            String h=data.get(i).get(0).toLowerCase()
                     .replace(".","")
                     .replace("_","")
                     .replace("-","")
                     .replace("*","");
-            if ((hierarchy==null || !hierarchy.keySet().contains(header[i])) &&
+            if ((hierarchy==null || !hierarchy.keySet().contains(data.get(i).get(0))) &&
                     (QI_DateRecord.contains(h)||QI_String.contains(h)||SI_String.contains(h))){
                 if(QI_DateRecord.contains(h))dateHierarchyBuilder(dataHandle,i);
                 else stringHierarchyBuilder(dataHandle,i);

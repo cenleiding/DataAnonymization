@@ -1,4 +1,4 @@
-var app = angular.module("FileProcessingApp", ['ngFileUpload',,'ngDialog','headApp','anonymizeConfigureApp']);
+var app = angular.module("FileProcessingApp", ['ngFileUpload','ngDialog','headApp','anonymizeConfigureApp']);
 app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog) {
 
     $scope.progress = 0;
@@ -7,7 +7,7 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog) {
     $scope.filesList=[];
     $scope.loadingImg="img/zip.png";
     $scope.fromName="";
-    $scope.selectTypelevel="s";
+    $scope.selectTypelevel="Level1";
     $scope.selectInfo=[];
     $scope.config={};
 
@@ -17,7 +17,7 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog) {
         $http(
         {
             method:"GET",
-            url:"/getFieldFormInfo"
+            url:"/FieldFormShow/getFieldFormInfo"
         }
         ).then(
             function successCallback(response){

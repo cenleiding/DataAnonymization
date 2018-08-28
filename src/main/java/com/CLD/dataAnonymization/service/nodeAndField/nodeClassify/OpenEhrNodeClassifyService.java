@@ -39,16 +39,5 @@ public interface OpenEhrNodeClassifyService {
      */
   public List<ArchetypeNodeInfo> getArchetypeNodeInfoByName(String archetypeName);
 
-    /**
-     * 该方法用于保存对原型节点的修改
-     * @param archetypeNodeInfoList
-     * @return
-     */
-  public List<String> updataNodeInfo(List<ArchetypeNodeInfo> archetypeNodeInfoList,String archetypeName);
 
-  /**
-   * 该方法用于返回原型节点的统计信息
-   * @return
-   */
-  public List<Double> getNodeOverView();
 }

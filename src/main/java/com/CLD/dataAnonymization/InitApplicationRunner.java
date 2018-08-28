@@ -2,7 +2,6 @@ package com.CLD.dataAnonymization;
 
 import com.CLD.dataAnonymization.dao.h2.repository.FieldClassifyListRepository;
 import com.CLD.dataAnonymization.dao.h2.repository.SystemUserRepository;
-import com.CLD.dataAnonymization.dao.h2.repository.UsageFieldClassifyRepository;
 import com.CLD.dataAnonymization.service.systemManage.initialize.ResourcesFileInitializeService;
 import com.CLD.dataAnonymization.service.systemManage.reset.NodeResetService;
 import com.CLD.dataAnonymization.service.systemManage.webSecurity.UserService;
@@ -36,9 +35,6 @@ public class InitApplicationRunner implements ApplicationRunner{
     NodeResetService nodeResetService;
 
     @Autowired
-    UsageFieldClassifyRepository usageFieldClassifyRepository;
-
-    @Autowired
     SystemUserRepository systemUserRepository;
 
     @Autowired
@@ -51,16 +47,14 @@ public class InitApplicationRunner implements ApplicationRunner{
     public void run(ApplicationArguments args) throws Exception {
 
         //文件初始化
-//        resourcesFileInitializeService.InitializeResourcesFile();
-//
-//        //字段表，Original表创建
-//        List<String> fieldList=usageFieldClassifyRepository.getFormName();
-//        if(fieldList.size()==0)
-//        nodeResetService.NodeReset();
+        resourcesFileInitializeService.InitializeResourcesFile();
+
+        //基础字段初始化
+        nodeResetService.NodeReset();
 
         //用户初始化
-//        if(userService.getUser().size()==0)
-//        userService.addUser(userName,password);
+        if(userService.getUser().size()==0)
+        userService.addUser(userName,password);
 
     }
 

@@ -1,12 +1,10 @@
 package com.CLD.dataAnonymization.web;
 
+import com.CLD.dataAnonymization.model.AnonymizeConfigure;
 import com.CLD.dataAnonymization.service.deidentifyTarget.dbDeidentify.DbDeidentifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,18 +15,19 @@ import java.util.List;
  * @Date 2018/5/30 17:02
  **/
 @Controller
+@RequestMapping("/DbDeidentify")
 public class DbDeidentifyController {
 
     @Autowired
     DbDeidentifyService dbDeidentifyService;
 
 
-    @RequestMapping("/DbDeidentify")
+    @RequestMapping("")
     public String DbDeidentify(){
         return "DbDeidentify";
     }
 
-    @RequestMapping(value = "/runDeidentify",method = RequestMethod.GET)
+    @RequestMapping(value = "/runDeidentify",method = RequestMethod.POST)
     @ResponseBody
     public List<String> runDeidentify(@RequestParam("dbType") String dbType,
                                       @RequestParam("host") String host,
@@ -36,10 +35,9 @@ public class DbDeidentifyController {
                                       @RequestParam("databaseName") String databaseName,
                                       @RequestParam("user") String user,
                                       @RequestParam("password") String password,
-                                      @RequestParam("method") String method,
-                                      @RequestParam("fieldFromName") String fieldFromName){
+                                      @RequestBody AnonymizeConfigure anonymizeConfigure){
         List<String> outlist=new ArrayList<String>();
-        dbDeidentifyService.DbDeidentify(dbType,host,port,databaseName,user,password,method,fieldFromName);
+        dbDeidentifyService.DbDeidentify(dbType,host,port,databaseName,user,password,anonymizeConfigure);
         outlist.add("数据库处理完成！");
         return outlist;
     }
@@ -70,6 +68,10 @@ public class DbDeidentifyController {
         return dbDeidentifyService.getInfo(dbType,host,port,databaseName);
     }
 
-
+    @RequestMapping("/getAnonymizeConfigure")
+    @ResponseBody
+    public AnonymizeConfigure getAnonymizeConfigure(){
+        return dbDeidentifyService.getAnonymizeConfigure();
+    }
 
 }

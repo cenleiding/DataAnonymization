@@ -224,10 +224,9 @@ public class DataHandle {
      * @return
      */
     private Boolean setHeader(){
-        this.header=new String[data.size()];
-        for(int i=0;i<data.size();i++)
-            header[i]=data.get(i).get(0);
-
+        this.header=new String[data.get(0).size()];
+        for(int i=0;i<data.get(0).size();i++)
+            header[i]=data.get(0).get(i);
         return true;
     }
 

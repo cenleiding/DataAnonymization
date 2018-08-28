@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/FieldModify")
+                .defaultSuccessUrl("/MyFieldForm")
                 .permitAll()
                 .and()
                 .logout()

@@ -8,10 +8,11 @@ app.controller("createNewFormCtrl", function($scope,$http) {
     $scope.formNewName="";
 
     (function () {
+        console.log("1")
         $http(
             {
                 method:"GET",
-                url:"/getFieldFormInfo"
+                url:"/FieldFormShow/getFieldFormInfo"
             }
         ).then(
             function successCallback(response){

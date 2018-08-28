@@ -17,11 +17,14 @@ public class Encrypt {
     //定义加密算法，有DES、DESede(即3DES)、Blowfish
     private static final String Algorithm = "DESede";
 
+    private static final String password_suffix="CLDLALALA";
+
 
     public static Boolean encryptHandle(ArrayList<ArrayList<String>> data,
                                         ArrayList<Integer> col,
                                         String password,
                                         ArrayList<HashMap<String,String>> proInfo){
+        password=password+password_suffix;
         for(int column : col){
             for(int i=1;i<data.get(column).size();i++){
                 String O=data.get(column).get(i);

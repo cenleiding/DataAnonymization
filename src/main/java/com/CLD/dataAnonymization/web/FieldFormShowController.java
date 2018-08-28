@@ -17,12 +17,13 @@ import java.util.Map;
  * @Date 2018/8/15 16:01
  */
 @Controller
+@RequestMapping("/FieldFormShow")
 public class FieldFormShowController {
 
     @Autowired
     FieldClassifyService fieldClassifyService;
 
-    @RequestMapping("/FieldFormShow")
+    @RequestMapping("")
     public String FieldFormShow(){
         return "FieldFormShow";
     }

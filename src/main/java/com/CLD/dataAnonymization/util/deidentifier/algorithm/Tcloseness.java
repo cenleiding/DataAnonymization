@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import static java.lang.Math.min;
+
 /**
  * @description:该类提供T-closeness方法，当不存在敏感信息时退化为K-anonymous.
  * 方法实现参考ARX工程
@@ -28,6 +30,7 @@ public class Tcloseness {
                                            Double SuppressionLimit,
                                            HashMap<String,ArrayList<ArrayList<String>>> hierarchy){
         if(kcol.size()==0) return true;
+        K= min(K,data.get(0).size()-1);
         try {
         Data arxData=Data.create(dataInstall(data,kcol,tcol));
         HashMap<String,AttributeType.Hierarchy> hierarchyHashMap= getHierarchyMap(hierarchy);

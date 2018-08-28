@@ -1,5 +1,7 @@
 package com.CLD.dataAnonymization.service.deidentifyTarget.dbDeidentify;
 
+import com.CLD.dataAnonymization.model.AnonymizeConfigure;
+
 import java.util.List;
 
 /**
@@ -15,8 +17,7 @@ public interface DbDeidentifyService {
                              String databaseName,
                              String user,
                              String password,
-                             String method,
-                             String fromName);
+                             AnonymizeConfigure anonymizeConfigure);
 
     public Boolean testConnect(String dbType,
                                String host,
@@ -30,5 +31,5 @@ public interface DbDeidentifyService {
                                 String port,
                                 String databaseName);
 
-
+    public AnonymizeConfigure getAnonymizeConfigure();
 }

@@ -20,8 +20,13 @@ public class ScheduledTasks {
     @Autowired
     NodeToFieldService nodeToFieldService;
 
+    /**
+     * 定时更新原型表
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException
+     */
     @Scheduled(initialDelay = 1000,fixedDelay = 86400000)
     public void updataFields() throws FileNotFoundException, UnsupportedEncodingException {
-//         nodeToFieldService.ArcheTypeNodeToField();
+         nodeToFieldService.ArcheTypeNodeToField();
     }
 }

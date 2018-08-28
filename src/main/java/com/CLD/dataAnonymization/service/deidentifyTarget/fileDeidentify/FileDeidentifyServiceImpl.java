@@ -1,5 +1,7 @@
 package com.CLD.dataAnonymization.service.deidentifyTarget.fileDeidentify;
 
+import com.CLD.dataAnonymization.dao.h2.entity.FieldClassifyUsageCount;
+import com.CLD.dataAnonymization.dao.h2.repository.FieldClassifyUsageCountRepository;
 import com.CLD.dataAnonymization.model.AnonymizeConfigure;
 import com.CLD.dataAnonymization.model.FieldInfo;
 import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
@@ -28,6 +30,9 @@ public class FileDeidentifyServiceImpl implements FileDeidentifyService {
 
     @Autowired
     FieldClassifyService fieldClassifyService;
+
+    @Autowired
+    FieldClassifyUsageCountRepository fieldClassifyUsageCountRepository;
 
     @Override
     public String FileDeidentify(MultipartHttpServletRequest re, HttpServletRequest rq) throws Exception {
@@ -83,6 +88,7 @@ public class FileDeidentifyServiceImpl implements FileDeidentifyService {
             String filename = file.getOriginalFilename();
             if(filename.endsWith(".csv")){
                 DataHandle dataHandle=new DataHandle(FileResolve.readerCsv(file.getInputStream()));
+                dataHandle.setFieldList(fieldList);
                 Anonymizer anonymizer=new Anonymizer(dataHandle,configuration);
                 anonymizer.anonymize();
                 FileResolve.writerCsv(savePath+"\\"+anonymizeConfigure.getLevel()+filename,dataHandle.getData());
@@ -91,6 +97,7 @@ public class FileDeidentifyServiceImpl implements FileDeidentifyService {
                 ArrayList<ArrayList<ArrayList<String>>> data=FileResolve.readerXls(file.getInputStream());
                 for (int i = 0; i <data.size()-1 ; i++){
                     DataHandle dataHandle=new DataHandle(data.get(i));
+                    dataHandle.setFieldList(fieldList);
                     Anonymizer anonymizer=new Anonymizer(dataHandle,configuration);
                     anonymizer.anonymize();
                     data.set(i,dataHandle.getData());
@@ -101,6 +108,7 @@ public class FileDeidentifyServiceImpl implements FileDeidentifyService {
                 ArrayList<ArrayList<ArrayList<String>>> data=FileResolve.readerXlsx(file.getInputStream());
                 for (int i = 0; i <data.size()-1 ; i++){
                     DataHandle dataHandle=new DataHandle(data.get(i));
+                    dataHandle.setFieldList(fieldList);
                     Anonymizer anonymizer=new Anonymizer(dataHandle,configuration);
                     anonymizer.anonymize();
                     data.set(i,dataHandle.getData());
@@ -125,6 +133,11 @@ public class FileDeidentifyServiceImpl implements FileDeidentifyService {
         Timer timer = new Timer();
         long delay = 24*60*60*1000;
         timer.schedule(task, delay);
+
+        //表单使用记录
+        FieldClassifyUsageCount fieldClassifyUsageCount=fieldClassifyUsageCountRepository.findByFormName(anonymizeConfigure.getFieldFormName());
+        fieldClassifyUsageCount.setCount(fieldClassifyUsageCount.getCount()+1);
+        fieldClassifyUsageCountRepository.save(fieldClassifyUsageCount);
 
         return "/identityFiles/"+time+".zip";
     }

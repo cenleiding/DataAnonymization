@@ -14,7 +14,7 @@ app.controller("usageDetailCtrl", function($scope,$http,$timeout,$q) {
     (function () {
        $http({
            method:'GET',
-           url:"/getUserIp"
+           url:"/ApiUsage/getUserIp"
        }).then(
           function successCallback (response) {
               $scope.userIps=response.data;
@@ -95,7 +95,7 @@ app.controller("usageDetailCtrl", function($scope,$http,$timeout,$q) {
     var getUsageByIp=function (ip) {
         $http({
             method:'GET',
-            url:"/getUsageByIp",
+            url:"/ApiUsage/getUsageByIp",
             params:{Ip:ip}
         }).then(
             function (response) {

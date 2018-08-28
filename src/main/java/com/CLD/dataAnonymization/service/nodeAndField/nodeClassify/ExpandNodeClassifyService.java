@@ -46,12 +46,4 @@ public interface ExpandNodeClassifyService {
      */
     public List<ExpandNodeInfo> getNodeInfoByName(String fileName, String fromName);
 
-    /**
-     * 该方法用于保存对原型节点的修改
-     * @param expandNodeInfoList
-     * @param fileName
-     * @param fromName
-     * @return
-     */
-    public List<String> updataNodeInfo(List<ExpandNodeInfo> expandNodeInfoList,String fileName,String fromName);
 }

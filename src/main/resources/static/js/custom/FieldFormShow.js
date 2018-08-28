@@ -33,7 +33,7 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
         $http(
             {
                 method:"GET",
-                url:"/getFieldFormInfo"
+                url:"/FieldFormShow/getFieldFormInfo"
             }
         ).then(
             function successCallback(response){
@@ -91,7 +91,7 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
         if($scope.userName=="") $scope.userName="系统样本"
         $http({
             method:'GET',
-            url:"/getFieldOverViewByFormName",
+            url:"/FieldFormShow/getFieldOverViewByFormName",
             params:{formName: $scope.selectInfo[c].formName}
         }).then(function successCallback(response) {
             percentage=response.data;
@@ -105,7 +105,7 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
 
         $http({
             method:'GET',
-            url:"/getFieldDetailByFormName",
+            url:"/FieldFormShow/getFieldDetailByFormName",
             params:{formName:$scope.selectInfo[c].formName}
         }).then(function successCallback(response) {
             var data=response.data;

@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserDetailsService,UserService {
         return systemUser;
     }
 
+    @Override
     public Boolean addUser(String username,String password){
         SystemUser systemUser=systemUserRepository.findByUsername(username);
         if (systemUser == null || username.trim()!="" || password.trim()!="") {

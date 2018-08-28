@@ -1,5 +1,5 @@
-var app = angular.module("DbDeidentifyApp", ['headApp']);
-app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce) {
+var app = angular.module("DbDeidentifyApp", ['headApp','ngDialog','anonymizeConfigureApp']);
+app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce,ngDialog) {
 
     $scope.selectDbType="MySql";
     $scope.host="";
@@ -10,37 +10,107 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce) {
     $scope.portCase="3306";
     $scope.databaseNameCase="数据库名:";
     $scope.userCase="root";
-    $scope.selectMethod="SafeHarbor";
-    $scope.selectFromName="Original";
     $scope.pollflag=true;
     $scope.DbInfo=["匿名化未启动..."];
     $scope.wuliaoLog=". . . /";
 
+    $scope.config={};
+    $scope.selectTypelevel="Level1";
+    $scope.selectInfo=[];
+
+    var select = $("#fromName");
 
     (function (){
-        $http({
-            method:'GET',
-            url:"/getFromNameList"
-        }).then(
-            function successCallback (response) {
-                var fromName=response.data;
-                var select = $("#fromName");
-                for (var i = 0; i < fromName.length; i++) {
-                    select.append("<option value='"+fromName[i]+"'>"
-                        + fromName[i] + "</option>");
-                }
-                $('#fromName').selectpicker('val','Original');
-                $('.selectpicker').selectpicker('refresh');
-            },
-            function errorCallback (response) {
-                console.log("获取字段表单失败！");
+        $http(
+            {
+                method:"GET",
+                url:"/FieldFormShow/getFieldFormInfo"
             }
-        );
+        ).then(
+            function successCallback(response){
+                var formMap=response.data;
+                var userNameMap={};
+                var info;
+                for(var i in formMap)
+                    userNameMap[formMap[i].userName]="";
+                select.append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>系统样本</option>");
+                $scope.selectInfo.push("");
+                tra("",formMap)
+                for(var i in userNameMap){
+                    if (i=="") continue;
+                    select.append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>"+i+"</option>");
+                    $scope.selectInfo.push(i);
+                    tra(i,formMap)
+                }
+                $("#fromName").selectpicker('refresh');
+                $("#fromName").selectpicker('val', $scope.selectInfo[1].formName);
+                $scope.config.fieldFormName=$scope.selectInfo[1].formName;
+                $scope.config.level="Level1";
+            },
+            function errorCallback(response){
+                alert("获取列表失败！")
+            }
+        )
+        //获取配置
+        $http(
+            {
+                url:"/DbDeidentify/getAnonymizeConfigure",
+                method:"GET"
+            }
+        ).then(
+            function success(response) {
+                $scope.config=response.data;
+            },
+            function error() {
+                alert("获取配置失败！")
+            }
+        )
     })();
 
-    $("#fromName").on('changed.bs.select', function (e,c) {
-        $scope.selectFromName=e.target.value;
+    var tra=function (i,formMap) {
+        for(var j in formMap){
+            if(formMap[j].userName==(i)){
+                select.append("<option value='"+formMap[j].formName+"' data-icon='glyphicon glyphicon-file' data-subtext=("+formMap[j].description+")>"
+                    +formMap[j].formName+ "</option>");
+                var info={};
+                info['formName']=formMap[j].formName;
+                info['description']=formMap[j].description;
+                info['createTime']=formMap[j].createTime;
+                info['lastChangeTime']=formMap[j].lastChangeTime;
+                info['father']=formMap[j].father;
+                info['usageCount']=formMap[j].usageCount;
+                info['userName']=formMap[j].userName;
+                $scope.selectInfo.push(info);
+            }
+        }
+    }
+
+    $("#typeLevel").change(function(evt){
+        if(evt.currentTarget.value==="Level1") alert("注意：当前选择为研究性数据！处理文件只供内部使用！！");
+        $scope.config.level=evt.currentTarget.value;
+        $scope.progress= 0;
     });
+
+    $("#fromName").on('changed.bs.select', function (e,c) {
+        $scope.config.fieldFormName=$scope.selectInfo[c].formName;
+    });
+
+    $scope.anonymizeConfigure=function () {
+        ngDialog.open({
+            template: '/htmlTemplates/AnonymizeConfigure.html',
+            className: 'ngdialog-theme-default',
+            controller: 'anonymizeConfigureCtrl',
+            resolve: {//传参
+                dep: function() {
+                    return  $scope.config;
+                }
+            },
+            width:450,
+            height: 550,})
+            .closePromise.then(function(value) {
+            $scope.config=value.$dialog.scope().config;
+        });
+    }
 
     $("#DbType").change(function(evt){
         if(evt.currentTarget.value==="MySql")     {
@@ -81,7 +151,7 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce) {
         else{
             $http({
                 method:"GET",
-                url:"/DbTestConnection",
+                url:"/DbDeidentify/DbTestConnection",
                 params:{
                     dbType:$scope.selectDbType,
                     host:$scope.host,
@@ -107,8 +177,8 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce) {
         else{
             $scope.DbInfo="";
             $http({
-                method:"GET",
-                url:"/runDeidentify",
+                method:"POST",
+                url:"/DbDeidentify/runDeidentify",
                 params:{
                     dbType:$scope.selectDbType,
                     host:$scope.host,
@@ -117,8 +187,9 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce) {
                     user:$scope.user,
                     password:$scope.password,
                     method:$scope.selectMethod,
-                    fieldFromName:$scope.selectFromName
-                }
+                    fieldFromName:$scope.selectFromName,
+                },
+                data:$scope.config
             }).then(
                 function success(response) {
                     $scope.pollflag=false;
@@ -157,7 +228,7 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce) {
             function () {
                 $http({
                     method:"GET",
-                    url:"/getInfo",
+                    url:"/DbDeidentify/getInfo",
                     params:{
                         dbType:$scope.selectDbType,
                         host:$scope.host,
