@@ -22,10 +22,28 @@ public class EasyAnonymizeAdapter {
         return dataHandle.getData();
     }
 
+    public static ArrayList<ArrayList<String>> ToLevel_1(ArrayList<ArrayList<String>> data){
+        DataHandle dataHandle=new DataHandle(data);
+        Configuration configuration=new Configuration();
+        configuration.setLevel(Configuration.AnonymousLevel.Level1);
+        Anonymizer anonymizer=new Anonymizer(dataHandle,configuration);
+        anonymizer.anonymize();
+        return dataHandle.getData();
+    }
+
     public static ArrayList<ArrayList<String>> ToLevel_2(ArrayList<ArrayList<String>> data,
                                                          ArrayList<ArrayList<String>> fieldList){
         DataHandle dataHandle=new DataHandle(data);
         dataHandle.setFieldList(fieldList);
+        Configuration configuration=new Configuration();
+        configuration.setLevel(Configuration.AnonymousLevel.Level2);
+        Anonymizer anonymizer=new Anonymizer(dataHandle,configuration);
+        anonymizer.anonymize();
+        return dataHandle.getData();
+    }
+
+    public static ArrayList<ArrayList<String>> ToLevel_2(ArrayList<ArrayList<String>> data){
+        DataHandle dataHandle=new DataHandle(data);
         Configuration configuration=new Configuration();
         configuration.setLevel(Configuration.AnonymousLevel.Level2);
         Anonymizer anonymizer=new Anonymizer(dataHandle,configuration);

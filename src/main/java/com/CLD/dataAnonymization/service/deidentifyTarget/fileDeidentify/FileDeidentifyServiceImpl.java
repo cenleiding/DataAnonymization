@@ -21,7 +21,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 /**
- * 该类用于处理文件类型数据
+ * @description:该类用于处理文件类型数据
  * @Author CLD
  * @Date 2018/4/16 8:43
  **/

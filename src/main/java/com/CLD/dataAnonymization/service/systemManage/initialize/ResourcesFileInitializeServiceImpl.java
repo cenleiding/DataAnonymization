@@ -1,16 +1,18 @@
 package com.CLD.dataAnonymization.service.systemManage.initialize;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 
 /**
- * 改类用于系统启动时的文件初始化
+ * @Description:改类用于系统启动时的文件初始化
  * @Author CLD
  * @Date 2018/6/3 13:02
  **/
 @Service
+@Slf4j
 public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitializeService{
 
     @Value("${node.out.archetype.path}")
@@ -41,7 +43,7 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
     public Boolean InitializeResourcesFile() {
 
         File file=null;
-        System.out.println("资源初始化开始...");
+        log.info("资源初始化开始...");
 
         String outPath= new Object(){
             public String get(){
@@ -74,7 +76,7 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
             copyFile(inExpandPath+"/"+fileList[i],outPath+outExpandPath+"/"+fileList[i]);
         }
 
-        System.out.println("资源初始化成功！");
+        log.info("资源初始化成功！");
 
         return true;
     }

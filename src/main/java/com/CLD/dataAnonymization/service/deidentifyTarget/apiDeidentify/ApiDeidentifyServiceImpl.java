@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ * @description：该类用于提供API数据匿名化服务
  * @Author CLD
  * @Date 2018/5/27 13:57
  **/
@@ -29,53 +30,6 @@ public class ApiDeidentifyServiceImpl implements ApiDeidentifyService{
 
     @Autowired
     FieldClassifyUsageCountRepository fieldClassifyUsageCountRepository;
-
-    @Override
-    public ArrayList<HashMap<String,String>> ApiSafeHarbor(HttpServletRequest req, String fieldFromName) {
-        List<FieldInfo> fieldInfoList=fieldClassifyService.getFieldByFromName(fieldFromName);
-        ArrayList<ArrayList<String>> fieldList=new ArrayList<ArrayList<String>>();
-        for(FieldInfo fieldInfo:fieldInfoList){
-            ArrayList<String> field=new ArrayList<String>();
-            field.add(fieldInfo.getFieldName());
-            field.add(fieldInfo.getFieldType());
-            fieldList.add(field);
-        }
-        ArrayList<ArrayList<String>> data=dataParseService.requestDataToArrayList(req);
-        ArrayList<HashMap<String,String>> outData=new ArrayList<HashMap<String, String>>();
-//        data= IOAdapter.ToSafeHarbor(data,fieldList);
-        data= EasyAnonymizeAdapter.ToLevel_1(data,fieldList);
-        for(int i=1;i<data.size();i++){
-            HashMap<String,String> map=new HashMap<String, String>();
-            for(int j=0;j<data.get(0).size();j++){
-                map.put(data.get(0).get(j),data.get(i).get(j));
-            }
-            outData.add(map);
-        }
-        return outData;
-    }
-
-    @Override
-    public ArrayList<HashMap<String,String>>  ApiLimitedSet(HttpServletRequest req,String fieldFromName) {
-        List<FieldInfo> fieldInfoList=fieldClassifyService.getFieldByFromName(fieldFromName);
-        ArrayList<ArrayList<String>> fieldList=new ArrayList<ArrayList<String>>();
-        for(FieldInfo fieldInfo:fieldInfoList){
-            ArrayList<String> field=new ArrayList<String>();
-            field.add(fieldInfo.getFieldName());
-            field.add(fieldInfo.getFieldType());
-            fieldList.add(field);
-        }
-        ArrayList<ArrayList<String>> data=dataParseService.requestDataToArrayList(req);
-        ArrayList<HashMap<String,String>> outData=new ArrayList<HashMap<String, String>>();
-        data= IOAdapter.ToLimitedSet(data,fieldList);
-        for(int i=1;i<data.size();i++){
-            HashMap<String,String> map=new HashMap<String, String>();
-            for(int j=0;j<data.get(0).size();j++){
-                map.put(data.get(0).get(j),data.get(i).get(j));
-            }
-            outData.add(map);
-        }
-        return outData;
-    }
 
     @Override
     public ArrayList<HashMap<String, String>> ApiDataDeidentify(HttpServletRequest req, AnonymizeConfigure anonymizeConfigure) {

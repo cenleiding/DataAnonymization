@@ -7,20 +7,17 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * 该类用于读写API使用情况日志
+ * @description:该类用于读写API使用情况日志
  * @Author CLD
  * @Date 2018/4/16 16:57
  **/
 @Service
 public class ApiUsageServiceImpl implements ApiUsageService {
-
-    ReadWriteLock readWriteLock=new ReentrantReadWriteLock();
 
     @Autowired
     ApiUsageRepository apiUsageRepository;

@@ -3,6 +3,8 @@ package com.CLD.dataAnonymization.web;
 import com.CLD.dataAnonymization.model.AnonymizeConfigure;
 import com.CLD.dataAnonymization.service.deidentifyTarget.apiDeidentify.ApiDeidentifyService;
 import com.CLD.dataAnonymization.service.deidentifyTarget.apiDeidentify.ApiUsageService;
+import com.CLD.dataAnonymization.service.systemManage.userIp.UserIp;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +17,13 @@ import java.util.HashMap;
 
 
 /**
- * 该控制器提供数据匿名化接口
+ * @Description:该控制器提供数据匿名化接口
  * @Author CLD
  * @Date 2018/3/29 10:35
  **/
 @RestController
 @RequestMapping("/dataDeidentify")
+@Slf4j
 public class ApiController {
 
     @Autowired
@@ -28,6 +31,9 @@ public class ApiController {
 
     @Autowired
     ApiUsageService apiUsageService;
+
+    @Autowired
+    UserIp userIp;
 
     @RequestMapping(value = "",method = RequestMethod.POST)
     @ResponseBody
@@ -43,6 +49,7 @@ public class ApiController {
                                                             @RequestParam(value = "suppressionLimit_level1",defaultValue = "0.9",required = false) String suppressionLimit_level1,
                                                             @RequestParam(value = "suppressionLimit_level2",defaultValue = "0.9",required = false) String suppressionLimit_level2,
                                                             @RequestParam(value = "microaggregation",defaultValue = "10",required = false) String microaggregation) throws IOException {
+        log.info(userIp.getIp()+"使用匿名化网络接口");
         AnonymizeConfigure anonymizeConfigure=new AnonymizeConfigure();
         anonymizeConfigure.setFieldFormName(fieldFromName);
         anonymizeConfigure.setT(t);
@@ -56,9 +63,9 @@ public class ApiController {
         anonymizeConfigure.setEncryptPassword(encryptPassword);
         anonymizeConfigure.setLevel(level);
         ArrayList<HashMap<String,String>> data=apiDeidentifyService.ApiDataDeidentify(req,anonymizeConfigure);
-        apiUsageService.addUsageLog(req.getRemoteAddr(),
+        apiUsageService.addUsageLog(userIp.getIp(),
                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),
-                new ArrayList<String>(data.get(0).keySet()),String.valueOf(data.size()-1),"LimitedSet");
+                new ArrayList<String>(data.get(0).keySet()),String.valueOf(data.size()-1),level);
         return data;
     }
 

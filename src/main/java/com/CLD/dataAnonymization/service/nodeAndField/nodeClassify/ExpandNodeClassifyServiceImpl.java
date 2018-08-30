@@ -4,9 +4,9 @@ import com.CLD.dataAnonymization.dao.h2.entity.ExpandNodeClassify;
 import com.CLD.dataAnonymization.dao.h2.repository.ExpandNodeClassifyRepository;
 import com.CLD.dataAnonymization.model.ExpandNodeInfo;
 import com.CLD.dataAnonymization.service.nodeAndField.nodeToField.NodeToFieldService;
+import com.CLD.dataAnonymization.util.deidentifier.io.FileResolve;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.JSONReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @description:该方法用于操作拓展节点分类表
  * @Author CLD
  * @Date 2018/6/4 9:17
  **/
@@ -45,29 +46,19 @@ public class ExpandNodeClassifyServiceImpl implements ExpandNodeClassifyService 
     @Override
     public Boolean FileToDB() {
         expandNodeClassifyRepository.deleteAll();
-        InputStream is= null;
+        expandNodeClassifyRepository.flush();
         File file=new File(FilePath_mapping+expandPath);
         String[] fileList = file.list();
         for (int i = 0; i < fileList.length; i++) {
             JSONArray jsonArray=new JSONArray();
             String path=FilePath_mapping+expandPath+"/"+fileList[i];
             try {
-                is = new FileInputStream(path);
-                JSONReader reader=new JSONReader(new InputStreamReader(is,"UTF-8"));
-                reader.startArray();
-                while(reader.hasNext()) {
-                    JSONObject ja= (JSONObject) reader.readObject();
-                    jsonArray.add(ja);
-                }
-                reader.endArray();
-                reader.close();
+                jsonArray= FileResolve.readerArrayJson(path);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 return false;
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-                return false;
             }
+            List<ExpandNodeClassify> expandNodeClassifyList=new ArrayList<ExpandNodeClassify>();
             for(int j=0;j<jsonArray.size();j++){
                 for(int k=0;k<jsonArray.getJSONObject(j).getJSONArray("fields").size();k++) {
                     ExpandNodeClassify expandNodeClassify=new ExpandNodeClassify();
@@ -77,9 +68,10 @@ public class ExpandNodeClassifyServiceImpl implements ExpandNodeClassifyService 
                     expandNodeClassify.setEN_name(jsonArray.getJSONObject(j).getJSONArray("fields").getJSONObject(k).getString("EN_Name"));
                     expandNodeClassify.setDescription(jsonArray.getJSONObject(j).getJSONArray("fields").getJSONObject(k).getString("description"));
                     expandNodeClassify.setNodeType(jsonArray.getJSONObject(j).getJSONArray("fields").getJSONObject(k).getString("type"));
-                    expandNodeClassifyRepository.save(expandNodeClassify);
+                    expandNodeClassifyList.add(expandNodeClassify);
                 }
             }
+            expandNodeClassifyRepository.saveAll(expandNodeClassifyList);
         }
         return true;
     }

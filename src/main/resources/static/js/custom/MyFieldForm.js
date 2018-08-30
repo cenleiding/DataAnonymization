@@ -247,7 +247,7 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
     }
 
     $scope.lookChangeLog=function(changeLog){
-        alert("修改:\n"+changeLog);
+        alert("修改:\n"+changeLog.replace("/r/n","\n"));
     }
 
     $scope.editForm=function (formName) {

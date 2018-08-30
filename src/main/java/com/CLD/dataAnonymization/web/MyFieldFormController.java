@@ -16,10 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 /**
- * @description:
+ * @description: 个人字段表展示控件
  * @Author CLD
  * @Date 2018/8/17 16:04
  */
@@ -96,33 +97,7 @@ public class MyFieldFormController {
     public List<String> createForm(@Param("formName")String formName,
                                    @Param("father")String father,
                                    @Param("description")String description){
-        List<String> outInfo=new ArrayList<String>();
-        Set<String> formNameSet=new HashSet<String>(fieldClassifyListRepository.getFormName());
-        if(formNameSet.contains(formName)){
-            outInfo.add("表名已存在！");
-            return outInfo;
-        }
-        if(!formNameSet.contains(father)){
-            outInfo.add("模板不存在！");
-            return outInfo;
-        }
-        String userName="";
-        try{
-            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
-                    .getAuthentication()
-                    .getPrincipal();
-            userName=userDetails.getUsername();
-        }catch(Exception e){
-            outInfo.add("非法用户名！");
-            return  outInfo;
-        }
-        if(fieldClassifyService.createFrom(formName,father,userName,description)==true){
-            outInfo.add("添加成功！");
-            return outInfo;
-        }else {
-            outInfo.add("添加失败！");
-            return outInfo;
-        }
+        return fieldClassifyService.createFrom(formName,father,description);
     }
 
     @RequestMapping(value = "/updateFieldForm",method = RequestMethod.POST)

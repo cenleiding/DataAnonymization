@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 /**
- * 用于对数据库的操作
+ * @description:用于对数据库的操作
  * @Author CLD
  * @Date 2018/5/31 16:39
  **/

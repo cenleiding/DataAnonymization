@@ -1,16 +1,18 @@
 package com.CLD.dataAnonymization.service.deidentifyTarget.dbDeidentify;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * 该服务实现对Oracle的操作
+ * @description:该服务实现对Oracle的操作
  * @Author CLD
  * @Date 2018/5/31 16:54
  **/
 @Service("Oracle")
+@Slf4j
 public class DbOracleHandle implements DbHandle{
 
     /**
@@ -80,12 +82,11 @@ public class DbOracleHandle implements DbHandle{
         try {
             metadata = conn.getMetaData();
             rs = metadata.getTables(null, user, null, new String[]{"TABLE"});// catalog 为数据库名，url中已包括可以不填
-            System.out.println("***代处理数据库列表***");
+            log.info("***代处理数据库列表***");
             while (rs.next()) {
-                System.out.println("数据库名:" + rs.getString(1));
-                System.out.println("表名: " + rs.getString(3));
-                System.out.println("类型: " + rs.getString(4));
-                System.out.println("");
+                log.info("数据库名:" + rs.getString(1));
+                log.info("表名: " + rs.getString(3));
+                log.info("类型: " + rs.getString(4));
                 fromNameList.add(rs.getString(3));
             }
             rs.close();
@@ -117,11 +118,10 @@ public class DbOracleHandle implements DbHandle{
             rs=conn.getMetaData().getColumns(null,user,fromName,null);
             System.out.println("表名："+fromName);
             while(rs.next()) {
-                System.out.print(" 列名称: "+ rs.getString("COLUMN_NAME"));
-                System.out.print(" 列类型(DB): " + rs.getString("TYPE_NAME"));
-                System.out.print(" 长度: "+ rs.getInt("COLUMN_SIZE"));
-                System.out.print(" 是否可以为空: "+ rs.getInt("NULLABLE"));
-                System.out.println();
+                log.info(" 列名称: "+ rs.getString("COLUMN_NAME"));
+                log.info(" 列类型(DB): " + rs.getString("TYPE_NAME"));
+                log.info(" 长度: "+ rs.getInt("COLUMN_SIZE"));
+                log.info(" 是否可以为空: "+ rs.getInt("NULLABLE"));
                 name.add(rs.getString("COLUMN_NAME"));
                 type.add(rs.getString("TYPE_NAME").split(" ")[0].toUpperCase());//去除附加信息如：identity.并转大写
                 length.add(String.valueOf(rs.getInt("COLUMN_SIZE")));
@@ -131,23 +131,21 @@ public class DbOracleHandle implements DbHandle{
             //主键信息
             rs = conn.getMetaData().getPrimaryKeys(null, user,fromName);
             while(rs.next()) {
-                System.out.println();
-                System.out.println("***主键***");
-                System.out.println("COLUMN_NAME: " + rs.getObject(4));
-                System.out.println("KEY_SEQ : " + rs.getObject(5));
-                System.out.println("PK_NAME : " + rs.getObject(6));
+                log.info("***主键***");
+                log.info("COLUMN_NAME: " + rs.getObject(4));
+                log.info("KEY_SEQ : " + rs.getObject(5));
+                log.info("PK_NAME : " + rs.getObject(6));
                 key.add(rs.getObject(4).toString());
             }
 
             //索引信息
             rs=conn.getMetaData().getIndexInfo(null,user,fromName,false,true);
             while(rs.next()) {
-                System.out.println();
-                System.out.println("***索引***");
-                System.out.println("索引名：" + rs.getString("INDEX_NAME"));
-                System.out.println("列名：" + rs.getString("COLUMN_NAME"));
-                System.out.println("索引类型：" + rs.getShort("TYPE"));
-                System.out.println("索引类别：" + rs.getString("INDEX_QUALIFIER"));
+                log.info("***索引***");
+                log.info("索引名：" + rs.getString("INDEX_NAME"));
+                log.info("列名：" + rs.getString("COLUMN_NAME"));
+                log.info("索引类型：" + rs.getShort("TYPE"));
+                log.info("索引类别：" + rs.getString("INDEX_QUALIFIER"));
                 if(key.contains(rs.getString("COLUMN_NAME"))) continue;
                 switch (rs.getShort("TYPE")) {
                     case 0: {

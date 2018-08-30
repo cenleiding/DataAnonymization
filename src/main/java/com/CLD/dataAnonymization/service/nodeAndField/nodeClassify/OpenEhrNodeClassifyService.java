@@ -5,7 +5,7 @@ import com.CLD.dataAnonymization.model.ArchetypeNodeInfo;
 import java.util.List;
 
 /**
- * 该类用于操作原型节点分类表
+ * @description:该类用于操作原型节点分类表
  * @Author CLD
  * @Date 2018/5/22 8:51
  **/

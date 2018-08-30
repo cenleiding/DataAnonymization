@@ -65,7 +65,7 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog) {
     var tra=function (i,formMap) {
         for(var j in formMap){
             if(formMap[j].userName==(i)){
-                select.append("<option value='"+formMap[j].formName+"' data-icon='glyphicon glyphicon-file' data-subtext=("+formMap[j].description+")>"
+                select.append("<option value='"+formMap[j].formName+"' data-icon='glyphicon glyphicon-file' data-subtext=(使用次数："+formMap[j].usageCount+")>"
                     +formMap[j].formName+ "</option>");
                 var info={};
                 info['formName']=formMap[j].formName;

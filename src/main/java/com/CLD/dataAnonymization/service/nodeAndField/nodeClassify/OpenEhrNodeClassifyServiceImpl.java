@@ -4,9 +4,9 @@ import com.CLD.dataAnonymization.dao.h2.entity.ArchetypeNodeClassify;
 import com.CLD.dataAnonymization.dao.h2.repository.ArchetypeNodeClassifyRepository;
 import com.CLD.dataAnonymization.model.ArchetypeNodeInfo;
 import com.CLD.dataAnonymization.service.nodeAndField.nodeToField.NodeToFieldService;
+import com.CLD.dataAnonymization.util.deidentifier.io.FileResolve;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.JSONReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * @description:该类用于操作原型节点分类表
  * @Author CLD
  * @Date 2018/5/22 10:43
  **/
@@ -50,25 +51,15 @@ public class OpenEhrNodeClassifyServiceImpl implements OpenEhrNodeClassifyServic
     @Override
     public Boolean FileToDB() {
         archetypeNodeClassifyRepository.deleteAll();
-        InputStream is= null;
         JSONArray jsonArray=new JSONArray();
+        String path=FilePath_mapping+archetypePath+"/"+archetypeName;
         try {
-            is = new FileInputStream(FilePath_mapping+archetypePath+"/"+archetypeName);
-            JSONReader reader=new JSONReader(new InputStreamReader(is,"UTF-8"));
-            reader.startArray();
-            while(reader.hasNext()) {
-                JSONObject ja= (JSONObject) reader.readObject();
-                jsonArray.add(ja);
-            }
-            reader.endArray();
-            reader.close();
+            jsonArray= FileResolve.readerArrayJson(path);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false;
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return false;
         }
+        List<ArchetypeNodeClassify> archetypeNodeClassifyList=new ArrayList<ArchetypeNodeClassify>();
         for(int i=0;i<jsonArray.size();i++){
             for(int j=0;j<jsonArray.getJSONObject(i).getJSONArray("fields").size();j++){
                 ArchetypeNodeClassify archetypeNodeClassify =new ArchetypeNodeClassify();
@@ -78,10 +69,10 @@ public class OpenEhrNodeClassifyServiceImpl implements OpenEhrNodeClassifyServic
                 archetypeNodeClassify.setDescription(jsonArray.getJSONObject(i).getJSONArray("fields").getJSONObject(j).getString("description"));
                 archetypeNodeClassify.setArchetypeName(jsonArray.getJSONObject(i).getString("archetypeName"));
                 archetypeNodeClassify.setArchetypeId(jsonArray.getJSONObject(i).getString("archetypeId"));
-                archetypeNodeClassifyRepository.save(archetypeNodeClassify);
+                archetypeNodeClassifyList.add(archetypeNodeClassify);
             }
         }
-
+        archetypeNodeClassifyRepository.saveAll(archetypeNodeClassifyList);
         return true;
     }
 

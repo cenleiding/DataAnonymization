@@ -10,20 +10,18 @@ import com.CLD.dataAnonymization.dao.h2.repository.FieldClassifyRepository;
 import com.CLD.dataAnonymization.dao.h2.repository.FieldClassifyUsageCountRepository;
 import com.CLD.dataAnonymization.model.FieldFormInfo;
 import com.CLD.dataAnonymization.model.FieldInfo;
-import com.CLD.dataAnonymization.util.deidentifier.io.FileResolve;
-import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
+ * @description:该类用于生成、操作可用匿名字段表
  * @Author CLD
  * @Date 2018/5/23 9:08
  **/
@@ -176,11 +174,11 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
             fieldChangeLog.setChangeLog(log);
             fieldChangeLogRepository.save(fieldChangeLog);
             List<FieldChangeLog> fieldChangeLogList=fieldChangeLogRepository.findByFormName(oldFormName);
-            fieldChangeLogRepository.deleteByFormName(oldFormName);
+//            fieldChangeLogRepository.deleteByFormName(oldFormName);
             for(FieldChangeLog fieldChangeLog1:fieldChangeLogList)
                 fieldChangeLog1.setFormName(newFormName);
-            fieldChangeLogRepository.flush();
             fieldChangeLogRepository.saveAll(fieldChangeLogList);
+
             //存fieldClassify
             List<FieldClassify> fieldClassifyList=new ArrayList<FieldClassify>();
             for(String s:fieldMap.keySet()){
@@ -200,9 +198,9 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
             fieldClassifyListRepository.save(fieldClassifyList1);
             //存fieldUsageCount
             FieldClassifyUsageCount fieldClassifyUsageCount=fieldClassifyUsageCountRepository.findByFormName(oldFormName);
-            fieldClassifyUsageCountRepository.deleteByFormName(oldFormName);
+//            fieldClassifyUsageCountRepository.deleteByFormName(oldFormName);
             fieldClassifyUsageCount.setFormName(newFormName);
-            fieldClassifyUsageCountRepository.flush();
+//            fieldClassifyUsageCountRepository.flush();
             fieldClassifyUsageCountRepository.save(fieldClassifyUsageCount);
         }catch (Exception e){
             e.printStackTrace();
@@ -301,7 +299,31 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
 
     @Override
     @Transactional
-    public Boolean createFrom(String formName,String father,String userName,String description){
+    public List<String> createFrom(String formName,String father,String description){
+        List<String> outInfo=new ArrayList<String>();
+        String userName="";
+        if(formName.trim().equals("")){
+            outInfo.add("表名不能为空！");
+            return outInfo;
+        }
+        Set<String> formNameSet=new HashSet<String>(fieldClassifyListRepository.getFormName());
+        if(formNameSet.contains(formName)){
+            outInfo.add("表名已存在！");
+            return outInfo;
+        }
+        if(!formNameSet.contains(father)){
+            outInfo.add("模板不存在！");
+            return outInfo;
+        }
+        try{
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+                    .getAuthentication()
+                    .getPrincipal();
+            userName=userDetails.getUsername();
+        }catch(Exception e){
+            outInfo.add("非法用户名！");
+            return  outInfo;
+        }
         try{
             //
             FieldClassifyList fieldClassifyList=new FieldClassifyList();
@@ -339,31 +361,33 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
 
         }catch (Exception e){
             e.printStackTrace();
-            return false;
+            outInfo.add("添加失败！");
+            return  outInfo;
         }
-        return true;
+        outInfo.add("添加成功！");
+        return  outInfo;
     }
 
 
     @Override
     public Boolean FileToDB() {
-        InputStream is= null;
-        File file=new File(FilePath_mapping+fieldPath);
-        String[] fileList = file.list();
-        for (int i = 0; i < fileList.length; i++) {
-            if(fileList[i].equals("Original.json")) continue;
+//        InputStream is= null;
+//        File file=new File(FilePath_mapping+fieldPath);
+//        String[] fileList = file.list();
+//        for (int i = 0; i < fileList.length; i++) {
+//            if(fileList[i].equals("Original.json")) continue;
 //            usageFieldClassifyRepository.deleteByFromName(fileList[i].split("\\.")[0]);
-            JSONArray jsonArray=new JSONArray();
-            String path=FilePath_mapping+fieldPath+"/"+fileList[i];
-            try {
-                jsonArray=FileResolve.readerArrayJson(path);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                return false;
-            }
-            for(int j=0;j<jsonArray.size();j++){
-            }
-        }
+//            JSONArray jsonArray=new JSONArray();
+//            String path=FilePath_mapping+fieldPath+"/"+fileList[i];
+//            try {
+//                jsonArray=FileResolve.readerArrayJson(path);
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//                return false;
+//            }
+//            for(int j=0;j<jsonArray.size();j++){
+//            }
+//        }
         return true;
     }
 

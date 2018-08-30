@@ -75,12 +75,12 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
         //进行字段分类
         for(int i=0;i<nodeList.size();i++) {
             String pathAndId=nodeList.get(i).getSpecialiseArchetypeId()+nodeList.get(i).getNodePath();
-            String db_field=nodeList.get(i).getEn_name();
-            String en_field=db_field.toLowerCase()
+            String db_field=nodeList.get(i).getEn_name().toLowerCase()
                     .replace(".","")
                     .replace("_","")
                     .replace("-","")
                     .replace("*","");
+            String en_field=db_field;
             String ch_field=nodeList.get(i).getCh_name();
             if(ch_field!=null) ch_field=ch_field.toLowerCase()
                     .replace(".","")
@@ -147,12 +147,12 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
         fieldChangeLogRepository.save(fieldChangeLog);
 
         //创建FieldClassifyUsageCount
-        fieldClassifyUsageCountRepository.deleteByFormName("OpenEhr字段表");
-        fieldClassifyUsageCountRepository.flush();
-        FieldClassifyUsageCount fieldClassifyUsageCount=new FieldClassifyUsageCount();
-        fieldClassifyUsageCount.setCount(0);
-        fieldClassifyUsageCount.setFormName("OpenEhr字段表");
-        fieldClassifyUsageCountRepository.save(fieldClassifyUsageCount);
+        if(fieldClassifyUsageCountRepository.findByFormName("OpenEhr字段表")==null){
+            FieldClassifyUsageCount fieldClassifyUsageCount=new FieldClassifyUsageCount();
+            fieldClassifyUsageCount.setCount(0);
+            fieldClassifyUsageCount.setFormName("OpenEhr字段表");
+            fieldClassifyUsageCountRepository.save(fieldClassifyUsageCount);
+        }
 
         return outList;
     }
@@ -246,7 +246,6 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
                             .getString("specialiseArchetypeId")};
             templateName.add(strings);
         }
-        System.out.println("获得已部署模板："+templateName.size());
         return templateName;
     }
 

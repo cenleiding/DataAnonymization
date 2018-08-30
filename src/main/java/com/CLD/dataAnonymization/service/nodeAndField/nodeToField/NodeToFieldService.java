@@ -3,7 +3,7 @@ package com.CLD.dataAnonymization.service.nodeAndField.nodeToField;
 import java.util.List;
 
 /**
- * 该类用于将节点分类表转换为字段分类表
+ * @Description:该类用于将节点分类表转换为字段分类表
  * @Author CLD
  * @Date 2018/5/22 8:56
  **/

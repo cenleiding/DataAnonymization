@@ -62,17 +62,17 @@ public class LaplaceNoise {
         return laplace*sign;
     }
 
-    public static void main(String[] args){
-        ArrayList<ArrayList<String>> data=new ArrayList<ArrayList<String>> ();
-        ArrayList<String> s=new ArrayList<String>();
-        for(int i =0;i<100;i++)
-            s.add(String.valueOf(i));
-        s.add("aaa");
-        data.add(s);
-        ArrayList<Integer> col=new ArrayList<Integer> ();
-        col.add(0);
-        laplaceNoiseHandle(data,col,0.05);
-        for(int i=0;i<101;i++)
-            System.out.print(data.get(0).get(i)+" ");
-    }
+//    public static void main(String[] args){
+//        ArrayList<ArrayList<String>> data=new ArrayList<ArrayList<String>> ();
+//        ArrayList<String> s=new ArrayList<String>();
+//        for(int i =0;i<100;i++)
+//            s.add(String.valueOf(i));
+//        s.add("aaa");
+//        data.add(s);
+//        ArrayList<Integer> col=new ArrayList<Integer> ();
+//        col.add(0);
+//        laplaceNoiseHandle(data,col,0.05);
+//        for(int i=0;i<101;i++)
+//            System.out.print(data.get(0).get(i)+" ");
+//    }
 }

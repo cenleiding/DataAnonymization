@@ -1,16 +1,19 @@
 package com.CLD.dataAnonymization.dao.h2.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 
 /**
- * @description:
+ * @description: 字段表使用情况
  * @Author CLD
  * @Date 2018/8/16 14:29
  */
 @Entity
+@Table(name="FieldClassifyUsageCount")
+@Getter
+@Setter
 public class FieldClassifyUsageCount{
 
     @Id
@@ -22,27 +25,4 @@ public class FieldClassifyUsageCount{
 
     private int count;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFormName() {
-        return formName;
-    }
-
-    public void setFormName(String formName) {
-        this.formName = formName;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
 }

@@ -5,7 +5,7 @@ import com.CLD.dataAnonymization.model.AnonymizeConfigure;
 import java.util.List;
 
 /**
- * 该服务用于对数据库进行匿名化操作,并记录处理状态
+ * @description:该服务用于对数据库进行匿名化操作,并记录处理状态
  * @Author CLD
  * @Date 2018/5/29 8:49
  **/

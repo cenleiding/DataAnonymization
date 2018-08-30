@@ -1,13 +1,19 @@
 package com.CLD.dataAnonymization.dao.h2.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 /**
+ * @description：该表用于存储数据库匿名情况
  * @Author CLD
  * @Date 2018/5/31 16:32
  **/
 @Entity
 @Table(name = "DbInfo")
+@Getter
+@Setter
 public class DbInfo {
 
     @Id
@@ -19,27 +25,4 @@ public class DbInfo {
     @Column(length = 2500)
     private String state;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
 }

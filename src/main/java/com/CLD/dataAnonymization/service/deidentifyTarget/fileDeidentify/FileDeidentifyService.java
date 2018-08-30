@@ -7,7 +7,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 该类用于处理文件类型数据
+ * @description:该类用于处理文件类型数据
+ * @Author CLD
+ * @Date 2018/4/16 8:43
  **/
 @Service
 public interface FileDeidentifyService {

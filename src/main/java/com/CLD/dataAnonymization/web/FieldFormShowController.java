@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @description:
+ * @description:字段表展示控件
  * @Author CLD
  * @Date 2018/8/15 16:01
  */

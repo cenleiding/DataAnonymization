@@ -1,5 +1,8 @@
 package com.CLD.dataAnonymization.dao.h2.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,6 +15,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "FieldClassify")
+@Getter
+@Setter
 public class FieldClassify {
 
     @Id
@@ -24,35 +29,4 @@ public class FieldClassify {
 
     private String formName;
 
-    public long getID() {
-        return ID;
-    }
-
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    public String getFieldName() {
-        return fieldName;
-    }
-
-    public void setFieldName(String fieldName) {
-        this.fieldName = fieldName;
-    }
-
-    public String getFieldType() {
-        return fieldType;
-    }
-
-    public void setFieldType(String fieldType) {
-        this.fieldType = fieldType;
-    }
-
-    public String getFormName() {
-        return formName;
-    }
-
-    public void setFormName(String formName) {
-        this.formName = formName;
-    }
 }

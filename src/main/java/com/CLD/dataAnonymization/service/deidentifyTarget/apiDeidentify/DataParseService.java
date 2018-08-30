@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
 /**
- * 该类用于对数据结构进行解析，进行数据格式之间的转换。
+ * @description:该类用于对数据结构进行解析，进行数据格式之间的转换。
  * @Author CLD
  * @Date 2018/3/29 14:31
  **/

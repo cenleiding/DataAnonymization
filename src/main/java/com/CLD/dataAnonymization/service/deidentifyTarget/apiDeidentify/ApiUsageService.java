@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 /**
- * 该类用于读写API使用情况日志
+ * @description:该类用于读写API使用情况日志
  * @Author CLD
  * @Date 2018/4/16 16:14
  **/

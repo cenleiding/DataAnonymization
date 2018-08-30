@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 该类用于生成、操作可用匿名字段表
+ * @description:该类用于生成、操作可用匿名字段表
  * @Author CLD
  * @Date 2018/5/22 8:53
  **/
@@ -35,7 +35,7 @@ public interface FieldClassifyService {
     public Map<String,List<String>> getFieldDetailByFormName(String formName);
 
     //生成新的表单
-    public Boolean createFrom(String formName,String father,String userName,String description);
+    public List<String> createFrom(String formName,String father,String description);
 
     //该方法将文件形式的字段表，存入数据库
     public Boolean FileToDB();

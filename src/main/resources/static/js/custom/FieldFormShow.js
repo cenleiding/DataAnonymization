@@ -1,5 +1,5 @@
 var app = angular.module("fieldFormShowApp", ['headApp']);
-app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
+app.controller("fieldFormShowCtrl", function($scope,$http) {
 
 
     $scope.selectInfo=[];
@@ -64,7 +64,7 @@ app.controller("fieldFormShowCtrl", function($scope,$http,$timeout,$q) {
     var tra=function (i,formMap) {
         for(var j in formMap){
             if(formMap[j].userName==(i)){
-                select.append("<option value='"+formMap[j].formName+"' data-icon='glyphicon glyphicon-file' data-subtext=("+formMap[j].description+")>"
+                select.append("<option value='"+formMap[j].formName+"' data-icon='glyphicon glyphicon-file' data-subtext=(使用次数："+formMap[j].usageCount+")>"
                     +formMap[j].formName+ "</option>");
                 var info={};
                 info['formName']=formMap[j].formName;

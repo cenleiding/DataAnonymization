@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
- * 该控制器用于管理，用户管理界面
+ * @Description:该控制器用于管理，用户管理界面
  * @Author CLD
  * @Date 2018/6/5 16:21
  **/

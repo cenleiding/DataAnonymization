@@ -28,10 +28,15 @@ public class NodeResetServiceImpl implements NodeResetService {
     @Override
     public List<String> NodeReset() {
         List<String> outList=new ArrayList<String>();
-        openEhrNodeClassifyService.FileToDB();
-        expandNodeClassifyService.FileToDB();
-        outList=nodeToFieldService.ArcheTypeNodeToField();
-        outList.addAll(nodeToFieldService.ExpandNodeToField());
+        try {
+            openEhrNodeClassifyService.FileToDB();
+            expandNodeClassifyService.FileToDB();
+            outList=nodeToFieldService.ArcheTypeNodeToField();
+            outList.addAll(nodeToFieldService.ExpandNodeToField());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return outList;
     }
 }
