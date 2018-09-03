@@ -897,7 +897,7 @@
 			{
 				"EN_Name":"ReporterId",
 				"CH_Name":"报告医师代码",
-				"type":"EI",
+				"type":"QI_Link",
 				"description":"报告医师代码"
 			},
 			{

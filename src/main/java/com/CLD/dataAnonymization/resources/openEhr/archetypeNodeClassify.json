@@ -456,7 +456,7 @@
       {
       "nodeName":"Action datetime",
       "nodePath": "/protocol[at0002]/items[at0003]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -660,7 +660,7 @@
       {
       "nodeName":"Action datetime",
       "nodePath": "/protocol[at0002]/items[at0003]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -774,7 +774,7 @@
        {
       "nodeName":"Perform Date/Time",
       "nodePath": "/protocol[at0017]/items[at0018]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"*"
       },
       {
@@ -2826,7 +2826,7 @@
       {
       "nodeName":"Latest date service required",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0144]/value",
-      "type":"QI_Date",
+      "type":"QI_DateRecord",
       "description":"检查申请执行最晚日期"
       },
       {

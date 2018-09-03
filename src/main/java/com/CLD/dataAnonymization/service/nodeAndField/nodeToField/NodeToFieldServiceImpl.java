@@ -217,11 +217,12 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
             fieldChangeLogRepository.save(fieldChangeLog);
 
             //创建FieldClassifyUsageCount
-            fieldClassifyUsageCountRepository.deleteByFormName(formName);
-            FieldClassifyUsageCount fieldClassifyUsageCount=new FieldClassifyUsageCount();
-            fieldClassifyUsageCount.setCount(0);
-            fieldClassifyUsageCount.setFormName(formName);
-            fieldClassifyUsageCountRepository.save(fieldClassifyUsageCount);
+            if(fieldClassifyUsageCountRepository.findByFormName(formName)==null){
+                FieldClassifyUsageCount fieldClassifyUsageCount=new FieldClassifyUsageCount();
+                fieldClassifyUsageCount.setCount(0);
+                fieldClassifyUsageCount.setFormName(formName);
+                fieldClassifyUsageCountRepository.save(fieldClassifyUsageCount);
+            }
         }
         return errorList;
     }
@@ -266,9 +267,9 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
 
     private String HttpGet(String url){
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpget = new HttpGet(url);
         CloseableHttpResponse response = null;
         try {
+            HttpGet httpget = new HttpGet(url);
             response = httpClient.execute(httpget);
         } catch (IOException e1) {
             e1.printStackTrace();

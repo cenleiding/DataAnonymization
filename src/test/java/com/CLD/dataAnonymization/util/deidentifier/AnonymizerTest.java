@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class AnonymizerTest {
     @Test
     public void anonymize() throws Exception {
-        ArrayList<ArrayList<String>> data= FileResolve.readerXlsx("C:\\Users\\CLD\\Desktop\\test2.xlsx").get(0);
+        ArrayList<ArrayList<String>> data= FileResolve.readerXlsx("C:\\Users\\CLD\\Desktop\\test.xlsx").get(0);
         DataHandle dataHandle=new DataHandle(data);
         Configuration configuration=new Configuration();
         configuration.setLevel(Configuration.AnonymousLevel.Level2);

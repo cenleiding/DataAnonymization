@@ -35,16 +35,15 @@ public class ExpandNodeClassifyServiceImpl implements ExpandNodeClassifyService 
     @Autowired
     NodeToFieldService nodeToFieldService;
 
-    private String FilePath_mapping=new Object() {
-        public String get(){
-            return this.getClass().getClassLoader().getResource("").getPath();
-        }
-    }.get().replaceAll("target/classes/","")
-            .replaceAll(jarName+"!/BOOT-INF/classes!/","")
-            .replaceAll("file:","");
-
     @Override
     public Boolean FileToDB() {
+        String FilePath_mapping=new Object() {
+            public String get(){
+                return this.getClass().getClassLoader().getResource("").getPath();
+            }
+        }.get().replaceAll("target/classes/","")
+                .replaceAll(jarName+"!/BOOT-INF/classes!/","")
+                .replaceAll("file:","");
         expandNodeClassifyRepository.deleteAll();
         expandNodeClassifyRepository.flush();
         File file=new File(FilePath_mapping+expandPath);
@@ -78,6 +77,13 @@ public class ExpandNodeClassifyServiceImpl implements ExpandNodeClassifyService 
 
     @Override
     public Boolean DBToFile() {
+        String FilePath_mapping=new Object() {
+            public String get(){
+                return this.getClass().getClassLoader().getResource("").getPath();
+            }
+        }.get().replaceAll("target/classes/","")
+                .replaceAll(jarName+"!/BOOT-INF/classes!/","")
+                .replaceAll("file:","");
         List<ExpandNodeClassify> expandNodeClassifyList=expandNodeClassifyRepository.findAll();
         List<String> expandNameList=expandNodeClassifyRepository.getExpandName();
         for(String expandName:expandNameList){

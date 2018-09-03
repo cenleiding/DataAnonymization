@@ -40,16 +40,15 @@ public class OpenEhrNodeClassifyServiceImpl implements OpenEhrNodeClassifyServic
     @Autowired
     NodeToFieldService nodeToFieldService;
 
-    private String FilePath_mapping=new Object() {
-        public String get(){
-            return this.getClass().getClassLoader().getResource("").getPath();
-        }
-    }.get().replaceAll("target/classes/","")
-            .replaceAll(jarName+"!/BOOT-INF/classes!/","")
-            .replaceAll("file:","");
-
     @Override
     public Boolean FileToDB() {
+        String FilePath_mapping=new Object() {
+            public String get(){
+                return this.getClass().getClassLoader().getResource("").getPath();
+            }
+        }.get().replaceAll("target/classes/","")
+                .replaceAll(jarName+"!/BOOT-INF/classes!/","")
+                .replaceAll("file:","");
         archetypeNodeClassifyRepository.deleteAll();
         JSONArray jsonArray=new JSONArray();
         String path=FilePath_mapping+archetypePath+"/"+archetypeName;
@@ -78,6 +77,13 @@ public class OpenEhrNodeClassifyServiceImpl implements OpenEhrNodeClassifyServic
 
     @Override
     public Boolean DBToFile() {
+        String FilePath_mapping=new Object() {
+            public String get(){
+                return this.getClass().getClassLoader().getResource("").getPath();
+            }
+        }.get().replaceAll("target/classes/","")
+                .replaceAll(jarName+"!/BOOT-INF/classes!/","")
+                .replaceAll("file:","");
         List<ArchetypeNodeClassify> archetypeNodeClassifyList = archetypeNodeClassifyRepository.findAll();
         Map<String,String> archetypeList=new HashMap<String,String>();
         for(ArchetypeNodeClassify archetypeNodeClassify : archetypeNodeClassifyList){

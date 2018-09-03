@@ -11,7 +11,6 @@ import com.CLD.dataAnonymization.dao.h2.repository.FieldClassifyUsageCountReposi
 import com.CLD.dataAnonymization.model.FieldFormInfo;
 import com.CLD.dataAnonymization.model.FieldInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -27,20 +26,6 @@ import java.util.*;
  **/
 @Service
 public class FieldClassifyServiceImpl implements FieldClassifyService {
-
-    @Value("${field.out.path}")
-    private String fieldPath;
-
-    @Value("${package.jar.name}")
-    private String jarName;
-
-    private String FilePath_mapping=new Object() {
-        public String get(){
-            return this.getClass().getClassLoader().getResource("").getPath();
-        }
-    }.get().replaceAll("target/classes/","")
-            .replaceAll(jarName+"!/BOOT-INF/classes!/","")
-            .replaceAll("file:","");
 
     @Autowired
     FieldClassifyListRepository fieldClassifyListRepository;

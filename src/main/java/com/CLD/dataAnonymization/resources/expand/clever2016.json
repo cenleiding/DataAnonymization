@@ -1198,7 +1198,7 @@
 			{
 				"EN_Name":"Representation_Uri",
 				"CH_Name":"报告内容",
-				"type":"UI",
+				"type":"EI",
 				"description":"报告内容"
 			}
 		]

@@ -3,6 +3,7 @@ package com.CLD.dataAnonymization;
 import com.CLD.dataAnonymization.dao.h2.repository.FieldClassifyListRepository;
 import com.CLD.dataAnonymization.dao.h2.repository.SystemUserRepository;
 import com.CLD.dataAnonymization.service.systemManage.initialize.ResourcesFileInitializeService;
+import com.CLD.dataAnonymization.service.systemManage.mergeField.MergeFieldService;
 import com.CLD.dataAnonymization.service.systemManage.reset.NodeResetService;
 import com.CLD.dataAnonymization.service.systemManage.webSecurity.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,9 @@ public class InitApplicationRunner implements ApplicationRunner{
     FieldClassifyListRepository fieldClassifyListRepository;
 
     @Autowired
+    MergeFieldService mergeFieldService;
+
+    @Autowired
     UserService userService;
 
     @Override
@@ -51,6 +55,9 @@ public class InitApplicationRunner implements ApplicationRunner{
 
         //基础字段初始化
         nodeResetService.NodeReset();
+
+        //生成合并总表
+        System.out.println("合并总表："+mergeFieldService.mergeAllField());
 
         //用户初始化
         if(userService.getUser().size()==0)

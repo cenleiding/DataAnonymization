@@ -46,13 +46,12 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
         log.info("资源初始化开始...");
 
         String outPath= new Object(){
-            public String get(){
-                return this.getClass().getClassLoader().getResource("").getPath();
-            }
+        public String get(){
+            return this.getClass().getClassLoader().getResource("").getPath();
+        }
         }.get().replaceAll("target/classes/","")
                 .replaceAll(jarName+"!/BOOT-INF/classes!/","")
                 .replaceAll("file:","");
-
         file=new File(outPath+outArchetypePath);
         if(!file.exists()){
             System.out.println(file.mkdirs());
