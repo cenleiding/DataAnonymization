@@ -3,7 +3,7 @@
 参考Openehr,HIPAA,GDPR,ISO-20889,国标-个人信息安全规范等法律和规范。
 
 ##字段分类处理标准
-![image](./src/main/resources/static/img/readme_img.png) 
+![image](https://github.com/cenleiding/DataAnonymization/tree/master/src/main/resources/static/img/readme_img.png) 
 > 一级分类
 >>**EI显示标识符(Explicit-Identifier)**:
 显示标识符可直接表示出个体身份的属性，如身份证号、社保号、姓名等。
