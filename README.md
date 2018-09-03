@@ -4,4 +4,5 @@
 
 ![github](https://avatars3.githubusercontent.com/u/6541847?v=4 "github") 
 
-![image](../resources/static/img/readme_img.png)
+![image](../src/main/resources/static/img/add.png)
+
