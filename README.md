@@ -4,5 +4,5 @@
 
 ![github](https://avatars3.githubusercontent.com/u/6541847?v=4 "github") 
 
-![image](../src/main/resources/static/img/add.png)
+![image](./src/main/resources/static/img/add.png)
 
