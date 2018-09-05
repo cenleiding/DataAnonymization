@@ -153,7 +153,7 @@ public class Tcloseness {
              config.addPrivacyModel(new HierarchicalDistanceTCloseness(data.get(tcolumn).get(0), T, hierarchyHashMap.get(data.get(tcolumn).get(0))));
          }
          config.setSuppressionLimit(SuppressionLimit);
-         config.setQualityModel(Metric.createLossMetric(0));
+         config.setQualityModel(Metric.createEntropyMetric());//使用non-uniform entropy
         return true;
      }
 
