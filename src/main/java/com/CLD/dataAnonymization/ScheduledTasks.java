@@ -30,6 +30,6 @@ public class ScheduledTasks {
     @Scheduled(initialDelay = 10000,fixedDelay = 86400000)
     public void updataFields() throws FileNotFoundException, UnsupportedEncodingException {
         log.info("openEhr 字段更新");
-         nodeToFieldService.ArcheTypeNodeToField();
+//         nodeToFieldService.ArcheTypeNodeToField();
     }
 }

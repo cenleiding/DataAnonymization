@@ -59,6 +59,25 @@ public class ResourcesReader {
     }
 
     /**
+     * 读取Word2id 文件
+     * @return
+     * @throws FileNotFoundException
+     */
+    public static HashMap<String,Integer> readWord2id() throws FileNotFoundException {
+        HashMap<String,Integer> word2id = new HashMap<String,Integer>();
+        InputStream is=new Object(){
+            public InputStream get(){
+                return this.getClass().getResourceAsStream("./word2id.json");
+            }
+        }.get();
+        JSONObject jsonObject= FileResolve.readerObjectJson(is);
+        for (String key : jsonObject.keySet()){
+            word2id.put(key,Integer.valueOf(jsonObject.getString(key)));
+        }
+        return word2id;
+    }
+
+    /**
      * 用于jsonArray与ArrayList之间的转换
      * @param jsonArray
      * @return

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class EasyAnonymizeAdapter {
 
-    public static ArrayList<ArrayList<String>> ToLevel_1(ArrayList<ArrayList<String>> data,
+    public static ArrayList<ArrayList<String>> ToLimitedSet(ArrayList<ArrayList<String>> data,
                                                             ArrayList<ArrayList<String>> fieldList){
         DataHandle dataHandle=new DataHandle(data);
         dataHandle.setFieldList(fieldList);
@@ -22,7 +22,7 @@ public class EasyAnonymizeAdapter {
         return dataHandle.getData();
     }
 
-    public static ArrayList<ArrayList<String>> ToLevel_1(ArrayList<ArrayList<String>> data){
+    public static ArrayList<ArrayList<String>> ToLimitedSet(ArrayList<ArrayList<String>> data){
         DataHandle dataHandle=new DataHandle(data);
         Configuration configuration=new Configuration();
         configuration.setLevel(Configuration.AnonymousLevel.Level1);
@@ -31,7 +31,7 @@ public class EasyAnonymizeAdapter {
         return dataHandle.getData();
     }
 
-    public static ArrayList<ArrayList<String>> ToLevel_2(ArrayList<ArrayList<String>> data,
+    public static ArrayList<ArrayList<String>> ToSafeHarbor(ArrayList<ArrayList<String>> data,
                                                          ArrayList<ArrayList<String>> fieldList){
         DataHandle dataHandle=new DataHandle(data);
         dataHandle.setFieldList(fieldList);
@@ -42,7 +42,7 @@ public class EasyAnonymizeAdapter {
         return dataHandle.getData();
     }
 
-    public static ArrayList<ArrayList<String>> ToLevel_2(ArrayList<ArrayList<String>> data){
+    public static ArrayList<ArrayList<String>> ToSafeHarbor(ArrayList<ArrayList<String>> data){
         DataHandle dataHandle=new DataHandle(data);
         Configuration configuration=new Configuration();
         configuration.setLevel(Configuration.AnonymousLevel.Level2);
