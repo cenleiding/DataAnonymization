@@ -16,6 +16,7 @@ import java.util.HashMap;
  **/
 public class ResourcesReader {
 
+
     /**
      * 读取资源文件中的地理信息文件
      * @return
@@ -78,6 +79,32 @@ public class ResourcesReader {
     }
 
     /**
+     * 读取规则文件
+     * @return
+     * @throws FileNotFoundException
+     */
+    public static HashMap<String,ArrayList<String>> readRegular() throws FileNotFoundException {
+        HashMap<String,ArrayList<String>> regular = new HashMap<String,ArrayList<String>>();
+        InputStream is=new Object(){
+            public InputStream get(){
+                return this.getClass().getResourceAsStream("./regular.json");
+            }
+        }.get();
+        JSONObject jsonObject= FileResolve.readerObjectJson(is);
+
+        for (String s :jsonObject.keySet()){
+            ArrayList<String> Regs = new ArrayList<String>();
+            for (int i=0;i< jsonObject.getJSONArray(s).size();i++){
+                Regs.add(jsonObject.getJSONArray(s).getJSONObject(i).getString("area"));
+                Regs.add(jsonObject.getJSONArray(s).getJSONObject(i).getString("aims"));
+            }
+            regular.put(s,Regs);
+        }
+        return regular;
+    }
+
+
+    /**
      * 用于jsonArray与ArrayList之间的转换
      * @param jsonArray
      * @return
@@ -92,3 +119,4 @@ public class ResourcesReader {
     }
 
 }
+
