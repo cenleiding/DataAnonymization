@@ -1,8 +1,5 @@
-var app = angular.module("FileProcessingApp", ['ngFileUpload','ngDialog','navigationBarApp','anonymizeConfigureApp']);
-app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog,$rootScope) {
-
-    $rootScope.sidebarPage=0;
-    $scope.page=1;
+var app = angular.module("FileProcessingApp", ['ngFileUpload','ngDialog','headApp','anonymizeConfigureApp']);
+app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog) {
 
     $scope.progress = 0;
     $scope.uploadstate=false;
@@ -17,7 +14,6 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog,$roo
     var select = $("#fromName");
 
     (function (){
-
         $http(
         {
             method:"GET",
@@ -134,20 +130,20 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog,$roo
         });
     }
 
-    // $scope.anonymizeConfigure=function () {
-    //     ngDialog.open({
-    //         template: '/htmlTemplates/AnonymizeConfigure.html',
-    //         className: 'ngdialog-theme-default',
-    //         controller: 'anonymizeConfigureCtrl',
-    //         resolve: {//传参
-    //             dep: function() {
-    //                 return  $scope.config;
-    //             }
-    //         },
-    //         width:450,
-    //         height: 550,})
-    //         .closePromise.then(function(value) {
-    //             $scope.config=value.$dialog.scope().config;
-    //     });
-    // }
+    $scope.anonymizeConfigure=function () {
+        ngDialog.open({
+            template: '/htmlTemplates/AnonymizeConfigure.html',
+            className: 'ngdialog-theme-default',
+            controller: 'anonymizeConfigureCtrl',
+            resolve: {//传参
+                dep: function() {
+                    return  $scope.config;
+                }
+            },
+            width:450,
+            height: 550,})
+            .closePromise.then(function(value) {
+                $scope.config=value.$dialog.scope().config;
+        });
+    }
 })

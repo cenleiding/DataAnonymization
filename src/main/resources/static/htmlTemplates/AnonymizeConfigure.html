@@ -1,73 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
 
-
-
-</head>
-<body>
-<div style="padding-left: 20px;width: 430px">
-    <div class="row">
-        <div class="col-lg-6">
-            <h2 class="form-signin-heading">属性配置</h2>
-        </div>
-        <div class="col-lg-3"></div>
-        <div class="col-lg-3">
-            <input data-ng-click="reset()" title='恢复默认' type="image" src="/img/reset.png" style="display: inline-block;width: 30px;height: 30px;margin-top: 20px" />
-        </div>
+<div class="sky-card" style="margin-top: 50px">
+    <div class="card-head-2">
+        <span class="card-title">匿名参数配置</span>
     </div>
-    <hr style="color: black;background-color: black;border-color: black;width: 400px;margin-left: 0px;margin-right: 0px;margin-top: 5px">
-    <ul class="nav nav-tabs">
-        <li role="presentation" ng-class="{active:showFlg}" ><a style="cursor:pointer" data-ng-click="showFlg=!showFlg;refreshSlider()">匿名方式一</a></li>
-        <li role="presentation" ng-class="{active:!showFlg}"><a style="cursor:pointer" data-ng-click="showFlg=!showFlg;refreshSlider()">匿名方式二</a></li>
-    </ul>
-    <div ng-show="showFlg">
-        <div style="padding-top: 10px">
-            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">加密密码：</span>
-            <input ng-value="config.encryptPassword" ng-model="config.encryptPassword" style="width: 250px;background: transparent; border-style:none;border-bottom-style:solid;border-bottom-color: black;">
-        </div>
-        <div style="padding-top: 20px">
-            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">K值：</span>
-            <rzslider style="width: 250px"  rz-slider-model="k_small_slider.value" rz-slider-options="k_small_slider.options"></rzslider>
-        </div>
-        <div style="padding-top: 20px">
-            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">抑制：</span>
-            <rzslider style="width: 250px" rz-slider-model="suppressionLimit1_slider.value" rz-slider-options="suppressionLimit1_slider.options"></rzslider>
-        </div>
-        <div style="padding-top: 20px">
-            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">随机噪声：</span>
-            <rzslider style="width: 250px" rz-slider-model="noiseScope_small_slider.value" rz-slider-options="noiseScope_small_slider.options"></rzslider>
-        </div>
-    </div>
-    <div ng-show="!showFlg">
-        <div style="padding-top: 10px">
-            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">加密密码：</span>
-            <input ng-value="config.encryptPassword" ng-model="config.encryptPassword" style="width: 250px;background: transparent; border-style:none;border-bottom-style:solid;border-bottom-color: black;">
-        </div>
-        <div style="padding-top: 15px">
-            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">K值：</span>
-            <rzslider style="width: 250px" rz-slider-model="k_big_slider.value" rz-slider-options="k_big_slider.options"></rzslider>
-        </div>
-        <div style="padding-top: 15px">
-            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">抑制：</span>
-            <rzslider style="width: 250px" rz-slider-model="suppressionLimit2_slider.value" rz-slider-options="suppressionLimit2_slider.options"></rzslider>
-        </div>
-        <div style="padding-top: 15px">
-            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">随机噪声：</span>
-            <rzslider style="width: 250px" rz-slider-model="noiseScope_big_slider.value" rz-slider-options="noiseScope_big_slider.options"></rzslider>
-        </div>
-        <div style="padding-top: 15px">
-            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">t值：</span>
-            <rzslider style="width: 250px" rz-slider-model="t_slider.value" rz-slider-options="t_slider.options"></rzslider>
-        </div>
-        <div style="padding-top: 15px">
-            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">聚类数：</span>
-            <rzslider style="width: 250px" rz-slider-model="microaggregation_slider.value" rz-slider-options="microaggregation_slider.options"></rzslider>
-        </div>
+    <div class="card-content card-wide">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="small-card">
+                    <div class="small-card-head">
+                        <span>参数含义</span>
+                    </div>
+                    <div class="small-card-content">
+                        <p>我也不知道啊~</p>
+                        <p>我也不知道啊~</p>
+                        <p>我也不知道啊~</p>
+                        <p>我也不知道啊~</p>
+                        <p>我也不知道啊~</p>
+                        <p>我也不知道啊~</p>
+                        <p>我也不知道啊~</p>
+                        <p>我也不知道啊~</p>
+                        <p>我也不知道啊~</p>
+                        <p>我也不知道啊~</p>
+                        <p>我也不知道啊~</p>
+                        <p>我也不知道啊~</p>
+                        <p>我也不知道啊~</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="small-card">
+                    <div class="small-card-head">
+                        <span>匿名方式一参数</span>
+                    </div>
+                    <div class="small-card-content">
+                        <div style="padding-top: 10px">
+                            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">加密密码：</span>
+                            <input ng-value="config.encryptPassword" ng-model="config.encryptPassword" style="width: 250px;background: transparent; border-style:none;border-bottom-style:solid;border-bottom-color: black;">
+                        </div>
+                        <div style="padding-top: 20px">
+                            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">K值：</span>
+                            <rzslider style="width: 250px"  rz-slider-model="k_small_slider.value" rz-slider-options="k_small_slider.options"></rzslider>
+                        </div>
+                        <div style="padding-top: 20px">
+                            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">抑制：</span>
+                            <rzslider style="width: 250px" rz-slider-model="suppressionLimit1_slider.value" rz-slider-options="suppressionLimit1_slider.options"></rzslider>
+                        </div>
+                        <div style="padding-top: 20px">
+                            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">随机噪声：</span>
+                            <rzslider style="width: 250px" rz-slider-model="noiseScope_small_slider.value" rz-slider-options="noiseScope_small_slider.options"></rzslider>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="small-card">
+                    <div class="small-card-head">
+                        <span>匿名方式二参数</span>
+                    </div>
+                    <div class="small-card-content">
+                        <div style="padding-top: 10px">
+                            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">加密密码：</span>
+                            <input ng-value="config.encryptPassword" ng-model="config.encryptPassword" style="width: 250px;background: transparent; border-style:none;border-bottom-style:solid;border-bottom-color: black;">
+                        </div>
+                        <div style="padding-top: 15px">
+                            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">K值：</span>
+                            <rzslider style="width: 250px" rz-slider-model="k_big_slider.value" rz-slider-options="k_big_slider.options"></rzslider>
+                        </div>
+                        <div style="padding-top: 15px">
+                            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">抑制：</span>
+                            <rzslider style="width: 250px" rz-slider-model="suppressionLimit2_slider.value" rz-slider-options="suppressionLimit2_slider.options"></rzslider>
+                        </div>
+                        <div style="padding-top: 15px">
+                            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">随机噪声：</span>
+                            <rzslider style="width: 250px" rz-slider-model="noiseScope_big_slider.value" rz-slider-options="noiseScope_big_slider.options"></rzslider>
+                        </div>
+                        <div style="padding-top: 15px">
+                            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">t值：</span>
+                            <rzslider style="width: 250px" rz-slider-model="t_slider.value" rz-slider-options="t_slider.options"></rzslider>
+                        </div>
+                        <div style="padding-top: 15px">
+                            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">聚类数：</span>
+                            <rzslider style="width: 250px" rz-slider-model="microaggregation_slider.value" rz-slider-options="microaggregation_slider.options"></rzslider>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
     </div>
 </div>
 
-</body>
-</html>
+    <div class="card-bottom-2" align="center">
+        <input class="input-button-run-big-2 dynamicImg" data-ng-click="reset()" title='恢复默认' type="image" src="/img/reset.png" />
+        <input class="input-button-run-big-2 dynamicImg" data-ng-click="save()" title='保存修改' type="image" src="/img/determine.png" />
+    </div>
+
+</div>

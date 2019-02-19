@@ -15,6 +15,5 @@ app.controller("headCtrl", function($scope,$http,$timeout) {
         });
     })();
 
-
     }
 )

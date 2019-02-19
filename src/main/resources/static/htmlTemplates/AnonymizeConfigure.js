@@ -1,7 +1,25 @@
 var app = angular.module("anonymizeConfigureApp", ['rzModule']);
-app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,dep) {
+app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,$rootScope) {
 
-    $scope.config=JSON.parse(JSON.stringify(dep));
+    (function (){
+        //获取配置
+        $http(
+            {
+                url:"/FileProcessing/getAnonymizeConfigure",
+                method:"GET"
+            }
+        ).then(
+            function success(response) {
+                $scope.config_old=response.data;
+                $scope.config=JSON.parse(JSON.stringify($scope.config_old));
+                $scope.refreshSlider();
+            },
+            function error() {
+                alert("获取配置失败！")
+            }
+        )
+    })()
+
     $scope.showFlg=true;
 
     $scope.encryptPassword="";
@@ -112,7 +130,7 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,dep) {
 
 
     $scope.reset=function () {
-        $scope.config=JSON.parse(JSON.stringify(dep));
+        $scope.config=JSON.parse(JSON.stringify($scope.config_old));
         $scope.refreshSlider();
     }
 
@@ -130,7 +148,5 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,dep) {
             $scope.$broadcast('rzSliderForceRender')
         },0,false)
     }
-    $scope.refreshSlider();
-
 
 })

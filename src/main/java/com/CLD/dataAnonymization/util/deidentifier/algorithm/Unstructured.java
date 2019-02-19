@@ -191,7 +191,6 @@ public class Unstructured {
                     outResult.get("detail").add(entity.trim().replace(" ",""));
             }
         }
-
         return outResult;
     }
 
