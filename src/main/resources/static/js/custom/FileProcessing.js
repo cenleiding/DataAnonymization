@@ -2,9 +2,8 @@ var app = angular.module("FileProcessingApp", ['ngFileUpload','ngDialog','naviga
 app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog,$rootScope) {
 
     $rootScope.sidebarPage=0;
-    $scope.page=1;
+    $scope.page=0;
 
-    $scope.progress = 0;
     $scope.uploadstate=false;
     $scope.files=[];
     $scope.filesList=[];
@@ -12,7 +11,6 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog,$roo
     $scope.fromName="";
     $scope.selectTypelevel="Level1";
     $scope.selectInfo=[];
-    $scope.config={};
 
     var select = $("#fromName");
 
@@ -41,25 +39,11 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog,$roo
                 }
                 $("#fromName").selectpicker('refresh');
                 $("#fromName").selectpicker('val', $scope.selectInfo[1].formName);
-                $scope.config.fieldFormName=$scope.selectInfo[1].formName;
-                $scope.config.level="Level1";
+                $scope.fieldFormName=$scope.selectInfo[1].formName;
+                $scope.level="Level1";
             },
             function errorCallback(response){
                 alert("获取列表失败！")
-            }
-        )
-        //获取配置
-        $http(
-            {
-                url:"/FileProcessing/getAnonymizeConfigure",
-                method:"GET"
-            }
-        ).then(
-            function success(response) {
-                $scope.config=response.data;
-            },
-            function error() {
-                alert("获取配置失败！")
             }
         )
         $("[data-toggle='popover']").popover();
@@ -86,12 +70,11 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog,$roo
 
     $("#typeLevel").change(function(evt){
         if(evt.currentTarget.value==="Level1") alert("注意：当前选择为研究性数据！处理文件只供内部使用！！");
-        $scope.config.level=evt.currentTarget.value;
-        $scope.progress= 0;
+        $scope.level=evt.currentTarget.value;
     });
 
     $("#fromName").on('changed.bs.select', function (e,c) {
-        $scope.config.fieldFormName=$scope.selectInfo[c].formName;
+        $scope.fieldFormName=$scope.selectInfo[c].formName;
     });
 
     $(":file").change(function(){
@@ -102,24 +85,26 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog,$roo
                 if($scope.filesList[j].name===files[i].name) {$scope.filesList[j]=files[i];k=1;}
             if (k===0) $scope.filesList=$scope.filesList.concat(files[i]);
         }
-        $scope.progress = 0;
+        $scope.state = false;
     });
 
 
     $scope.deleteFileal=function(i){
         $scope.filesList.splice(i,1);
-        $scope.progress = 0;
+        $scope.state = false;
     }
 
 
-    $scope.uploadPic = function(file) {
+    $scope.uploadFile = function(file) {
         if(file.length==0){ alert("请选择需要处理的文件!!");return;}
         $scope.state=true;
         $scope.loadingImg="img/file_loading.gif";
+        $rootScope.config.level=$scope.level;
+        $rootScope.config.fieldFormName=$scope.fieldFormName;
         file.upload =
             Upload.upload({
                 url: '/FileProcessing/filecontent',
-                data: $scope.config,
+                data: $rootScope.config,
                 file: file
             });
 
@@ -130,24 +115,7 @@ app.controller("FileProcessingCtrl",function ($scope, Upload,$http,ngDialog,$roo
             if (response.status > 0)
                 $scope.errorMsg = response.status + ': ' + response.data;
         }, function (evt) {
-            $scope.progress = Math.min(100, parseInt(100.0 *evt.loaded / evt.total));
         });
     }
 
-    // $scope.anonymizeConfigure=function () {
-    //     ngDialog.open({
-    //         template: '/htmlTemplates/AnonymizeConfigure.html',
-    //         className: 'ngdialog-theme-default',
-    //         controller: 'anonymizeConfigureCtrl',
-    //         resolve: {//传参
-    //             dep: function() {
-    //                 return  $scope.config;
-    //             }
-    //         },
-    //         width:450,
-    //         height: 550,})
-    //         .closePromise.then(function(value) {
-    //             $scope.config=value.$dialog.scope().config;
-    //     });
-    // }
 })

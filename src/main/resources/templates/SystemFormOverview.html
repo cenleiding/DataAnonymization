@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:color="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="系统表单总览">
+    <meta name="author" content="">
+
+    <title>数据匿名中心</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/metisMenu.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" >
+    <link href="/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/css/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="/css/select.dataTables.min.css" rel="stylesheet">
+    <link href="/css/aliyun/console.min.css" rel="stylesheet" >
+    <link href="/css/aliyun/main.css" type="text/css" rel="stylesheet" >
+    <link href="/css/aliyun/viewframe.css" type="text/css" rel="stylesheet" >
+    <link href="/css/custom/style.css" rel="stylesheet" type="text/css">
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-select.min.js"></script>
+    <script src="/js/metisMenu.min.js"></script>
+    <script src="/js/sb-admin-2.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.buttons.min.js"></script>
+    <script src="/js/dataTables.select.min.js"></script>
+    <script src="/js/highcharts.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-popups.js"></script>
+    <script src="/js/custom/SystemFormOverview.js"></script>
+    <script src="/htmlTemplates/NavigationBar.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="yundun-console-zh-lang-wrap hasTopbar hasSidebar sddp">
+
+<div id="wrapper"  data-ng-app="SystemFormOverviewApp">
+
+    <!-- Navigation -->
+    <div  data-ng-controller="navigationBarCtrl">
+        <ng-include src="'/htmlTemplates/NavigationBar.html'"></ng-include>
+    </div>
+
+    <div class="page-content" data-ng-controller="SystemFormOverviewCtrl">
+        <!--Menu-->
+        <div class="wind-app-menu">
+            <div class="wind-app-menu-title">
+                <span class="wind-truncate wind-truncate-with-css" aria-haspopup="true" aria-expanded="false" style="max-width: 124px;">系统表单查看</span>
+            </div>
+            <div class="wind-app-menu-menu">
+                <ul>
+                    <li class="wind-app-menu-item " ng-class="{true:'wind-app-menu-item-active'}[page==0]" data-ng-click="page=0">
+                        <span class="wind-truncate wind-truncate-with-css" style="max-width: 128px;">节点表</span>
+                    </li>
+                    <li class="wind-app-menu-item " ng-class="{true:'wind-app-menu-item-active'}[page==1]" data-ng-click="page=1">
+                        <span class="wind-truncate wind-truncate-with-css" style="max-width: 128px;">字段表</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--page Content-->
+        <div class="product-view-container sddp">
+            <div ng-show="page==0" >
+                <div class="sky-card" >
+                    <div class="card-head-2">
+                        <span>节点表单查看</span>
+                    </div>
+                    <div class="card-content card-wide">
+                        <div style="margin-bottom: 20px">
+                            <label style="font-size:19px;">表单选择：</label>
+                            <select id="NodeFormSelect" class="selectpicker"  data-size="10" ></select>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">表单列表：</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <select multiple class="form-control " style="height:600px;width:350px;background: transparent; appearance:none;border:0;overflow: auto">
+                                            <option data-ng-repeat="x in fromList" ng-dblclick="selectTemp(x)">{{x}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-8">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">节点：</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <table cellpadding="0" cellspacing="0" border="0" class="display" id="NodeDataTable"></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="page==1" >
+                <div class="sky-card" >
+                    <div class="card-head-2">
+                        <span>字段表单查看</span>
+                    </div>
+                    <div class="card-content card-wide">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div style="margin-bottom: 20px">
+                                        <label style="font-size:19px;">表单选择：</label>
+                                        <select id="FieldFormSelect" class="selectpicker" data-width="auto" data-live-search="true" data-size="10"></select>
+                                    </div>
+                                     <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">表单基本信息</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <span class="span-panel">创建者:</span><p class="p-panel">{{userName}}</p>
+                                                </div>
+                                                <div class="col-lg-5">
+                                                    <span class="span-panel">模板:</span><p class="p-panel">{{father}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <span class="span-panel">创建日期:</span><p class="p-panel">{{createTime}}</p>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <span class="span-panel">最近修改日期:</span><p class="p-panel">{{lastChangeTime}}</p>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <span class="span-panel">使用次数:</span><p class="p-panel">{{usageCount}}</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span class="span-panel">描述:</span><p class="p-panel">{{description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">字段详情查看</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div style="position: absolute; z-index: 1;">
+                                                <label style="font-size:15px;">字段类别：</label>
+                                                <select  id="typeSelect" class="selectpicker" data-width="auto"  data-size="8">
+                                                    <option ng-repeat="x in selectType">{{x}}</option>
+                                                </select>
+                                            </div>
+                                            <div style="position: relative;z-index: 0;margin-top: 25px">
+                                                <table cellpadding="0" cellspacing="0" border="0" class="display" id="FieldDataTable"></table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6" >
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">字段分布图</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div id="container" style="min-width:695px;height:695px"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+</div>
+</body>
+</html>

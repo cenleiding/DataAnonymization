@@ -2,9 +2,12 @@ package com.CLD.dataAnonymization.web;
 
 import com.CLD.dataAnonymization.model.ArchetypeNodeInfo;
 import com.CLD.dataAnonymization.model.ExpandNodeInfo;
+import com.CLD.dataAnonymization.model.FieldFormInfo;
+import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
 import com.CLD.dataAnonymization.service.nodeAndField.nodeClassify.ExpandNodeClassifyService;
 import com.CLD.dataAnonymization.service.nodeAndField.nodeClassify.OpenEhrNodeClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,15 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
+
 
 /**
- * @description: 节点表展示控件
- * @Author CLD
- * @Date 2018/8/23 12:16
+ *@Description: 节点表和字段表展示控制器
+ *@Author CLD
+ *@Date 2019/2/20 15:52
  */
 @Controller
-@RequestMapping("/NodeFormShow")
-public class NodeFormShowController {
+public class SystemFormOverviewController {
 
     @Autowired
     OpenEhrNodeClassifyService openEhrNodeClassifyService;
@@ -28,40 +32,58 @@ public class NodeFormShowController {
     @Autowired
     ExpandNodeClassifyService expandNodeClassifyService;
 
-    @RequestMapping("")
-    public String NodeFormShow(){
-        return "NodeFormShow";
-    }
+    @Autowired
+    FieldClassifyService fieldClassifyService;
 
-    @RequestMapping(value = "/GetArchetypeName", method = RequestMethod.GET)
+    @RequestMapping(value = "/SystemFormOverview")
+    public String SystemFormOverview(){return "SystemFormOverview";}
+
+    @RequestMapping(value = "/NodeFormShow/GetArchetypeName", method = RequestMethod.GET)
     @ResponseBody
     public List<String> getArchetypeName(){
         return openEhrNodeClassifyService.getArchetypeName();
     }
 
-    @RequestMapping(value = "/GetArchetypeNodeInfoByName",method = RequestMethod.GET)
+    @RequestMapping(value = "/NodeFormShow/GetArchetypeNodeInfoByName",method = RequestMethod.GET)
     @ResponseBody
     public List<ArchetypeNodeInfo> getArchetypeNodeInfoByName(@RequestParam("archetypeName") String archetypeName){
         return openEhrNodeClassifyService.getArchetypeNodeInfoByName(archetypeName);
     }
 
-    @RequestMapping(value = "/getExpandFileName",method = RequestMethod.GET)
+    @RequestMapping(value = "/NodeFormShow/getExpandFileName",method = RequestMethod.GET)
     @ResponseBody
     public List<String> getFileName(){
         return expandNodeClassifyService.getFileName();
     }
 
-    @RequestMapping(value = "/getExpandFromNameByFileName",method = RequestMethod.GET)
+    @RequestMapping(value = "/NodeFormShow/getExpandFromNameByFileName",method = RequestMethod.GET)
     @ResponseBody
     public List<String> getFromNameByFileName(@RequestParam("fileName") String fileName){
         return expandNodeClassifyService.getFromNameByFileName(fileName);
     }
 
-    @RequestMapping(value = "/getExpandNodeInfoByName",method = RequestMethod.GET)
+    @RequestMapping(value = "/NodeFormShow/getExpandNodeInfoByName",method = RequestMethod.GET)
     @ResponseBody
     public List<ExpandNodeInfo> getNodeInfoByName(@RequestParam("fileName") String fileName,
                                                   @RequestParam("fromName") String fromName){
         return expandNodeClassifyService.getNodeInfoByName(fileName,fromName);
     }
 
+    @RequestMapping("/FieldFormShow/getFieldFormInfo")
+    @ResponseBody
+    public List<FieldFormInfo> getFieldFormInfo(){
+        return fieldClassifyService.getFieldFormInfo();
+    }
+
+    @RequestMapping("/FieldFormShow/getFieldOverViewByFormName")
+    @ResponseBody
+    public Map<String,Double> getFieldOverViewByFormName(@Param("formName")String formName){
+        return fieldClassifyService.getFieldOverViewByFormName(formName);
+    }
+
+    @RequestMapping("/FieldFormShow/getFieldDetailByFormName")
+    @ResponseBody
+    public Map<String,List<String>>getFieldDetailByFormName(@Param("formName")String formName){
+        return fieldClassifyService.getFieldDetailByFormName(formName);
+    }
 }

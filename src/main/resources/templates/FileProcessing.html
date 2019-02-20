@@ -82,7 +82,7 @@
         <!--page Content-->
         <div class="product-view-container sddp">
             <div ng-show="page==0" >
-                <div class="sky-card">
+                <div class="sky-card" style="margin-top: 70px">
                     <div class="card-head">
                         <span class="card-title">这个是文件处理工具，啦啦啦~</span>
                     </div>
@@ -140,7 +140,7 @@
                                     </table>
                                 </div>
                                 <div align="center">
-                                    <input class="input-button-run-big" data-ng-click="uploadPic(filesList)" data-ng-show="!state" title='匿名化' type="image" src="/img/run.png"s/>
+                                    <input class="input-button-run-big" data-ng-click="uploadFile(filesList)" data-ng-show="!state" title='匿名化' type="image" src="/img/run.png"s/>
                                     <a href={{path}}><img class="dynamicImg" src={{loadingImg}} data-ng-show="state" ></a>
                                 </div>
                                 <!--上传进度条-->
@@ -163,8 +163,6 @@
             <div ng-show="page==1" data-ng-controller="anonymizeConfigureCtrl">
                 <ng-include src="'/htmlTemplates/AnonymizeConfigure.html'"></ng-include>
             </div>
-
-
         </div>
     </div>
 </div>

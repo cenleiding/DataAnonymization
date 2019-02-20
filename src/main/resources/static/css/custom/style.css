@@ -199,6 +199,15 @@ tr.shown td.details-control {
     display: inline-block;
 }
 
+.input-button-small{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 70px;
+}
+
 .card-head-2{
     position: relative;
     padding-left: 16px;
@@ -210,7 +219,7 @@ tr.shown td.details-control {
     border-left: 3px solid #778;
     background-color: #f4f5f9;
     line-height: 40px;
-    font-size: 18px;
+    font-size: 23px;
 }
 
 .small-card{
@@ -232,4 +241,27 @@ tr.shown td.details-control {
     padding: 20px 20px 30px 20px;
     overflow: hidden;
     margin-left: 55px;
+}
+
+.Highcharts-small{
+    min-width:400px;
+    height:300px
+}
+
+.table-container-1{
+    width: 1000px;
+    margin-top: 30px;
+    margin-left: 300px;
+}
+
+.p-panel{
+    display: inline-block;
+    padding-left: 8px;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.span-panel{
+    font-size: 16px;
+    font-weight:bolder;
 }

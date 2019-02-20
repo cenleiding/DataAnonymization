@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="系统用户登入">
     <meta name="author" content="">
 
     <title>医疗数据匿名化工具 v1.0</title>
@@ -15,6 +15,10 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/css/ngDialog.min.css" rel="stylesheet" >
     <link href="/css/ngDialog-theme-default.min.css" rel="stylesheet">
+    <link href="/css/aliyun/console.min.css" rel="stylesheet" >
+    <link href="/css/aliyun/main.css" type="text/css" rel="stylesheet" >
+    <link href="/css/aliyun/viewframe.css" type="text/css" rel="stylesheet" >
+    <link href="/css/custom/style.css" rel="stylesheet" type="text/css">
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -24,7 +28,7 @@
     <script src="/js/angular.min.js"></script>
     <script src="/js/ngDialog.min.js"></script>
     <script src="/js/custom/Login.js"></script>
-    <script src="/htmlTemplates/Head.js"></script>
+    <script src="/htmlTemplates/NavigationBar.js"></script>
     <script src="/htmlTemplates/Registered.js"></script>
 
 
@@ -35,52 +39,57 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+
+<body class="yundun-console-zh-lang-wrap hasTopbar hasSidebar sddp">
+
 <div id="wrapper" data-ng-app="loginApp">
     <!-- Navigation -->
-    <div data-ng-controller="headCtrl">
-        <ng-include src="'/htmlTemplates/Head.html'"></ng-include>
+    <div  data-ng-controller="navigationBarCtrl">
+        <ng-include src="'/htmlTemplates/NavigationBar.html'"></ng-include>
     </div>
-    <!-- Page Content -->
-    <div  id="page-wrapper"  data-ng-controller="loginCtrl"  style="height: inherit;padding-left: 0px;padding-right: 0">
-        <div class="container-fluid" style="background: url(img/login.jpg);background-size:100% 100%;background-repeat:no-repeat;height:900px;">
-            <div class="row" style="">
-                <div class="col-lg-8"></div>
-                <div class="col-lg-3" style="padding-top: 10%">
-                    <div class="well wel_lg" style="opacity: 0.8;position: absolute; z-index: 0;width: 350px;height: 300px;"></div>
-                    <div style="position: relative;z-index: 1;padding-left: 30px;padding-right: 30px;width: 350px">
-                        <form action="/login" method="post">
-                            <h2 class="form-signin-heading">Please sign in</h2>
-                            <hr style="color: black;background-color: black;border-color: black;width: 300px;margin-left: 0px;margin-right: 0px">
-                            <div style="padding-right: 15px;padding-left: 15px">
-                                <div class="input-group" style="width: 270px;height: 40px">
-                                    <span class="input-group-addon" style="font-weight: bolder;width: 70px">用户名</span>
-                                    <input type="text" id="username" name="username"  style="height: inherit" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
-                                </div>
-                                <br>
-                                <div class="input-group" style="width: 270px;height: 40px">
-                                    <span class="input-group-addon"style="font-weight: bolder;width: 70px">密码</span>
-                                    <input type="password" id="password" name="password"  style="height: inherit" class="form-control" placeholder="Password" aria-describedby="sizing-addon1">
-                                </div>
-                                <div class="row" style="padding-top: 25px;padding-bottom: 7px">
-                                    <div class="col-lg-1"></div>
-                                    <div class="col-lg-8">
-                                        <button class="btn btn-lg btn-primary btn-block" type="submit">登&nbsp&nbsp入</button>
+
+    <div class="page-content" data-ng-controller="loginCtrl">
+        <!--page Content-->
+            <div class="container-fluid" style="background: url(img/login.jpg);background-size:100% 100%;background-repeat:no-repeat;height:900px;">
+                <div class="row" style="">
+                    <div class="col-lg-8"></div>
+                    <div class="col-lg-3" style="padding-top: 10%">
+                        <div class="well wel_lg" style="opacity: 0.8;position: absolute; z-index: 0;width: 350px;height: 300px;"></div>
+                        <div style="position: relative;z-index: 1;padding-left: 30px;padding-right: 30px;width: 350px">
+                            <form action="/login" method="post">
+                                <h2 class="form-signin-heading">Please sign in</h2>
+                                <hr style="color: black;background-color: black;border-color: black;width: 300px;margin-left: 0px;margin-right: 0px">
+                                <div style="padding-right: 15px;padding-left: 15px">
+                                    <div class="input-group" style="width: 270px;height: 40px">
+                                        <span class="input-group-addon" style="font-weight: bolder;width: 70px">用户名</span>
+                                        <input type="text" id="username" name="username"  style="height: inherit" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
                                     </div>
-                                    <div class="col-lg-2" style="padding-top: 20px;padding-left: 0px">
-                                        <button type="button" data-ng-click="registered()" style="border:0;cursor:pointer;background-color:transparent;width: 50px;font-weight: bold">注册</button>
+                                    <br>
+                                    <div class="input-group" style="width: 270px;height: 40px">
+                                        <span class="input-group-addon"style="font-weight: bolder;width: 70px">密码</span>
+                                        <input type="password" id="password" name="password"  style="height: inherit" class="form-control" placeholder="Password" aria-describedby="sizing-addon1">
+                                    </div>
+                                    <div class="row" style="padding-top: 25px;padding-bottom: 7px">
+                                        <div class="col-lg-1"></div>
+                                        <div class="col-lg-8">
+                                            <button class="btn btn-lg btn-primary btn-block" type="submit">登&nbsp&nbsp入</button>
+                                        </div>
+                                        <div class="col-lg-2" style="padding-top: 20px;padding-left: 0px">
+                                            <button type="button" data-ng-click="registered()" style="border:0;cursor:pointer;background-color:transparent;width: 50px;font-weight: bold">注册</button>
+                                        </div>
+                                    </div>
+                                    <div th:if="${param.error}"style="padding-left: 60px">
+                                        <label style="color: red">用户名或密码错误</label>
                                     </div>
                                 </div>
-                                <div th:if="${param.error}"style="padding-left: 60px">
-                                    <label style="color: red">用户名或密码错误</label>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+
         </div>
     </div>
+
 
 </div>
 </body>

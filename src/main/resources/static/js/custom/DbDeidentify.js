@@ -1,5 +1,8 @@
-var app = angular.module("DbDeidentifyApp", ['headApp','ngDialog','anonymizeConfigureApp']);
-app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce,ngDialog) {
+var app = angular.module("DbDeidentifyApp", ['navigationBarApp','ngDialog','anonymizeConfigureApp']);
+app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce,ngDialog,$rootScope) {
+
+    $rootScope.sidebarPage=1;
+    $scope.page=0;
 
     $scope.selectDbType="MySql";
     $scope.host="";
@@ -14,7 +17,6 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce,ngDialog)
     $scope.DbInfo=["匿名化未启动..."];
     $scope.wuliaoLog=". . . /";
 
-    $scope.config={};
     $scope.selectTypelevel="Level1";
     $scope.selectInfo=[];
 
@@ -44,25 +46,11 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce,ngDialog)
                 }
                 $("#fromName").selectpicker('refresh');
                 $("#fromName").selectpicker('val', $scope.selectInfo[1].formName);
-                $scope.config.fieldFormName=$scope.selectInfo[1].formName;
-                $scope.config.level="Level1";
+                $scope.fieldFormName=$scope.selectInfo[1].formName;
+                $scope.level="Level1";
             },
             function errorCallback(response){
                 alert("获取列表失败！")
-            }
-        )
-        //获取配置
-        $http(
-            {
-                url:"/DbDeidentify/getAnonymizeConfigure",
-                method:"GET"
-            }
-        ).then(
-            function success(response) {
-                $scope.config=response.data;
-            },
-            function error() {
-                alert("获取配置失败！")
             }
         )
     })();
@@ -87,30 +75,14 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce,ngDialog)
 
     $("#typeLevel").change(function(evt){
         if(evt.currentTarget.value==="Level1") alert("注意：当前选择为研究性数据！处理文件只供内部使用！！");
-        $scope.config.level=evt.currentTarget.value;
+        $scope.level=evt.currentTarget.value;
         $scope.progress= 0;
     });
 
     $("#fromName").on('changed.bs.select', function (e,c) {
-        $scope.config.fieldFormName=$scope.selectInfo[c].formName;
+        $scope.fieldFormName=$scope.selectInfo[c].formName;
     });
 
-    $scope.anonymizeConfigure=function () {
-        ngDialog.open({
-            template: '/htmlTemplates/AnonymizeConfigure.html',
-            className: 'ngdialog-theme-default',
-            controller: 'anonymizeConfigureCtrl',
-            resolve: {//传参
-                dep: function() {
-                    return  $scope.config;
-                }
-            },
-            width:450,
-            height: 550,})
-            .closePromise.then(function(value) {
-            $scope.config=value.$dialog.scope().config;
-        });
-    }
 
     $("#DbType").change(function(evt){
         if(evt.currentTarget.value==="MySql")     {
@@ -176,6 +148,8 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce,ngDialog)
             alert("请填写完整数据库连接信息！");
         else{
             $scope.DbInfo="";
+            $rootScope.config.level=$scope.level;
+            $rootScope.config.fieldFormName=$scope.fieldFormName;
             $http({
                 method:"POST",
                 url:"/DbDeidentify/runDeidentify",
@@ -189,7 +163,7 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce,ngDialog)
                     method:$scope.selectMethod,
                     fieldFromName:$scope.selectFromName,
                 },
-                data:$scope.config
+                data:$rootScope.config
             }).then(
                 function success(response) {
                     $scope.pollflag=false;

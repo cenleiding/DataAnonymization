@@ -1,5 +1,5 @@
 var app = angular.module("anonymizeConfigureApp", ['rzModule']);
-app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,$rootScope) {
+app.controller("anonymizeConfigureCtrl", function($scope,$http,$interval,$rootScope) {
 
     (function (){
         //获取配置
@@ -11,8 +11,11 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,$rootSco
         ).then(
             function success(response) {
                 $scope.config_old=response.data;
-                $scope.config=JSON.parse(JSON.stringify($scope.config_old));
+                $rootScope.config=JSON.parse(JSON.stringify($scope.config_old));
                 $scope.refreshSlider();
+                $interval(function() {
+                    $scope.$broadcast('rzSliderForceRender');
+                },1000);
             },
             function error() {
                 alert("获取配置失败！")
@@ -31,7 +34,7 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,$rootSco
             ceil: 10,
             step:1,
             translate: function(value) {
-                $scope.config.k_small=value;
+                $rootScope.config.k_small=value;
                 return value
             },
         },
@@ -44,7 +47,7 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,$rootSco
             ceil: 10,
             step:1,
             translate: function(value) {
-                $scope.config.k_big=value;
+                $rootScope.config.k_big=value;
                 return value
             },
         },
@@ -57,7 +60,7 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,$rootSco
             ceil: 100,
             step:1,
             translate: function(value) {
-                $scope.config.suppressionLimit_level1=value/100;
+                $rootScope.config.suppressionLimit_level1=value/100;
                 return value+"%"
             },
         },
@@ -70,7 +73,7 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,$rootSco
             ceil: 100,
             step:1,
             translate: function(value) {
-                $scope.config.suppressionLimit_level2=value/100;
+                $rootScope.config.suppressionLimit_level2=value/100;
                 return value+"%"
             },
         },
@@ -83,7 +86,7 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,$rootSco
             ceil: 10,
             step:1,
             translate: function(value) {
-                $scope.config.noiseScope_small=value/100;
+                $rootScope.config.noiseScope_small=value/100;
                 return value+"%"
             },
         },
@@ -96,7 +99,7 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,$rootSco
             ceil: 10,
             step:1,
             translate: function(value) {
-                $scope.config.noiseScope_big=value/100;
+                $rootScope.config.noiseScope_big=value/100;
                 return value+"%"
             },
         },
@@ -109,7 +112,7 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,$rootSco
             ceil: 100,
             step:1,
             translate: function(value) {
-                $scope.config.t=value/100;
+                $rootScope.config.t=value/100;
                 return value+"%"
             },
         },
@@ -122,7 +125,7 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,$rootSco
             ceil: 20,
             step:1,
             translate: function(value) {
-                $scope.config.microaggregation=value;
+                $rootScope.config.microaggregation=value;
                 return value+"组"
             },
         },
@@ -130,23 +133,22 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$timeout,$rootSco
 
 
     $scope.reset=function () {
-        $scope.config=JSON.parse(JSON.stringify($scope.config_old));
+        $rootScope.config=JSON.parse(JSON.stringify($scope.config_old));
         $scope.refreshSlider();
     }
 
     $scope.refreshSlider = function() {
-        $scope.encryptPassword=$scope.config.k_small.encryptPassword;
-        $scope.k_small_slider.value=parseInt($scope.config.k_small);
-        $scope.k_big_slider.value=parseInt($scope.config.k_big);
-        $scope.suppressionLimit1_slider.value=parseFloat($scope.config.suppressionLimit_level1)*100;
-        $scope.suppressionLimit2_slider.value=parseFloat($scope.config.suppressionLimit_level2)*100;
-        $scope.noiseScope_small_slider.value=parseFloat($scope.config.noiseScope_small)*100;
-        $scope.noiseScope_big_slider.value=parseFloat($scope.config.noiseScope_big)*100;
-        $scope.t_slider.value=parseFloat($scope.config.t)*100;
-        $scope.microaggregation_slider.value=parseInt($scope.config.microaggregation);
-        $timeout(function() {
-            $scope.$broadcast('rzSliderForceRender')
-        },0,false)
+        $scope.encryptPassword=$rootScope.config.k_small.encryptPassword;
+        $scope.k_small_slider.value=parseInt($rootScope.config.k_small);
+        $scope.k_big_slider.value=parseInt($rootScope.config.k_big);
+        $scope.suppressionLimit1_slider.value=parseFloat($rootScope.config.suppressionLimit_level1)*100;
+        $scope.suppressionLimit2_slider.value=parseFloat($rootScope.config.suppressionLimit_level2)*100;
+        $scope.noiseScope_small_slider.value=parseFloat($rootScope.config.noiseScope_small)*100;
+        $scope.noiseScope_big_slider.value=parseFloat($rootScope.config.noiseScope_big)*100;
+        $scope.t_slider.value=parseFloat($rootScope.config.t)*100;
+        $scope.microaggregation_slider.value=parseInt($rootScope.config.microaggregation);
+        console.log($rootScope.config)
+        $scope.$broadcast('rzSliderForceRender');
     }
 
 })

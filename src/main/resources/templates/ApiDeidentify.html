@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="网络数据处理">
+    <meta name="author" content="">
+
+    <title>数据匿名中心</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/metisMenu.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" >
+    <link href="/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/css/custom/style.css" rel="stylesheet">
+    <link href="/css/jquery.dataTables.css" rel="stylesheet" type="text/css" >
+    <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/aliyun/console.min.css" rel="stylesheet" >
+    <link href="/css/aliyun/main.css" type="text/css" rel="stylesheet" >
+    <link href="/css/aliyun/viewframe.css" type="text/css" rel="stylesheet" >
+    <link href="/css/custom/style.css" rel="stylesheet" type="text/css">
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-select.min.js"></script>
+    <script src="/js/jquery.dataTables.js"></script>
+    <script src="/js/metisMenu.min.js"></script>
+    <script src="/js/sb-admin-2.js"></script>
+    <script src="/js/highcharts.js"></script>
+    <script src="/js/highcharts-zh_CN.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/custom/ApiDeidentify.js"></script>
+    <script src="/htmlTemplates/NavigationBar.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="yundun-console-zh-lang-wrap hasTopbar hasSidebar sddp">
+
+<div id="wrapper" data-ng-app="apiDeidentifyApp">
+    <!-- Navigation -->
+    <div  data-ng-controller="navigationBarCtrl">
+        <ng-include src="'/htmlTemplates/NavigationBar.html'"></ng-include>
+    </div>
+
+    <div class="page-content" data-ng-controller="apiDeidentifyCtrl">
+        <!--Menu-->
+        <div class="wind-app-menu">
+            <div class="wind-app-menu-title">
+                <span class="wind-truncate wind-truncate-with-css" aria-haspopup="true" aria-expanded="false" style="max-width: 124px;">文件处理工具</span>
+            </div>
+            <div class="wind-app-menu-menu">
+                <ul>
+                    <li class="wind-app-menu-item " ng-class="{true:'wind-app-menu-item-active'}[page==0]" data-ng-click="page=0">
+                        <span class="wind-truncate wind-truncate-with-css" style="max-width: 128px;">使用说明</span>
+                    </li>
+                    <li class="wind-app-menu-item " ng-class="{true:'wind-app-menu-item-active'}[page==1]" data-ng-click="page=1">
+                        <span class="wind-truncate wind-truncate-with-css" style="max-width: 128px;">使用监控</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--page Content-->
+        <div class="product-view-container sddp">
+            <div ng-show="page==0" >
+                <div class="sky-card" style="margin-top: 70px">
+                    <div class="card-head">
+                        <span class="card-title">这个是API数据处理工具~</span>
+                    </div>
+                    <div class="card-content card-wide">
+                        啦啦啦
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="page==1" >
+                <div class="sky-card" style="margin-top: 10px">
+                    <div class="card-head-2">
+                        <span>使用总览</span>
+                    </div>
+                    <div class="card-content card-wide">
+                        <h4 style="padding-left: 40px;">API使用总次数：{{usenum}}</h4>
+                        <h4 style="padding-left: 40px;">API使用用户：{{usernum}}</h4>
+                        <br>
+                        <div class="Highcharts-small" id="container"></div>
+                    </div>
+                </div>
+                <div class="sky-card" style="margin-top: 10px">
+                    <div class="card-head-2">
+                        <span>使用细节</span>
+                    </div>
+                    <div class="card-content card-wide">
+                        <label style="font-size:15px;">用户选择：</label>
+                        <select id="Select" class="selectpicker" data-width="200PX" > </select>
+                        <div class="table-container-1">
+                            <table class="table display" id="list-table" width="1000px">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>使用时间</th>
+                                    <th>数据条数</th>
+                                    <th>匿名方式</th>
+                                    <th>字段</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

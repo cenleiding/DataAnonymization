@@ -19,21 +19,14 @@ import java.util.Set;
  * @Date 2018/4/16 15:26
  **/
 @Controller
-@RequestMapping("/ApiUsage")
+@RequestMapping("/ApiDeidentify")
 public class ApiUsageController {
 
     @Autowired
     ApiUsageService apiUsageService;
 
-    @RequestMapping(value = "/UsageOverView")
-    public String UsageOverView(){
-        return "UsageOverView";
-    }
-
-    @RequestMapping(value = "/UsageDetail")
-    public String UsageDetail(){
-        return "UsageDetail";
-    }
+    @RequestMapping(value = "")
+    public String ApiDeidentify(){return "ApiDeidentify";}
 
     @RequestMapping(value = "/getUsageOverView")
     @ResponseBody

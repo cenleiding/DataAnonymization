@@ -1,8 +1,14 @@
-var app = angular.module("usageDetailApp", ['headApp']);
-app.controller("usageDetailCtrl", function($scope,$http,$timeout,$q) {
+var app = angular.module("apiDeidentifyApp", ['navigationBarApp']);
+app.controller("apiDeidentifyCtrl", function($scope,$http,$rootScope) {
+
+    $rootScope.sidebarPage=2;
+    $scope.page=1;
 
     $scope.userIp;
     $scope.usage;
+    $scope.usenum=0;
+    $scope.usernum=0;
+    $scope.overViewData;
 
     $(".selectpicker").selectpicker({
         noneSelectedText : '请选择'
@@ -12,25 +18,41 @@ app.controller("usageDetailCtrl", function($scope,$http,$timeout,$q) {
     });
 
     (function () {
-       $http({
-           method:'GET',
-           url:"/ApiUsage/getUserIp"
-       }).then(
-          function successCallback (response) {
-              $scope.userIps=response.data;
-              var select = $("#Select");
-              select.append("<option value='un' disabled='disabled'>Ip选择</option>");
-              for (var i = 0; i < $scope.userIps.length; i++) {
-                  select.append("<option value='"+$scope.userIps[i]+"'>"
-                      + $scope.userIps[i] + "</option>");
-              }
-              $('.selectpicker').selectpicker('val','un');
-              $('.selectpicker').selectpicker('refresh');
-          },
-          function errorCallback (response) {
-              console.log("获取使用者Ip失败！");
-          }
-       );
+        $http({
+            method:'GET',
+            url:"/ApiDeidentify/getUserIp"
+        }).then(
+            function successCallback (response) {
+                $scope.userIps=response.data;
+                var select = $("#Select");
+                select.append("<option value='un' disabled='disabled'>Ip选择</option>");
+                for (var i = 0; i < $scope.userIps.length; i++) {
+                    select.append("<option value='"+$scope.userIps[i]+"'>"
+                        + $scope.userIps[i] + "</option>");
+                }
+                $('.selectpicker').selectpicker('val','un');
+                $('.selectpicker').selectpicker('refresh');
+            },
+            function errorCallback (response) {
+                console.log("获取使用者Ip失败！");
+            }
+        );
+        $http({
+            method:'GET',
+            url:"/ApiDeidentify/getUsageOverView"
+        }).then(
+            function (response) {
+                $scope.overViewData=response.data;
+                $scope.usernum=$scope.overViewData.length;
+                for(var i in $scope.overViewData)
+                    for(var j in $scope.overViewData[i].data)
+                        $scope.usenum=$scope.usenum+$scope.overViewData[i].data[j][1];
+                $scope.createcharts();
+            },
+            function (response) {
+                // 请求失败执行代码
+            }
+        );
     })();
 
     var table = $("#list-table").DataTable({
@@ -95,7 +117,7 @@ app.controller("usageDetailCtrl", function($scope,$http,$timeout,$q) {
     var getUsageByIp=function (ip) {
         $http({
             method:'GET',
-            url:"/ApiUsage/getUsageByIp",
+            url:"/ApiDeidentify/getUsageByIp",
             params:{Ip:ip}
         }).then(
             function (response) {
@@ -151,10 +173,44 @@ app.controller("usageDetailCtrl", function($scope,$http,$timeout,$q) {
                 console.log("获取使用记录失败");
             }
         )
-        
+
     }
 
-
+    $scope.createcharts=function () {
+        Highcharts.chart('container', {
+            credits:{enabled:false},
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                type: 'datetime',
+            },
+            yAxis: {
+                title: {
+                    text: '日使用次数'
+                },
+                min: 0
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: '{point.x:%Y/%m/%e} : {point.y} 次'
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enabled: true
+                    }
+                }
+            },
+            series: $scope.overViewData,
+        });
+    }
 
 
 

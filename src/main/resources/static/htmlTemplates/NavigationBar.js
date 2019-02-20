@@ -1,6 +1,6 @@
 var app = angular.module("navigationBarApp", []);
 app.controller("navigationBarCtrl", function($scope,$http,$rootScope) {
-    $rootScope.sidebarPage=0;
+    $rootScope.sidebarPage=-1;
         $scope.flag="0";
         $scope.user="未登入";
         (function () {

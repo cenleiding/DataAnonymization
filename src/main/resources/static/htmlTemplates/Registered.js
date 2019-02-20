@@ -6,6 +6,7 @@ app.controller("registeredCtrl", function($scope,$http) {
         $scope.flag1=0;
         $scope.flag2=0;
         $scope.flag3=0;
+
         $scope.register=function () {
             $scope.flag1=0;
             $scope.flag2=0;
