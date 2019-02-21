@@ -1,5 +1,9 @@
-var app = angular.module("myFieldFormApp", ['headApp','ngDialog','createNewFormApp','deleteFormApp','saveChangeApp']);
-app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
+var app = angular.module("myFieldFormApp", ['navigationBarApp','ngDialog','createNewFormApp','deleteFormApp','saveChangeApp']);
+app.controller("myFieldFormCtrl", function($scope,$http,ngDialog,$rootScope) {
+
+    $rootScope.sidebarPage=4;
+    $scope.page=1;
+
 
     $scope.formNameList=[];
     $scope.fieldData=[];
@@ -27,6 +31,9 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
     $scope.userName="";
     $scope.ifedit=false;
 
+    $scope.fieldChangeLog=[];
+
+
     var typeSelect="ALL";
     var percentage={"SUM":0}
     var Accounting=[
@@ -42,11 +49,9 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
         ["UI",0]
     ];
 
-    $scope.fieldChangeLog=[];
-
     var table=$('#table').DataTable();
 
-    $( document ).ready(function() {
+    $(document).ready(function() {
         $('#typeSelect').selectpicker('val', 'ALL');
         $('#typeSelect').selectpicker('refresh');
         datatableDraw();
@@ -196,7 +201,7 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
             className: 'ngdialog-theme-default',
             controller: 'createNewFormCtrl',
             width:540,
-            height: 400,})
+            height: 350,})
             .closePromise.then(function(value) {
                 location.reload();
                 console.log("d:",value.$dialog.scope());
@@ -215,7 +220,7 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
                 }
             },
             width:330,
-            height: 130,})
+            height: 140,})
             .closePromise.then(function(value) {
                 location.reload();
                 console.log("d:",value.$dialog.scope());
@@ -239,7 +244,7 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog) {
                 }
             },
             width:350,
-            height: 180,})
+            height: 230,})
             .closePromise.then(function(value) {
             location.reload();
             console.log("d:",value.$dialog.scope());

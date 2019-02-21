@@ -53,7 +53,7 @@ public class InitApplicationRunner implements ApplicationRunner{
         //文件初始化
         resourcesFileInitializeService.InitializeResourcesFile();
 
-        //基础字段初始化
+        //基础节点初始化
         nodeResetService.NodeReset();
 
         //生成合并总表

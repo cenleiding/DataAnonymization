@@ -6,19 +6,16 @@
 </head>
 <body>
 <div style="">
-    <div class="row">
-        <div>
-            <span style="font-size: large;font-weight: bold;padding-left: 15px">目标：</span>
-            <span>{{formName}}</span>
-        </div>
-        <div class="col-lg-1">
-            <img src="/img/danger.png" style="height: 30px;width: 30px">
-        </div>
-        <div class="col-lg-10" style="padding-top: 5px">
-            <span style="font-size: large;font-weight: bolder;padding-left: 15px;">注意：删除后将无法复原！</span>
-        </div>
+    <div style="border-bottom:2px solid rgba(123,121,122,0.49);padding-bottom: 6px">
+        <span style="font-size: large;font-weight: bold">删除目标：</span>
+        <span style="">{{formName}}</span>
     </div>
-    <div align="center" style="padding-top: 15px">
+
+    <div style="padding-top: 15px;margin-left: 30px">
+        <img src="/img/danger.png" style="height: 25px;width: 25px">
+        <span style="padding-left: 8px;font-size: medium">注意：删除后将无法复原！</span>
+    </div>
+    <div align="center" style="padding-top: 10px">
         <button type="button" class="btn btn-danger" data-ng-click="delete()" >确认删除</button>
     </div>
 </div>

@@ -79,8 +79,8 @@ public class HierarchyBuilder {
 
     /**
      * 分为2级
-     * 原数据
-     * "***"
+     * 一：原数据
+     * 二： ***
      * @param dataHandle
      * @param col
      * @return

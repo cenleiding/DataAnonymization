@@ -81,7 +81,7 @@ public class Anonymizer {
     }
 
     /**
-     * 对结构化数据
+     * 对数据
      * 以等级1的规范来处理
      * @return
      */
@@ -132,7 +132,7 @@ public class Anonymizer {
     }
 
     /**
-     * 对结构化数据
+     * 对数据
      * 以等级2的规范来执行
      * @return
      */
