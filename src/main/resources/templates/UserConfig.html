@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:color="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>数据匿名中心</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/metisMenu.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-select.min.css" rel="stylesheet" >
+    <link href="/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/css/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="/css/select.dataTables.min.css" rel="stylesheet">
+    <link href="/css/editor.dataTables.min.css" rel="stylesheet">
+    <link href="/css/ngDialog.min.css" rel="stylesheet" >
+    <link href="/css/ngDialog-theme-default.min.css" rel="stylesheet">
+    <link href="/css/aliyun/console.min.css" rel="stylesheet" >
+    <link href="/css/aliyun/main.css" type="text/css" rel="stylesheet" >
+    <link href="/css/aliyun/viewframe.css" type="text/css" rel="stylesheet" >
+    <link href="/css/custom/style.css" rel="stylesheet" type="text/css">
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-select.min.js"></script>
+    <script src="/js/metisMenu.min.js"></script>
+    <script src="/js/sb-admin-2.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.buttons.min.js"></script>
+    <script src="/js/dataTables.select.min.js"></script>
+    <script src="/js/dataTables.editor.min.js"></script>
+    <script src="/js/highcharts.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/ngDialog.min.js"></script>
+    <script src="/js/custom/UserConfig.js"></script>
+    <script src="/htmlTemplates/NavigationBar.js"></script>
+    <script src="/htmlTemplates/createNewForm.js"></script>
+    <script src="/htmlTemplates/deleteForm.js"></script>
+    <script src="/htmlTemplates/saveChange.js"></script>
+    <script src="/htmlTemplates/UserFieldForm.js"></script>
+    <script src="/htmlTemplates/UserRegularLib.js"></script>
+
+
+
+
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="yundun-console-zh-lang-wrap hasTopbar hasSidebar sddp">
+
+<div id="wrapper"  data-ng-app="userConfigApp">
+
+    <!-- Navigation -->
+    <div  data-ng-controller="navigationBarCtrl">
+        <ng-include src="'/htmlTemplates/NavigationBar.html'"></ng-include>
+    </div>
+
+    <div class="page-content" data-ng-controller="userConfigCtrl">
+        <!--Menu-->
+        <div class="wind-app-menu">
+            <div class="wind-app-menu-title">
+                <span class="wind-truncate wind-truncate-with-css" aria-haspopup="true" aria-expanded="false" style="max-width: 124px;">文件处理工具</span>
+            </div>
+            <div class="wind-app-menu-menu">
+                <ul>
+                    <li class="wind-app-menu-item " ng-class="{true:'wind-app-menu-item-active'}[page==0]" data-ng-click="page=0">
+                        <span class="wind-truncate wind-truncate-with-css" style="max-width: 128px;">字段管理</span>
+                    </li>
+                    <li class="wind-app-menu-item " ng-class="{true:'wind-app-menu-item-active'}[page==1]" data-ng-click="page=1">
+                        <span class="wind-truncate wind-truncate-with-css" style="max-width: 128px;">字典规则</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--page Content-->
+        <div class="product-view-container sddp">
+            <div ng-show="page==0">
+                <div data-ng-controller="userFieldFormCtrl">
+                    <ng-include src="'/htmlTemplates/UserFieldForm.html'"></ng-include>
+                </div>
+            </div>
+            <div ng-show="page==1" >
+                <div data-ng-controller="userRegularLibCtrl">
+                    <ng-include src="'/htmlTemplates/UserRegularLib.html'"></ng-include>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

@@ -39,6 +39,24 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
     @Value("${node.expand.name}")
     private String[] expandName;
 
+    @Value("${regular.out.path}")
+    private String outRegularPath;
+
+    @Value("${regualr.in.path}")
+    private String inRegularPath;
+
+    @Value("${dictionary.out.path}")
+    private String outDictionaryPath;
+
+    @Value("${dictionary.in.path}")
+    private String inDictionaryPath;
+
+    @Value("${regular.name}")
+    private String regularName;
+
+    @Value("${dictionary.name}")
+    private String dictionaryName;
+
     @Override
     public Boolean InitializeResourcesFile() {
 
@@ -52,6 +70,7 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
         }.get().replaceAll("target/classes/","")
                 .replaceAll(jarName+"!/BOOT-INF/classes!/","")
                 .replaceAll("file:","");
+
         file=new File(outPath+outArchetypePath);
         if(!file.exists()){
             System.out.println(file.mkdirs());
@@ -61,6 +80,14 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
             System.out.println(file.mkdirs());
         }
         file=new File(outPath+FieldOutPath);
+        if(!file.exists()){
+            System.out.println(file.mkdirs());
+        }
+        file=new File(outPath+outRegularPath);
+        if(!file.exists()){
+            System.out.println(file.mkdirs());
+        }
+        file=new File(outPath+outDictionaryPath+"/original");
         if(!file.exists()){
             System.out.println(file.mkdirs());
         }
@@ -74,6 +101,10 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
         for (int i = 0; i < fileList.length; i++) {
             copyFile(inExpandPath+"/"+fileList[i],outPath+outExpandPath+"/"+fileList[i]);
         }
+
+        //复制规则表
+        copyFile(inRegularPath+"/"+regularName,outPath+outRegularPath+"/"+regularName);
+        copyFile(inDictionaryPath+"/"+dictionaryName,outPath+outDictionaryPath+"/original/"+dictionaryName);
 
         log.info("资源初始化成功！");
 

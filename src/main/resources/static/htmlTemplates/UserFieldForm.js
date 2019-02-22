@@ -1,9 +1,5 @@
-var app = angular.module("myFieldFormApp", ['navigationBarApp','ngDialog','createNewFormApp','deleteFormApp','saveChangeApp']);
-app.controller("myFieldFormCtrl", function($scope,$http,ngDialog,$rootScope) {
-
-    $rootScope.sidebarPage=4;
-    $scope.page=1;
-
+var app = angular.module("userFieldFormApp", ['ngDialog','createNewFormApp','deleteFormApp','saveChangeApp']);
+app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
 
     $scope.formNameList=[];
     $scope.fieldData=[];
@@ -163,7 +159,7 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog,$rootScope) {
             }
         )
     }
-    
+
     var getFieldOverViewByFormName=function (formName) {
         $http({
             method:'GET',
@@ -178,7 +174,7 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog,$rootScope) {
         }, function errorCallback(response) {
             // 请求失败执行代码
         });
-        
+
     }
 
     var getFieldChangeLogByFormName=function (formName) {
@@ -203,8 +199,8 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog,$rootScope) {
             width:540,
             height: 350,})
             .closePromise.then(function(value) {
-                location.reload();
-                console.log("d:",value.$dialog.scope());
+            location.reload();
+            console.log("d:",value.$dialog.scope());
         });
     }
 
@@ -222,8 +218,8 @@ app.controller("myFieldFormCtrl", function($scope,$http,ngDialog,$rootScope) {
             width:330,
             height: 140,})
             .closePromise.then(function(value) {
-                location.reload();
-                console.log("d:",value.$dialog.scope());
+            location.reload();
+            console.log("d:",value.$dialog.scope());
         });
     }
 

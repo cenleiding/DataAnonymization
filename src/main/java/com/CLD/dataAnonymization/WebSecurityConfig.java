@@ -35,12 +35,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/MyFieldForm").authenticated()
+                .antMatchers("/UserConfig").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/MyFieldForm")
+                .defaultSuccessUrl("/UserConfig")
                 .permitAll()
                 .and()
                 .logout()

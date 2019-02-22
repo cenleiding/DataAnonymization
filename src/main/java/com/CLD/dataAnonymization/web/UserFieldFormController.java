@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/MyFieldForm")
-public class MyFieldFormController {
+public class UserFieldFormController {
 
     @Autowired
     FieldClassifyListRepository fieldClassifyListRepository;
@@ -36,11 +36,6 @@ public class MyFieldFormController {
 
     @Autowired
     FieldChangeLogRepository fieldChangeLogRepository;
-
-    @RequestMapping("")
-    public String myFieldForm(){
-        return "MyFieldForm";
-    }
 
 
     @RequestMapping("/getFieldFormName")
