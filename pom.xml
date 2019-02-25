@@ -199,6 +199,8 @@
 				<includes>
 					<!--json的配置文件会和编译后的class文件放在一起-->
 					<include>**/*.json</include>
+					<include>**/*.csv</include>
+					<include>**/*.txt</include>
 				</includes>
 			</resource>
 			<resource>

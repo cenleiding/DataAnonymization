@@ -37,7 +37,7 @@ public class RegularLibServiceImpl implements RegularLibService {
     public String updataLib(String old_libName, String new_libName, String new_description) {
         List<String> libNameList = regularLibRepository.getLibName();
         if (!libNameList.contains(old_libName)) return "原规则库不存在！";
-        if ((!new_libName.equals(old_libName))&&(libNameList.contains(new_libName))) return "规则库名重复！";
+        if ((!new_libName.equals(old_libName))&&(libNameList.contains(new_libName))) return "规则库名已存在！";
         RegularLib regularLib = regularLibRepository.findByLibName(old_libName);
         regularLib.setDescription(new_description);
         regularLib.setChangeTime(new java.sql.Date(new Date().getTime()));

@@ -55,29 +55,30 @@
             <div class="col-lg-4">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">字典</h3>
+                        <span class="panel-title">字典</span>
+                        <input data-ng-click="uploadDictionary()" title='文件上传' type="image" src="/img/upload.png" align="right" style="display: inline-block;width: 18px;height: 18px;margin-right: 20px" />
                     </div>
                     <div class="panel-body">
                         <table class="table" >
                             <tr>
                                 <th>#</th><th>文件名</th> <th>文件描述</th><th>上传日期</th><th>操作</th>
                             </tr>
-                            <tr>
+                            <tr ng-repeat="dictionary in dictionaryList">
                                 <td>
-                                    1
+                                    {{$index+1}}
                                 </td>
                                 <td>
-                                    1
+                                    {{dictionary.fileName}}
                                 </td>
                                 <td>
-                                    2
+                                    {{dictionary.description}}
                                 </td>
                                 <td>
-                                    3
+                                    {{dictionary.uploadTime}}
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger btn-xs" ng-click="deleteFileal($index)">删除</button>
-                                    <button type="button" class="btn btn-info btn-xs" ng-click="">下载</button>
+                                    <button type="button" class="btn btn-danger btn-xs" ng-click="deleteDictionary(dictionary.fileName)">删除</button>
+                                    <button type="button" class="btn btn-info btn-xs" ng-click="downloadDictionary(dictionary.fileName)">下载</button>
                                     <button type="button" class="btn btn-success btn-xs" ng-click="">测试</button>
                                 </td>
                             </tr>

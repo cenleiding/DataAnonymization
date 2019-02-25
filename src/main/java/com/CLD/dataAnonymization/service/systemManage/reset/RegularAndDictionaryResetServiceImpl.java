@@ -15,8 +15,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class RegularAndDictionaryResetServiceImpl implements RegularAndDictionaryResetService {
 
+    @Value("${package.jar.name}")
+    private String jarName;
+
     @Value("${dictionary.name}")
     private String dictionaryName;
+
+    @Value("${dictionary.in.path}")
+    private String inDictionaryPath;
 
     @Autowired
     RegularLibService regularLibService;
@@ -36,7 +42,7 @@ public class RegularAndDictionaryResetServiceImpl implements RegularAndDictionar
         //初始化字典信息
         dictionaryService.deleteLib("original");
 
-        dictionaryService.saveDictionary2Db(dictionaryName,"original","系统自带字典");
+        dictionaryService.initDictionary(dictionaryName,"original","系统字典",inDictionaryPath+"/"+dictionaryName);
 
         //加载规则信息，file2Db
         regularService.file2Db();

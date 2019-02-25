@@ -1,0 +1,30 @@
+<div>
+    <div style="height:35px;border-bottom:2px solid rgba(123,121,122,0.49);padding-bottom: 6px">
+        <span style="font-size: large;font-weight: bold">字典上传</span>
+    </div>
+    <div style="margin-top: 15px;">
+        <input type="file"  ngf-select ngf-pattern="'.csv'" accept=".csv"  data-ng-model="file" name="file" id="file" class="inputfile inputfile-2"/>
+        <label for="file" title="注意！只能处理csv文件。" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="只能处理json文件。" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg>
+            <span>选择文件&hellip;</span>
+        </label>
+    </div>
+
+    <div style="width: 450px;margin-top: 10px;margin-left: 10px">
+        <span style="font-weight: bold;width: 120px" >文件名：{{file.name}}</span>
+    </div>
+    <div style="width: 450px;margin-top: 15px;margin-left: 10px">
+        <span style="font-weight: bold;width: 120px" >文件大小：{{file.size}}</span>
+    </div>
+    <div style="width: 450px;margin-top: 15px;margin-left: 10px">
+        <span style="font-weight: bold;width: 120px" >文件描述：</span>
+    </div>
+    <div style="width: 450px;margin-top: 15px;margin-left: 10px">
+        <textarea  ng-value="Description" ng-model="Description" style="height: 40px;width: 190px;resize: none; " ></textarea>
+    </div>
+    <div align="center" style="padding-top: 10px">
+        <button type="button" class="btn btn-warning" data-ng-click="upload()" >确认上传</button>
+    </div>
+
+
+</div>

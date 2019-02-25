@@ -45,17 +45,10 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
     @Value("${regualr.in.path}")
     private String inRegularPath;
 
-    @Value("${dictionary.out.path}")
-    private String outDictionaryPath;
-
-    @Value("${dictionary.in.path}")
-    private String inDictionaryPath;
-
     @Value("${regular.name}")
     private String regularName;
 
-    @Value("${dictionary.name}")
-    private String dictionaryName;
+
 
     @Override
     public Boolean InitializeResourcesFile() {
@@ -83,14 +76,7 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
         if(!file.exists()){
             System.out.println(file.mkdirs());
         }
-        file=new File(outPath+outRegularPath);
-        if(!file.exists()){
-            System.out.println(file.mkdirs());
-        }
-        file=new File(outPath+outDictionaryPath+"/original");
-        if(!file.exists()){
-            System.out.println(file.mkdirs());
-        }
+
 
         //复制原型节点分类表
         copyFile(inArchetypePath+"/"+ArchetypeName,outPath+outArchetypePath+"/"+ArchetypeName);
@@ -104,7 +90,6 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
 
         //复制规则表
         copyFile(inRegularPath+"/"+regularName,outPath+outRegularPath+"/"+regularName);
-        copyFile(inDictionaryPath+"/"+dictionaryName,outPath+outDictionaryPath+"/original/"+dictionaryName);
 
         log.info("资源初始化成功！");
 

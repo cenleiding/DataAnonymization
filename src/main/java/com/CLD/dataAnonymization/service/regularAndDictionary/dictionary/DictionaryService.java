@@ -1,6 +1,12 @@
 package com.CLD.dataAnonymization.service.regularAndDictionary.dictionary;
 
+import com.CLD.dataAnonymization.dao.h2.entity.Dictionary;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 /**
  * @Description: 字典操作
@@ -15,16 +21,17 @@ public interface DictionaryService {
      * @param re
      * @return
      */
-    public Boolean saveDictionaryFile(MultipartHttpServletRequest re);
+    public String uploadDictionaryFile(MultipartHttpServletRequest re) throws IOException;
 
     /**
-     * 对上传文件信息进行存储
-     * 自动生成路径：~/库名/文件名
+     * 初始化系统字典
      * @param fileName
      * @param libName
+     * @param description
+     * @param Path
      * @return
      */
-    public Boolean saveDictionary2Db(String fileName, String libName, String description);
+    public Boolean initDictionary(String fileName, String libName, String description,String Path);
 
 
     /**
@@ -35,11 +42,35 @@ public interface DictionaryService {
     public Boolean deleteLib(String libName);
 
     /**
-     * 对指定字典进行删除，包括文件和数据库信息
+     * 对指定字典进行删除
      * @param fileName
      * @param libName
      * @return
      */
     public Boolean deleteDictionary(String fileName, String libName);
+
+    /**
+     * 更新字典所属规则库名
+     * @param old_libName
+     * @param new_libName
+     * @return
+     */
+    public String updateLibName(String old_libName,String new_libName);
+
+    /**
+     * 根据libName获取字典列表
+     * @param libName
+     * @return
+     */
+    public List<Dictionary> getDictionaryByLibName(String libName);
+
+    /**
+     * 下载指定的字典
+     * @param rq
+     * @param fileName
+     * @param libName
+     * @return
+     */
+    public String downloadDictionary(HttpServletRequest rq,String fileName, String libName) throws UnsupportedEncodingException;
 
 }
