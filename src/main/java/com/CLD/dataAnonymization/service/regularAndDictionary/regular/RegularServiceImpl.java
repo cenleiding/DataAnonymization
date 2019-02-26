@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,33 +34,52 @@ public class RegularServiceImpl implements RegularService {
     RegularRepository regularRepository;
 
     @Override
-    public Boolean file2Db() {
+    public Boolean deleteLib(String libName) {
+        regularRepository.deleteByLibName(libName);
+        return true;
+    }
 
-        String FilePath_mapping=new Object() {
-            public String get(){
-                return this.getClass().getClassLoader().getResource("").getPath();
+    @Override
+    public Boolean initRegular(String libName, String Path) throws FileNotFoundException {
+        InputStream is=new Object(){
+            public InputStream get(){
+                return this.getClass().getClassLoader().getResourceAsStream(Path);
             }
-        }.get().replaceAll("target/classes/","")
-                .replaceAll(jarName+"!/BOOT-INF/classes!/","")
-                .replaceAll("file:","");
-        String path=FilePath_mapping+outRegularPath+"/"+regularName;
-        JSONArray jsonArray=new JSONArray();
-        try {
-            jsonArray= FileResolve.readerArrayJson(path);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        }
+        }.get();
+        JSONArray jsonArray = FileResolve.readerArrayJson(is);
         List<Regular> regularList = new ArrayList<Regular>();
         for(int i=0;i<jsonArray.size();i++){
             Regular regular = new Regular();
-            regular.setLibName("original");
+            regular.setLibName(libName);
             regular.setAims(jsonArray.getJSONObject(i).getString("aims"));
             regular.setArea(jsonArray.getJSONObject(i).getString("area"));
             regularList.add(regular);
         }
         regularRepository.saveAll(regularList);
-
         return true;
+    }
+
+    @Override
+    public List<Regular> getRegularByLibName(String libName) {
+        return regularRepository.findByLibName(libName);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        regularRepository.deleteById(id);
+    }
+
+    @Override
+    public void createNewRegular(String libName, String area, String aims) {
+        Regular regular = new Regular();
+        regular.setArea(area);
+        regular.setAims(aims);
+        regular.setLibName(libName);
+        regularRepository.save(regular);
+    }
+
+    @Override
+    public void changeRegular(Regular regular) {
+        regularRepository.save(regular);
     }
 }

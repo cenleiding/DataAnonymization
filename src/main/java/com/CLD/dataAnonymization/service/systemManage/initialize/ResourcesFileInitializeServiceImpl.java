@@ -39,16 +39,6 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
     @Value("${node.expand.name}")
     private String[] expandName;
 
-    @Value("${regular.out.path}")
-    private String outRegularPath;
-
-    @Value("${regualr.in.path}")
-    private String inRegularPath;
-
-    @Value("${regular.name}")
-    private String regularName;
-
-
 
     @Override
     public Boolean InitializeResourcesFile() {
@@ -87,9 +77,6 @@ public class ResourcesFileInitializeServiceImpl implements ResourcesFileInitiali
         for (int i = 0; i < fileList.length; i++) {
             copyFile(inExpandPath+"/"+fileList[i],outPath+outExpandPath+"/"+fileList[i]);
         }
-
-        //复制规则表
-        copyFile(inRegularPath+"/"+regularName,outPath+outRegularPath+"/"+regularName);
 
         log.info("资源初始化成功！");
 

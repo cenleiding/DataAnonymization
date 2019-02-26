@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
+
 /**
  * @Description:
  * @Author CLD
@@ -24,6 +26,12 @@ public class RegularAndDictionaryResetServiceImpl implements RegularAndDictionar
     @Value("${dictionary.in.path}")
     private String inDictionaryPath;
 
+    @Value("${regualr.in.path}")
+    private String inRegularPath;
+
+    @Value("${regular.name}")
+    private String regularName;
+
     @Autowired
     RegularLibService regularLibService;
 
@@ -34,7 +42,7 @@ public class RegularAndDictionaryResetServiceImpl implements RegularAndDictionar
     RegularService regularService;
 
     @Override
-    public Boolean RegularAndDictionaryReset() {
+    public Boolean RegularAndDictionaryReset() throws FileNotFoundException {
 
         //初始化规则库信息
         regularLibService.createNewLib("original","系统规则库","original");
@@ -44,9 +52,11 @@ public class RegularAndDictionaryResetServiceImpl implements RegularAndDictionar
 
         dictionaryService.initDictionary(dictionaryName,"original","系统字典",inDictionaryPath+"/"+dictionaryName);
 
-        //加载规则信息，file2Db
-        regularService.file2Db();
+        //初始化规则信息
+        regularService.deleteLib("original");
 
-        return null;
+        regularService.initRegular("original",inRegularPath+"/"+regularName);
+
+        return true;
     }
 }

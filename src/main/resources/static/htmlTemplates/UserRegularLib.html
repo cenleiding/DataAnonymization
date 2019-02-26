@@ -52,58 +52,127 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <span class="panel-title">字典</span>
-                        <input data-ng-click="uploadDictionary()" title='文件上传' type="image" src="/img/upload.png" align="right" style="display: inline-block;width: 18px;height: 18px;margin-right: 20px" />
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <span class="panel-title">字典</span>
+                                <input data-ng-click="uploadDictionary()" ng-show="ifedit" title='文件上传' type="image" src="/img/upload.png" align="right" style="display: inline-block;width: 18px;height: 18px;margin-right: 20px" />
+                            </div>
+                            <div class="panel-body">
+                                <table class="table" >
+                                    <tr>
+                                        <th>#</th><th>文件名</th> <th>文件描述</th><th>上传日期</th><th>操作</th>
+                                    </tr>
+                                    <tr ng-repeat="dictionary in dictionaryList">
+                                        <td>
+                                            {{$index+1}}
+                                        </td>
+                                        <td>
+                                            {{dictionary.fileName}}
+                                        </td>
+                                        <td>
+                                            {{dictionary.description}}
+                                        </td>
+                                        <td>
+                                            {{dictionary.uploadTime}}
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-xs" ng-click="deleteDictionary(dictionary.fileName)">删除</button>
+                                            <button type="button" class="btn btn-info btn-xs" ng-click="downloadDictionary(dictionary.fileName)">下载</button>
+                                            <button type="button" class="btn btn-success btn-xs" ng-click="">测试</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <table class="table" >
-                            <tr>
-                                <th>#</th><th>文件名</th> <th>文件描述</th><th>上传日期</th><th>操作</th>
-                            </tr>
-                            <tr ng-repeat="dictionary in dictionaryList">
-                                <td>
-                                    {{$index+1}}
-                                </td>
-                                <td>
-                                    {{dictionary.fileName}}
-                                </td>
-                                <td>
-                                    {{dictionary.description}}
-                                </td>
-                                <td>
-                                    {{dictionary.uploadTime}}
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger btn-xs" ng-click="deleteDictionary(dictionary.fileName)">删除</button>
-                                    <button type="button" class="btn btn-info btn-xs" ng-click="downloadDictionary(dictionary.fileName)">下载</button>
-                                    <button type="button" class="btn btn-success btn-xs" ng-click="">测试</button>
-                                </td>
-                            </tr>
-                        </table>
+                    <div class="col-lg-7">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <span class="panel-title">我的规则</span>
+                                <input data-ng-click="createNewRegular()" title='新建规则' ng-show="ifedit" type="image" src="/img/new_regular.png" align="right" style="display: inline-block;width: 18px;height: 18px;margin-right: 20px" />
+                            </div>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <th>#</th><th>一级规则</th> <th>二级规则</th><th>操作</th>
+                                    </tr>
+                                    <tr ng-repeat="regular in regularList">
+                                        <td>
+                                            {{$index+1}}
+                                        </td>
+                                        <td>
+                                            {{regular.area}}
+                                        </td>
+                                        <td>
+                                            {{regular.aims}}
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-xs" ng-click="deleteRegular(regular.id)">删除</button>
+                                            <button type="button" class="btn btn-info btn-xs" ng-click="changeRegular(regular)">修改</button>
+                                            <button type="button" class="btn btn-success btn-xs" ng-click="">测试</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <span class="panel-title">规则测试</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="sky-card">
+                                        <div class="card-head">
+                                            <span class="card-title">模式选择</span>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value="">系统字典</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value="">系统规则</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value="">我的字典</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value="">我的规则</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="sky-card">
+                                        <div class="card-head">
+                                            <span class="card-title">测试文本</span>
+                                        </div>
+                                        <div class="card-content">
+                                            <textarea  ng-value="testText" ng-model="testText" style="height: 40px;width: 190px;resize: none; " ></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="sky-card">
+                                        <div class="card-head">
+                                            <span class="card-title">测试结果</span>
+                                        </div>
+                                        <div class="card-content">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">规则制定</h3>
-                    </div>
-                    <div class="panel-body">
-                        <table class="display" cellspacing="0" width="100%">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>字段名</th>
-                                <th>字段类型</th>
-                            </tr>
-                            </thead>
-                        </table>`
-                    </div>
-                </div>
-            </div>
+
 
 
 

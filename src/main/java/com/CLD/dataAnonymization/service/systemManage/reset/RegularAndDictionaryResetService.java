@@ -1,5 +1,7 @@
 package com.CLD.dataAnonymization.service.systemManage.reset;
 
+import java.io.FileNotFoundException;
+
 /**
  * @Description:
  * @Author CLD
@@ -11,5 +13,5 @@ public interface RegularAndDictionaryResetService {
      * 重置规则库，字典和规则。
      * @return
      */
-    public Boolean RegularAndDictionaryReset();
+    public Boolean RegularAndDictionaryReset() throws FileNotFoundException;
 }
