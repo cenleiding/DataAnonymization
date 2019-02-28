@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.CLD.dataAnonymization.util.deidentifier.resources.ResourcesReader.readRegular;
-
 /**
  * 用于处理非结构化数据
  * 自然语言处理 (LSTM+CRF)
@@ -29,61 +27,55 @@ import static com.CLD.dataAnonymization.util.deidentifier.resources.ResourcesRea
 public class Unstructured {
 
 
-
+    /**
+     * @param data
+     * @param col
+     * @param proInfo
+     * @param dictionary
+     * @param regular
+     * @return
+     */
     public static Boolean unstructuredHandle(ArrayList<ArrayList<String>> data,
                                              ArrayList<Integer> col,
                                              ArrayList<HashMap<String,String>> proInfo,
-                                             HashMap<String,ArrayList<String>> geographic){
-        ArrayList<String> geo=new ArrayList<String>();
-        geo.addAll(geographic.get("bigCity"));
-        geo.addAll(geographic.get("smallCity"));
+                                             ArrayList<String> dictionary,
+                                             ArrayList<HashMap<String,String>> regular){
 
-        HashMap<String,HashSet<String>> labels = new HashMap<String,HashSet<String>>();
-        labels.put("name",new HashSet<String>());
-        labels.put("address",new HashSet<String>());
-        labels.put("organization",new HashSet<String>());
-        labels.put("detail",new HashSet<String>());
-        labels.put("time",new HashSet<String>());
-
-
-        // 利用机器学习获取隐私信息
-        try {
+        try{
+            // 利用机器学习获取隐私信息
+            ArrayList<HashMap<String,HashSet<String>>> ner_result = new ArrayList<HashMap<String,HashSet<String>>>();
             for (int column :col) {
-                HashMap<String,HashSet<String>> ner_result = unstructured_NER(data.get(column));
-                for (String s:labels.keySet()){
-                    labels.get(s).addAll(ner_result.get(s));
-                }
+                ner_result.add(unstructured_NER(data.get(column)));
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
-        //利用规则获取隐私信息
-        try {
+            //利用规则获取隐私信息
+            ArrayList<HashMap<String,String>> re_result = new ArrayList<HashMap<String,String>>();
             for(int column : col ) {
-                HashMap<String, HashSet<String>> re_result = unstructured_Re(data.get(column));
-                for (String s:labels.keySet()){
-                    labels.get(s).addAll(re_result.get(s));
+                re_result.add(unstructured_Re(data.get(column),regular));
+            }
+
+            //利用字典获取隐私信息
+            ArrayList<HashMap<String,String>> dic_result = new ArrayList<HashMap<String,String>>();
+            for(int column : col){
+                dic_result.add(unstructured_dic(data.get(column),dictionary));
+            }
+
+            // 整合目标字段
+            HashMap<String,String> transform = integrate(ner_result,re_result,dic_result,proInfo);
+
+            // 替换敏感字符
+            for (int column : col){
+                for (int i = 0;i<data.get(column).size();i++){
+                    String text = data.get(column).get(i);
+                    for(String key:transform.keySet()){
+                        text = text.replaceAll(key,transform.get(key));
+                    }
+                    data.get(column).set(i,text);
                 }
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        }catch (Exception e){
+            return false;
         }
-
-        // 整合目标字段
-        HashMap<String,String> transform = integrate(labels,proInfo,geo);
-
-        // 替换敏感字符
-        for (int column : col){
-            for (int i = 0;i<data.get(column).size();i++){
-                String text = data.get(column).get(i);
-                for(String key:transform.keySet()){
-                    text = text.replaceAll(key,transform.get(key));
-                }
-                data.get(column).set(i,text);
-            }
-        }
-
         return true;
     }
 
@@ -93,7 +85,7 @@ public class Unstructured {
      * @return
      * @throws FileNotFoundException
      */
-    public static HashMap<String,HashSet<String>> unstructured_NER(List<String> context) throws FileNotFoundException {
+    public static HashMap<String,HashSet<String>> unstructured_NER(List<String> context) {
         // 断句,去空格 以"。"为标识 ，最长250 context => sentences
         ArrayList<String> sentences = new ArrayList<String>();
         for (String text : context){
@@ -109,7 +101,12 @@ public class Unstructured {
         }
         // word2id sentenses => sentenses_id,lengths
         // 并补齐 250
-        HashMap<String,Integer> word2id = ResourcesReader.readWord2id();
+        HashMap<String,Integer> word2id = null;
+        try {
+            word2id = ResourcesReader.readWord2id();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         ArrayList<ArrayList<Integer>> sentences_id = new ArrayList<ArrayList<Integer>>();
         ArrayList<Integer> lengths = new ArrayList<Integer>();
         for (String sentence : sentences){
@@ -197,103 +194,80 @@ public class Unstructured {
     /**
      * 使用正则表达式方式识别隐私信息
      * @param context
+     * @param regular
      * @return
      */
-    public static HashMap<String,HashSet<String>> unstructured_Re(List<String> context) throws FileNotFoundException {
-        HashMap<String,ArrayList<String>> regular = readRegular();
+    public static HashMap<String,String> unstructured_Re(List<String> context,ArrayList<HashMap<String,String>> regular){
 
-        HashMap<String,HashSet<String>> outResult = new HashMap<String,HashSet<String>>();
-        outResult.put("name",new HashSet<String>());
-        outResult.put("address",new HashSet<String>());
-        outResult.put("organization",new HashSet<String>());
-        outResult.put("detail",new HashSet<String>());
-        outResult.put("time",new HashSet<String>());
-        Pattern p=null;
-        Matcher m=null;
+        HashMap<String,String> outResult = new HashMap<String,String>();
+
         for (String text : context){
-            for (String s : outResult.keySet()){
-                for(int i=0;i<regular.get(s).size();i=i+2){
-                    p=Pattern.compile(regular.get(s).get(i));
-                    m=p.matcher(text);
-                    while(m.find()){
-                        Pattern p1=Pattern.compile(regular.get(s).get(i+1));
-                        Matcher m1=p1.matcher(m.group());
-                        m1.find();
-                        outResult.get(s).add(m1.group().trim().replace(" ",""));
-                    }
+            for(HashMap<String,String> hashMap : regular){
+                Pattern p1 = Pattern.compile(hashMap.get("area"));
+                Matcher m1 = p1.matcher(text);
+                while(m1.find()){
+                    Pattern p2 = Pattern.compile(hashMap.get("aims"));
+                    Matcher m2 = p2.matcher(m1.group());
+                    m2.find();
+                    outResult.put(m1.group(),m1.group().replace(m2.group(),"***"));
                 }
             }
         }
         return outResult;
     }
 
+
+    /**
+     * 使用字典获得隐私信息
+     * @param context
+     * @param dictionary
+     * @return
+     */
+    public static HashMap<String,String> unstructured_dic(List<String> context,ArrayList<String> dictionary){
+        HashMap<String,String> outResult = new HashMap<String,String>();
+        for (String text : context){
+            for(String dic :dictionary)
+                if (text.indexOf(dic)!=-1)
+                    outResult.put(dic,"***");
+        }
+        return outResult;
+    }
+
+
     /**
      * 整合敏感信息
-     * @param labels
+     * @param ner_result
+     * @param re_result
+     * @param dic_result
      * @param proInfo
      * @return
      */
-    public static HashMap<String,String> integrate(HashMap<String,HashSet<String>> labels,
-                                                   ArrayList<HashMap<String,String>> proInfo,
-                                                   ArrayList<String> geographic)
+    public static HashMap<String,String> integrate(ArrayList<HashMap<String,HashSet<String>>> ner_result,
+                                                   ArrayList<HashMap<String,String>> re_result,
+                                                   ArrayList<HashMap<String,String>> dic_result,
+                                                   ArrayList<HashMap<String,String>> proInfo
+                                                   )
     {
         HashMap<String,String> out_result = new HashMap<String,String>();
-        HashSet<String> flag = new HashSet<String>();
 
-        // 处理历史信息
-        for (int i=0;i<proInfo.size();i++){
-            for (String key:proInfo.get(i).keySet()){
-                if (flag.contains(key)) continue;
-                flag.add(key);
-                out_result.put(key,proInfo.get(i).get(key));
+        for(HashMap<String,HashSet<String>> ner : ner_result){
+            for(String key:ner.keySet()){
+                for(String s:ner.get(key))
+                    out_result.put(s,"***");
             }
         }
 
-        // 只处理长度大于1的姓名
-        for (String s :labels.get("name")){
-            if ((s.length()<2)||(flag.contains(s))) continue;
-            flag.add(s);
-            out_result.put(s,"***");
+        for(HashMap<String,String> re : re_result){
+            out_result.putAll(re);
         }
 
-        // 只处理长度大于1的地理位置
-        // 且与地理表进行对比
-        for (String s :labels.get("address")){
-            if ((s.length()<2)||(flag.contains(s))) continue;
-            flag.add(s);
-            String value="";
-            for(String g:geographic){
-                if(s.indexOf(g)!=-1)
-                    value+=g;
-            }
-            out_result.put(s,value);
+        for(HashMap<String,String> dic : dic_result){
+            out_result.putAll(dic);
         }
 
-        // 只处理长度大于1的组织信息
-        for (String s :labels.get("organization")){
-            if ((s.length()<2)||(flag.contains(s))) continue;
-            flag.add(s);
-            out_result.put(s,"***");
+        for(HashMap<String,String> pro : proInfo){
+            out_result.putAll(pro);
         }
-
-        // 只处理长度大于1的细节信息
-        for (String s :labels.get("detail")){
-            if ((s.length()<2)||(flag.contains(s))) continue;
-            flag.add(s);
-            out_result.put(s,"***");
-        }
-
-        // 只处理长度大于1的time信息
-        // 并去除日期信息
-        for (String s :labels.get("time")){
-            if ((s.length()<2)||(flag.contains(s))) continue;
-            flag.add(s);
-            int temp = Math.max(s.lastIndexOf("/"),s.lastIndexOf("月")+1);
-            int index = Math.max(temp,s.lastIndexOf("-"));
-            out_result.put(s,s.substring(0,index));
-        }
-
-
 
         return out_result;
     }

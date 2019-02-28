@@ -199,6 +199,13 @@ tr.shown td.details-control {
     display: inline-block;
 }
 
+.input-button-run-big-3{
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin-top: 80px
+}
+
 .input-button-small{
     display: inline-block;
     width: 30px;
@@ -264,4 +271,9 @@ tr.shown td.details-control {
 .span-panel{
     font-size: 16px;
     font-weight:bolder;
+}
+
+.checkbox-label-font{
+    font-size: 16px;
+    font-weight: bold
 }

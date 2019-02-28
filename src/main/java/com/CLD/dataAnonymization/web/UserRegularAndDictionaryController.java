@@ -6,6 +6,7 @@ import com.CLD.dataAnonymization.dao.h2.entity.RegularLib;
 import com.CLD.dataAnonymization.service.regularAndDictionary.dictionary.DictionaryService;
 import com.CLD.dataAnonymization.service.regularAndDictionary.regular.RegularService;
 import com.CLD.dataAnonymization.service.regularAndDictionary.regularLib.RegularLibService;
+import com.CLD.dataAnonymization.service.regularAndDictionary.testRun.TestRunService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -40,6 +42,9 @@ public class UserRegularAndDictionaryController {
 
     @Autowired
     RegularService regularService;
+
+    @Autowired
+    TestRunService testRunService;
 
     @RequestMapping("/getRegularLibName")
     @ResponseBody
@@ -101,6 +106,34 @@ public class UserRegularAndDictionaryController {
     @ResponseBody
     public void changeRegular(@RequestBody Regular regualr){
         regularService.changeRegular(regualr);
+    }
+
+    @RequestMapping(value = "/testSimpleDictionary")
+    @ResponseBody
+    public HashMap<String,String> testSimpleDictionary(@Param("libName") String libName,
+                                             @Param("fileName") String fileName,
+                                             @Param("content") String content){
+        return testRunService.testSimpleDictionary(libName,fileName,content);
+    }
+
+    @RequestMapping(value = "/testSimpleRegular")
+    @ResponseBody
+    public HashMap<String,String> testSimpleRegular(@Param("area") String area,
+                                          @Param("aims") String aims,
+                                          @Param("content") String content){
+        return testRunService.testSimpleRegular(area, aims, content);
+    }
+
+    @RequestMapping(value = "/testAll")
+    @ResponseBody
+    public HashMap<String,String> testAll(@Param("xtzd") boolean xtzd,
+                                          @Param("xtgz") boolean xtgz,
+                                          @Param("wdzd") boolean wdzd,
+                                          @Param("wdgz") boolean wdgz,
+                                          @Param("jqxx") boolean jqxx,
+                                          @Param("libName") String libName,
+                                          @Param("content") String content){
+        return testRunService.testAll(xtzd, xtgz, wdzd, wdgz, jqxx, libName, content);
     }
 
 }

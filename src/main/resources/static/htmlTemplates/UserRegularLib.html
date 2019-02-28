@@ -81,7 +81,7 @@
                                         <td>
                                             <button type="button" class="btn btn-danger btn-xs" ng-click="deleteDictionary(dictionary.fileName)">删除</button>
                                             <button type="button" class="btn btn-info btn-xs" ng-click="downloadDictionary(dictionary.fileName)">下载</button>
-                                            <button type="button" class="btn btn-success btn-xs" ng-click="">测试</button>
+                                            <button type="button" class="btn btn-success btn-xs" ng-click="test_simple_dictionary(dictionary.fileName)">测试</button>
                                         </td>
                                     </tr>
                                 </table>
@@ -112,7 +112,7 @@
                                         <td>
                                             <button type="button" class="btn btn-danger btn-xs" ng-click="deleteRegular(regular.id)">删除</button>
                                             <button type="button" class="btn btn-info btn-xs" ng-click="changeRegular(regular)">修改</button>
-                                            <button type="button" class="btn btn-success btn-xs" ng-click="">测试</button>
+                                            <button type="button" class="btn btn-success btn-xs" ng-click="test_simple_regular(regular)">测试</button>
                                         </td>
                                     </tr>
                                 </table>
@@ -123,27 +123,45 @@
                 <div>
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <span class="panel-title">规则测试</span>
+                            <span class="panel-title">测试</span>
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="sky-card">
                                         <div class="card-head">
                                             <span class="card-title">模式选择</span>
                                         </div>
-                                        <div class="card-content">
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">系统字典</label>
+                                        <div class="card-content" style="padding-left: 30px">
+                                            <div class="checkbox checkbox-primary"  >
+                                                <input type="checkbox" id="xtzd"  ng-model="checkbox_type.xtzd" >
+                                                <label for="xtzd" class="checkbox-label-font">
+                                                    系统字典
+                                                </label>
                                             </div>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">系统规则</label>
+                                            <div class="checkbox checkbox-primary">
+                                                <input type="checkbox" id="xtgz"  ng-model="checkbox_type.xtgz">
+                                                <label for="xtgz" class="checkbox-label-font">
+                                                    系统规则
+                                                </label>
                                             </div>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">我的字典</label>
+                                            <div class="checkbox checkbox-primary">
+                                                <input type="checkbox" id="wdzd" ng-model="checkbox_type.wdzd">
+                                                <label for="wdzd" class="checkbox-label-font">
+                                                    我的字典
+                                                </label>
                                             </div>
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" value="">我的规则</label>
+                                            <div class="checkbox checkbox-primary">
+                                                <input type="checkbox" id="wdgz" ng-model="checkbox_type.wdgz">
+                                                <label for="wdgz" class="checkbox-label-font">
+                                                    我的规则
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-primary">
+                                                <input type="checkbox" id="jqxx" ng-model="checkbox_type.jqxx">
+                                                <label for="jqxx" class="checkbox-label-font">
+                                                    机器学习
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -154,16 +172,35 @@
                                             <span class="card-title">测试文本</span>
                                         </div>
                                         <div class="card-content">
-                                            <textarea  ng-value="testText" ng-model="testText" style="height: 40px;width: 190px;resize: none; " ></textarea>
+                                            <textarea  ng-value="testText" ng-model="testText" style="height:135px;width:100%;resize: none; " ></textarea>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <input class="input-button-run-big-3" data-ng-click="test_all()" title='测试' type="image" src="/img/run.png"s/>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="sky-card">
                                         <div class="card-head">
                                             <span class="card-title">测试结果</span>
                                         </div>
-                                        <div class="card-content">
+                                        <div class="card-content" style="max-height:140px;overflow-y: auto ">
+                                            <table class="table">
+                                                <tr>
+                                                    <th>#</th><th>目标</th> <th>替代</th>
+                                                </tr>
+                                                <tr ng-repeat="result in testResult track by $index">
+                                                    <td>
+                                                        {{$index+1}}
+                                                    </td>
+                                                    <td>
+                                                        {{result.tar}}
+                                                    </td>
+                                                    <td>
+                                                        {{result.alt}}
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
