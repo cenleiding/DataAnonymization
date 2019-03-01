@@ -20,6 +20,10 @@ public class DataHandle {
     private HashMap<String,ArrayList<ArrayList<String>>> hierarchy        =       null;
     //地理信息
     private HashMap<String,ArrayList<String>>            geographic       =       null;
+    //非结构化字典表
+    private ArrayList<String>                            dictionary       =       null;
+    //非结构化规则表
+    private ArrayList<HashMap<String,String>>            regular          =       null;
     //字段分类总表
     private ArrayList<ArrayList<String>>                 fieldList        =       null;
 
@@ -293,6 +297,10 @@ public class DataHandle {
         this.geographic.put("smallCity",geographic.get(1));
     }
 
+    public void setDictionary(ArrayList<String> dictionary){this.dictionary = dictionary;}
+
+    public void setRegular(ArrayList<HashMap<String,String>>  regular){this.regular = regular;}
+
     public void setData(ArrayList<ArrayList<String>> data) {
         this.data = data;
         dataClear();
@@ -374,6 +382,10 @@ public class DataHandle {
     public HashMap<String,ArrayList<String>> getGeographic() {
         return geographic;
     }
+
+    public ArrayList<String> getDictionary(){return dictionary;}
+
+    public ArrayList<HashMap<String,String>> getRegular(){return regular;}
 
     public String[] getHeader() {
         return header;

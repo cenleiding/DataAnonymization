@@ -69,6 +69,16 @@ public class Anonymizer {
             dataHandle.setFieldList(ResourcesReader.readFields());
         }
 
+        //加载默认字典
+        if(dataHandle.getDictionary()==null){
+            dataHandle.setDictionary(ResourcesReader.readDictionary());
+        }
+
+        //加载默认规则
+        if(dataHandle.getRegular()==null){
+            dataHandle.setRegular(ResourcesReader.readRegular());
+        }
+
         //时间信息格式化
         dataClear();
 
@@ -125,8 +135,7 @@ public class Anonymizer {
 
         //处理UI非结构化信息
         column=selectTypeColumn(dataHandle.getUI());
-//        Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getGeographic());
-
+        Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular());
 
         return true;
     }
@@ -180,7 +189,7 @@ public class Anonymizer {
 
         //处理UI非结构化信息
         column=selectTypeColumn(dataHandle.getUI());
-//        Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getGeographic());
+        Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular());
 
         return true;
     }

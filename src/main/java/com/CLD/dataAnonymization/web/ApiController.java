@@ -40,6 +40,7 @@ public class ApiController {
     public ArrayList<HashMap<String,String>> dataDeidentify(HttpServletRequest req,
                                                             @RequestParam(value = "fieldFromName",defaultValue = "OpenEhr字段表",required = false) String fieldFromName,
                                                             @RequestParam(value = "level",defaultValue = "Level2",required = false) String level,
+                                                            @RequestParam(value = "regularLib",defaultValue = "original",required = false) String regularLib,
                                                             @RequestParam(value = "encryptPassword",defaultValue = "CLD",required = false) String encryptPassword,
                                                             @RequestParam(value = "noiseScope_big",defaultValue = "0.08",required = false) String noiseScope_big,
                                                             @RequestParam(value = "noiseScope_small",defaultValue = "0.05",required = false) String noiseScope_small,
@@ -62,6 +63,7 @@ public class ApiController {
         anonymizeConfigure.setK_big(k_big);
         anonymizeConfigure.setEncryptPassword(encryptPassword);
         anonymizeConfigure.setLevel(level);
+        anonymizeConfigure.setRegularLib(regularLib);
         ArrayList<HashMap<String,String>> data=apiDeidentifyService.ApiDataDeidentify(req,anonymizeConfigure);
         apiUsageService.addUsageLog(userIp.getIp(),
                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()),

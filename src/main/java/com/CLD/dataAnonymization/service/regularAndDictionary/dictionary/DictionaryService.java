@@ -55,7 +55,7 @@ public interface DictionaryService {
      * @param new_libName
      * @return
      */
-    public String updateLibName(String old_libName,String new_libName);
+    public Boolean updateLibName(String old_libName,String new_libName);
 
     /**
      * 根据libName获取字典列表

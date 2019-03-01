@@ -36,6 +36,7 @@ public class RegularServiceImpl implements RegularService {
     @Override
     public Boolean deleteLib(String libName) {
         regularRepository.deleteByLibName(libName);
+        regularRepository.flush();
         return true;
     }
 
@@ -81,5 +82,15 @@ public class RegularServiceImpl implements RegularService {
     @Override
     public void changeRegular(Regular regular) {
         regularRepository.save(regular);
+    }
+
+    @Override
+    public Boolean updateLibName(String old_libName, String new_libName) {
+        List<Regular> regularList = regularRepository.findByLibName(old_libName);
+        for (Regular regular:regularList){
+            regular.setLibName(new_libName);
+        }
+        regularRepository.saveAll(regularList);
+        return true;
     }
 }

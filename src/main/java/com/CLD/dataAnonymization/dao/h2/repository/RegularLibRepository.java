@@ -2,9 +2,11 @@ package com.CLD.dataAnonymization.dao.h2.repository;
 
 import com.CLD.dataAnonymization.dao.h2.entity.RegularLib;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -21,5 +23,9 @@ public interface RegularLibRepository extends JpaRepository<RegularLib,Long> {
     public List<String> getLibName();
 
     public List<RegularLib> findAllByUser(String user);
+
+    @Transactional
+    @Modifying
+    public void deleteByLibName(String libName);
 
 }

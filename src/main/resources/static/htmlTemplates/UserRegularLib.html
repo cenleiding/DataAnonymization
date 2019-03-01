@@ -1,7 +1,6 @@
 <div class="sky-card" style="margin-top: 0px;margin-left: 0px;margin-right: 0px">
     <div class="card-head-2">
         <span class="card-title">字典规则</span>
-        <button class="btn btn-primary" data-ng-click="saveChange()" ng-show="ifedit" style="float: right;margin-right: 50px;margin-top: 3px" >提交修改</button>
     </div>
     <div class="card-content card-wide">
         <div class="row">
@@ -10,42 +9,43 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">我的规则库</h3>
                     </div>
-                    <div class="panel-body" style="max-height:300px;overflow-y: auto ">
+                    <div class="panel-body" style="height:400px;overflow-y: auto ">
                         <div ng-repeat="x in regularLibList" class="alert alert-info" role="alert" style="padding-top: 10px;padding-bottom: 10px;padding-left: 10px;padding-right: 5px">
                             <div class="row">
                                 <div class="col-lg-8">
                                     <span style="font-size: 13px;font-weight: bold">{{x.libName}}</span>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input data-ng-click="editForm(x.libName)" title='编辑' type="image" src="/img/edit.png" style="display: inline-block;width: 15px;height: 15px" />
-                                    <input data-ng-click="deleteForm(x.libName)" title='删除' type="image" src="/img/delete.png" style="display: inline-block;width: 15px;height: 15px" />
+                                    <input data-ng-click="editRegularLib(x.libName)" title='编辑' type="image" src="/img/edit.png" style="display: inline-block;width: 15px;height: 15px" />
+                                    <input data-ng-click="deleteRegularLib(x.libName)" title='删除' type="image" src="/img/delete.png" style="display: inline-block;width: 15px;height: 15px" />
                                 </div>
                             </div>
                         </div>
                         <div class="alert alert-info" role="alert" style="text-align:center;padding-top: 5px;padding-bottom: 5px;padding-left: 10px;padding-right: 5px;margin-bottom: 0px">
-                            <button type="button" data-ng-click="createNewForm()" style="border:0;cursor:pointer;background-color:transparent;font-weight: bolder">添加新的表单</button>
+                            <button type="button" data-ng-click="createNewRegularLib()" style="border:0;cursor:pointer;background-color:transparent;font-weight: bolder">添加新的表单</button>
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-info">
+                <div class="panel panel-info" style="margin-top: 50px">
                     <div class="panel-heading">
-                        <h3 class="panel-title">基本信息</h3>
+                        <span class="panel-title">基本信息</span>
+                        <input data-ng-click="saveChange()" ng-show="ifedit" title='提交修改' type="image" src="/img/save.png" align="right" style="display: inline-block;width: 20px;height: 20px;margin-right: 20px" />
                     </div>
-                    <div class="panel-body">
-                        <div style="margin-bottom:5px">
+                    <div class="panel-body" style="height: 200px">
+                        <div style="margin-bottom:8px">
                             <span style="font-size: 15px;font-weight:bolder;" >库名:</span>
                             <input ng-value="regularLib.new_libName" ng-model="regularLib.new_libName" style="border-style:none;border-bottom-style:dotted;border-bottom-color: black;">
                         </div>
-                        <div style="margin-bottom:5px">
+                        <div style="margin-bottom:10px">
                             <span style="font-size: 15px;font-weight:bolder;">创建者:</span><p style="display: inline-block;padding-left: 5px;font-size: 14px">{{regularLib.user}}</p>
                         </div>
-                        <div style="margin-bottom:5px">
+                        <div style="margin-bottom:10px">
                             <span style="font-size: 15px;font-weight:bolder;" >创建日期:</span><p style="display: inline-block;padding-left: 5px;font-size: 14px">{{regularLib.createTime}}</p>
                         </div>
-                        <div style="margin-bottom:5px">
+                        <div style="margin-bottom:10px">
                             <span style="font-size: 15px;font-weight:bolder;" >最近修改日期:</span><p style="display: inline-block;padding-left: 5px;font-size: 14px">{{regularLib.changeTime}}</p>
                         </div>
-                        <div style="margin-bottom:5px">
+                        <div style="margin-bottom:10px">
                             <span style="font-size: 15px;font-weight:bolder;" >描述:</span>
                             <input ng-value="regularLib.new_description" ng-model="regularLib.new_description" style="border-style:none;border-bottom-style:dotted;border-bottom-color: black;">
                         </div>
@@ -60,7 +60,7 @@
                                 <span class="panel-title">字典</span>
                                 <input data-ng-click="uploadDictionary()" ng-show="ifedit" title='文件上传' type="image" src="/img/upload.png" align="right" style="display: inline-block;width: 18px;height: 18px;margin-right: 20px" />
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body" style="max-height:350px;overflow-y: auto ">
                                 <table class="table" >
                                     <tr>
                                         <th>#</th><th>文件名</th> <th>文件描述</th><th>上传日期</th><th>操作</th>
@@ -94,7 +94,7 @@
                                 <span class="panel-title">我的规则</span>
                                 <input data-ng-click="createNewRegular()" title='新建规则' ng-show="ifedit" type="image" src="/img/new_regular.png" align="right" style="display: inline-block;width: 18px;height: 18px;margin-right: 20px" />
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body" style="max-height:350px;overflow-y: auto ">
                                 <table class="table">
                                     <tr>
                                         <th>#</th><th>一级规则</th> <th>二级规则</th><th>操作</th>
@@ -121,7 +121,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class="panel panel-info">
+                    <div class="panel panel-info" style="margin-top: 25px">
                         <div class="panel-heading">
                             <span class="panel-title">测试</span>
                         </div>

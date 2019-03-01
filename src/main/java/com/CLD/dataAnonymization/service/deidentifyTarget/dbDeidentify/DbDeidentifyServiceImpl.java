@@ -5,11 +5,8 @@ import com.CLD.dataAnonymization.dao.h2.entity.FieldClassifyUsageCount;
 import com.CLD.dataAnonymization.dao.h2.repository.DbInfoRepository;
 import com.CLD.dataAnonymization.dao.h2.repository.FieldClassifyUsageCountRepository;
 import com.CLD.dataAnonymization.model.AnonymizeConfigure;
-import com.CLD.dataAnonymization.model.FieldInfo;
+import com.CLD.dataAnonymization.service.deidentifyTarget.EasyUtil;
 import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
-import com.CLD.dataAnonymization.util.deidentifier.Anonymizer;
-import com.CLD.dataAnonymization.util.deidentifier.Configuration;
-import com.CLD.dataAnonymization.util.deidentifier.DataHandle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -46,6 +43,9 @@ public class DbDeidentifyServiceImpl implements DbDeidentifyService {
     @Autowired
     FieldClassifyUsageCountRepository fieldClassifyUsageCountRepository;
 
+    @Autowired
+    EasyUtil easyUtil;
+
     @Override
     public void DbDeidentify(String dbType,
                              String host,
@@ -57,30 +57,7 @@ public class DbDeidentifyServiceImpl implements DbDeidentifyService {
         String url="";
         Integer length=10000;
         Connection conn=null;
-        //准备匿名字段表
-        List<FieldInfo> fieldInfoList=fieldClassifyService.getFieldByFromName(anonymizeConfigure.getFieldFormName());
-        ArrayList<ArrayList<String>> fieldList=new ArrayList<ArrayList<String>>();
-        for(FieldInfo fieldInfo:fieldInfoList){
-            ArrayList<String> field=new ArrayList<String>();
-            field.add(fieldInfo.getFieldName());
-            field.add(fieldInfo.getFieldType());
-            fieldList.add(field);
-        }
-        //匿名化配置
-        Configuration configuration=new Configuration();
-        if(anonymizeConfigure.getLevel().equals("Level1"))
-            configuration.setLevel(Configuration.AnonymousLevel.Level1);
-        else
-            configuration.setLevel(Configuration.AnonymousLevel.Level2);
-        configuration.setEncryptPassword(anonymizeConfigure.getEncryptPassword());
-        configuration.setK_big(Integer.valueOf(anonymizeConfigure.getK_big()));
-        configuration.setK_small(Integer.valueOf(anonymizeConfigure.getK_small()));
-        configuration.setMicroaggregation(Integer.valueOf(anonymizeConfigure.getMicroaggregation()));
-        configuration.setNoiseScope_big(Double.valueOf(anonymizeConfigure.getNoiseScope_big()));
-        configuration.setNoiseScope_small(Double.valueOf(anonymizeConfigure.getNoiseScope_small()));
-        configuration.setSuppressionLimit_level1(Double.valueOf(anonymizeConfigure.getSuppressionLimit_level1()));
-        configuration.setSuppressionLimit_level2(Double.valueOf(anonymizeConfigure.getSuppressionLimit_level2()));
-        configuration.setT(Double.valueOf(anonymizeConfigure.getT()));
+
         //开始匿名
         if(dbType.equals("MySql")){
             url="jdbc:mysql://"+host+":"+port+"/"+databaseName+"?autoReconnect=true&useSSL=false";
@@ -114,10 +91,8 @@ public class DbDeidentifyServiceImpl implements DbDeidentifyService {
                     if(offset+length<columnNum)saveH2(url,"获取第"+(offset+1)+"——"+(offset+length)+"条数据");
                     else saveH2(url,"获取第"+(offset+1)+"——"+columnNum+"条数据");
                     //匿名化
-                    DataHandle dataHandle=new DataHandle(dataList);
-                    dataHandle.setFieldList(fieldList);
-                    Anonymizer anonymizer=new Anonymizer(dataHandle,configuration);
-                    dataList=anonymizer.anonymize();
+                    easyUtil.deidentify_run(dataList,anonymizeConfigure);
+
                     if(dataList==null) {saveH2(url,"!!!处理失败!!!");break;}
                     saveH2(url,"处理完毕！");
                     success=dbMySqlHandle.insertNewFrom(conn,fromName.get(i)+"_"+anonymizeConfigure.getLevel(),dataList);
@@ -161,10 +136,8 @@ public class DbDeidentifyServiceImpl implements DbDeidentifyService {
                     if(offset+length<columnNum)saveH2(url,"获取第"+(offset+1)+"——"+(offset+length)+"条数据");
                     else saveH2(url,"获取第"+(offset+1)+"——"+columnNum+"条数据");
                     //匿名化
-                    DataHandle dataHandle=new DataHandle(dataList);
-                    dataHandle.setFieldList(fieldList);
-                    Anonymizer anonymizer=new Anonymizer(dataHandle,configuration);
-                    anonymizer.anonymize();
+                    easyUtil.deidentify_run(dataList,anonymizeConfigure);
+
                     if(dataList==null) {saveH2(url,"!!!处理失败!!!");break;}
                     saveH2(url,"处理完毕！");
 
@@ -210,10 +183,8 @@ public class DbDeidentifyServiceImpl implements DbDeidentifyService {
                     else saveH2(url,"获取第"+(offset+1)+"——"+columnNum+"条数据");
 
                     //匿名化
-                    DataHandle dataHandle=new DataHandle(dataList);
-                    dataHandle.setFieldList(fieldList);
-                    Anonymizer anonymizer=new Anonymizer(dataHandle,configuration);
-                    anonymizer.anonymize();
+                    easyUtil.deidentify_run(dataList,anonymizeConfigure);
+
                     if(dataList==null) {saveH2(url,"!!!处理失败!!!");break;}
                     saveH2(url,"处理完毕！");
 
@@ -306,23 +277,6 @@ public class DbDeidentifyServiceImpl implements DbDeidentifyService {
         System.out.println(s);
     }
 
-    @Override
-    public AnonymizeConfigure getAnonymizeConfigure() {
-        AnonymizeConfigure anonymizeConfigure=new AnonymizeConfigure();
-        Configuration configuration=new Configuration();
-        anonymizeConfigure.setEncryptPassword(configuration.getEncryptPassword());
-        anonymizeConfigure.setFieldFormName("");
-        anonymizeConfigure.setK_big(String.valueOf(configuration.getK_big()));
-        anonymizeConfigure.setK_small(String.valueOf(configuration.getK_small()));
-        anonymizeConfigure.setLevel(String.valueOf(configuration.getLevel()));
-        anonymizeConfigure.setMicroaggregation(String.valueOf(configuration.getMicroaggregation()));
-        anonymizeConfigure.setNoiseScope_big(String.valueOf(configuration.getNoiseScope_big()));
-        anonymizeConfigure.setNoiseScope_small(String.valueOf(configuration.getNoiseScope_small()));
-        anonymizeConfigure.setSuppressionLimit_level1(String.valueOf(configuration.getSuppressionLimit_level1()));
-        anonymizeConfigure.setSuppressionLimit_level2(String.valueOf(configuration.getSuppressionLimit_level2()));
-        anonymizeConfigure.setT(String.valueOf(configuration.getT()));
-        return anonymizeConfigure;
-    }
 
     private void deletH2(String url){
         dbInfoRepository.deleteAllByUrl(url);

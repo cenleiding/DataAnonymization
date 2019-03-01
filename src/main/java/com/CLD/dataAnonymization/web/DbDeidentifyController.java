@@ -1,6 +1,7 @@
 package com.CLD.dataAnonymization.web;
 
 import com.CLD.dataAnonymization.model.AnonymizeConfigure;
+import com.CLD.dataAnonymization.service.deidentifyTarget.EasyUtil;
 import com.CLD.dataAnonymization.service.deidentifyTarget.dbDeidentify.DbDeidentifyService;
 import com.CLD.dataAnonymization.service.systemManage.userIp.UserIp;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,9 @@ public class DbDeidentifyController {
 
     @Autowired
     UserIp userIp;
+
+    @Autowired
+    EasyUtil easyUtil;
 
     @RequestMapping("")
     public String DbDeidentify(){
@@ -77,7 +81,7 @@ public class DbDeidentifyController {
     @RequestMapping("/getAnonymizeConfigure")
     @ResponseBody
     public AnonymizeConfigure getAnonymizeConfigure(){
-        return dbDeidentifyService.getAnonymizeConfigure();
+        return easyUtil.getAnonymizeConfigure();
     }
 
 }

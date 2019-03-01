@@ -1,0 +1,22 @@
+<div>
+    <div style="height:35px;border-bottom:2px solid rgba(123,121,122,0.49);padding-bottom: 6px">
+        <span style="font-size: large;font-weight: bold">新建规则库</span>
+    </div>
+
+    <div class="input-group" style="margin-top: 15px;">
+        <span class="input-group-addon"style="font-weight: bold;" >规则库名：</span>
+        <input type="text" class="form-control" ng-value="libName" ng-model="libName" >
+    </div>
+    <div style="margin-top: 15px;margin-left: 10px">
+        <span style="font-weight: bold" >规则库描述：</span>
+    </div>
+    <div style="width: 450px;margin-top: 5px;margin-left: 10px">
+        <textarea  ng-value="description" ng-model="description" style="height: 70px;width: 200px;resize: none; " ></textarea>
+    </div>
+
+    <div align="center" style="padding-top: 20px">
+        <button type="button" class="btn btn-warning" data-ng-click="create()" >生成规则库</button>
+    </div>
+
+
+</div>

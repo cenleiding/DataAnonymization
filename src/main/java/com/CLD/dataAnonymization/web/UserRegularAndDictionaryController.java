@@ -24,6 +24,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description: 该控制器用于控制用户个人的规则库
@@ -46,6 +47,26 @@ public class UserRegularAndDictionaryController {
     @Autowired
     TestRunService testRunService;
 
+
+
+    @RequestMapping(value = "/createNewRegularLib")
+    @ResponseBody
+    public List<String> createNewRegularLib(@Param("libName") String libName,@Param("description") String description){
+        List<String> outResult = new ArrayList<String>();
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        outResult.add(regularLibService.createNewLib(libName,description,userDetails.getUsername()));
+        return outResult;
+    }
+
+    @RequestMapping(value = "/deleteRegularLib")
+    @ResponseBody
+    public Boolean deleteRegularLib(@Param("LibName") String libName){
+        regularLibService.deleteLib(libName);
+        regularService.deleteLib(libName);
+        dictionaryService.deleteLib(libName);
+        return true;
+    }
+
     @RequestMapping("/getRegularLibName")
     @ResponseBody
     public List<RegularLib> getRegularLibName(){
@@ -64,6 +85,11 @@ public class UserRegularAndDictionaryController {
     public List<String> uploadDictionary(MultipartHttpServletRequest re) throws IOException {
         List<String> response = new ArrayList<String>();
         response.add(dictionaryService.uploadDictionaryFile(re));
+        if(response.get(0).equals("upload_success")){
+            Map<String,String[]> parameterMap=re.getParameterMap();
+            String libName = parameterMap.get("libName")[0];
+            regularLibService.updateLastChangeTime(libName);
+        }
         return response;
     }
 
@@ -71,6 +97,7 @@ public class UserRegularAndDictionaryController {
     @ResponseBody
     public Boolean deleteDictionary(@Param("libName") String libName,@Param("fileName") String fileName){
         dictionaryService.deleteDictionary(fileName,libName);
+        regularLibService.updateLastChangeTime(libName);
         return true;
     }
 
@@ -91,8 +118,9 @@ public class UserRegularAndDictionaryController {
 
     @RequestMapping(value = "/deleteRegular")
     @ResponseBody
-    public Boolean deleteRegular(@Param("id") String id){
+    public Boolean deleteRegular(@Param("id") String id,@Param("libName")String libName){
         regularService.deleteById(Long.valueOf(id));
+        regularLibService.updateLastChangeTime(libName);
         return true;
     }
 
@@ -100,12 +128,14 @@ public class UserRegularAndDictionaryController {
     @ResponseBody
     public void createNewRegular(@Param("libName") String libName,@Param("area")String area,@Param("aims")String aims){
         regularService.createNewRegular(libName,area,aims);
+        regularLibService.updateLastChangeTime(libName);
     }
 
     @RequestMapping(value = "/changeRegular",method = RequestMethod.POST)
     @ResponseBody
     public void changeRegular(@RequestBody Regular regualr){
         regularService.changeRegular(regualr);
+        regularLibService.updateLastChangeTime(regualr.getLibName());
     }
 
     @RequestMapping(value = "/testSimpleDictionary")
@@ -134,6 +164,21 @@ public class UserRegularAndDictionaryController {
                                           @Param("libName") String libName,
                                           @Param("content") String content){
         return testRunService.testAll(xtzd, xtgz, wdzd, wdgz, jqxx, libName, content);
+    }
+
+
+    @RequestMapping(value = "/saveChange")
+    @ResponseBody
+    public List<String> SaveChange(@Param("old_libName") String old_libName,
+                                   @Param("new_libName") String new_libName,
+                                   @Param("new_description") String new_description){
+        List<String> response = new ArrayList<String>();
+        response.add(regularLibService.updataLib(old_libName,new_libName,new_description));
+        if (response.get(0).equals("更新成功！")){
+            dictionaryService.updateLibName(old_libName,new_libName);
+            regularService.updateLibName(old_libName, new_libName);
+        }
+        return response;
     }
 
 }

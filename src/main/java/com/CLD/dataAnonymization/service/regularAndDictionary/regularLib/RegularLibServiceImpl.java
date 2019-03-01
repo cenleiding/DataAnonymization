@@ -51,5 +51,20 @@ public class RegularLibServiceImpl implements RegularLibService {
         return regularLibRepository.findAllByUser(user);
     }
 
+    @Override
+    public boolean deleteLib(String libName) {
+        regularLibRepository.deleteByLibName(libName);
+        regularLibRepository.flush();
+        return true;
+    }
+
+    @Override
+    public boolean updateLastChangeTime(String libName) {
+        RegularLib regularLib = regularLibRepository.findByLibName(libName);
+        regularLib.setChangeTime(new java.sql.Date(new Date().getTime()));
+        regularLibRepository.saveAndFlush(regularLib);
+        return true;
+    }
+
 
 }

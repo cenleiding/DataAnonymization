@@ -16,6 +16,8 @@ public class AnonymizeConfigure {
 
     private String                 level;
 
+    private String                 regularLib;
+
     private String                 encryptPassword;
 
     private String                 noiseScope_big;

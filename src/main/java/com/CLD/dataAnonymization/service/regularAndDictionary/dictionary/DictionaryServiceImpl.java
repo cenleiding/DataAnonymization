@@ -121,12 +121,13 @@ public class DictionaryServiceImpl implements DictionaryService {
     }
 
     @Override
-    public String updateLibName(String old_libName, String new_libName) {
+    public Boolean updateLibName(String old_libName, String new_libName) {
         List<Dictionary> dictionaryList = dictionaryrRepository.findByLibName(old_libName);
         for (Dictionary dictionary : dictionaryList){
             dictionary.setLibName(new_libName);
         }
-        return null;
+        dictionaryrRepository.saveAll(dictionaryList);
+        return true;
     }
 
     @Override

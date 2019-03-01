@@ -54,4 +54,12 @@ public interface RegularService {
      * @param regular
      */
     public void changeRegular(Regular regular);
+
+    /**
+     * 更新规则所属规则库名
+     * @param old_libName
+     * @param new_libName
+     * @return
+     */
+    public Boolean updateLibName(String old_libName,String new_libName);
 }

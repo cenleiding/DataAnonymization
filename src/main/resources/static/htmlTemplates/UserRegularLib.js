@@ -1,4 +1,4 @@
-var app = angular.module("userRegularLibApp", ['ngDialog','uploadDictionaryApp','createNewRegularApp','changeRegularApp']);
+var app = angular.module("userRegularLibApp", ['ngDialog','uploadDictionaryApp','createNewRegularApp','createNewRegularLibApp','changeRegularApp','deleteRegularLibApp']);
 app.controller("userRegularLibCtrl", function($scope,$http,ngDialog) {
 
     $scope.ifedit = false;
@@ -17,15 +17,23 @@ app.controller("userRegularLibCtrl", function($scope,$http,ngDialog) {
     }
 
 
-    $scope.testText = "患者姓名史玉腾年龄12岁住院号00148804复印病案用途申请人史玉腾证件及证件号130581200306132219代理人与患者关系证件及证件号出院科室耳鼻咽喉头颈外科出院日期医师签名办理方式邮寄:出院当日办理自取:病案归档后办理办理时间工作日(8:00-11:30,14:30-17:30)办理地点医学影像楼4层病案室重要提示:请携带本申请表患者和代理人有效身份证件原件科室盖章联系电话:14797169824复印时间年月日\n" +
-        "入院记录姓名:赵青爱出生地:山西晋城性别:男职业:退(离)休人员年龄:71岁入院日期:2015年09月民族:汉族记录日期:2015年09月婚否:已婚病历陈述者:患者本人主诉:间断关节肿痛15年,加重2月。\n" +
-        "现病史:2000年06月患者在进食肉类及饮酒后出现左足第1跖趾关节肿痛,就诊于太原市煤炭中心医院,查血尿酸460μmol/L,诊断为\"痛风\",予静滴\"青霉素\"800万Ux5天,口服\"苯溴马隆\"50mg,1次/日治疗,1周后关节肿痛减轻,后因出现腹泻症状更换为\"别嘌醇\"0.1-0.2/日,病情控制良好。\n" +
-        "2003年患者因皮肤红斑就诊于山西医科大学第二医院,诊断为\"变应性血管炎\",考虑为别嘌醇所致,予停用别嘌醇,更换为\"雷公藤多甙\"20mg,3次/日治疗,半年后出现\"心律失常,室性早搏\",遂停用雷公藤多甙。\n" +
-        "2005年冬患者出现右手第2指近端指间关节痛,自行口服中药及\"复方伸筋胶囊\"2粒,2次/日治疗,关节痛减轻。\n" +
-        "2014年09月患者复查血尿酸550μmol/L,自行口服中药及\"碳酸氢钠\"2粒,3次/日治疗,后复查血尿酸降至正常范围,尿PH值升高,停服上述药物。\n" +
-        "2015年07月患者在进食鸡肉后出现右足第1跖趾关节肿痛,自行口服\"吲哚美辛\"1片,2次/日,\"非布司他\"40mg,1次/日治疗,关节肿痛减轻,于2015年08月再次出现右踝关节及右足第1跖趾关节肿痛,程度较上次为轻,自行口服\"塞来昔布\"及\"秋水仙碱\"治疗,后因出现心慌、腹部不适症状停用,关节肿痛缓解不明显,为求进一步诊治收住我科。\n" +
-        "病程中有右足麻木,无面部蝶形红斑、反复口腔溃疡、脱发、光过敏,无腰痛、臀区痛、足跟痛,无四肢近端肌痛、肌无力,无发热、皮疹、咳嗽、气短、腹痛等症状。\n";
-
+    $scope.testText =
+        "测 试 样 例\n" +
+        "入 院 记 录\n" +
+        "    姓    名：张润梅\n" +
+        "    出 生 地：山西省太原市\n" +
+        "    性    别：女\n" +
+        "    职    业：个体\n" +
+        "    年    龄：61\n" +
+        "    入院日期：2013年08月01日\n" +
+        "    民    族：汉\n" +
+        "    记录日期：2013年08月01日\n" +
+        "    婚    否：已婚\n" +
+        "    病历陈述者：患者本人\n" +
+        "主  诉：发现血糖升高10年。\n" +
+        "    现病史：2003年患者因脸部浮肿，无明显多尿、口干、多饮症状，体重减轻约10斤，就诊于山西省中医研究所，测空腹血糖升高（具体值不详），行糖耐量试验、胰岛素释放试验等相关试验，诊断为“2型糖尿病”，口服中药降糖治疗，监测血糖示：空腹血糖波动于6-7mmol/L,餐后2小时血糖波动于8-9mmol/L。后因血糖控制不佳，多次调整降糖方案。2013年春节，因血糖控制不佳，调整治疗方案为早、晚口服格列美脲片（1片，2次/日）降糖治疗，测空腹血糖波动于6-8mmol/L,餐后2小时血糖波动于8-9mmol/L。病程中患者间断出现双手麻木，视物模糊，无针刺样疼痛，无双下肢水肿，无蚁行感，无黑曚、斜视，现为进一步诊断及治疗入住我科，自发病以来患者神志清，精神好，睡眠食欲可，大小便正常，体重无明显改变。\n" +
+        "   发现血压升高10年，血压最高达160/90mmHg,目前口服左旋氨氯地平片（早：1片，晚：半片）降压治疗，血压控制尚可。\n" +
+        "    既往史：既往体健，20年前行腮腺瘤手术，腰椎间盘膨出病史20年。否认肝炎结核等传染病史，否认手术、外伤史，否认输血史，否认食物、药物过敏史，对抗菌优过敏否认预防接种史。";
 
 
     //获得规则库信息
@@ -48,7 +56,7 @@ app.controller("userRegularLibCtrl", function($scope,$http,ngDialog) {
     })()
 
 
-    $scope.editForm=function (libName) {
+    $scope.editRegularLib=function (libName) {
         $scope.ifedit=true;
         // 基础信息展示
         for (var i in $scope.regularLibList){
@@ -69,11 +77,28 @@ app.controller("userRegularLibCtrl", function($scope,$http,ngDialog) {
         // 规则列表展示
         getRegularByLibName();
     }
+
+    $scope.deleteRegularLib = function (libName) {
+        ngDialog.open({
+            template: '/htmlTemplates/DeleteRegularLib.html',
+            className: 'ngdialog-theme-default',
+            controller: 'deleteRegularLibCtrl',
+            resolve: {//传参
+                dep: function() {
+                    return libName;
+                }
+            },
+            width:320,
+            height: 150,})
+            .closePromise.then(function(value) {
+                location.reload();
+        });
+    }
     
     $scope.saveChange = function () {
         $http({
             method:'GET',
-            url:"/UserConfig/SaveChange",
+            url:"/MyReAndDic/saveChange",
             params:{old_libName: $scope.regularLib.libName,
                     new_libName: $scope.regularLib.new_libName,
                     new_description:$scope.regularLib.new_description
@@ -108,7 +133,6 @@ app.controller("userRegularLibCtrl", function($scope,$http,ngDialog) {
             }
         }).then(function successCallback(response) {
             $scope.regularList = response.data;
-            console.log(response.data);
         }, function errorCallback(response) {
             alert("规则列表获取失败！")
         });
@@ -150,6 +174,18 @@ app.controller("userRegularLibCtrl", function($scope,$http,ngDialog) {
         });
     }
 
+    $scope.createNewRegularLib = function () {
+        ngDialog.open({
+            template: '/htmlTemplates/CreateNewRegularLib.html',
+            className: 'ngdialog-theme-default',
+            controller: 'createNewRegularLibCtrl',
+            width:250,
+            height: 300,})
+            .closePromise.then(function(value) {
+            location.reload();
+            });
+    }
+    
     $scope.changeRegular = function (regular) {
         ngDialog.open({
             template: '/htmlTemplates/ChangeRegular.html',
@@ -188,6 +224,7 @@ app.controller("userRegularLibCtrl", function($scope,$http,ngDialog) {
             url:"/MyReAndDic/deleteRegular",
             params:{
                 id: id,
+                libName:$scope.regularLib.libName
             }
         }).then(function successCallback(response) {
             getRegularByLibName();

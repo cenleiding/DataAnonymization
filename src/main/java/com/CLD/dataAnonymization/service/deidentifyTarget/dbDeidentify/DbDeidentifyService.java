@@ -31,5 +31,4 @@ public interface DbDeidentifyService {
                                 String port,
                                 String databaseName);
 
-    public AnonymizeConfigure getAnonymizeConfigure();
 }

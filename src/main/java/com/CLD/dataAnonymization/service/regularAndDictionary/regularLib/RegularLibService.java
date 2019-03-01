@@ -35,4 +35,19 @@ public interface RegularLibService {
      * @return
      */
     public List<RegularLib> getLibByUser(String user);
+
+
+    /**
+     * 根据库名删除指定规则库
+     * @param libName
+     * @return
+     */
+    public boolean deleteLib(String libName);
+
+    /**
+     * 更新规则库的修改时间
+     * @param libName
+     * @return
+     */
+    public boolean updateLastChangeTime(String libName);
 }

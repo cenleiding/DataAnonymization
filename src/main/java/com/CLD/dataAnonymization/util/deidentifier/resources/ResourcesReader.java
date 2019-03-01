@@ -83,24 +83,35 @@ public class ResourcesReader {
      * @return
      * @throws FileNotFoundException
      */
-    public static HashMap<String,ArrayList<String>> readRegular() throws FileNotFoundException {
-        HashMap<String,ArrayList<String>> regular = new HashMap<String,ArrayList<String>>();
+    public static ArrayList<HashMap<String,String>> readRegular() throws FileNotFoundException {
+        ArrayList<HashMap<String,String>> regularList = new ArrayList<HashMap<String,String>>();
         InputStream is=new Object(){
             public InputStream get(){
                 return this.getClass().getResourceAsStream("./regular.json");
             }
         }.get();
-        JSONObject jsonObject= FileResolve.readerObjectJson(is);
-
-        for (String s :jsonObject.keySet()){
-            ArrayList<String> Regs = new ArrayList<String>();
-            for (int i=0;i< jsonObject.getJSONArray(s).size();i++){
-                Regs.add(jsonObject.getJSONArray(s).getJSONObject(i).getString("area"));
-                Regs.add(jsonObject.getJSONArray(s).getJSONObject(i).getString("aims"));
-            }
-            regular.put(s,Regs);
+        JSONArray jsonArray = FileResolve.readerArrayJson(is);
+        for(int i=0;i<jsonArray.size();i++){
+            HashMap<String,String> regular = new HashMap<String,String>();
+            regular.put("aims",jsonArray.getJSONObject(i).getString("aims"));
+            regular.put("area",jsonArray.getJSONObject(i).getString("area"));
+            regularList.add(regular);
         }
-        return regular;
+        return regularList;
+    }
+
+    public static ArrayList<String> readDictionary() throws FileNotFoundException {
+        ArrayList<String> dictionary = new ArrayList<String>();
+        InputStream is=new Object(){
+            public InputStream get(){
+                return this.getClass().getResourceAsStream("./dictionary.json");
+            }
+        }.get();
+        JSONArray jsonArray = FileResolve.readerArrayJson(is);
+        for (int i=0;i<jsonArray.size();i++){
+            dictionary.add(jsonArray.getString(i));
+        }
+        return dictionary;
     }
 
 
