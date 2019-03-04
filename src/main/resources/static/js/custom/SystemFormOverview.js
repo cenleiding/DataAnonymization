@@ -5,7 +5,7 @@ app.controller("SystemFormOverviewCtrl", function($scope,$http,$rootScope) {
     $scope.page=0;
 
     // 字段变量
-    $scope.selectInfo=[];
+    $scope.fieldFormInfo=[];
     $scope.formNameList=[];
     $scope.dataTableSet_ALL={'ALL':[]};
     $scope.selectType=["ALL","EI","QI_Link","QI_Geography","QI_DateRecord","QI_DateAge","QI_Number","QI_String","SI_Number","SI_String","UI"];
@@ -60,16 +60,16 @@ app.controller("SystemFormOverviewCtrl", function($scope,$http,$rootScope) {
                 for(var i in formMap)
                     userNameMap[formMap[i].userName]="";
                 $("#FieldFormSelect").append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>系统样本</option>");
-                $scope.selectInfo.push("");
+                $scope.fieldFormInfo.push("");
                 tra("",formMap)
                 for(var i in userNameMap){
                     if (i=="") continue;
                     $("#FieldFormSelect").append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>"+i+"</option>");
-                    $scope.selectInfo.push(i);
+                    $scope.fieldFormInfo.push(i);
                     tra(i,formMap)
                 }
                 $("#FieldFormSelect").selectpicker('refresh');
-                $("#FieldFormSelect").selectpicker('val', $scope.selectInfo[1].formName);
+                $("#FieldFormSelect").selectpicker('val', $scope.fieldFormInfo[1].formName);
                 refresh(1);
             },
             function errorCallback(response){
@@ -114,25 +114,25 @@ app.controller("SystemFormOverviewCtrl", function($scope,$http,$rootScope) {
                 info['father']=formMap[j].father;
                 info['usageCount']=formMap[j].usageCount;
                 info['userName']=formMap[j].userName;
-                $scope.selectInfo.push(info);
+                $scope.fieldFormInfo.push(info);
             }
         }
     }
 
     //用于刷新表单和图
     var refresh=function (c) {
-        $scope.description=$scope.selectInfo[c].description
-        $scope.createTime=$scope.selectInfo[c].createTime
-        $scope.lastChangeTime=$scope.selectInfo[c].lastChangeTime
-        $scope.father=$scope.selectInfo[c].father
-        $scope.usageCount=$scope.selectInfo[c].usageCount
-        $scope.userName=$scope.selectInfo[c].userName
+        $scope.description=$scope.fieldFormInfo[c].description
+        $scope.createTime=$scope.fieldFormInfo[c].createTime
+        $scope.lastChangeTime=$scope.fieldFormInfo[c].lastChangeTime
+        $scope.father=$scope.fieldFormInfo[c].father
+        $scope.usageCount=$scope.fieldFormInfo[c].usageCount
+        $scope.userName=$scope.fieldFormInfo[c].userName
         if($scope.father=="") $scope.father="原生模板"
         if($scope.userName=="") $scope.userName="系统样本"
         $http({
             method:'GET',
             url:"/FieldFormShow/getFieldOverViewByFormName",
-            params:{formName: $scope.selectInfo[c].formName}
+            params:{formName: $scope.fieldFormInfo[c].formName}
         }).then(function successCallback(response) {
             percentage=response.data;
             for(var a in Accounting){
@@ -146,7 +146,7 @@ app.controller("SystemFormOverviewCtrl", function($scope,$http,$rootScope) {
         $http({
             method:'GET',
             url:"/FieldFormShow/getFieldDetailByFormName",
-            params:{formName:$scope.selectInfo[c].formName}
+            params:{formName:$scope.fieldFormInfo[c].formName}
         }).then(function successCallback(response) {
             var data=response.data;
             var all=[];
@@ -170,6 +170,8 @@ app.controller("SystemFormOverviewCtrl", function($scope,$http,$rootScope) {
 
     $("#FieldFormSelect").on('changed.bs.select',function (e,c) {
         refresh(c);
+        $('#typeSelect').selectpicker('val', 'ALL');
+        $('#typeSelect').selectpicker('refresh');
     })
 
     $("#typeSelect").on('changed.bs.select',function (e,c){

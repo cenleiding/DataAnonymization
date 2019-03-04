@@ -25,8 +25,6 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$interval,$rootSc
 
     $scope.showFlg=true;
 
-    $scope.encryptPassword="";
-
     $scope.k_small_slider = {
         value: NaN,
         options: {
@@ -138,7 +136,6 @@ app.controller("anonymizeConfigureCtrl", function($scope,$http,$interval,$rootSc
     }
 
     $scope.refreshSlider = function() {
-        $scope.encryptPassword=$rootScope.config.k_small.encryptPassword;
         $scope.k_small_slider.value=parseInt($rootScope.config.k_small);
         $scope.k_big_slider.value=parseInt($rootScope.config.k_big);
         $scope.suppressionLimit1_slider.value=parseFloat($rootScope.config.suppressionLimit_level1)*100;

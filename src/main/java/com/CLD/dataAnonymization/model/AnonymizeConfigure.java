@@ -18,8 +18,6 @@ public class AnonymizeConfigure {
 
     private String                 regularLib;
 
-    private String                 encryptPassword;
-
     private String                 noiseScope_big;
 
     private String                 noiseScope_small;

@@ -8,23 +8,24 @@ app.controller("registeredCtrl", function($scope,$http) {
         $scope.flag3=0;
 
         $scope.register=function () {
-            $scope.flag1=0;
-            $scope.flag2=0;
-            $scope.flag3=0;
-            if($scope.user.replace(" ")=="") flag1=1;
-            if($scope.password.replace(" ")=="") flag2=1;
-            if($scope.flag1+$scope.flag2==0) {
+            if($scope.user.replace(" ")==="") alert("用户名不能为空！");
+            if($scope.password.replace(" ")==="") alert("密码不能为空！");
+            if((!$scope.user.replace(" ")=="")&&(!$scope.password.replace(" ")==="")) {
                 $http({
                     method:'GET',
                     url:'/register',
                     params:{"username":$scope.user,"password": $scope.password}
                 }).then(
                     function successCallback(response) {
-                        if(response.data["flag"]==1) $scope.login();
-                        else  $scope.flag3=1;
+                        if(response.data["flag"]==1) {
+                            alert("注册成功！")
+                            $scope.login();
+                        }else {
+                            alert("用户名重复！")
+                        }
                     },
                     function errorCallback(response) {
-                        $scope.flag3=2;
+                        alert("注册失败！")
                     }
                 );
             }
@@ -40,7 +41,7 @@ app.controller("registeredCtrl", function($scope,$http) {
                 }
             ).then(
                 function success(response) {
-                    window.location.href='/FieldModify';
+                    window.location.href='/UserConfig';
                 }
             )
         }

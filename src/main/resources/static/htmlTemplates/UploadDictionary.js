@@ -4,6 +4,10 @@ app.controller("uploadDictionaryCtrl", function($scope,$http,dep,Upload) {
     var libName = dep;
     $scope.Description = "";
 
+    $(function () {
+        $("[data-toggle='popover']").popover();
+    });
+
     $scope.upload=function () {
         if($scope.file==null) alert("请选择文件！");
         else{
@@ -23,6 +27,6 @@ app.controller("uploadDictionaryCtrl", function($scope,$http,dep,Upload) {
                 alert('error status: ' + status);
             })
         }
-
     }
+
 })

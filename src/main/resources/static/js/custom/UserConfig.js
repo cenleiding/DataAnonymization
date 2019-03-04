@@ -2,6 +2,6 @@ var app = angular.module("userConfigApp", ['navigationBarApp','userFieldFormApp'
 app.controller("userConfigCtrl", function($scope,$http,$rootScope) {
 
     $rootScope.sidebarPage=4;
-    $scope.page=1;
+    $scope.page=0;
 
 })

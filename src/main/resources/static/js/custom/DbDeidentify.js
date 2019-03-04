@@ -17,10 +17,13 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce,ngDialog,
     $scope.DbInfo=["匿名化未启动..."];
     $scope.wuliaoLog=". . . /";
 
-    $scope.selectTypelevel="Level1";
-    $scope.selectInfo=[];
+    $scope.level="Level1";
+    $scope.fieldFormInfo=[];
+    $scope.regularLibInfo=[];
 
     var select = $("#fromName");
+    var regularLibSelect =$("#regularLibName");
+
 
     (function (){
         $http(
@@ -36,26 +39,55 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce,ngDialog,
                 for(var i in formMap)
                     userNameMap[formMap[i].userName]="";
                 select.append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>系统样本</option>");
-                $scope.selectInfo.push("");
-                tra("",formMap)
+                $scope.fieldFormInfo.push("");
+                tra_fieldForm("",formMap)
                 for(var i in userNameMap){
                     if (i=="") continue;
                     select.append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>"+i+"</option>");
-                    $scope.selectInfo.push(i);
-                    tra(i,formMap)
+                    $scope.fieldFormInfo.push(i);
+                    tra_fieldForm(i,formMap)
                 }
                 $("#fromName").selectpicker('refresh');
-                $("#fromName").selectpicker('val', $scope.selectInfo[1].formName);
-                $scope.fieldFormName=$scope.selectInfo[1].formName;
-                $scope.level="Level1";
+                $("#fromName").selectpicker('val', $scope.fieldFormInfo[1].formName);
+                $scope.fieldFormName=$scope.fieldFormInfo[1].formName;
             },
             function errorCallback(response){
                 alert("获取列表失败！")
             }
         )
+
+        $http(
+            {
+                method:"GET",
+                url:"/MyReAndDic/getAll"
+            }
+        ).then(
+            function successCallback(response) {
+                var libMap=response.data;
+                var userNameMap={}
+                for(var i in libMap)
+                    userNameMap[libMap[i].user]="";
+                regularLibSelect.append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>系统规则库</option>");
+                $scope.regularLibInfo.push("original");
+                tra_regularLib("original",libMap);
+                for(var i in userNameMap){
+                    if(i=="original") continue;
+                    regularLibSelect.append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>"+i+"</option>");
+                    $scope.regularLibInfo.push(i);
+                    tra_regularLib(i,libMap)
+                }
+                $("#regularLibName").selectpicker('refresh');
+                $("#regularLibName").selectpicker('val', $scope.regularLibInfo[1].libName);
+                $scope.regularLibName=$scope.regularLibInfo[1].libName;
+            },
+            function errorCallback(response) {
+                alert("获取规则库失败！")
+            }
+
+        )
     })();
 
-    var tra=function (i,formMap) {
+    var tra_fieldForm=function (i,formMap) {
         for(var j in formMap){
             if(formMap[j].userName==(i)){
                 select.append("<option value='"+formMap[j].formName+"' data-icon='glyphicon glyphicon-file' data-subtext=(使用次数："+formMap[j].usageCount+")>"
@@ -68,8 +100,22 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce,ngDialog,
                 info['father']=formMap[j].father;
                 info['usageCount']=formMap[j].usageCount;
                 info['userName']=formMap[j].userName;
-                $scope.selectInfo.push(info);
+                $scope.fieldFormInfo.push(info);
             }
+        }
+    }
+
+    var tra_regularLib=function (i,libMap) {
+        for(var j in libMap){
+            if(libMap[j].user == i){
+                regularLibSelect.append("<option value='"+libMap[j].libName+"' data-icon='glyphicon glyphicon-book'>"
+                    +libMap[j].libName+ "</option>");
+            }
+            var info={};
+            info['user']=libMap[j].userName;
+            info['libName']=libMap[j].libName;
+            info['description']=libMap[j].description;
+            $scope.regularLibInfo.push(info);
         }
     }
 
@@ -80,7 +126,11 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce,ngDialog,
     });
 
     $("#fromName").on('changed.bs.select', function (e,c) {
-        $scope.fieldFormName=$scope.selectInfo[c].formName;
+        $scope.fieldFormName=$scope.fieldFormInfo[c].formName;
+    });
+
+    $("#regularLibName").on('changed.bs.select', function (e,c) {
+        $scope.regularLibName=$scope.regularLibInfo[c].libName;
     });
 
 
@@ -150,6 +200,7 @@ app.controller("DbDeidentifyCtrl", function($scope,$http,$timeout,$sce,ngDialog,
             $scope.DbInfo="";
             $rootScope.config.level=$scope.level;
             $rootScope.config.fieldFormName=$scope.fieldFormName;
+            $rootScope.config.regularLib=$scope.regularLibName;
             $http({
                 method:"POST",
                 url:"/DbDeidentify/runDeidentify",

@@ -128,7 +128,6 @@ public class EasyUtil {
             configuration.setLevel(Configuration.AnonymousLevel.Level1);
         else
             configuration.setLevel(Configuration.AnonymousLevel.Level2);
-        configuration.setEncryptPassword(anonymizeConfigure.getEncryptPassword());
         configuration.setK_big(Integer.valueOf(anonymizeConfigure.getK_big()));
         configuration.setK_small(Integer.valueOf(anonymizeConfigure.getK_small()));
         configuration.setMicroaggregation(Integer.valueOf(anonymizeConfigure.getMicroaggregation()));
@@ -143,7 +142,6 @@ public class EasyUtil {
     public AnonymizeConfigure getAnonymizeConfigure() {
         AnonymizeConfigure anonymizeConfigure=new AnonymizeConfigure();
         Configuration configuration=new Configuration();
-        anonymizeConfigure.setEncryptPassword(configuration.getEncryptPassword());
         anonymizeConfigure.setFieldFormName("");
         anonymizeConfigure.setK_big(String.valueOf(configuration.getK_big()));
         anonymizeConfigure.setK_small(String.valueOf(configuration.getK_small()));

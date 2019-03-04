@@ -50,4 +50,10 @@ public interface RegularLibService {
      * @return
      */
     public boolean updateLastChangeTime(String libName);
+
+    /**
+     * 获得规则库所有内容
+     * @return
+     */
+    public List<RegularLib> getAll();
 }

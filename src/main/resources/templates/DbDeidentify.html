@@ -92,16 +92,20 @@
                             <div class="col-md-3">
                                 <div style="margin-bottom: 25px">
                                     <label style="font-size:15px;padding-right: 8px">匿名字段表:</label>
-                                    <select id="fromName" class="selectpicker" data-width="auto" data-live-search="true" data-size="10" ></select>
+                                    <select id="fromName" class="selectpicker" data-width="250px" data-live-search="true" data-size="10" ></select>
+                                </div>
+                                <div style="margin-bottom: 25px">
+                                    <label style="font-size:15px;padding-right: 8px">字典与规则:</label>
+                                    <select id="regularLibName" class="selectpicker" data-width="250px" data-live-search="true" data-size="10"></select>
                                 </div>
                                 <div style="margin-bottom: 25px">
                                     <label style="font-size:15px;padding-right: 8px">匿名方式:&nbsp&nbsp&nbsp</label>
-                                    <select id="typeLevel"data-ng-model="selectTypelevel"  class="selectpicker " data-width="250PX" data-size="10">
+                                    <select id="typeLevel" class="selectpicker " data-width="250PX" data-size="10">
                                         <option value="Level1" data-subtext="研究向数据" select="selected">匿名方式一</option>
                                         <option value="Level2" data-subtext="发布向数据">匿名方式二</option>
                                     </select>
                                 </div>
-                                <div class="thumbnail" style="height: 470px">
+                                <div class="thumbnail" style="height: 470px;margin-top: 45px">
                                     <br>
                                     <label style="font-size:18px;padding-left: 15px">数据库类型:&nbsp&nbsp</label>
                                     <select id="DbType" data-ng-model="selectDbType"  class="selectpicker " data-width="200PX" >
@@ -182,10 +186,11 @@
                             </div>
                             <div class="col-md-1"></div>
                             <div class="col-md-6">
-                                <div class="thumbnail" style="height: 590px;">
-                                    <h2>数据库处理进程</h2>
+                                <div class="thumbnail" style="height: 660px;">
+                                    <br>
+                                    <label style="font-size:18px;padding-left: 15px">数据库处理进程:</label>
                                     <hr>
-                                    <div id="DbInfoShow" class="well well-lg "style="margin: auto; height:380px; width: 95%;overflow-y:auto;position:relative">
+                                    <div id="DbInfoShow" class="well well-lg "style="margin: auto; height:550px; width: 95%;overflow-y:auto;position:relative">
                                         <p data-ng-repeat="x in DbInfo track by $index">
                                             {{x}}
                                         </p>

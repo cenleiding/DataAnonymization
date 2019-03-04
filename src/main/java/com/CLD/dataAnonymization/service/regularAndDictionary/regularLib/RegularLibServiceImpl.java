@@ -66,5 +66,10 @@ public class RegularLibServiceImpl implements RegularLibService {
         return true;
     }
 
+    @Override
+    public List<RegularLib> getAll() {
+        return regularLibRepository.getAll();
+    }
+
 
 }

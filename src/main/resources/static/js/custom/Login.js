@@ -2,7 +2,7 @@ var app = angular.module("loginApp", ['navigationBarApp','registeredApp','ngDial
 app.controller("loginCtrl", function($scope,ngDialog) {
     $scope.registered = function () {
         ngDialog.open({
-            template: '/htmlTemplates/registered.html',
+            template: '/htmlTemplates/Registered.html',
             className: 'ngdialog-theme-default' ,
             width:380,
             height: 280});

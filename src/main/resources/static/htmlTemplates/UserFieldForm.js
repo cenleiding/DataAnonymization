@@ -47,13 +47,6 @@ app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
 
     var table=$('#table').DataTable();
 
-    $(document).ready(function() {
-        $('#typeSelect').selectpicker('val', 'ALL');
-        $('#typeSelect').selectpicker('refresh');
-        datatableDraw();
-        createcharts();
-    });
-
 
     (function () {
         $http(
@@ -69,14 +62,8 @@ app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
                 alert("获取列表失败！")
             }
         )
-
     })()
 
-    $("#typeSelect").on('changed.bs.select',function (e,c){
-        updateForm();
-        typeSelect=$scope.selectType[c];
-        datatableDraw($scope.selectType[c]);
-    })
 
     var updateForm=function () {
         if (typeSelect==="ALL"){
@@ -193,7 +180,7 @@ app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
 
     $scope.createNewForm=function () {
         ngDialog.open({
-            template: '/htmlTemplates/createNewForm.html',
+            template: '/htmlTemplates/CreateNewForm.html',
             className: 'ngdialog-theme-default',
             controller: 'createNewFormCtrl',
             width:540,
@@ -207,7 +194,7 @@ app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
 
     $scope.deleteForm=function(formName){
         ngDialog.open({
-            template: '/htmlTemplates/deleteForm.html',
+            template: '/htmlTemplates/DeleteForm.html',
             className: 'ngdialog-theme-default',
             controller: 'deleteFormCtrl',
             resolve: {//传参
@@ -231,7 +218,7 @@ app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
         newFormDetail.newFormName=$scope.newFormName;
         newFormDetail.field=$scope.dataTableSet_ALL["ALL"];
         ngDialog.open({
-            template: '/htmlTemplates/saveChange.html',
+            template: '/htmlTemplates/SaveChange.html',
             className: 'ngdialog-theme-default',
             controller: 'saveChangeCtrl',
             resolve: {//传参
@@ -259,6 +246,13 @@ app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
         getFieldDetailByFormName(formName);
         getFieldOverViewByFormName(formName);
         getFieldChangeLogByFormName(formName);
+        $('#typeSelect').selectpicker('val', 'ALL');
+        $('#typeSelect').selectpicker('refresh');
+        $("#typeSelect").on('changed.bs.select',function (e,c){
+            updateForm();
+            typeSelect=$scope.selectType[c];
+            datatableDraw($scope.selectType[c]);
+        })
     }
 
 
@@ -353,5 +347,7 @@ app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
         });
     };
 
+    datatableDraw();
+    createcharts();
 
 })

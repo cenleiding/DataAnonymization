@@ -12,19 +12,26 @@
                         <span>参数含义</span>
                     </div>
                     <div class="small-card-content">
-                        <p>我也不知道啊~</p>
-                        <p>我也不知道啊~</p>
-                        <p>我也不知道啊~</p>
-                        <p>我也不知道啊~</p>
-                        <p>我也不知道啊~</p>
-                        <p>我也不知道啊~</p>
-                        <p>我也不知道啊~</p>
-                        <p>我也不知道啊~</p>
-                        <p>我也不知道啊~</p>
-                        <p>我也不知道啊~</p>
-                        <p>我也不知道啊~</p>
-                        <p>我也不知道啊~</p>
-                        <p>我也不知道啊~</p>
+                        <p>
+                            <span style="font-size: 15px;font-weight: bold;display:inline-block;">K值：</span>
+                            K-anonymity匿名法关键参数。表示每条记录至少存在K条等价类。K值越大保护越强，信息损失越大。
+                        </p>
+                        <p>
+                            <span style="font-size: 15px;font-weight: bold;display:inline-block;">抑制：</span>
+                            算法将优先获得抑制率小于设定值的最优结果，若在当前抑制值下无法获得可用结果则优先保证K值成立。抑制值越小信息完整度越高，但以满足K值为前提。
+                        </p>
+                        <p>
+                            <span style="font-size: 15px;font-weight: bold;display:inline-block;">随机噪声：</span>
+                            对数值型数据添加Laplace噪声。噪声越大则保护越强，信息损失越大。
+                        </p>
+                        <p>
+                            <span style="font-size: 15px;font-weight: bold;display:inline-block;">t值：</span>
+                            t-closeness匿名法关键参数。其在K-anonymity的基础上对敏感信息进行处理。T值越大对数据保护越强，信息损失越大。
+                        </p>
+                        <p>
+                            <span style="font-size: 15px;font-weight: bold;display:inline-block;">聚类数：</span>
+                            对于敏感信息的数值信息进行聚类操作。聚类数越小保护越强，信息损失越大。
+                        </p>
                     </div>
                 </div>
             </div>
@@ -34,10 +41,6 @@
                         <span>匿名方式一参数</span>
                     </div>
                     <div class="small-card-content">
-                        <div style="padding-top: 10px">
-                            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">加密密码：</span>
-                            <input ng-value="config.encryptPassword" ng-model="config.encryptPassword" style="width: 250px;background: transparent; border-style:none;border-bottom-style:solid;border-bottom-color: black;">
-                        </div>
                         <div style="padding-top: 20px">
                             <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">K值：</span>
                             <rzslider style="width: 250px"  rz-slider-model="k_small_slider.value" rz-slider-options="k_small_slider.options"></rzslider>
@@ -60,10 +63,6 @@
                     </div>
                     <div class="small-card-content">
                         <div style="padding-top: 10px">
-                            <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">加密密码：</span>
-                            <input ng-value="config.encryptPassword" ng-model="config.encryptPassword" style="width: 250px;background: transparent; border-style:none;border-bottom-style:solid;border-bottom-color: black;">
-                        </div>
-                        <div style="padding-top: 15px">
                             <span style="font-size: 15px;font-weight: bold;width: 80px;display:inline-block;">K值：</span>
                             <rzslider style="width: 250px" rz-slider-model="k_big_slider.value" rz-slider-options="k_big_slider.options"></rzslider>
                         </div>

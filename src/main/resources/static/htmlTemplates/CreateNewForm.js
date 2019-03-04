@@ -2,7 +2,7 @@ var app = angular.module("createNewFormApp", []);
 app.controller("createNewFormCtrl", function($scope,$http) {
 
 
-    $scope.selectInfo=[];
+    $scope.fieldFormInfo=[];
     $scope.description="";
     $scope.formNewName="";
 
@@ -21,15 +21,15 @@ app.controller("createNewFormCtrl", function($scope,$http) {
                 for(var i in formMap)
                     userNameMap[formMap[i].userName]="";
                 $("#Select").append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>系统样本</option>");
-                $scope.selectInfo.push("");
+                $scope.fieldFormInfo.push("");
                 tra("",formMap)
                 for(var i in userNameMap){
                     if (i=="") continue;
                     $("#Select").append("<option value='un' disabled='disabled'  data-icon='glyphicon glyphicon-user' style='background: #5cb85c; color: #fff;'>"+i+"</option>");
-                    $scope.selectInfo.push(i);
+                    $scope.fieldFormInfo.push(i);
                     tra(i,formMap)
                 }
-                $("#Select").selectpicker('val', $scope.selectInfo[1].formName);
+                $("#Select").selectpicker('val', $scope.fieldFormInfo[1].formName);
                 $("#Select").selectpicker('refresh');
             },
             function errorCallback(response){
@@ -51,7 +51,7 @@ app.controller("createNewFormCtrl", function($scope,$http) {
                 info['father']=formMap[j].father;
                 info['usageCount']=formMap[j].usageCount;
                 info['userName']=formMap[j].userName;
-                $scope.selectInfo.push(info);
+                $scope.fieldFormInfo.push(info);
             }
         }
     }
@@ -63,7 +63,7 @@ app.controller("createNewFormCtrl", function($scope,$http) {
                 url:"/MyFieldForm/createForm",
                 method:"GET",
                 params:{formName:$scope.formNewName,
-                    father:$scope.selectInfo[$("#Select")[0].selectedIndex]['formName'],
+                    father:$scope.fieldFormInfo[$("#Select")[0].selectedIndex]['formName'],
                     description:$scope.description}
             }).then(
                 function success(response) {

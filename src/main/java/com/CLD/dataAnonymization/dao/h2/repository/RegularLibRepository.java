@@ -28,4 +28,7 @@ public interface RegularLibRepository extends JpaRepository<RegularLib,Long> {
     @Modifying
     public void deleteByLibName(String libName);
 
+    @Query(value = "select r from RegularLib r")
+    public List<RegularLib> getAll();
+
 }

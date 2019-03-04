@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserDetailsService,UserService {
     @Override
     public Boolean addUser(String username,String password){
         SystemUser systemUser=systemUserRepository.findByUsername(username);
-        if (systemUser == null || username.trim()!="" || password.trim()!="") {
+        if (systemUser == null && username.trim()!="" && password.trim()!="") {
             SystemUser newUser=new SystemUser();
             newUser.setUsername(username);
             newUser.setPassword(password);

@@ -59,7 +59,6 @@ public class FileProcessingController {
         anonymizeConfigure.setFieldFormName(parameterMap.get("fieldFormName")[0]);
         anonymizeConfigure.setLevel(parameterMap.get("level")[0]);
         anonymizeConfigure.setRegularLib(parameterMap.get("regularLib")[0]);
-        anonymizeConfigure.setEncryptPassword(parameterMap.get("encryptPassword")[0]);
         anonymizeConfigure.setK_big(parameterMap.get("k_big")[0]);
         anonymizeConfigure.setK_small(parameterMap.get("k_small")[0]);
         anonymizeConfigure.setMicroaggregation(parameterMap.get("microaggregation")[0]);

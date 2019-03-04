@@ -181,4 +181,10 @@ public class UserRegularAndDictionaryController {
         return response;
     }
 
+    @RequestMapping(value = "/getAll")
+    @ResponseBody
+    public List<RegularLib> getAll(){
+        return regularLibService.getAll();
+    }
+
 }
