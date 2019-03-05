@@ -11,6 +11,7 @@ import com.CLD.dataAnonymization.util.deidentifier.Anonymizer;
 import com.CLD.dataAnonymization.util.deidentifier.Configuration;
 import com.CLD.dataAnonymization.util.deidentifier.DataHandle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,6 +34,9 @@ public class EasyUtil {
 
     @Autowired
     RegularRepository regularRepository;
+
+    @Value("${ner.url}")
+    private String ner_url;
 
 
     /**
@@ -136,6 +140,7 @@ public class EasyUtil {
         configuration.setSuppressionLimit_level1(Double.valueOf(anonymizeConfigure.getSuppressionLimit_level1()));
         configuration.setSuppressionLimit_level2(Double.valueOf(anonymizeConfigure.getSuppressionLimit_level2()));
         configuration.setT(Double.valueOf(anonymizeConfigure.getT()));
+        configuration.setNer_url(ner_url);
         return configuration;
     }
 

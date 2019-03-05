@@ -3,6 +3,7 @@ package com.CLD.dataAnonymization.service.systemManage.reset;
 import com.CLD.dataAnonymization.service.nodeAndField.nodeClassify.ExpandNodeClassifyService;
 import com.CLD.dataAnonymization.service.nodeAndField.nodeClassify.OpenEhrNodeClassifyService;
 import com.CLD.dataAnonymization.service.nodeAndField.nodeToField.NodeToFieldService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @Date 2018/6/5 16:01
  **/
 @Service
+@Slf4j
 public class NodeResetServiceImpl implements NodeResetService {
 
     @Autowired
@@ -35,6 +37,7 @@ public class NodeResetServiceImpl implements NodeResetService {
             outList.addAll(nodeToFieldService.ExpandNodeToField());
         }catch (Exception e){
             e.printStackTrace();
+            log.error("字段数据库初始化失败："+e.toString());
         }
 
         return outList;

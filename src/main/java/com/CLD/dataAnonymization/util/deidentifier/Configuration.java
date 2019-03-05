@@ -31,6 +31,8 @@ public class Configuration {
 
      private Integer                microaggregation         =      10;
 
+     private String                 ner_url                  =      "http://172.16.119.212:8080/v1/models/EMR_NER:predict";
+
 
     public AnonymousLevel getLevel() {
         return level;
@@ -110,5 +112,13 @@ public class Configuration {
 
     public void setMicroaggregation(Integer microaggregation) {
         this.microaggregation = microaggregation;
+    }
+
+    public String getNer_url() {
+        return ner_url;
+    }
+
+    public void setNer_url(String ner_url) {
+        this.ner_url = ner_url;
     }
 }

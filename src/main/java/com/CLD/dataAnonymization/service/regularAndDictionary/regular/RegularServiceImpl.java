@@ -5,7 +5,6 @@ import com.CLD.dataAnonymization.dao.h2.repository.RegularRepository;
 import com.CLD.dataAnonymization.util.deidentifier.io.FileResolve;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
@@ -20,15 +19,6 @@ import java.util.List;
  */
 @Service
 public class RegularServiceImpl implements RegularService {
-
-    @Value("${package.jar.name}")
-    private String jarName;
-
-    @Value("${regular.out.path}")
-    private String outRegularPath;
-
-    @Value("${regular.name}")
-    private String regularName;
 
     @Autowired
     RegularRepository regularRepository;

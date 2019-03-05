@@ -39,13 +39,14 @@ public class Unstructured {
                                              ArrayList<Integer> col,
                                              ArrayList<HashMap<String,String>> proInfo,
                                              ArrayList<String> dictionary,
-                                             ArrayList<HashMap<String,String>> regular){
+                                             ArrayList<HashMap<String,String>> regular,
+                                             String ner_url){
 
         try{
             // 利用机器学习获取隐私信息
             ArrayList<HashMap<String,HashSet<String>>> ner_result = new ArrayList<HashMap<String,HashSet<String>>>();
             for (int column :col) {
-                ner_result.add(unstructured_NER(data.get(column)));
+                ner_result.add(unstructured_NER(data.get(column),ner_url));
             }
 
             //利用规则获取隐私信息
@@ -85,7 +86,7 @@ public class Unstructured {
      * @return
      * @throws FileNotFoundException
      */
-    public static HashMap<String,HashSet<String>> unstructured_NER(List<String> context) {
+    public static HashMap<String,HashSet<String>> unstructured_NER(List<String> context,String ner_url) {
         // 断句,去空格 以"。"为标识 ，最长250 context => sentences
         ArrayList<String> sentences = new ArrayList<String>();
         for (String text : context){
@@ -140,7 +141,7 @@ public class Unstructured {
             if (num>50){
                 jsonObject.getJSONObject("inputs").put("input",input);
                 jsonObject.getJSONObject("inputs").put("length",length);
-                JSONObject re = JSONObject.parseObject(NER_API(jsonObject.toString()));
+                JSONObject re = JSONObject.parseObject(NER_API(jsonObject.toString(),ner_url));
                 api_result.addAll(re.getJSONArray("outputs"));
                 jsonObject = JSONObject.parseObject(s);
                 input.clear();
@@ -151,7 +152,7 @@ public class Unstructured {
         if (!length.isEmpty()){
             jsonObject.getJSONObject("inputs").put("input",input);
             jsonObject.getJSONObject("inputs").put("length",length);
-            JSONObject re = JSONObject.parseObject(NER_API(jsonObject.toString()));
+            JSONObject re = JSONObject.parseObject(NER_API(jsonObject.toString(),ner_url));
             api_result.addAll(re.getJSONArray("outputs"));
         }
 
@@ -278,13 +279,12 @@ public class Unstructured {
      * @param requestJson
      * @return
      */
-    public static String NER_API(String requestJson){
+    public static String NER_API(String requestJson,String ner_url){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://172.16.119.212:8080/v1/models/EMR_NER:predict";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> entity = new HttpEntity<String>(requestJson,headers);
-        String result = restTemplate.postForObject(url, entity, String.class);
+        String result = restTemplate.postForObject(ner_url, entity, String.class);
         return result;
     }
 

@@ -135,7 +135,7 @@ public class Anonymizer {
 
         //处理UI非结构化信息
         column=selectTypeColumn(dataHandle.getUI());
-        Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular());
+        Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular(),configuration.getNer_url());
 
         return true;
     }
@@ -189,7 +189,7 @@ public class Anonymizer {
 
         //处理UI非结构化信息
         column=selectTypeColumn(dataHandle.getUI());
-        Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular());
+        Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular(),configuration.getNer_url());
 
         return true;
     }

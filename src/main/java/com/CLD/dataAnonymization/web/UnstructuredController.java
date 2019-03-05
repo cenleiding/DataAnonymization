@@ -1,6 +1,7 @@
 package com.CLD.dataAnonymization.web;
 
 import com.CLD.dataAnonymization.util.deidentifier.algorithm.Unstructured;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +21,13 @@ import java.util.List;
 @RequestMapping("/Unstructured")
 public class UnstructuredController {
 
+    @Value("${ner.url}")
+    private String ner_url;
+
     @RequestMapping(value = "",method = RequestMethod.POST)
     @ResponseBody
     public HashMap<String, HashSet<String>> Unstructured(@RequestBody List<String> context) {
-        return Unstructured.unstructured_NER(context);
+        return Unstructured.unstructured_NER(context,ner_url);
     }
 
 

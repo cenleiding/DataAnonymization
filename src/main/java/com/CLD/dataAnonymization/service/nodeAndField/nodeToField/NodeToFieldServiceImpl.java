@@ -6,18 +6,11 @@ import com.CLD.dataAnonymization.model.TemplateNodeInfo;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.http.HttpEntity;
-import org.apache.http.ParseException;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +29,7 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
 
     @Value("${clever.template.mapping}")
     private String clever_template_mapping;
+
 
     @Autowired
     ArchetypeNodeClassifyRepository archetypeNodeClassifyRepository;
@@ -266,29 +260,30 @@ public class NodeToFieldServiceImpl implements NodeToFieldService {
     }
 
     private String HttpGet(String url){
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        CloseableHttpResponse response = null;
-        try {
-            HttpGet httpget = new HttpGet(url);
-            response = httpClient.execute(httpget);
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        String result = null;
-        try {
-            HttpEntity entity = response.getEntity();
-            if (entity != null) {
-                result = EntityUtils.toString(entity);
-            }
-        } catch (ParseException | IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                response.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.getForObject(url,String.class);
+//        CloseableHttpClient httpClient = HttpClients.createDefault();
+//        CloseableHttpResponse response = null;
+//        try {
+//            HttpGet httpget = new HttpGet(url);
+//            response = httpClient.execute(httpget);
+//        } catch (IOException e1) {
+//            e1.printStackTrace();
+//        }
+//        try {
+//            HttpEntity entity = response.getEntity();
+//            if (entity != null) {
+//                result = EntityUtils.toString(entity);
+//            }
+//        } catch (ParseException | IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                response.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
         return result;
     }
 

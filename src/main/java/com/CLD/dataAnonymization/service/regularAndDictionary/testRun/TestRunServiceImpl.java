@@ -5,6 +5,7 @@ import com.CLD.dataAnonymization.dao.h2.entity.Regular;
 import com.CLD.dataAnonymization.dao.h2.repository.DictionaryrRepository;
 import com.CLD.dataAnonymization.dao.h2.repository.RegularRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,6 +32,9 @@ public class TestRunServiceImpl implements TestRunService {
 
     @Autowired
     RegularRepository regularRepository;
+
+    @Value("${ner.url}")
+    private String ner_url;
 
     @Override
     public HashMap<String,String> testSimpleDictionary(String libName, String fileName, String content ) {
@@ -112,7 +116,7 @@ public class TestRunServiceImpl implements TestRunService {
 
         // 利用机器学习获取隐私信息
         if(jqxx==true){
-            HashMap<String,HashSet<String>> ner_result = unstructured_NER(contentList);
+            HashMap<String,HashSet<String>> ner_result = unstructured_NER(contentList,ner_url);
             for(String key:ner_result.keySet()){
                 for (String s : ner_result.get(key))
                     outResult.put(s,"***");
