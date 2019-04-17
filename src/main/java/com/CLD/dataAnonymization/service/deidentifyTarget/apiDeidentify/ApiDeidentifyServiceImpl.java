@@ -48,7 +48,7 @@ public class ApiDeidentifyServiceImpl implements ApiDeidentifyService{
         ArrayList<HashMap<String,String>> outData=new ArrayList<HashMap<String, String>>();
 
         //匿名化
-        easyUtil.deidentify_run(data,anonymizeConfigure);
+        data=easyUtil.deidentify_run(data,anonymizeConfigure).getData();
 
         //表单使用记录
         FieldClassifyUsageCount fieldClassifyUsageCount=fieldClassifyUsageCountRepository.findByFormName(anonymizeConfigure.getFieldFormName());

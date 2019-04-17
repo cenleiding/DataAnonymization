@@ -29,6 +29,7 @@ public class Microaggregation {
             data.get(col).set(pos[i],String.valueOf(num[i]));
     }
 
+
     private static void aggregate( double[] num,int gradation){
         int n=num.length/gradation;
         int index=0;

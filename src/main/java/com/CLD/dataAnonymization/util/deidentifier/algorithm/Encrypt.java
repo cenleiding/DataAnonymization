@@ -47,7 +47,6 @@ public class Encrypt {
         return true;
     }
 
-
     /**
      * 加密方法
      * @param src 源数据
