@@ -1,18 +1,17 @@
 package com.CLD.dataAnonymization.util.deidentifier.algorithm;
 
-import org.deidentifier.arx.*;
-import org.deidentifier.arx.criteria.HierarchicalDistanceTCloseness;
-import org.deidentifier.arx.criteria.KAnonymity;
-import org.deidentifier.arx.exceptions.RollbackRequiredException;
-import org.deidentifier.arx.metric.Metric;
+
+import com.CLD.dataAnonymization.util.deidentifier.arx.*;
+import com.CLD.dataAnonymization.util.deidentifier.arx.criteria.HierarchicalDistanceTCloseness;
+import com.CLD.dataAnonymization.util.deidentifier.arx.criteria.KAnonymity;
+import com.CLD.dataAnonymization.util.deidentifier.arx.exceptions.RollbackRequiredException;
+import com.CLD.dataAnonymization.util.deidentifier.arx.metric.Metric;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
-import static java.lang.Math.min;
 
 /**
  * @description:该类提供T-closeness方法，当不存在敏感信息时退化为K-anonymous.
@@ -30,7 +29,7 @@ public class Tcloseness {
                                            Double SuppressionLimit,
                                            HashMap<String,ArrayList<ArrayList<String>>> hierarchy){
         if(kcol.size()==0) return true;
-        K= min(K,data.get(0).size()-1);
+        K= Math.min(K,data.get(0).size()-1);
         try {
         Data arxData=Data.create(dataInstall(data,kcol,tcol));
         HashMap<String,AttributeType.Hierarchy> hierarchyHashMap= getHierarchyMap(hierarchy);

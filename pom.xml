@@ -183,12 +183,57 @@
 		</dependency>
 
 
-		<!--ARX匿名工具包 -->
+		<!-- 算法依赖包 -->
+		<!-- https://mvnrepository.com/artifact/net.objecthunter/exp4j -->
 		<dependency>
-			<groupId>com.deidentifier.arx</groupId>
-			<artifactId>arx</artifactId>
-			<version>3.7.1</version>
+			<groupId>net.objecthunter</groupId>
+			<artifactId>exp4j</artifactId>
+			<version>0.4.8</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.mahout/mahout-core -->
+		<dependency>
+			<groupId>org.apache.mahout</groupId>
+			<artifactId>mahout-core</artifactId>
+			<version>0.9</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.haifengl/smile-core -->
+		<dependency>
+			<groupId>com.github.haifengl</groupId>
+			<artifactId>smile-core</artifactId>
+			<version>1.5.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.carrotsearch/hppc -->
+		<dependency>
+			<groupId>com.carrotsearch</groupId>
+			<artifactId>hppc</artifactId>
+			<version>0.6.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.univocity/univocity-parsers -->
+		<dependency>
+			<groupId>com.univocity</groupId>
+			<artifactId>univocity-parsers</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-validator/commons-validator -->
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.6</version>
+		</dependency>
+
+
+		<!--ARX匿名工具包 -->
+		<!--<dependency>-->
+			<!--<groupId>com.deidentifier.arx</groupId>-->
+			<!--<artifactId>arx</artifactId>-->
+			<!--<version>3.7.1</version>-->
+		<!--</dependency>-->
 
 	</dependencies>
 
