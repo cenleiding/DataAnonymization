@@ -33,8 +33,8 @@ public class NodeResetServiceImpl implements NodeResetService {
         try {
             openEhrNodeClassifyService.FileToDB();
             expandNodeClassifyService.FileToDB();
-            outList=nodeToFieldService.ArcheTypeNodeToField();
-            outList.addAll(nodeToFieldService.ExpandNodeToField());
+            outList=nodeToFieldService.ExpandNodeToField();
+            outList.addAll(nodeToFieldService.ArcheTypeNodeToField());
         }catch (Exception e){
             e.printStackTrace();
             log.error("字段数据库初始化失败："+e.toString());

@@ -27,15 +27,15 @@ public class DataHandle {
     //字段分类总表
     private ArrayList<ArrayList<String>>                 fieldList        =       null;
 
-    private HashSet<String>                              EI               =       null;
+    private HashSet<String>                              EI_Remove        =       null;
+
+    private HashSet<String>                              EI_Encrypt       =       null;
 
     private HashSet<String>                              QI_Geographic    =       null;
 
     private HashSet<String>                              QI_DateRecord    =       null;
 
     private HashSet<String>                              QI_DateAge       =       null;
-
-    private HashSet<String>                              QI_Link          =       null;
 
     private HashSet<String>                              QI_String        =       null;
 
@@ -198,22 +198,22 @@ public class DataHandle {
      * @return
      */
     private Boolean classifyFieldList(){
-        EI              =        new HashSet<String>();
+        EI_Remove       =        new HashSet<String>();
+        EI_Encrypt      =        new HashSet<String>();
         QI_DateAge      =        new HashSet<String>();
         QI_DateRecord   =        new HashSet<String>();
         QI_Geographic   =        new HashSet<String>();
-        QI_Link         =        new HashSet<String>();
         QI_Number       =        new HashSet<String>();
         QI_String       =        new HashSet<String>();
         SI_Number       =        new HashSet<String>();
         SI_String       =        new HashSet<String>();
         UI              =        new HashSet<String>();
         for(int i=0;i<fieldList.size();i++){
-            if(fieldList.get(i).get(1).equals("EI"))               EI.add(fieldList.get(i).get(0));
+            if(fieldList.get(i).get(1).equals("EI_Remove"))        EI_Remove.add(fieldList.get(i).get(0));
+            if(fieldList.get(i).get(1).equals("EI_Encrypt"))       EI_Encrypt.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("QI_DateAge"))       QI_DateAge.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("QI_DateRecord"))    QI_DateRecord.add(fieldList.get(i).get(0));
-            if(fieldList.get(i).get(1).equals("QI_Geography"))    QI_Geographic.add(fieldList.get(i).get(0));
-            if(fieldList.get(i).get(1).equals("QI_Link"))          QI_Link.add(fieldList.get(i).get(0));
+            if(fieldList.get(i).get(1).equals("QI_Geography"))     QI_Geographic.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("QI_Number"))        QI_Number.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("QI_String"))        QI_String.add(fieldList.get(i).get(0));
             if(fieldList.get(i).get(1).equals("SI_Number"))        SI_Number.add(fieldList.get(i).get(0));
@@ -339,8 +339,12 @@ public class DataHandle {
         return fieldList;
     }
 
-    public HashSet<String> getEI() {
-        return EI;
+    public HashSet<String> getEI_Remove() {
+        return EI_Remove;
+    }
+
+    public HashSet<String> getEI_Encrypt() {
+        return EI_Encrypt;
     }
 
     public HashSet<String> getQI_Geographic() {
@@ -353,10 +357,6 @@ public class DataHandle {
 
     public HashSet<String> getQI_DateAge() {
         return QI_DateAge;
-    }
-
-    public HashSet<String> getQI_Link() {
-        return QI_Link;
     }
 
     public HashSet<String> getQI_String() {

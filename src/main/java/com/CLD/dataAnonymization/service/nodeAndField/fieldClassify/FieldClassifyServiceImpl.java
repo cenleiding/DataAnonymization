@@ -214,8 +214,8 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
     public Map<String,Double> getFieldOverViewByFormName(String formName){
         Map<String,Double> map=new HashMap<String,Double>();
         List<FieldClassify> fieldClassifyList=fieldClassifyRepository.findByFormName(formName);
-        Double EI= Double.valueOf(0);
-        Double QI_Link= Double.valueOf(0);
+        Double EI_Remove= Double.valueOf(0);
+        Double EI_Encrypt= Double.valueOf(0);
         Double QI_Geography= Double.valueOf(0);
         Double QI_DateRecord= Double.valueOf(0);
         Double QI_DateAge= Double.valueOf(0);
@@ -226,8 +226,8 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
         Double UI=Double.valueOf(0);
         Double sum= Double.valueOf(0);
         for(FieldClassify fieldClassify:fieldClassifyList){
-            if(fieldClassify.getFieldType().equals("EI")) EI++;
-            if(fieldClassify.getFieldType().equals("QI_Link")) QI_Link++;
+            if(fieldClassify.getFieldType().equals("EI_Remove")) EI_Remove++;
+            if(fieldClassify.getFieldType().equals("EI_Encrypt")) EI_Encrypt++;
             if(fieldClassify.getFieldType().equals("QI_Geography")) QI_Geography++;
             if(fieldClassify.getFieldType().equals("QI_DateRecord")) QI_DateRecord++;
             if(fieldClassify.getFieldType().equals("QI_DateAge")) QI_DateAge++;
@@ -237,9 +237,9 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
             if(fieldClassify.getFieldType().equals("SI_String")) SI_String++;
             if(fieldClassify.getFieldType().equals("UI")) UI++;
         }
-        sum=EI+QI_DateAge+QI_DateRecord+QI_Geography+QI_Link+QI_Number+QI_String+SI_Number+SI_String+UI;
-        map.put("EI",(Double)(EI/sum));
-        map.put("QI_Link",(Double)(QI_Link/sum));
+        sum=EI_Remove+QI_DateAge+QI_DateRecord+QI_Geography+EI_Encrypt+QI_Number+QI_String+SI_Number+SI_String+UI;
+        map.put("EI_Remove",(Double)(EI_Remove/sum));
+        map.put("EI_Encrypt",(Double)(EI_Encrypt/sum));
         map.put("QI_Geography",(Double)(QI_Geography/sum));
         map.put("QI_DateRecord",(Double)(QI_DateRecord/sum));
         map.put("QI_DateAge",(Double)(QI_DateAge/sum));
@@ -255,8 +255,8 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
     @Override
     public Map<String,List<String>> getFieldDetailByFormName(String formName){
         Map<String,List<String>> map=new HashMap<String,List<String>>();
-        map.put("EI",new ArrayList<String>());
-        map.put("QI_Link",new ArrayList<String>());
+        map.put("EI_Remove",new ArrayList<String>());
+        map.put("EI_Encrypt",new ArrayList<String>());
         map.put("QI_Geography",new ArrayList<String>());
         map.put("QI_DateRecord",new ArrayList<String>());
         map.put("QI_DateAge",new ArrayList<String>());
@@ -267,8 +267,8 @@ public class FieldClassifyServiceImpl implements FieldClassifyService {
         map.put("UI",new ArrayList<String>());
         List<FieldClassify> fieldClassifyList=fieldClassifyRepository.findByFormName(formName);
         for(FieldClassify fieldClassify:fieldClassifyList){
-            if(fieldClassify.getFieldType().equals("EI")) map.get("EI").add(fieldClassify.getFieldName());
-            if(fieldClassify.getFieldType().equals("QI_Link")) map.get("QI_Link").add(fieldClassify.getFieldName());
+            if(fieldClassify.getFieldType().equals("EI_Remove")) map.get("EI_Remove").add(fieldClassify.getFieldName());
+            if(fieldClassify.getFieldType().equals("EI_Encrypt")) map.get("EI_Encrypt").add(fieldClassify.getFieldName());
             if(fieldClassify.getFieldType().equals("QI_Geography")) map.get("QI_Geography").add(fieldClassify.getFieldName());
             if(fieldClassify.getFieldType().equals("QI_DateRecord")) map.get("QI_DateRecord").add(fieldClassify.getFieldName());
             if(fieldClassify.getFieldType().equals("QI_DateAge")) map.get("QI_DateAge").add(fieldClassify.getFieldName());

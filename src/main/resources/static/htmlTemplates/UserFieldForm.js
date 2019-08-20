@@ -5,8 +5,8 @@ app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
     $scope.fieldData=[];
     $scope.dataTableSet_ALL={
         'ALL':[],
-        "EI":[],
-        "QI_Link":[],
+        "EI_Remove":[],
+        "EI_Encrypt":[],
         "QI_Geography":[],
         "QI_DateRecord":[],
         "QI_DateAge":[],
@@ -15,7 +15,7 @@ app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
         "SI_Number":[],
         "SI_String":[],
         "UI":[]};
-    $scope.selectType=["ALL","EI","QI_Link","QI_Geography","QI_DateRecord","QI_DateAge","QI_Number","QI_String","SI_Number","SI_String","UI"];
+    $scope.selectType=["ALL","EI_Remove","EI_Encrypt","QI_Geography","QI_DateRecord","QI_DateAge","QI_Number","QI_String","SI_Number","SI_String","UI"];
 
     $scope.newFormName="";
     $scope.formName="";
@@ -33,8 +33,8 @@ app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
     var typeSelect="ALL";
     var percentage={"SUM":0}
     var Accounting=[
-        ["EI",0],
-        ["QI_Link",0],
+        ["EI_Remove",0],
+        ["EI_Encrypt",0],
         ["QI_Geography",0],
         ["QI_DateRecord",0],
         ["QI_DateAge",0],
@@ -69,8 +69,8 @@ app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
         if (typeSelect==="ALL"){
             $scope.dataTableSet_ALL={
                 'ALL':[],
-                "EI":[],
-                "QI_Link":[],
+                "EI_Remove":[],
+                "EI_Encrypt":[],
                 "QI_Geography":[],
                 "QI_DateRecord":[],
                 "QI_DateAge":[],
@@ -270,7 +270,7 @@ app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
                 label: "字段类型：",
                 name: "fieldType",
                 type: "select",
-                options: ['EI', 'QI_Link', 'QI_Geography', 'QI_DateRecord','QI_DateAge','QI_Number','QI_String','SI_Number','SI_String','UI']
+                options: ['EI_Remove', 'EI_Encrypt', 'QI_Geography', 'QI_DateRecord','QI_DateAge','QI_Number','QI_String','SI_Number','SI_String','UI']
             }]
         });
 

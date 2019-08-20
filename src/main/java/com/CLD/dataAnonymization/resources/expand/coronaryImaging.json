@@ -5,25 +5,25 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"患者的主索引号"
 			},
 			{
 				"EN_Name":"Name",
 				"CH_Name":"姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"姓氏和名称"
 			},
 			{
@@ -77,13 +77,13 @@
 			{
 				"EN_Name":"IdNumber",
 				"CH_Name":"居民身份证号码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"患者的身份证号或者军人证"
 			},
 			{
-				"EN_Name":"HealthcareId",
+				"EN_Name":"HealthcarEI_Removed",
 				"CH_Name":"居民健康卡号码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"若无健康卡号则可"
 			},
 			{
@@ -142,61 +142,61 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"患者的主索引号"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":""
 			},
 			{
 				"EN_Name":"WardName",
 				"CH_Name":"病区名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"即护理站名称"
 			},
 			{
 				"EN_Name":"WardCode",
 				"CH_Name":"病区编号",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"即护理站编号"
 			},
 			{
 				"EN_Name":"RoomCode",
 				"CH_Name":"病房号",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"患者入院病房号"
 			},
 			{
 				"EN_Name":"RoomName",
 				"CH_Name":"病房名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"患者入院病房名称"
 			},
 			{
 				"EN_Name":"BedCode",
 				"CH_Name":"病床号",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"病床号码"
 			},
 			{
 				"EN_Name":"BedName",
 				"CH_Name":"病床名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"病床名称"
 			},
 			{
@@ -208,61 +208,61 @@
 			{
 				"EN_Name":"AdmittingDoctorId",
 				"CH_Name":"接诊医生编码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"门诊的接诊医生代码"
 			},
 			{
 				"EN_Name":"AdmittingDoctorName",
 				"CH_Name":"接诊医生姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"门诊的接诊医生姓名"
 			},
 			{
 				"EN_Name":"ResidentDoctorId",
 				"CH_Name":"住院医师编码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"住院医师工号"
 			},
 			{
 				"EN_Name":"ResidentDoctorName",
 				"CH_Name":"住院医师姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"住院医师姓名"
 			},
 			{
 				"EN_Name":"AttendingDoctorId",
 				"CH_Name":"主治医师编码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"主治医师工号"
 			},
 			{
 				"EN_Name":"AttendingDoctorName",
 				"CH_Name":"主治医师姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"主治医师姓名"
 			},
 			{
 				"EN_Name":"DirectorId",
 				"CH_Name":"主任医师编码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"主任医师工号"
 			},
 			{
 				"EN_Name":"DirectorName",
 				"CH_Name":"主任医师姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"主任医师姓名"
 			},
 			{
 				"EN_Name":"DeputyDoctorId",
 				"CH_Name":"副主任医师编码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"副主任医师工号"
 			},
 			{
 				"EN_Name":"DeputyDoctorName",
 				"CH_Name":"副主任医师姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"副主任医师姓名"
 			},
 			{
@@ -272,15 +272,15 @@
 				"description":"入院病情详述"
 			},
 			{
-				"EN_Name":"InsuranceId",
+				"EN_Name":"InsurancEI_Removed",
 				"CH_Name":"医疗保险证号码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"若无保险"
 			},
 			{
 				"EN_Name":"Email",
 				"CH_Name":"电子邮件地址",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"患者的电子邮件地址"
 			},
 			{
@@ -328,19 +328,19 @@
 			{
 				"EN_Name":"MobelPhone",
 				"CH_Name":"移动电话号码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"患者的移动电话"
 			},
 			{
 				"EN_Name":"HomePhone",
 				"CH_Name":"家庭电话号码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"家庭电话号码"
 			},
 			{
 				"EN_Name":"BusinessPhone",
 				"CH_Name":"单位电话号码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"单位电话号码"
 			}
 		]
@@ -351,37 +351,37 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"患者的主索引号"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊号"
 			},
 			{
 				"EN_Name":"PersonName",
 				"CH_Name":"联系人姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"如：张三"
 			},
 			{
 				"EN_Name":"EmailAddress",
 				"CH_Name":"电子邮件地址",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"联系人的电子邮件地址"
 			},
 			{
@@ -429,19 +429,19 @@
 			{
 				"EN_Name":"MobilePhone",
 				"CH_Name":"移动电话号码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"联系人移动电话"
 			},
 			{
 				"EN_Name":"HomePhone",
 				"CH_Name":"家庭电话号码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"联系人家庭电话"
 			},
 			{
 				"EN_Name":"BusinessPhone",
 				"CH_Name":"单位电话号码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"联系人单位电话"
 			}
 		]
@@ -452,31 +452,31 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"患者的主索引号"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊号"
 			},
 			{
 				"EN_Name":"DiagnosisId",
 				"CH_Name":"诊断ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"标识一条诊断记录"
 			},
 			{
@@ -488,13 +488,13 @@
 			{
 				"EN_Name":"DoctorCode",
 				"CH_Name":"诊断医生编码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"诊断医生编码"
 			},
 			{
 				"EN_Name":"DoctorName",
 				"CH_Name":"诊断医生名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"诊断医生名称"
 			},
 			{
@@ -511,31 +511,31 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"患者的主索引号"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊号"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"唯一标识一条医嘱"
 			},
 			{
@@ -553,25 +553,25 @@
 			{
 				"EN_Name":"OrderingDoctorName",
 				"CH_Name":"开医嘱医生姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"开医嘱医生姓名"
 			},
 			{
 				"EN_Name":"OrderingDoctorCode",
 				"CH_Name":"开医嘱医生代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"开医嘱医生代码"
 			},
 			{
 				"EN_Name":"StoppingDoctorName",
 				"CH_Name":"停医嘱医生姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"停医嘱医生姓名"
 			},
 			{
 				"EN_Name":"StoppingDoctorCode",
 				"CH_Name":"停医嘱医生代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"停医嘱医生代码"
 			},
 			{
@@ -612,37 +612,37 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"患者的主索引号"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊号"
 			},
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"检查申请号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"检查申请号"
 			},
 			{
 				"EN_Name":"OrderIdentifier",
 				"CH_Name":"医嘱序号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"医嘱序号"
 			},
 			{
@@ -654,13 +654,13 @@
 			{
 				"EN_Name":"RequesterName",
 				"CH_Name":"申请医生姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"申请医生姓名"
 			},
 			{
 				"EN_Name":"RequesterId",
 				"CH_Name":"申请医生代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"申请医生代码"
 			},
 			{
@@ -676,21 +676,21 @@
 				"description":"建议"
 			},
 			{
-				"EN_Name":"ReceiverName",
+				"EN_Name":"RecEI_RemoveverName",
 				"CH_Name":"检查医师姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"检查医师姓名"
 			},
 			{
-				"EN_Name":"ReceiverID",
+				"EN_Name":"RecEI_RemoveverID",
 				"CH_Name":"检查医师代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"检查医师代码"
 			},
 			{
 				"EN_Name":"ExamId",
 				"CH_Name":"检查号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"检查号"
 			},
 			{
@@ -707,29 +707,29 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"检查申请号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"检查申请号"
 			},
 			{
-				"EN_Name":"ReceiverOrderId",
+				"EN_Name":"RecEI_RemoveverOrderId",
 				"CH_Name":"检查号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"对应检查图像表检查号"
 			},
 			{
-				"EN_Name":"DatetimeIssued",
+				"EN_Name":"DatetimEI_Removessued",
 				"CH_Name":"报告日期",
 				"type":"QI_DateRecord",
 				"description":"报告日期"
@@ -737,19 +737,19 @@
 			{
 				"EN_Name":"RepresentationAbsolutePath",
 				"CH_Name":"报告存储绝对路径",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"报告存储的IP"
 			},
 			{
 				"EN_Name":"RepresentationRelativePath",
 				"CH_Name":"报告存储相对路径",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"报告存储的相对路径"
 			},
 			{
 				"EN_Name":"RepresentationUri",
 				"CH_Name":"报告浏览路径",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"检查报告内容"
 			}
 		]
@@ -760,37 +760,37 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"患者的主索引号"
 			},
 			{
 				"EN_Name":"EncounterIdentifier",
 				"CH_Name":"就诊号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊号"
 			},
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"检验申请号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"用于唯一标识一次检验申请"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"医嘱ID"
 			},
 			{
@@ -802,19 +802,19 @@
 			{
 				"EN_Name":"RequesterName",
 				"CH_Name":"申请医生姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"申请医生姓名"
 			},
 			{
 				"EN_Name":"RequesterCode",
 				"CH_Name":"申请医生代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"申请医生代码"
 			},
 			{
 				"EN_Name":"TestId",
 				"CH_Name":"检验号码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"检验号码"
 			},
 			{
@@ -824,7 +824,7 @@
 				"description":"护士采集时间"
 			},
 			{
-				"EN_Name":"DateTimeOfReceipt",
+				"EN_Name":"DateTimeOfRecEI_Removept",
 				"CH_Name":"样本收到日期时间",
 				"type":"QI_DateRecord",
 				"description":"检验科收到样本的时间"
@@ -837,37 +837,37 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"检验申请号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"检验申请表中申请号"
 			},
 			{
 				"EN_Name":"TestId",
 				"CH_Name":"检验号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"检验号"
 			},
 			{
 				"EN_Name":"ResultId",
 				"CH_Name":"检验报告号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"检验报告号"
 			},
 			{
-				"EN_Name":"DeviceId",
+				"EN_Name":"DevicEI_Removed",
 				"CH_Name":"检验设备号",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"检验设备号"
 			},
 			{
@@ -885,37 +885,37 @@
 			{
 				"EN_Name":"RecieverProviderId",
 				"CH_Name":"检验医师代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"检验医师代码"
 			},
 			{
-				"EN_Name":"ReceiverProviderName",
+				"EN_Name":"RecEI_RemoveverProviderName",
 				"CH_Name":"检验医师名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"检验医师名称"
 			},
 			{
 				"EN_Name":"ReporterId",
 				"CH_Name":"报告医师代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"报告医师代码"
 			},
 			{
 				"EN_Name":"ReporterName",
 				"CH_Name":"报告医师姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"报告医师姓名"
 			},
 			{
 				"EN_Name":"AuditingPhysicianId",
 				"CH_Name":"审核医师代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"审核医师代码"
 			},
 			{
 				"EN_Name":"AuditingPhysicianName",
 				"CH_Name":"审核医师姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"审核医师姓名"
 			},
 			{
@@ -932,37 +932,37 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"PrescriptionId",
 				"CH_Name":"处方ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"处方ID"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterIdentifier",
 				"CH_Name":"就诊ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"医嘱ID"
 			},
 			{
@@ -991,31 +991,31 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"RecordId",
 				"CH_Name":"体征记录表",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"体征记录表"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊ID"
 			},
 			{
@@ -1027,13 +1027,13 @@
 			{
 				"EN_Name":"RecorderCode",
 				"CH_Name":"记录者代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"记录者代码"
 			},
 			{
 				"EN_Name":"RecorderName",
 				"CH_Name":"记录者姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"记录者姓名"
 			},
 			{
@@ -1050,37 +1050,37 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"手术申请号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"手术申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"医嘱ID"
 			},
 			{
@@ -1092,13 +1092,13 @@
 			{
 				"EN_Name":"OperativeDoctorCode",
 				"CH_Name":"手术医生代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"手术医生代码"
 			},
 			{
 				"EN_Name":"OperativeDoctorName",
 				"CH_Name":"手术医生名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"手术医生名称"
 			},
 			{
@@ -1110,13 +1110,13 @@
 			{
 				"EN_Name":"RequestDoctorCode",
 				"CH_Name":"申请医生代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"申请医生工号"
 			},
 			{
 				"EN_Name":"RequestDoctorName",
 				"CH_Name":"申请医生姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"申请医生姓名"
 			},
 			{
@@ -1138,195 +1138,195 @@
 				"description":"手术结束日期时间"
 			},
 			{
-				"EN_Name":"SurgicalDoctorOneId",
+				"EN_Name":"SurgicalDoctorOnEI_Removed",
 				"CH_Name":"手术医师1代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"手术医师1代码"
 			},
 			{
 				"EN_Name":"SurgicalDoctorOneName",
 				"CH_Name":"手术医师1",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"手术医师1"
 			},
 			{
 				"EN_Name":"SurgicalDoctorTwoId",
 				"CH_Name":"手术医师2代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"手术医师2代码"
 			},
 			{
 				"EN_Name":"SurgicalDoctorTwoName",
 				"CH_Name":"手术医师2",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"手术医师2"
 			},
 			{
-				"EN_Name":"AssistantOperatorOneId",
+				"EN_Name":"AssistantOperatorOnEI_Removed",
 				"CH_Name":"第一助手代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"第一助手代码"
 			},
 			{
 				"EN_Name":"AssistantOperatorOneName",
 				"CH_Name":"第一助手",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"第一助手"
 			},
 			{
 				"EN_Name":"AssistantAnesthetistTwoId",
 				"CH_Name":"第二助手代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"第二助手代码"
 			},
 			{
 				"EN_Name":"AssistantOperatorTwoName",
 				"CH_Name":"第二助手",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"第二助手"
 			},
 			{
-				"EN_Name":"AssistantOperatorThreeId",
+				"EN_Name":"AssistantOperatorThreEI_Removed",
 				"CH_Name":"第三助手代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"第三助手代码"
 			},
 			{
 				"EN_Name":"AssistantOperatorThreeName",
 				"CH_Name":"第三助手",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"第三助手"
 			},
 			{
 				"EN_Name":"AssistantOperatorFourId",
 				"CH_Name":"第四助手代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"第四助手代码"
 			},
 			{
 				"EN_Name":"AssistantOperatorFourName",
 				"CH_Name":"第四助手",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"第四助手"
 			},
 			{
-				"EN_Name":"InstrumentNurseOneId",
+				"EN_Name":"InstrumentNurseOnEI_Removed",
 				"CH_Name":"器械护士1代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"器械护士1代码"
 			},
 			{
 				"EN_Name":"InstrumentNurseOneName",
 				"CH_Name":"器械护士1",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"器械护士1"
 			},
 			{
 				"EN_Name":"InstrumentNurseTwoId",
 				"CH_Name":"器械护士2代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"器械护士2代码"
 			},
 			{
 				"EN_Name":"InstrumentNurseTwoName",
 				"CH_Name":"器械护士2",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"器械护士2"
 			},
 			{
-				"EN_Name":"InspectionNurseOneId",
+				"EN_Name":"InspectionNurseOnEI_Removed",
 				"CH_Name":"巡台护士1代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"巡台护士1代码"
 			},
 			{
 				"EN_Name":"InspectionNurseOneName",
 				"CH_Name":"巡台护士1",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"巡台护士1"
 			},
 			{
 				"EN_Name":"InspectionNurseTwoId",
 				"CH_Name":"巡台护士2代码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"巡台护士2代码"
 			},
 			{
 				"EN_Name":"InspectionNurseTwoName",
 				"CH_Name":"巡台护士2",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"巡台护士2"
 			},
 			{
 				"EN_Name":"OperatingRoomNumberCode",
 				"CH_Name":"手术间代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"手术间代码"
 			},
 			{
 				"EN_Name":"OperatingRoomNumberName",
 				"CH_Name":"手术间",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"手术间"
 			},
 			{
 				"EN_Name":"OperatingRoomCode",
 				"CH_Name":"手术室代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"手术室代码"
 			},
 			{
 				"EN_Name":"OperatingRoomName",
 				"CH_Name":"手术室",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"手术室"
 			},
 			{
 				"EN_Name":"OperationTableCode",
 				"CH_Name":"手术台代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"手术台代码"
 			},
 			{
 				"EN_Name":"OperationTableName",
 				"CH_Name":"手术台",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"手术台"
 			},
 			{
 				"EN_Name":"AnesthetistId",
 				"CH_Name":"麻醉医生ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"麻醉医生ID"
 			},
 			{
 				"EN_Name":"AnesthetistName",
 				"CH_Name":"麻醉医生姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"麻醉医生姓名"
 			},
 			{
-				"EN_Name":"AssistantAnesthetistOneId",
+				"EN_Name":"AssistantAnesthetistOnEI_Removed",
 				"CH_Name":"麻醉助手ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"麻醉助手ID"
 			},
 			{
 				"EN_Name":"AssistantAnesthetistOneName",
 				"CH_Name":"麻醉助手姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"麻醉助手姓名"
 			},
 			{
 				"EN_Name":"AssistantAnesthetistTwoId",
 				"CH_Name":"麻醉助手2ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"麻醉助手2ID"
 			},
 			{
 				"EN_Name":"AssistantAnesthetistTwoName",
 				"CH_Name":"麻醉助手2姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"麻醉助手2姓名"
 			},
 			{
@@ -1343,43 +1343,43 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"手术申请号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"手术申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OperationId",
 				"CH_Name":"手术号码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"手术号码"
 			},
 			{
 				"EN_Name":"ReportedId",
 				"CH_Name":"手术报告号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"手术报告号"
 			},
 			{
@@ -1396,37 +1396,37 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"RequestorId",
 				"CH_Name":"手术申请号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"手术申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"如果是根据医嘱进入输血信息，记录相应的医嘱ID"
 			},
 			{
@@ -1449,37 +1449,37 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"NursingIdentifier",
 				"CH_Name":"护理申请号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"护理申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"医嘱ID"
 			},
 			{
@@ -1502,37 +1502,37 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"TherapyIdentifier",
 				"CH_Name":"治疗申请号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"治疗申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"医嘱ID"
 			},
 			{
@@ -1561,37 +1561,37 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"DietIdentifier",
 				"CH_Name":"饮食申请号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"饮食申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"医嘱ID"
 			},
 			{
@@ -1620,37 +1620,37 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"BloodMatchingIdentifier",
 				"CH_Name":"配血医嘱申请号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"配血医嘱申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderId",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"医嘱ID"
 			},
 			{
@@ -1679,31 +1679,31 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
-				"EN_Name":"FeeId",
+				"EN_Name":"FeEI_Removed",
 				"CH_Name":"费用申请号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"费用申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊ID"
 			},
 			{
@@ -1720,49 +1720,49 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"ConsultRequestId",
 				"CH_Name":"会诊申请号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"会诊申请号"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊ID"
 			},
 			{
 				"EN_Name":"OrderIdentifier",
 				"CH_Name":"医嘱ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"医嘱ID"
 			},
 			{
 				"EN_Name":"IntendedConsultDoctorCode",
 				"CH_Name":"拟请医生代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"拟请医生代码"
 			},
 			{
 				"EN_Name":"IntendedConsultDoctorName",
 				"CH_Name":"拟请医生姓名",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"拟请医生姓名"
 			},
 			{
@@ -1785,31 +1785,31 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
 				"EN_Name":"DocumentId",
 				"CH_Name":"病历文档ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病历文档ID"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊ID"
 			},
 			{
@@ -1838,37 +1838,37 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
-				"EN_Name":"EmrFirstPageId",
+				"EN_Name":"EmrFirstPagEI_Removed",
 				"CH_Name":"病案首页ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病案首页ID"
 			},
 			{
 				"EN_Name":"PatientId",
 				"CH_Name":"病人ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病人ID"
 			},
 			{
 				"EN_Name":"EncounterId",
 				"CH_Name":"就诊ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"就诊ID"
 			},
 			{
-				"EN_Name":"TemplateId",
+				"EN_Name":"TemplatEI_Removed",
 				"CH_Name":"病案首页模板ID",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"病案首页模板ID"
 			},
 			{
@@ -1897,25 +1897,25 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
-				"EN_Name":"HealthcareId",
+				"EN_Name":"HealthcarEI_Removed",
 				"CH_Name":"保健号",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"保健号"
 			},
 			{
 				"EN_Name":"PhysicalExamId",
 				"CH_Name":"体检号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"体检号"
 			},
 			{
@@ -1927,13 +1927,13 @@
 			{
 				"EN_Name":"CreaterCode",
 				"CH_Name":"建立人编码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"建立人编码"
 			},
 			{
 				"EN_Name":"CreaterName",
 				"CH_Name":"建立人名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"建立人名称"
 			}
 		]
@@ -1944,25 +1944,25 @@
 			{
 				"EN_Name":"InstitutionCode",
 				"CH_Name":"医疗机构代码",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构代码"
 			},
 			{
 				"EN_Name":"InstitutionName",
 				"CH_Name":"医疗机构名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"医疗信息机构名称"
 			},
 			{
-				"EN_Name":"HealthcareId",
+				"EN_Name":"HealthcarEI_Removed",
 				"CH_Name":"保健号",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"保健号"
 			},
 			{
 				"EN_Name":"PhysicalExamId",
 				"CH_Name":"体检号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"体检号"
 			},
 			{
@@ -1974,25 +1974,25 @@
 			{
 				"EN_Name":"ExamDoctorCode",
 				"CH_Name":"体检医生编码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"体检医生编码"
 			},
 			{
 				"EN_Name":"ExamDoctorName",
 				"CH_Name":"体检医生名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"体检医生名称"
 			},
 			{
 				"EN_Name":"ReviewerCode",
 				"CH_Name":"复审医生编码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"复审医生编码"
 			},
 			{
 				"EN_Name":"ReviewerName",
 				"CH_Name":"复审医生名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"复审医生名称"
 			},
 			{
@@ -2007,15 +2007,15 @@
 		"fromName":"体检报告",
 		"fields":[
 			{
-				"EN_Name":"HealthcareId",
+				"EN_Name":"HealthcarEI_Removed",
 				"CH_Name":"保健号",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"保健号"
 			},
 			{
 				"EN_Name":"PhysicalExamId",
 				"CH_Name":"体检号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"体检号"
 			},
 			{
@@ -2027,13 +2027,13 @@
 			{
 				"EN_Name":"PrimaryPhysicianCode",
 				"CH_Name":"体检医生编码",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"体检医生编码"
 			},
 			{
 				"EN_Name":"PrimaryPhysicianName",
 				"CH_Name":"体检医生名称",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"体检医生名称"
 			},
 			{
@@ -2048,15 +2048,15 @@
 		"fromName":"分科体检项目结果信息",
 		"fields":[
 			{
-				"EN_Name":"HealthcareId",
+				"EN_Name":"HealthcarEI_Removed",
 				"CH_Name":"保健号",
-				"type":"EI",
+				"type":"EI_Remove",
 				"description":"保健号"
 			},
 			{
 				"EN_Name":"PhysicalExamId",
 				"CH_Name":"体检号",
-				"type":"QI_Link",
+				"type":"EI_Encrypt",
 				"description":"体检号"
 			},
 			{

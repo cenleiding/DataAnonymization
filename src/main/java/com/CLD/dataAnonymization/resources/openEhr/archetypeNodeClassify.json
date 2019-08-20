@@ -1,12 +1,12 @@
 [
   {
     "archetypeName": "openEHR-EHR-ACTION.consultation.v1",
-    "archetypeId":2933,
+    "archetypEI_Removed":2933,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0028]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -30,31 +30,31 @@
       {
         "nodeName":"Performer",
         "nodePath": "/protocol[at0015]/items[at0023]/value",
-        "type":"EI",
+        "type":"EI_Remove",
         "description":"The information about the provider."
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0029]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Consult request identifier",
         "nodePath": "/links[at0030]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-ACTION.blood_matching.v1",
-    "archetypeId":2934,
+    "archetypEI_Removed":2934,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0017]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -72,31 +72,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0002]/items[at0004]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Blood matching identifier",
         "nodePath": "/links[at0019]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-ACTION.diet.v1",
-    "archetypeId":2935,
+    "archetypEI_Removed":2935,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0016]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -108,31 +108,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0002]/items[at0004]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0017]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Diet identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-ACTION.diet.v1",
-    "archetypeId":2936,
+    "archetypEI_Removed":2936,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0027]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -150,31 +150,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0017]/items[at0020]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0028]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Drugs dispensing request identifier",
         "nodePath": "/links[at0029]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
    },
    {
     "archetypeName": "openEHR-EHR-ACTION.dispose.v1",
-    "archetypeId":2937,
+    "archetypEI_Removed":2937,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0017]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -198,31 +198,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0002]/items[at0004]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Dispose identifier",
         "nodePath": "/links[at0019]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
    },
    {
     "archetypeName": "openEHR-EHR-ACTION.emr_first_page.v1",
-    "archetypeId":2938,
+    "archetypEI_Removed":2938,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0025]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -234,31 +234,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0015]/items[at0023]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0026]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"EMR first page id",
         "nodePath": "/links[at0027]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
    },
    {
     "archetypeName": "openEHR-EHR-ACTION.emr_document.v1",
-    "archetypeId":2939,
+    "archetypEI_Removed":2939,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0026]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -270,31 +270,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0015]/items[at0023]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0027]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Document ID",
         "nodePath": "/links[at0028]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
    },
    {
     "archetypeName": "openEHR-EHR-ACTION.fee.v1",
-    "archetypeId":2940,
+    "archetypEI_Removed":2940,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0017]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -312,31 +312,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0002]/items[at0004]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Fee identifier",
         "nodePath": "/links[at0019]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
    },
    {
     "archetypeName": "openEHR-EHR-ACTION.imaging_exam.v1",
-    "archetypeId":2941,
+    "archetypEI_Removed":2941,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0024]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -348,31 +348,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0015]/items[at0023]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0025]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Requester order identifier",
         "nodePath": "/links[at0026]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
    },
    {
     "archetypeName": "openEHR-EHR-ACTION.lab_test.v1",
-    "archetypeId":2942,
+    "archetypEI_Removed":2942,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0024]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -384,31 +384,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0015]/items[at0023]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0025]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Requestor identifier",
         "nodePath": "/links[at0026]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
    },
    {
     "archetypeName": "openEHR-EHR-ACTION.management.v1",
-    "archetypeId":2943,
+    "archetypEI_Removed":2943,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0017]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -426,31 +426,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0002]/items[at0004]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Management identifier",
         "nodePath": "/links[at0019]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
    },
    {
     "archetypeName": "openEHR-EHR-ACTION.nursing.v1",
-    "archetypeId":2944,
+    "archetypEI_Removed":2944,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0016]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -462,31 +462,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0002]/items[at0004]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0017]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Nursing identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
    },
    {
     "archetypeName": "openEHR-EHR-ACTION.operation.v1",
-    "archetypeId":2945,
+    "archetypEI_Removed":2945,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0024]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -498,37 +498,37 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0015]/items[at0023]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0025]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Requested identifier",
         "nodePath": "/links[at0026]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
    },
    {
     "archetypeName": "openEHR-EHR-ACTION.medication.v1",
-    "archetypeId":2946,
+    "archetypEI_Removed":2946,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0022]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
       "nodeName":"Dispensed to",
       "nodePath": "/protocol[at0030]/items[at0031]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"The name of the person to whom this was dispensed, if not the subject of care."
       },
       {
@@ -540,31 +540,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0030]/items[at0044]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"The information about the provider."
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0046]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Medication instruction id",
         "nodePath": "/links[at0047]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
    },
    {
     "archetypeName": "openEHR-EHR-ACTION.order_excute.v1",
-    "archetypeId":2947,
+    "archetypEI_Removed":2947,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0028]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -582,31 +582,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0017]/items[at0021]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0029]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Order excute identifier",
         "nodePath": "/links[at0030]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
    },
    {
     "archetypeName": "openEHR-EHR-ACTION.prescription.v1",
-    "archetypeId":2949,
+    "archetypEI_Removed":2949,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0017]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -624,31 +624,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0002]/items[at0004]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Prescription identifier",
         "nodePath": "/links[at0019]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
    },
    {
     "archetypeName": "openEHR-EHR-ACTION.remain.v1",
-    "archetypeId":2950,
+    "archetypEI_Removed":2950,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0017]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -666,31 +666,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0002]/items[at0004]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Request identifier",
         "nodePath": "/links[at0019]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-ACTION.therapy.v1",
-    "archetypeId":2951,
+    "archetypEI_Removed":2951,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0016]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -702,31 +702,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0002]/items[at0004]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0017]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Therapy identifier",
         "nodePath": "/links[at0018]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-ACTION.transfusion.v1",
-    "archetypeId":2952,
+    "archetypEI_Removed":2952,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0030]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -738,31 +738,31 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0023]/items[at0025]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0031]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Transfusion identifier",
         "nodePath": "/links[at0032]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-ACTION.order.v1",
-    "archetypeId":2957,
+    "archetypEI_Removed":2957,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0028]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -780,43 +780,43 @@
       {
       "nodeName":"Performer",
       "nodePath": "/protocol[at0017]/items[at0021]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
         "nodeName":"Encounter identifier",
         "nodePath": "/links[at0029]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       },
       {
         "nodeName":"Order identifier",
         "nodePath": "/links[at0030]",
-        "type":"QI_Link",
+        "type":"EI_Encrypt",
         "description":"*"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-EVALUATION.SurveyResults.v1",
-    "archetypeId":2900,
+    "archetypEI_Removed":2900,
     "fields":[
       {
       "nodeName":"Result Squence",
       "nodePath": "/data[at0001]/items[at0002]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"答案序号"
       },
       {
       "nodeName":"Encounter Identifier",
       "nodePath": "/data[at0001]/items[at0006]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"Patient Identifier",
       "nodePath": "/data[at0001]/items[at0007]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人号"
       },
       {
@@ -828,7 +828,7 @@
       {
       "nodeName":"Organization Identifier",
       "nodePath": "/data[at0001]/items[at0010]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"组织机构号"
       },
       {
@@ -846,49 +846,49 @@
       {
       "nodeName":"Document Identifier",
       "nodePath": "/data[at0001]/items[at0013]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"档案编号"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-EVALUATION.QuestionNaire.v1",
-    "archetypeId":2901,
+    "archetypEI_Removed":2901,
     "fields":[
     ]
   },
   {
     "archetypeName": "openEHR-EHR-EVALUATION.userAnswer.v1",
-    "archetypeId":2918,
+    "archetypEI_Removed":2918,
     "fields":[
       {
       "nodeName":"Organization Identifier",
       "nodePath": "/data[at0001]/items[at0008]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"组织机构号"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-EVALUATION.personal_history.v1",
-    "archetypeId":2922,
+    "archetypEI_Removed":2922,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0047]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人编号"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-EVALUATION.problem_diagnosis.v1",
-    "archetypeId":2959,
+    "archetypEI_Removed":2959,
     "fields":[
       {
       "nodeName":"patientId",
       "nodePath": "/subject[at0059]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人编号"
       },
       {
@@ -918,49 +918,49 @@
       {
       "nodeName":"Doctor",
       "nodePath": "/data[at0001]/items[at0054]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"诊断来源医生"
       },
       {
       "nodeName":"DOCTOR_NAME",
       "nodePath": "/data[at0001]/items[at0066]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"诊断医生"
       },
       {
       "nodeName":"ORGANIZATIONIDENTIFIER",
       "nodePath": "/data[at0001]/items[at0067]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"组织编号"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0060]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-EVALUATION.Allergy_information.v1",
-    "archetypeId":2964,
+    "archetypEI_Removed":2964,
     "fields":[
       {
       "nodeName":"Organization Identifier",
       "nodePath": "/protocol[at0001]/items[at0002]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"医疗机构名称以及编号"
       },
       {
       "nodeName":"Patient Identifier",
       "nodePath": "/protocol[at0001]/items[at0003]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人号"
       },
       {
       "nodeName":"Encounter Identifier",
       "nodePath": "/protocol[at0001]/items[at0004]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
@@ -972,7 +972,7 @@
       {
       "nodeName":"Editor",
       "nodePath": "/protocol[at0001]/items[at0010]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"记录者"
       },
       {
@@ -985,24 +985,24 @@
   },
   {
     "archetypeName": "openEHR-EHR-EVALUATION.change_of_Condition.v1",
-    "archetypeId":2965,
+    "archetypEI_Removed":2965,
     "fields":[
       {
       "nodeName":"Organization Identifier",
       "nodePath": "/protocol[at0001]/items[at0002]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"医疗机构名称以及编号"
       },
       {
       "nodeName":"Encounter Identifier",
       "nodePath": "/protocol[at0001]/items[at0003]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"Patient Identifier",
       "nodePath": "/protocol[at0001]/items[at0005]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人号"
       },
       {
@@ -1014,7 +1014,7 @@
       {
       "nodeName":"Actor",
       "nodePath": "/protocol[at0001]/items[at0007]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"操作人员名称以及编号"
       },
       {
@@ -1027,7 +1027,7 @@
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.imaging_exam_image_series.v2",
-    "archetypeId":2869,
+    "archetypEI_Removed":2869,
     "fields":[
       {
       "nodeName":"Image DateTime",
@@ -1038,37 +1038,37 @@
       {
       "nodeName":"Image absolute path",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0019]/items[at0024]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"图像存储绝对路径"
       },
       {
       "nodeName":"Image relative path",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0019]/items[at0025]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"图像存储相对路径"
       },
       {
-      "nodeName":"Receiver order identifier(en)",
+      "nodeName":"RecEI_Removever order identifier(en)",
       "nodePath": "/protocol[at0014]/items[at0016]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"The local identifier assigned to the examination order by the order filler, usually by the Radiology Information System (RIS). Usually equivalent to the HL7 Filler Order Number."
       },
       {
       "nodeName":"Media name",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0019]/items[at0030]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"媒质名称"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.emr_document.v1",
-    "archetypeId":2870,
+    "archetypEI_Removed":2870,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0021]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人号"
       },
       {
@@ -1104,25 +1104,25 @@
       {
       "nodeName":"Detail Director",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]/items[at0025]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
       "nodeName":"Detail Detupy Director",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]/items[at0026]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
       "nodeName":"Detail Rresident Doctor",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]/items[at0028]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
       "nodeName":"Detail Doctor",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]/items[at0029]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
@@ -1134,31 +1134,31 @@
       {
       "nodeName":"Director",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0031]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
       "nodeName":"Detupy Director",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0032]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
       "nodeName":"Attending Docator",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0033]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
       "nodeName":"Rresident Doctor",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0034]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
       "nodeName":"Doctor",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0036]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
@@ -1188,14 +1188,14 @@
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0022]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.imaging_exam.v4",
-    "archetypeId":2872,
+    "archetypEI_Removed":2872,
     "fields":[
       {
       "nodeName":"Comment",
@@ -1210,39 +1210,39 @@
       "description":"结果发布时的日期时间"
       },
       {
-      "nodeName":"Receiving imaging service",
+      "nodeName":"RecEI_Removeving imaging service",
       "nodePath": "/protocol[at0025]/items[at0026]/archetype_id",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"病人信息"
       },
       {
       "nodeName":"Requester order identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0028]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"申请号"
       },
       {
       "nodeName":"Requester",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0030]/archetype_id",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"申请医生"
       },
       {
-      "nodeName":"Receiver order identifier",
+      "nodeName":"RecEI_Removever order identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0031]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"检查号"
       },
       {
       "nodeName":"Report identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0033]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"报告号"
       },
       {
       "nodeName":"Image identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0034]/items[at0035]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"影像ID"
       },
       {
@@ -1255,7 +1255,7 @@
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.imaging_exam.v3",
-    "archetypeId":2873,
+    "archetypEI_Removed":2873,
     "fields":[
      {
       "nodeName":"Comment",
@@ -1270,39 +1270,39 @@
       "description":"结果发布时的日期时间"
       },
       {
-      "nodeName":"Receiving imaging service",
+      "nodeName":"RecEI_Removeving imaging service",
       "nodePath": "/protocol[at0025]/items[at0026]/archetype_id",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"病人信息"
       },
       {
       "nodeName":"Requester order identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0028]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"申请号"
       },
       {
       "nodeName":"Requester",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0030]/archetype_id",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"申请医生"
       },
       {
-      "nodeName":"Receiver order identifier",
+      "nodeName":"RecEI_Removever order identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0031]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"检查号"
       },
       {
       "nodeName":"Report identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0033]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"报告号"
       },
       {
       "nodeName":"Image identifier",
       "nodePath": "/protocol[at0025]/items[at0027]/items[at0034]/items[at0035]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"影像ID"
       },
       {
@@ -1315,7 +1315,7 @@
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.imaging_exam_image_series.v3",
-    "archetypeId":2875,
+    "archetypEI_Removed":2875,
     "fields":[
       {
       "nodeName":"Image DateTime",
@@ -1324,51 +1324,51 @@
       "description":"检查日期时间"
       },
       {
-      "nodeName":"Receiver order identifier",
+      "nodeName":"RecEI_Removever order identifier",
       "nodePath": "/protocol[at0014]/items[at0016]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"检查号"
       },
       {
       "nodeName":"Image identifier",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0019]/items[at0020]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"影像号"
       },
       {
       "nodeName":"Image absolute path",
       "nodePath":"/data[at0001]/events[at0002]/data[at0003]/items[at0019]/items[at0024]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"图像存储绝对路径"
       },
       {
       "nodeName":"Image relative path",
       "nodePath":"/data[at0001]/events[at0002]/data[at0003]/items[at0019]/items[at0025]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"图像存储相对路径"
       },
       {
       "nodeName":"Media name",
       "nodePath":"/data[at0001]/events[at0002]/data[at0003]/items[at0019]/items[at0030]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"媒质名称"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.Patient_Recent_Information.v1",
-    "archetypeId":2876,
+    "archetypEI_Removed":2876,
     "fields":[
       {
       "nodeName":"Visit Id",
       "nodePath": "/data[at0001]/events[at0005]/data[at0006]/items[at0007]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
       "nodeName":"Patient Id",
       "nodePath": "/data[at0001]/events[at0005]/data[at0006]/items[at0008]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -1392,25 +1392,25 @@
       {
       "nodeName":"Doctor",
       "nodePath": "/data[at0001]/events[at0005]/data[at0006]/items[at0013]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
       "nodeName":"Attending Doctor",
       "nodePath": "/data[at0001]/events[at0005]/data[at0006]/items[at0014]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
       "nodeName":"Resident Doctor",
       "nodePath": "/data[at0001]/events[at0005]/data[at0006]/items[at0015]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
       "nodeName":"Bed",
       "nodePath": "/data[at0001]/events[at0005]/data[at0006]/items[at0016]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
@@ -1429,7 +1429,7 @@
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.imaging_exam_report.v1",
-    "archetypeId":2877,
+    "archetypEI_Removed":2877,
     "fields":[
       {
       "nodeName":"DateTime issued",
@@ -1444,57 +1444,57 @@
       "description":"检查报告备注"
       },
       {
-      "nodeName":"Receiver order identifier",
+      "nodeName":"RecEI_Removever order identifier",
       "nodePath": "/protocol[at0014]/at0014[at0016]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"检查号"
       },
       {
       "nodeName":"Representation absolute path",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0027]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"报告存储绝对路径"
       },
       {
       "nodeName":"Representation relative path",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0028]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"报告存储相对路径"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0029]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人号"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0030]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"Order identifier",
       "nodePath": "/links[at0031]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"医嘱号"
       },
       {
       "nodeName":"Requester Order identifier",
       "nodePath": "/links[at0032]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"检查申请号"
       },
       {
       "nodeName":"Reporter",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0034]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"报告人"
       },
       {
       "nodeName":"Check Reporter",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0035]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"报告审核者"
       },
       {
@@ -1506,20 +1506,20 @@
       {
       "nodeName":"organisation Identifier",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0038]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"机构编码"
       },
       {
       "nodeName":"Exam system id",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0041]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"检查系统厂商标识"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.physical_sign.v1",
-    "archetypeId":2878,
+    "archetypEI_Removed":2878,
     "fields":[
       {
       "nodeName":"Time point",
@@ -1530,7 +1530,7 @@
       {
       "nodeName":"Recorder",
       "nodePath": "/protocol[at0008]/items[at0009]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"记录者"
       },
       {
@@ -1542,26 +1542,26 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0014]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人号信息"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0015]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"organization Identifier",
       "nodePath": "/protocol[at0008]/items[at0018]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"机构编码"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.lab_test_single.v1",
-    "archetypeId":2879,
+    "archetypEI_Removed":2879,
     "fields":[
       {
       "nodeName":"Datetime test excuted",
@@ -1570,45 +1570,45 @@
       "description":"检验日期时间"
       },
       {
-      "nodeName":"Receiver provider",
+      "nodeName":"RecEI_Removever provider",
       "nodePath": "/otherParticipations[at0.19]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"检验医师"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0.22]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人号"
       },
       {
       "nodeName":"Reporter",
       "nodePath": "/otherParticipations[at0.24]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"报告医师"
       },
       {
       "nodeName":"Auditing Physician",
       "nodePath": "/otherParticipations[at0.25]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"审核医师"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0.85]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Encounter identifier(en)"
       },
       {
       "nodeName":"Requestor order identifier",
       "nodePath": "/links[at0.88]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"化验申请号"
       },
       {
       "nodeName":"Requestor identifier",
       "nodePath": "/protocol[at0004]/items[at0062]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"检验申请号"
       },
       {
@@ -1626,17 +1626,17 @@
       {
       "nodeName":"Testor",
       "nodePath": "/protocol[at0004]/items[at0.101]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"检验人"
       },
       {
       "nodeName":"checkor",
       "nodePath": "/protocol[at0004]/items[at0.102]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"审核人"
       },
       {
-      "nodeName":"Receive sample dateTime",
+      "nodeName":"RecEI_Removeve sample dateTime",
       "nodePath": "/protocol[at0004]/items[at0.103]/value",
       "type":"QI_DateRecord",
       "description":"接标时间"
@@ -1644,19 +1644,19 @@
       {
       "nodeName":"TESTTUBECODE",
       "nodePath": "/protocol[at0004]/items[at0.116]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"试管代码"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.emr_first_page.v1",
-    "archetypeId":2881,
+    "archetypEI_Removed":2881,
     "fields":[
       {
       "nodeName":"EMR first page id",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"EMR first page id"
       },
       {
@@ -1674,7 +1674,7 @@
       {
       "nodeName":"Last operater",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Last operater"
       },
       {
@@ -1692,20 +1692,20 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0011]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Patient identifier"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0012]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Encounter identifier"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.Imaging_examination_report.v1",
-    "archetypeId":2883,
+    "archetypEI_Removed":2883,
     "fields":[
       {
       "nodeName":"Exam start date time",
@@ -1722,13 +1722,13 @@
       {
       "nodeName":"Ward",
       "nodePath": "/data[at0001]/events[at0002]/data[at0005]/items[at0014]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"病区"
       },
       {
       "nodeName":"Memo",
       "nodePath": "/data[at0001]/events[at0002]/data[at0005]/items[at0019]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"床号"
       },
       {
@@ -1740,25 +1740,25 @@
       {
       "nodeName":"Representation absolute path",
       "nodePath": "/data[at0001]/events[at0002]/data[at0005]/items[at0020]/items[at0031]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"报告存储绝对路径"
       },
       {
       "nodeName":"Representation relative path",
       "nodePath": "/data[at0001]/events[at0002]/data[at0005]/items[at0020]/items[at0032]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"报告存储相对路径"
       },
       {
       "nodeName":"Reporter",
       "nodePath": "/data[at0001]/events[at0002]/data[at0005]/items[at0020]/items[at0034]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"报告人"
       },
       {
       "nodeName":"Check Reporter",
       "nodePath": "/data[at0001]/events[at0002]/data[at0005]/items[at0020]/items[at0035]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"报告审核者"
       },
       {
@@ -1770,49 +1770,49 @@
       {
       "nodeName":"organisation Identifier",
       "nodePath": "/data[at0001]/events[at0002]/data[at0005]/items[at0020]/items[at0038]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"机构编码"
       },
       {
       "nodeName":"Exam system id",
       "nodePath": "/data[at0001]/events[at0002]/data[at0005]/items[at0020]/items[at0042]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"检查系统厂商标识"
       },
       {
       "nodeName":"Exam Doctor",
       "nodePath": "/data[at0001]/events[at0002]/data[at0005]/items[at0049]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"检查医师"
       },
       {
       "nodeName":"Check doctor",
       "nodePath":"/data[at0001]/events[at0002]/data[at0005]/items[at0050]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"审核医师"
       },
       {
-      "nodeName":"Receiver order identifier",
+      "nodeName":"RecEI_Removever order identifier",
       "nodePath":"/protocol[at0055]/items[at0056]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"检查号"
       },
       {
       "nodeName":"Requester Order identifier",
       "nodePath":"/links[at0059]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"检查申请号"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0060]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"Schedule identifier",
       "nodePath":"/data[at0001]/events[at0002]/data[at0005]/items[at0064]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"预约号"
       },
       {
@@ -1824,7 +1824,7 @@
       {
       "nodeName":"Request doctor",
       "nodePath":"/data[at0001]/events[at0002]/data[at0005]/items[at0067]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"申请医师"
       },
       {
@@ -1849,7 +1849,7 @@
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.Imaging_series.v1",
-    "archetypeId":2884,
+    "archetypEI_Removed":2884,
     "fields":[
       {
       "nodeName":"Image DateTime",
@@ -1860,37 +1860,37 @@
       {
       "nodeName":"Image identifier",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
       "nodeName":"Image absolute path",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0010]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
       "nodeName":"Image relative path",
       "nodePath": "/data[at0001]/events[at0002]/data[at0003]/items[at0011]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"*"
       },
       {
-      "nodeName":"Receiver order identifier",
+      "nodeName":"RecEI_Removever order identifier",
       "nodePath": "/protocol[at0013]/items[at0014]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.follow_up_visit.v1.1",
-    "archetypeId":2913,
+    "archetypEI_Removed":2913,
     "fields":[
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0019]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -1902,85 +1902,85 @@
       {
       "nodeName":"Follow up identifier",
       "nodePath": "/protocol[at0017]/items[at0018]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0020]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.blood_pressure.v1",
-    "archetypeId":2920,
+    "archetypEI_Removed":2920,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at1059]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       }
     ]
   },
   {
-    "archetypeName": "openEHR-EHR-OBSERVATION.body_weight.v1",
-    "archetypeId":2921,
+    "archetypeName": "openEHR-EHR-OBSERVATION.body_wEI_Removeght.v1",
+    "archetypEI_Removed":2921,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0027]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.CCTA_exam_parameter.v1",
-    "archetypeId":2923,
+    "archetypEI_Removed":2923,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0035]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.Exam_Intent.v1",
-    "archetypeId":2924,
+    "archetypEI_Removed":2924,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0010]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       }
     ]
   },
   {
-    "archetypeName": "openEHR-EHR-OBSERVATION.height.v1",
-    "archetypeId":2925,
+    "archetypeName": "openEHR-EHR-OBSERVATION.hEI_Removeght.v1",
+    "archetypEI_Removed":2925,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0021]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.Myocardial_infarction.v1",
-    "archetypeId":2926,
+    "archetypEI_Removed":2926,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0006]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -1993,24 +1993,24 @@
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.pulse.v1",
-    "archetypeId":2927,
+    "archetypEI_Removed":2927,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at1060]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.story-cerebrovascular_disease.v1",
-    "archetypeId":2928,
+    "archetypEI_Removed":2928,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0.27]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -2029,12 +2029,12 @@
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.story-diabetes.v1",
-    "archetypeId":2929,
+    "archetypEI_Removed":2929,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0.48]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -2047,12 +2047,12 @@
   },
   {
     "archetypeName": " openEHR-EHR-OBSERVATION.story-dyslipidemia.v1",
-    "archetypeId":2930,
+    "archetypEI_Removed":2930,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0.50]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -2065,12 +2065,12 @@
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.story-hypertension.v1",
-    "archetypeId":2931,
+    "archetypEI_Removed":2931,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0.38]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -2083,12 +2083,12 @@
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.story-peripheral_vascular_disease.v1",
-    "archetypeId":2932,
+    "archetypEI_Removed":2932,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath": "/subject[at0.23]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"*"
       },
       {
@@ -2101,30 +2101,30 @@
   },
   {
     "archetypeName": "openEHR-EHR-OBSERVATION.Infectious_Diseases.v1",
-    "archetypeId":2963,
+    "archetypEI_Removed":2963,
     "fields":[
       {
       "nodeName":"Organization Identifier",
       "nodePath": "protocol[at0001]/items[at0002]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"医疗机构"
       },
       {
       "nodeName":"patient Identifier",
       "nodePath": "protocol[at0001]/items[at0004]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人号"
       },
       {
       "nodeName":"Encounter Identifier",
       "nodePath": "protocol[at0001]/items[at0005]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"Patient Name",
       "nodePath": "protocol[at0001]/items[at0006]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"病人名称"
       },
       {
@@ -2136,7 +2136,7 @@
       {
       "nodeName":"Parent Name",
       "nodePath": "protocol[at0001]/items[at0011]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"家长名称"
       },
       {
@@ -2148,7 +2148,7 @@
       {
       "nodeName":"Identity Card No",
       "nodePath": "protocol[at0001]/items[at0013]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"身份证号"
       },
       {
@@ -2172,7 +2172,7 @@
       {
       "nodeName":"Patient Phone NO",
       "nodePath": "protocol[at0001]/items[at0018]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"病人联系电话"
       },
       {
@@ -2220,25 +2220,25 @@
       {
       "nodeName":"Inspection Institution",
       "nodePath": "protocol[at0001]/items[at0037]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"检测单位名称"
       },
       {
       "nodeName":"Reporter",
       "nodePath": "protocol[at0001]/items[at0038]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"报告人"
       },
       {
       "nodeName":"Reporter Department",
       "nodePath": "protocol[at0001]/items[at0039]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"报告人所在部门的名称以及编号"
       },
       {
       "nodeName":"Doctor Phone NO",
       "nodePath": "protocol[at0001]/items[at0040]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"报告人联系方式"
       },
       {
@@ -2257,24 +2257,24 @@
   },
   {
     "archetypeName": "openEHR-EHR-INSTRUCTION.order.v1",
-    "archetypeId":2863,
+    "archetypEI_Removed":2863,
     "fields":[
       {
       "nodeName":"Order Identifier",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0003]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"医嘱ID"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0012]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人ID"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0013]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊ID"
       },
       {
@@ -2304,13 +2304,13 @@
       {
       "nodeName":"Ordering doctor",
       "nodePath": "/protocol[at0024]/items[at0026]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"开医嘱医生及编码"
       },
       {
       "nodeName":"Stopping doctor",
       "nodePath": "/protocol[at0024]/items[at0027]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"停止医嘱医生及编码"
       },
       {
@@ -2334,38 +2334,38 @@
       {
       "nodeName":"Performer",
       "nodePath":"/protocol[at0024]/items[at0036]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"执行人代码及名称"
       },
       {
       "nodeName":"Start nurse",
       "nodePath":"/protocol[at0024]/items[at0040]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"校对开始医嘱护士名称及编码"
       },
       {
       "nodeName":"Stop nurse",
       "nodePath": "/protocol[at0024]/items[at0041]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"校对停止医嘱护士名称及编码"
       },
       {
       "nodeName":"Cancle doctor",
       "nodePath":"/protocol[at0024]/items[at0042]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"医嘱取消人"
       },
       {
       "nodeName":"Organization identifier",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0043]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"组织机构编码"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-INSTRUCTION.operation_arrangement.v1",
-    "archetypeId":2864,
+    "archetypEI_Removed":2864,
     "fields":[
       {
       "nodeName":"Operation DateTime",
@@ -2376,25 +2376,25 @@
       {
       "nodeName":"Operating room",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0010]/items[at0011]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"手术间"
       },
       {
       "nodeName":"Operating room number",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0010]/items[at0012]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"手术间号码"
       },
       {
       "nodeName":"Sequence",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0010]/items[at0013]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"台次"
       },
       {
       "nodeName":"Operation table",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0010]/items[at0014]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"手术台"
       },
       {
@@ -2412,121 +2412,121 @@
       {
       "nodeName":"Surgical doctor one",
       "nodePath": "/otherParticipations[at0022]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Surgical doctor one"
       },
       {
       "nodeName":"Surgical doctor two",
       "nodePath": "/otherParticipations[at0023]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Surgical doctor two"
       },
       {
       "nodeName":"Assistant operator one",
       "nodePath": "/otherParticipations[at0024]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Assistant operator one"
       },
       {
       "nodeName":"Assistant operator two",
       "nodePath": "/otherParticipations[at0025]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Assistant operator two"
       },
       {
       "nodeName":"Instrument nurse one",
       "nodePath": "/otherParticipations[at0026]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Instrument nurse one"
       },
       {
       "nodeName":"Inspection nurse one",
       "nodePath": "/otherParticipations[at0027]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Inspection nurse one"
       },
       {
       "nodeName":"Anesthetist",
       "nodePath": "/otherParticipations[at0028]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Anesthetist"
       },
       {
       "nodeName":"Assistant anesthetist one",
       "nodePath": "/otherParticipations[at0029]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Assistant anesthetist one"
       },
       {
       "nodeName":"Assistant anesthetist two",
       "nodePath": "/otherParticipations[at0030]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Assistant anesthetist two"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0031]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊ID"
       },
       {
       "nodeName":"Requested identifier",
       "nodePath": "/links[at0032]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"手术申请号"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0033]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人ID"
       },
       {
       "nodeName":"Assistant operator three",
       "nodePath":"/otherParticipations[at0034]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Assistant operator three"
       },
       {
       "nodeName":"Assistant operator four",
       "nodePath": "/otherParticipations[at0035]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Assistant operator four"
       },
       {
       "nodeName":"Instrument nurse two",
       "nodePath":"/otherParticipations[at0036]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Instrument nurse two"
       },
       {
       "nodeName":"Inspection nurse two",
       "nodePath":"/otherParticipations[at0037]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Inspection nurse two"
       },
       {
       "nodeName":"organisation Identifier",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0038]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"机构编码"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-INSTRUCTION.consultation.v1",
-    "archetypeId":2865,
+    "archetypEI_Removed":2865,
     "fields":[
       {
       "nodeName":"Consult request identifier",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0003]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"会诊申请号"
       },
       {
       "nodeName":"Intended consult doctor",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0006]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"拟请医生"
       },
       {
@@ -2544,19 +2544,19 @@
       {
       "nodeName":"Patient identifier",
       "nodePath": "/subject[at0011]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"患者ID"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath": "/links[at0012]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊ID"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0013]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"医嘱ID"
       },
       {
@@ -2568,13 +2568,13 @@
       {
       "nodeName":"Bed",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0017]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"床号"
       },
       {
       "nodeName":"Doctor",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0022]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"会诊医生"
       },
       {
@@ -2586,31 +2586,31 @@
       {
       "nodeName":"organization Identifier",
       "nodePath": "/activities[at0001]/description[at0002]/items[at0024]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"机构编码"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-INSTRUCTION.prescription.v1",
-    "archetypeId":2866,
+    "archetypEI_Removed":2866,
     "fields":[
       {
       "nodeName":"Prescription identifier",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0003]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"处方号"
       },
       {
       "nodeName":"Mandator name",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0004]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"委托人名字"
       },
       {
       "nodeName":"Mandator identity card",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0005]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"委托人身份证"
       },
       {
@@ -2628,13 +2628,13 @@
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0031]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"Order identifier",
       "nodePath": "/links[at0032]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"医嘱号"
       },
       {
@@ -2652,25 +2652,25 @@
       {
       "nodeName":"organisation Identifier",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0044]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"医疗机构"
       },
       {
       "nodeName":"patient Identifier",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0012]/items[at0050]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人ID"
       },
       {
       "nodeName":"encounter Identifier",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0012]/items[at0051]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊ID"
       },
       {
       "nodeName":"Patient Identifier",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0055]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人号"
       },
       {
@@ -2682,7 +2682,7 @@
       {
       "nodeName":"Provide Drug Person",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0059]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"发药人"
       },
       {
@@ -2706,44 +2706,44 @@
       {
       "nodeName":"Fetch Drug Person",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0063]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"取药人"
       },
       {
       "nodeName":"Billing doctor",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0064]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"划价医生"
       },
       {
       "nodeName":"Prescribe doctor",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0065]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"调配医生"
       },
       {
       "nodeName":"doctor_id",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0066]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"开单医生ID"
       },
       {
       "nodeName":"doctor_name",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0067]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"开单医生姓名"
       },
       {
       "nodeName":"deploy",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0068]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"调配医师"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-INSTRUCTION.request-imaging_exam_zju.v1",
-    "archetypeId":2868,
+    "archetypEI_Removed":2868,
     "fields":[
       {
       "nodeName":"Schedule datetime",
@@ -2754,37 +2754,37 @@
       {
       "nodeName":"Schedule doctor",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.17]/items[at0.22]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"预约医生"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0.23]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人号"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0.24]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0.25]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"医嘱编号"
       },
       {
       "nodeName":"Requester provider",
       "nodePath":"/otherParticipations[at0.26]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Requester provider"
       },
       {
       "nodeName":"Requester organization",
       "nodePath":"/otherParticipations[at0.28]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Requester organization"
       },
       {
@@ -2802,13 +2802,13 @@
       {
       "nodeName":"Exam identifier",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.17]/items[at0.36]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"检查号"
       },
       {
       "nodeName":"Requestor Identifier",
       "nodePath":"/protocol[at0008]/items[at0010]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Requestor Identifier"
       },
       {
@@ -2820,7 +2820,7 @@
       {
       "nodeName":"Exam requested",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.17]/items[at0121.1]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"检查申请号"
       },
       {
@@ -2832,85 +2832,85 @@
       {
       "nodeName":"Instrument",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.17]/items[at0.40]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"检查仪器信息"
       },
       {
       "nodeName":"organisation Identifier",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.42]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"机构编码"
       },
       {
-      "nodeName":"receiver Provider",
+      "nodeName":"recEI_Removever Provider",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.17]/items[at0.49]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"检查医生"
       },
       {
       "nodeName":"ORDERIDENTIFIER",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.17]/items[at0.51]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"医嘱号"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-INSTRUCTION.request-lab_test.v1",
-    "archetypeId":2871,
+    "archetypEI_Removed":2871,
     "fields":[
       {
       "nodeName":"Requester provider",
       "nodePath":"/otherParticipations[at0.164]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Requester provider"
       },
       {
       "nodeName":"Requester organization",
       "nodePath":"/otherParticipations[at0.166]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Requester organization"
       },
       {
-      "nodeName":"Receiver provider",
+      "nodeName":"RecEI_Removever provider",
       "nodePath":"/otherParticipations[at0.167]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Reciever provider"
       },
       {
-      "nodeName":"Receiver organization",
+      "nodeName":"RecEI_Removever organization",
       "nodePath":"/otherParticipations[at0.169]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Reciever organization1"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0.161]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Patient identifier"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0.162]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0.163]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"医嘱号"
       },
       {
       "nodeName":"Requestor Identifier",
       "nodePath":"/protocol[at0008]/items[at0010]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"检验申请号"
       },
       {
       "nodeName":"Requestor organization",
       "nodePath":"/protocol[at0008]/items[at0141.3]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"申请机构"
       },
       {
@@ -2928,14 +2928,14 @@
       {
       "nodeName":"organisation Identifier",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.173]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"医疗机构"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-INSTRUCTION.request-operation.v1",
-    "archetypeId":2874,
+    "archetypEI_Removed":2874,
     "fields":[
       {
       "nodeName":"Request datetime",
@@ -2946,44 +2946,44 @@
       {
       "nodeName":"Request doctor",
       "nodePath":"/links[at0.168]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Order identifier"
       },
       {
       "nodeName":"Request doctor",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.163]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Request doctor"
       },
       {
       "nodeName":"Operative Doctor",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.165]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Operative Doctor"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0.166]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Patient identifier"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0.167]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Encounter identifier"
       },
       {
       "nodeName":"Requestor Identifier",
       "nodePath":"/protocol[at0008]/items[at0010]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Requestor Identifier"
       },
       {
-      "nodeName":"Receiver identifier",
+      "nodeName":"RecEI_Removever identifier",
       "nodePath":"/protocol[at0008]/items[at0011]/value",
-      "type":"QI_Link",
-      "description":"Receiver identifier"
+      "type":"EI_Encrypt",
+      "description":"RecEI_Removever identifier"
       },
       {
       "nodeName":"Date time service",
@@ -2994,26 +2994,26 @@
       {
       "nodeName":"Operation requested",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.155]/items[at0121.1]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"手术申请号"
       },
       {
       "nodeName":"organisation Identifier",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.181]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"机构编码"
       },
       {
       "nodeName":"Organisation Identifier",
       "nodePath":"/activities[at0001]/description[at0009]/items[at0.155]/items[at0.182]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"机构编码"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-INSTRUCTION.nursing.v1",
-    "archetypeId":2882,
+    "archetypEI_Removed":2882,
     "fields":[
       {
       "nodeName":"Suggest",
@@ -3030,37 +3030,37 @@
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0035]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Patient identifier"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0036]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Encounter identifier"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0037]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Order identifier"
       },
       {
       "nodeName":"Nursing identifier",
       "nodePath":"/activities[at0001]/description[at0002]/items[at0038]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Nursing identifier"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-ADMIN_ENTRY.charge.v1",
-    "archetypeId":2851,
+    "archetypEI_Removed":2851,
     "fields":[
       {
       "nodeName":"Requestor",
       "nodePath":"/data[at0001]/items[at0014]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"开单人员"
       },
       {
@@ -3072,37 +3072,37 @@
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/subject[at0017]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人ID"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0018]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0019]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"医嘱号"
       },
       {
       "nodeName":"Prescription number",
       "nodePath":"/data[at0001]/items[at0020]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"处方号"
       },
       {
       "nodeName":"Organization identifier",
       "nodePath":"/data[at0001]/items[at0023]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"组织机构编码"
       },
       {
       "nodeName":"Invoice no",
       "nodePath":"/data[at0001]/items[at0024]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"发票号"
       },
       {
@@ -3120,37 +3120,37 @@
       {
       "nodeName":"Presc id",
       "nodePath":"/data[at0001]/items[at0031]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"对应处方ID"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-ADMIN_ENTRY.charge_account.v1",
-    "archetypeId":2852,
+    "archetypEI_Removed":2852,
     "fields":[
       {
       "nodeName":"charge account no",
       "nodePath":"/data[at0001]/items[at0002]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人医疗账户编号"
       },
       {
       "nodeName":"Patient id",
       "nodePath":"/data[at0001]/items[at0003]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人ID"
       },
       {
       "nodeName":"Visit id",
       "nodePath":"/data[at0001]/items[at0004]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"Attending physician",
       "nodePath":"/data[at0001]/items[at0019]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"主治医生"
       },
       {
@@ -3168,79 +3168,79 @@
       {
       "nodeName":"Settlement operator",
       "nodePath":"/data[at0001]/items[at0022]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"结算操作人"
       },
       {
       "nodeName":"organisation Identifier",
       "nodePath": "/data[at0001]/items[at0023]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"组织机构编码"
       },
       {
       "nodeName":"Settlement number",
       "nodePath":"/data[at0001]/items[at0024]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"结算单号"
       },
       {
       "nodeName":"Invoice number",
       "nodePath":"/data[at0001]/items[at0025]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"发票号"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-ADMIN_ENTRY.charge_item.v1",
-    "archetypeId":2854,
+    "archetypEI_Removed":2854,
     "fields":[
       {
       "nodeName":"Patient id",
       "nodePath":"/data[at0001]/items[at0002]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人ID"
       },
       {
       "nodeName":"Visit id",
       "nodePath":"/data[at0001]/items[at0003]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"Charge account no",
       "nodePath":"/data[at0001]/items[at0004]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人医疗账户编号"
       },
       {
       "nodeName":"organisation Identifier",
       "nodePath":"/data[at0001]/items[at0009]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"机构编码"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-ADMIN_ENTRY.person.v1",
-    "archetypeId":2855,
+    "archetypEI_Removed":2855,
     "fields":[
       {
       "nodeName":"Patient id",
       "nodePath":"/data[at0001]/items[at0007]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人ID"
       },
       {
       "nodeName":"Patient name",
       "nodePath":"/data[at0001]/items[at0010]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"姓名"
       },
       {
       "nodeName":"Name phonetic",
       "nodePath":"/data[at0001]/items[at0011]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"拼音"
       },
       {
@@ -3288,37 +3288,37 @@
       {
       "nodeName":"Identity card no",
       "nodePath":"/data[at0001]/items[at0026]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"居民身份证号码"
       },
       {
       "nodeName":"Household no",
       "nodePath":"/data[at0001]/items[at0027]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"居民户口簿号码"
       },
       {
       "nodeName":"Passport no",
       "nodePath":"/data[at0001]/items[at0028]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"护照号码"
       },
       {
       "nodeName":"Military id",
       "nodePath":"/data[at0001]/items[at0029]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"军官证号码"
       },
       {
       "nodeName":"Ins card id",
       "nodePath":"/data[at0001]/items[at0031]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"医疗保险证号码"
       },
       {
       "nodeName":"Health card no",
       "nodePath":"/data[at0001]/items[at0032]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"居民健康卡号码"
       },
       {
@@ -3366,7 +3366,7 @@
       {
       "nodeName":"Created by",
       "nodePath":"/data[at0001]/items[at0050]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"建档人员"
       },
       {
@@ -3378,31 +3378,31 @@
       {
       "nodeName":"organisation Identifier",
       "nodePath":"/data[at0001]/items[at0056]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"组织结构编码"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-ADMIN_ENTRY.transaction.v1",
-    "archetypeId":2857,
+    "archetypEI_Removed":2857,
     "fields":[
       {
       "nodeName":"Source ward",
       "nodePath":"/data[at0001]/items[at0003]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Source ward"
       },
       {
       "nodeName":"Source bed",
       "nodePath":"/data[at0001]/items[at0004]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Source bed"
       },
       {
       "nodeName":"Performer",
       "nodePath": "/data[at0001]/items[at0006]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Performer"
       },
       {
@@ -3420,92 +3420,92 @@
       {
       "nodeName":"Destination ward",
       "nodePath":"/data[at0001]/items[at0011]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Destination ward"
       },
       {
       "nodeName":"Destination bed",
       "nodePath":"/data[at0001]/items[at0012]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Destination bed"
       },
       {
       "nodeName":"Previous resident doctor",
       "nodePath":"/data[at0001]/items[at0013]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Previous resident doctor"
       },
       {
       "nodeName":"Previous attending doctor",
       "nodePath":"/data[at0001]/items[at0014]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Previous attending doctor"
       },
       {
       "nodeName":"Previous director",
       "nodePath":"/data[at0001]/items[at0015]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Previous director"
       },
       {
       "nodeName":"Previous deputy doctor",
       "nodePath":"/data[at0001]/items[at0016]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Previous deputy doctor"
       },
       {
       "nodeName":"Current resident doctor",
       "nodePath":"/data[at0001]/items[at0017]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Current resident doctor"
       },
       {
       "nodeName":"Current attending doctor",
       "nodePath":"/data[at0001]/items[at0018]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Current attending doctor"
       },
       {
       "nodeName":"Current director",
       "nodePath":"/data[at0001]/items[at0019]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Current director"
       },
       {
       "nodeName":"Current deputy doctor",
       "nodePath":"/data[at0001]/items[at0020]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Current deputy doctor"
       },
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0021]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Patient identifier"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0022]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Encounter identifier"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0023]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"Order identifier"
       },
       {
       "nodeName":"ORGANIZATIONIDENTIFIER",
       "nodePath":"/data[at0001]/items[at0025]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"ORGANIZATIONIDENTIFIER"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-ADMIN_ENTRY.discharge_admin_info.v1",
-    "archetypeId":2880,
+    "archetypEI_Removed":2880,
     "fields":[
       {
       "nodeName":"Date of discharge",
@@ -3516,19 +3516,19 @@
       {
       "nodeName":"Discharging Consultant",
       "nodePath":"/data[at0003]/items[at0057]/items[at0065]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"出院咨询医生"
       },
       {
       "nodeName":"Discharging ward",
       "nodePath":"/data[at0003]/items[at0057]/items[at0066]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"出院病房"
       },
       {
       "nodeName":"Discharging Organisation",
       "nodePath":"/data[at0003]/items[at0057]/items[at0068]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"出院机构"
       },
       {
@@ -3540,67 +3540,67 @@
       {
       "nodeName":"Patient identifier",
       "nodePath":"/subject[at0085]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"病人号"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/links[at0086]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"Order identifier",
       "nodePath":"/links[at0087]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"医嘱号"
       },
       {
       "nodeName":"organisation Identifier",
       "nodePath":"/data[at0003]/items[at0090]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"机构编码"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-ADMIN_ENTRY.Patient_Admission.v1",
-    "archetypeId":2958,
+    "archetypEI_Removed":2958,
     "fields":[
       {
       "nodeName":"Pre-admit number",
       "nodePath":"/data[at0001]/items[at0024]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"上次入院就诊号"
       },
       {
       "nodeName":"Ward",
       "nodePath":"/data[at0001]/items[at0025]/items[at0026]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"护理站"
       },
       {
       "nodeName":"Room",
       "nodePath":"/data[at0001]/items[at0025]/items[at0027]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"病房"
       },
       {
       "nodeName":"Bed",
       "nodePath":"/data[at0001]/items[at0025]/items[at0028]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"病床"
       },
       {
       "nodeName":"Building",
       "nodePath":"/data[at0001]/items[at0025]/items[at0029]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"建筑楼"
       },
       {
       "nodeName":"Floor",
       "nodePath":"/data[at0001]/items[at0025]/items[at0030]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"楼层"
       },
       {
@@ -3612,85 +3612,85 @@
       {
       "nodeName":"Doctor grooup id",
       "nodePath":"/data[at0001]/items[at0038]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"医生组"
       },
       {
       "nodeName":"Nursing group id",
       "nodePath":"/data[at0001]/items[at0039]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"护理组"
       },
       {
       "nodeName":"Encounter identifier",
       "nodePath":"/data[at0001]/items[at0042]/value",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"就诊号"
       },
       {
       "nodeName":"Mobile phone",
       "nodePath":"/data[at0001]/items[at0045]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"手持电话"
       },
       {
       "nodeName":"Home phone",
       "nodePath":"/data[at0001]/items[at0046]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"家庭电话"
       },
       {
       "nodeName":"Email address",
       "nodePath":"/data[at0001]/items[at0047]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"电子邮件"
       },
       {
       "nodeName":"Business phone",
       "nodePath":"/data[at0001]/items[at0048]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"办公电话"
       },
       {
       "nodeName":"Contacts",
       "nodePath":"/data[at0001]/items[at0050]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"联系人"
       },
       {
       "nodeName":"Director",
       "nodePath":"/otherParticipations[at0051]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"主任医生"
       },
       {
       "nodeName":"Deputy doctor",
       "nodePath":"/otherParticipations[at0053]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"副主任医生"
       },
       {
       "nodeName":"Attending doctor",
       "nodePath":"/otherParticipations[at0054]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"主治医生"
       },
       {
       "nodeName":"Resident doctor",
       "nodePath":"/otherParticipations[at0055]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"住院医生"
       },
       {
       "nodeName":"Admitting doctor",
       "nodePath":"/otherParticipations[at0056]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"接诊医生"
       },
       {
       "nodeName":"Consulting doctor",
       "nodePath":"/otherParticipations[at0057]",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"会诊医生"
       },
       {
@@ -3702,31 +3702,31 @@
       {
       "nodeName":"Insurance",
       "nodePath":"/data[at0001]/items[at0059]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"医保信息"
       },
       {
       "nodeName":"ORGANIZATIONIDENTIFIER",
       "nodePath":"/data[at0001]/items[at0062]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"组织编号"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-CLUSTER.contacts.v1",
-    "archetypeId":2858,
+    "archetypEI_Removed":2858,
     "fields":[
       {
       "nodeName":"Person name",
       "nodePath":"/items[at0008]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Person name"
       },
       {
       "nodeName":"Email address",
       "nodePath":"/items[at0010]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Email address"
       },
       {
@@ -3738,19 +3738,19 @@
       {
       "nodeName":"phone no",
       "nodePath":"/items[at0012]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"phone no"
       },
       {
       "nodeName":"Home phone",
       "nodePath":"/items[at0013]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Home phone"
       },
       {
       "nodeName":"Business phone",
       "nodePath":"/items[at0014]/value",
-      "type":"EI",
+      "type":"EI_Remove",
       "description":"Business phone"
       },
       {
@@ -3763,13 +3763,13 @@
   },
   {
     "archetypeName": "openEHR-EHR-CLUSTER.specimen.v1",
-    "archetypeId":2862,
+    "archetypEI_Removed":2862,
     "fields":[
     ]
   },
   {
     "archetypeName": "openEHR-EHR-CLUSTER.distribution.v1",
-    "archetypeId":2903,
+    "archetypEI_Removed":2903,
     "fields":[
       {
       "nodeName":"Date sent",
@@ -3787,43 +3787,43 @@
   },
   {
     "archetypeName": "openEHR-EHR-CLUSTER.family_history.v1",
-    "archetypeId":2919,
+    "archetypEI_Removed":2919,
     "fields":[
       {
       "nodeName":"PATIENT_IDENTIFIED",
       "nodePath":"/subject[at0029]",
-      "type":"QI_Link",
+      "type":"EI_Encrypt",
       "description":"PATIENT_IDENTIFIED"
       }
     ]
   },
   {
     "archetypeName": "openEHR-EHR-COMPOSITION.patient_info.v1",
-    "archetypeId":2859,
+    "archetypEI_Removed":2859,
     "fields":[
     ]
   },
   {
     "archetypeName": "openEHR-EHR-COMPOSITION.patient_basic_information.v1",
-    "archetypeId":2860,
+    "archetypEI_Removed":2860,
     "fields":[
     ]
   },
   {
     "archetypeName": "openEHR-EHR-COMPOSITION.patient_basic_info.v1",
-    "archetypeId":2861,
+    "archetypEI_Removed":2861,
     "fields":[
     ]
   },
   {
     "archetypeName": "openEHR-EHR-COMPOSITION.test.v1",
-    "archetypeId":2962,
+    "archetypEI_Removed":2962,
     "fields":[
     ]
   },
   {
     "archetypeName": "用于存放零散的字段",
-    "archetypeId":0000,
+    "archetypEI_Removed":0000,
     "fields":[
     ]
   }

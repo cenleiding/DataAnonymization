@@ -8,7 +8,7 @@ app.controller("SystemFormOverviewCtrl", function($scope,$http,$rootScope) {
     $scope.fieldFormInfo=[];
     $scope.formNameList=[];
     $scope.dataTableSet_ALL={'ALL':[]};
-    $scope.selectType=["ALL","EI","QI_Link","QI_Geography","QI_DateRecord","QI_DateAge","QI_Number","QI_String","SI_Number","SI_String","UI"];
+    $scope.selectType=["ALL","EI_Remove","EI_Encrypt","QI_Geography","QI_DateRecord","QI_DateAge","QI_Number","QI_String","SI_Number","SI_String","UI"];
 
     $scope.description=""
     $scope.createTime=""
@@ -19,8 +19,8 @@ app.controller("SystemFormOverviewCtrl", function($scope,$http,$rootScope) {
 
     var percentage={"SUM":0}
     var Accounting=[
-        ["EI",0],
-        ["QI_Link",0],
+        ["EI_Remove",0],
+        ["EI_Encrypt",0],
         ["QI_Geography",0],
         ["QI_DateRecord",0],
         ["QI_DateAge",0],
