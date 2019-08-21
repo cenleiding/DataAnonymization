@@ -227,6 +227,27 @@
 			<version>1.6</version>
 		</dependency>
 
+		<!-- tensorflow 依赖-->
+		<dependency>
+			<groupId>org.tensorflow</groupId>
+			<artifactId>tensorflow</artifactId>
+			<version>1.13.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.tensorflow</groupId>
+			<artifactId>libtensorflow</artifactId>
+			<version>1.13.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.tensorflow</groupId>
+			<artifactId>proto</artifactId>
+			<version>1.13.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.tensorflow</groupId>
+			<artifactId>libtensorflow_jni</artifactId>
+			<version>1.13.1</version>
+		</dependency>
 
 		<!--ARX匿名工具包 -->
 		<!--<dependency>-->
@@ -246,6 +267,10 @@
 					<include>**/*.json</include>
 					<include>**/*.csv</include>
 					<include>**/*.txt</include>
+					<include>**/*.data-00000-of-00002</include>
+					<include>**/*.data-00001-of-00002</include>
+					<include>**/*.index</include>
+					<include>**/*.pb</include>
 				</includes>
 			</resource>
 			<resource>
