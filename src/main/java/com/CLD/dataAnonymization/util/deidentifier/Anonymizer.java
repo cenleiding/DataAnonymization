@@ -135,7 +135,7 @@ public class Anonymizer {
                 Geography.geographyHandle(dataHandle.getData(),column,dataHandle.getGeographic(),proInfo, Geography.GeographyLevel.SmallCity);
                 //处理UI非结构化信息
                 column=selectTypeColumn(dataHandle.getUI());
-                Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular(),configuration.getNer_url());
+                Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular());
             }
         };
         return runnable;
@@ -188,7 +188,7 @@ public class Anonymizer {
 
                 //处理UI非结构化信息
                 column=selectTypeColumn(dataHandle.getUI());
-                Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular(),configuration.getNer_url());
+                Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular());
 
             }
         };

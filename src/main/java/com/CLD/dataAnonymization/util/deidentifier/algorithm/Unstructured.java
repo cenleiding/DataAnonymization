@@ -1,18 +1,13 @@
 package com.CLD.dataAnonymization.util.deidentifier.algorithm;
 
-import com.CLD.dataAnonymization.util.deidentifier.resources.ResourcesReader;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.web.client.RestTemplate;
-
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,24 +34,37 @@ public class Unstructured {
                                              ArrayList<Integer> col,
                                              ArrayList<HashMap<String,String>> proInfo,
                                              ArrayList<String> dictionary,
-                                             ArrayList<HashMap<String,String>> regular,
-                                             String ner_url){
+                                             ArrayList<HashMap<String,String>> regular){
 
         try{
             // 利用机器学习获取隐私信息
             ArrayList<HashMap<String,HashSet<String>>> ner_result = new ArrayList<HashMap<String,HashSet<String>>>();
+            // 开启多线程，NER
+            ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 4, 1, TimeUnit.DAYS,
+                    new LinkedBlockingDeque<Runnable>());
             for (int column :col) {
-                ner_result.add(unstructured_NER(data.get(column),ner_url));
+                int left_index = 0;
+                int right_index = 250;
+                while(left_index<data.get(0).size()){
+                    NerTask nerTask = new NerTask(data.get(column),left_index,Math.min(right_index,data.get(0).size()),ner_result);
+                    System.out.println(left_index+":"+right_index+"线程池中线程数目："+executor.getPoolSize()+"，队列中等待执行的任务数目："+
+                            executor.getQueue().size()+"，已执行玩别的任务数目："+executor.getCompletedTaskCount());
+                    left_index = right_index;
+                    right_index+=250;
+                }
             }
+            executor.shutdown();
 
             //利用规则获取隐私信息
             ArrayList<HashMap<String,String>> re_result = new ArrayList<HashMap<String,String>>();
+
             for(int column : col ) {
                 re_result.add(unstructured_Re(data.get(column),regular));
             }
 
             //利用字典获取隐私信息
             ArrayList<HashMap<String,String>> dic_result = new ArrayList<HashMap<String,String>>();
+
             for(int column : col){
                 dic_result.add(unstructured_dic(data.get(column),dictionary));
             }
@@ -80,116 +88,40 @@ public class Unstructured {
         return true;
     }
 
+
     /**
-     * 使用机器学习方式识别隐私信息
-     * @param context
-     * @return
-     * @throws FileNotFoundException
+     * NER 任务
      */
-    public static HashMap<String,HashSet<String>> unstructured_NER(List<String> context,String ner_url) {
-        // 断句,去空格 以"。"为标识 ，最长250 context => sentences
-        ArrayList<String> sentences = new ArrayList<String>();
-        for (String text : context){
-            String[] sentence = text.replace(" ","").trim().split("。");
-            for (String s : sentence){
-                int begin = 0;
-                while (begin+250<s.length()){
-                    sentences.add(s.substring(begin,begin+250));
-                    begin+=250;
-                }
-                sentences.add(s.substring(begin,s.length()));
-            }
-        }
-        // word2id sentenses => sentenses_id,lengths
-        // 并补齐 250
-        HashMap<String,Integer> word2id = null;
-        try {
-            word2id = ResourcesReader.readWord2id();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        ArrayList<ArrayList<Integer>> sentences_id = new ArrayList<ArrayList<Integer>>();
-        ArrayList<Integer> lengths = new ArrayList<Integer>();
-        for (String sentence : sentences){
-            ArrayList<Integer> id =  new ArrayList<Integer>();
-            for (char ch: sentence.toCharArray()){
-                if (word2id.keySet().contains(String.valueOf(ch))) id.add(word2id.get(String.valueOf(ch)));
-                else id.add(word2id.get("UNK"));
-            }
-            lengths.add(id.size());
-            for(int i=id.size();i<250;i++)
-                id.add(0);
-            sentences_id.add(id);
-        }
-        /////////////////////   以50组为一个batch发送请求,return => api_result
-        JSONArray api_result = new JSONArray();
-        String s ="{\n" +
-                "\t\"signature_name\":\"predict\",\n" +
-                "\t\"inputs\":{\n" +
-                "\t\t\"input\":[],\n" +
-                "\t\t\"length\":[]\n" +
-                "\t}\n" +
-                "}";
-        JSONObject jsonObject = JSONObject.parseObject(s);
-        int num =0;
-        ArrayList<ArrayList<Integer>> input = new ArrayList<ArrayList<Integer>>();
-        ArrayList<Integer> length = new ArrayList<Integer>();
-        for (int i=0;i<lengths.size();i++){
-            num++;
-            input.add(sentences_id.get(i));
-            length.add(lengths.get(i));
-            if (num>50){
-                jsonObject.getJSONObject("inputs").put("input",input);
-                jsonObject.getJSONObject("inputs").put("length",length);
-                JSONObject re = JSONObject.parseObject(NER_API(jsonObject.toString(),ner_url));
-                api_result.addAll(re.getJSONArray("outputs"));
-                jsonObject = JSONObject.parseObject(s);
-                input.clear();
-                length.clear();
-                num = 0;
-            }
-        }
-        if (!length.isEmpty()){
-            jsonObject.getJSONObject("inputs").put("input",input);
-            jsonObject.getJSONObject("inputs").put("length",length);
-            JSONObject re = JSONObject.parseObject(NER_API(jsonObject.toString(),ner_url));
-            api_result.addAll(re.getJSONArray("outputs"));
+    static class NerTask implements Runnable{
+
+        ArrayList<HashMap<String,HashSet<String>>> ner_result;
+
+        List<String> context;
+
+        int left_index;
+
+        int right_index;
+
+        NER ner;
+
+        NerTask(List<String> context,int left_index,int right_index,ArrayList<HashMap<String,HashSet<String>>> ner_result){
+            this.context = context;
+            this.left_index = left_index;
+            this.right_index = right_index;
+            this.ner_result = ner_result;
+            this.ner = new NER();
         }
 
-        //////////////// 提取隐私值
-        HashMap<String,HashSet<String>> outResult = new HashMap<String,HashSet<String>>();
-        outResult.put("name",new HashSet<String>());
-        outResult.put("address",new HashSet<String>());
-        outResult.put("organization",new HashSet<String>());
-        outResult.put("detail",new HashSet<String>());
-        outResult.put("time",new HashSet<String>());
-
-        for (int i=0;i<lengths.size();i++){
-            JSONArray label = api_result.getJSONArray(i);
-            ArrayList<Integer> index = new ArrayList<Integer>();
-            for (int j=0;j<label.size();j++)
-                if (label.getInteger(j)%2==1)
-                    index.add(j);
-            char[] sentence = sentences.get(i).toCharArray();
-            for (int j : index){
-                int start = j;
-                int end = j;
-                while((end+1<label.size())&&(label.getInteger(end+1)==label.getInteger(start)+1))
-                    end++;
-                String entity ="";
-                for (int e=start;e<=end;e++)
-                    entity+=sentence[e];
-                if(label.getInteger(start)==1)
-                    outResult.get("name").add(entity.trim().replace(" ",""));
-                if(label.getInteger(start)==3)
-                    outResult.get("address").add(entity.trim().replace(" ",""));
-                if(label.getInteger(start)==5)
-                    outResult.get("organization").add(entity.trim().replace(" ",""));
-                if(label.getInteger(start)==7)
-                    outResult.get("detail").add(entity.trim().replace(" ",""));
+        @Override
+        public void run() {
+            HashMap<String, HashSet<String>> result = new HashMap<String, HashSet<String>>();
+            try {
+                result = ner.predict(context.subList(left_index,right_index));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            ner_result.add(result);
         }
-        return outResult;
     }
 
     /**
@@ -273,20 +205,131 @@ public class Unstructured {
         return out_result;
     }
 
+//    /**
+//     * 使用机器学习方式识别隐私信息
+//     * @param context
+//     * @return
+//     * @throws FileNotFoundException
+//     */
+//    public static HashMap<String,HashSet<String>> unstructured_NER(List<String> context,String ner_url) {
+//        // 断句,去空格 以"。"为标识 ，最长250 context => sentences
+//        ArrayList<String> sentences = new ArrayList<String>();
+//        for (String text : context){
+//            String[] sentence = text.replace(" ","").trim().split("。");
+//            for (String s : sentence){
+//                int begin = 0;
+//                while (begin+250<s.length()){
+//                    sentences.add(s.substring(begin,begin+250));
+//                    begin+=250;
+//                }
+//                sentences.add(s.substring(begin,s.length()));
+//            }
+//        }
+//        // word2id sentenses => sentenses_id,lengths
+//        // 并补齐 250
+//        HashMap<String,Integer> word2id = null;
+//        try {
+//            word2id = ResourcesReader.readWord2id();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        ArrayList<ArrayList<Integer>> sentences_id = new ArrayList<ArrayList<Integer>>();
+//        ArrayList<Integer> lengths = new ArrayList<Integer>();
+//        for (String sentence : sentences){
+//            ArrayList<Integer> id =  new ArrayList<Integer>();
+//            for (char ch: sentence.toCharArray()){
+//                if (word2id.keySet().contains(String.valueOf(ch))) id.add(word2id.get(String.valueOf(ch)));
+//                else id.add(word2id.get("UNK"));
+//            }
+//            lengths.add(id.size());
+//            for(int i=id.size();i<250;i++)
+//                id.add(0);
+//            sentences_id.add(id);
+//        }
+//        /////////////////////   以50组为一个batch发送请求,return => api_result
+//        JSONArray api_result = new JSONArray();
+//        String s ="{\n" +
+//                "\t\"signature_name\":\"predict\",\n" +
+//                "\t\"inputs\":{\n" +
+//                "\t\t\"input\":[],\n" +
+//                "\t\t\"length\":[]\n" +
+//                "\t}\n" +
+//                "}";
+//        JSONObject jsonObject = JSONObject.parseObject(s);
+//        int num =0;
+//        ArrayList<ArrayList<Integer>> input = new ArrayList<ArrayList<Integer>>();
+//        ArrayList<Integer> length = new ArrayList<Integer>();
+//        for (int i=0;i<lengths.size();i++){
+//            num++;
+//            input.add(sentences_id.get(i));
+//            length.add(lengths.get(i));
+//            if (num>50){
+//                jsonObject.getJSONObject("inputs").put("input",input);
+//                jsonObject.getJSONObject("inputs").put("length",length);
+//                JSONObject re = JSONObject.parseObject(NER_API(jsonObject.toString(),ner_url));
+//                api_result.addAll(re.getJSONArray("outputs"));
+//                jsonObject = JSONObject.parseObject(s);
+//                input.clear();
+//                length.clear();
+//                num = 0;
+//            }
+//        }
+//        if (!length.isEmpty()){
+//            jsonObject.getJSONObject("inputs").put("input",input);
+//            jsonObject.getJSONObject("inputs").put("length",length);
+//            JSONObject re = JSONObject.parseObject(NER_API(jsonObject.toString(),ner_url));
+//            api_result.addAll(re.getJSONArray("outputs"));
+//        }
+//
+//        //////////////// 提取隐私值
+//        HashMap<String,HashSet<String>> outResult = new HashMap<String,HashSet<String>>();
+//        outResult.put("name",new HashSet<String>());
+//        outResult.put("address",new HashSet<String>());
+//        outResult.put("organization",new HashSet<String>());
+//        outResult.put("detail",new HashSet<String>());
+//        outResult.put("time",new HashSet<String>());
+//
+//        for (int i=0;i<lengths.size();i++){
+//            JSONArray label = api_result.getJSONArray(i);
+//            ArrayList<Integer> index = new ArrayList<Integer>();
+//            for (int j=0;j<label.size();j++)
+//                if (label.getInteger(j)%2==1)
+//                    index.add(j);
+//            char[] sentence = sentences.get(i).toCharArray();
+//            for (int j : index){
+//                int start = j;
+//                int end = j;
+//                while((end+1<label.size())&&(label.getInteger(end+1)==label.getInteger(start)+1))
+//                    end++;
+//                String entity ="";
+//                for (int e=start;e<=end;e++)
+//                    entity+=sentence[e];
+//                if(label.getInteger(start)==1)
+//                    outResult.get("name").add(entity.trim().replace(" ",""));
+//                if(label.getInteger(start)==3)
+//                    outResult.get("address").add(entity.trim().replace(" ",""));
+//                if(label.getInteger(start)==5)
+//                    outResult.get("organization").add(entity.trim().replace(" ",""));
+//                if(label.getInteger(start)==7)
+//                    outResult.get("detail").add(entity.trim().replace(" ",""));
+//            }
+//        }
+//        return outResult;
+//    }
 
-    /**
-     * NER_外部API
-     * @param requestJson
-     * @return
-     */
-    public static String NER_API(String requestJson,String ner_url){
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<String> entity = new HttpEntity<String>(requestJson,headers);
-        String result = restTemplate.postForObject(ner_url, entity, String.class);
-        return result;
-    }
+//    /**
+//     * NER_外部API
+//     * @param requestJson
+//     * @return
+//     */
+//    public static String NER_API(String requestJson,String ner_url){
+//        RestTemplate restTemplate = new RestTemplate();
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        HttpEntity<String> entity = new HttpEntity<String>(requestJson,headers);
+//        String result = restTemplate.postForObject(ner_url, entity, String.class);
+//        return result;
+//    }
 
 
 }

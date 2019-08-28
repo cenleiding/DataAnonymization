@@ -12,7 +12,8 @@ import java.util.*;
  */
 public class DataHandle {
 
-    //数据 以行为单位进行存储
+    //数据 同类数据存为一个list
+    // list.get(0) =
     private ArrayList<ArrayList<String>>                 data             =       null;
     //标题行
     private String[]                                     header           =       null;

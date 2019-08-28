@@ -1,13 +1,15 @@
 package com.CLD.dataAnonymization.util.deidentifier.algorithm;
 
 
-import com.CLD.dataAnonymization.util.deidentifier.resources.ResourcesReader;
+import com.CLD.dataAnonymization.util.deidentifier.io.FileResolve;
+import com.alibaba.fastjson.JSONObject;
 import org.tensorflow.SavedModelBundle;
 import org.tensorflow.Session;
 import org.tensorflow.Tensor;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,10 +23,11 @@ import java.util.List;
 public class NER {
 
     Session tfSession = null;
-    SavedModelBundle sm = null;
+    HashMap<String,Integer> word2id = null;
     public NER(){
-        sm = SavedModelBundle.load("./src/main/java/com/CLD/dataAnonymization/util/deidentifier/resources/NER","NER");
+        SavedModelBundle sm = SavedModelBundle.load("./src/main/java/com/CLD/dataAnonymization/util/deidentifier/resources/NER","NER");
         tfSession = sm.session();
+        word2id = readWord2id();
     }
 
     public HashMap<String, HashSet<String>> predict(List<String> context) throws IOException {
@@ -43,12 +46,6 @@ public class NER {
         }
         // word2id sentenses => sentenses_id,lengths
         // 并补齐 250
-        HashMap<String,Integer> word2id = null;
-        try {
-            word2id = ResourcesReader.readWord2id();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
         int[][] sentences_id = new int[sentences.size()][250];
         int[] lengths = new int[sentences.size()];
         for(int i=0;i<sentences.size();i++){
@@ -94,6 +91,13 @@ public class NER {
         return outResult;
     }
 
+    /**
+     * 编码预测
+     * @param inputs
+     * @param lengths
+     * @return
+     * @throws IOException
+     */
     public int[][] predict(int[][] inputs,int[] lengths) throws IOException {
 
         int[][] labels = new int[inputs.length][inputs[0].length];
@@ -110,16 +114,49 @@ public class NER {
         return result;
     }
 
-    public static void main(String[] args) throws IOException {
-        NER ner = new NER();
-        List<String> context = new ArrayList<String>();
-        context.add("会诊记录(一般)住院号:kLrV0y姓名:彭爱竹性别:女年龄:81岁病房:kLrV0y床号:kLrV0y邀请耳鼻喉科会诊申请日期:2016-01-12:14病历摘要:会诊目的:请求科室:医师签名:彭爱竹接到申请会诊时间:年月日时分会诊时间:年月日时分会诊意见:科医师签名:彭爱竹手术记录科室:强住院号:LL5Ip姓名:郑俊狗性别:年龄:0?床号:LL5Ip术前诊断:腰椎间盘突出症术后(L4-5);腰椎管狭窄症(L4-5)。术中诊断:腰椎间盘突出症术后(L4-5);腰椎管狭窄症(L4-5)。");
-        context.add("2015年08月16时12分23秒手术医师签字:邢泽军入院记录姓名:刘美华出生地:山西太原性别:男职业:无年龄:3岁入院日期:2016年08月民族:汉记录日期:2016年08月婚否:否病历陈述者:母亲主诉:发热伴咳嗽5天。现病史:患儿近5天无明显诱因出现发热,最高体温39.2℃,随后出现咳嗽,咳痰不利,就诊于当地诊所,给予口服\\\"阿奇霉素\\\"3天,祛痰药治疗(具体药名及剂量不详),现体温较前好转,最高体温38.0℃,物理降温后可降至正常,仍有咳嗽,有痰不易咳出,病程中不伴呼吸困难、呕吐、腹泻、皮疹、抽搐等症状,为求诊治入住我科,患儿自发病以来,精神食欲尚可,大小便外观正常。既往史:体健。否认肝炎结核等传染病史,否认手术、外伤史,否认输血史,否认食物、药物过敏史。个人史:第1胎第1产,足月剖宫产,生后无窒息,母乳喂养,按时添加辅食,按序接种过卡介苗、乙肝疫苗、脊髓灰质炎疫苗、百白破疫苗、麻疹疫苗。3月抬头,6月会坐,8月会扶走,周岁走稳。家族史:父母体健,否认家族中遗传病史及传染病史记载。体格检查体温:36.5℃脉搏:126次/分呼吸:26次/分血压:100/56mmHg身高:100cm体重:14.5kg一般情况:发育正常,营养良好,正常面容,神志清楚。皮肤粘膜:全身皮肤无黄染,皮肤弹性良好,无水肿,无皮疹,无皮下结节,无皮下出血点,无瘢痕,无肿块,无蜘蛛痣及肝掌。全身浅表淋巴结:全身浅表淋巴结未触及肿大。头颅:头颅大小及形态正常,无畸形。眼:眼睑无水肿,结膜无充血,巩膜无黄染,双侧瞳孔等大等圆,瞳孔对光反射灵敏。耳:耳廓无畸形,外耳道通畅,无异常分泌物,听力粗测正常。鼻:鼻外形正常,无畸形,鼻翼无煽动,鼻中隔无偏曲。口腔:唇红,口唇无畸形,口腔粘膜无溃疡,无出血点及色素沉着,牙龈无肿胀,无溢脓,咽充血。颈部:颈软,气管居中,甲状腺未触及肿大,颈动脉搏动正常,无颈静脉扩张。胸部:胸廓无畸形。肺脏:视诊:双肺呼吸动度一致,呼吸节律正常,未见肋间隙增宽,变窄。触诊:双肺语颤一致,未触及胸膜摩擦感。叩诊:双肺叩诊清音。听诊:呼吸26次/分,双肺呼吸音粗,未闻及明显干湿性啰音。心:视诊:心前区无隆起,心尖搏动正常。触诊:无抬举性搏动,未及心包摩擦感。未及震颤。叩诊:心界大小正常。听诊:心率126次/分,律齐,各瓣膜听诊区心音正常,未闻及杂音,未闻及心包摩擦音。腹部:视诊:外形平坦,无膨隆、凹陷、瘢痕;未见胃肠型及蠕动波。触诊:腹软,全腹无压痛,反跳痛,肝,脾肋下未触及,未触及包块。叩诊:无移动性浊音。听诊:肠鸣音正常。肛门及外生殖器:未见异常。脊柱及四肢:脊柱、四肢无畸形,肌张力正常,关节无红肿,运动正常,双下肢无浮肿。神经系统:肢体感觉运动正常,生理反射存在,病理反射未引出。辅助检查血常规(2016-8-太原市妇幼门诊):白细胞计数4.95×10^9/L,中性粒细胞44.0%,淋巴细胞46.7%,红细胞计数4.28×10^12/L,血红蛋白119g/l,血小板计数152.0×10^9/L,C反应蛋白10mg/l。胸片(2016-08-我院门诊):双肺感染,右上肺为著。初步诊断:支气管肺炎签名:廖志梅2016年08月入院记录姓名:田钧出生地:河北衡水性别:男职业:个体经营户年龄:48岁入院日期:2016年09月民族:汉族记录日期:2016年09月婚否:已婚病历陈述者:患者本人主诉:头痛伴嗅觉减退3年余现病史:患者于3年余前无明显诱因出现额部疼痛,呈间断性,伴嗅觉减退,无鼻塞、流脓涕、鼻出血等不适,在附近医院给予鼻腔冲洗、口服药物治疗(具体用药不详),效果不佳,6天前就诊于山大二院,行鼻窦CT提示鼻窦炎,建议住院手术,遂于今日就诊于我科门诊,行相关检查,诊断为\\\"慢性鼻窦炎伴鼻息肉\\\",为求进一步治疗收住入院。自发病以来,精神可,食欲佳,体重无明显减轻,大小便正常。既往史:既往体健。否认高血压、心脏病、糖尿病病史,否认肝炎结核等传染病史,否认手术、外伤史,否认输血史,否认食物、药物过敏史,否认预防接种史。个人史:生于河北衡水,现居于太原,未到过疫区,无有害及放射物接触史,目前从事个体经营户,偶有吸烟、饮酒,无冶游史。婚育史:24岁结婚,育有1子1女,配偶体健。家族史:父母均体健,无与患者类似疾病,无家族遗传倾向的疾病。体格检查体温:36.3℃脉搏:71次/分呼吸:18次/分血压:138/89mmHg身高:165cm体重:72.8kg一般情况:发育正常,营养良好,正常面容,神志清楚,自主体位,言语流利,对答切题,查体合作。皮肤粘膜:色泽正常,皮肤弹性良好,无水肿,无皮疹,无皮下结节,无皮下出血点,无瘢痕,无肿块,无蜘蛛痣及肝掌。全身浅表淋巴结:全身浅表淋巴结未触及肿大。头颅:头颅大小及形态正常,无畸形。眼:眼睑无水肿,结膜无充血,巩膜无黄染,双侧瞳孔等大等圆,瞳孔对光反射灵敏。耳:见专科检查。鼻:见专科检查。");
-        HashMap<String, HashSet<String>> pre = ner.predict(context);
-        System.out.println();
 
-
+    /**
+     * 读取Word2id 文件
+     * @return
+     * @throws FileNotFoundException
+     */
+    public  HashMap<String,Integer> readWord2id() {
+        HashMap<String,Integer> word2id = new HashMap<String,Integer>();
+        InputStream is=new Object(){
+            public InputStream get(){
+                return this.getClass().getResourceAsStream("../resources/NER/word2id.json");
+            }
+        }.get();
+        JSONObject jsonObject= null;
+        try {
+            jsonObject = FileResolve.readerObjectJson(is);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        for (String key : jsonObject.keySet()){
+            word2id.put(key,Integer.valueOf(jsonObject.getString(key)));
+        }
+        return word2id;
     }
+
+//    public static void main(String[] args) throws IOException {
+//        HashMap<String,Integer> ww = readWord2id();
+//
+//
+//        NER ner = new NER();
+//        List<String> context = new ArrayList<String>();
+//        context.add("患者姓名史玉腾年龄12岁住院号00148804复印病案用途申请人史玉腾证件及证件号130581200306132219代理人与患者关系证件及证件号出院科室耳鼻咽喉头颈外科出院日期医师签名办理方式邮寄:出院当日办理自取:病案归档后办理办理时间工作日(8:00-11:30,14:30-17:30)办理地点医学影像楼4层病案室重要提示:请携带本申请表患者和代理人有效身份证件原件科室盖章联系电话:14797169824复印时间年月日");
+//        context.add("入院记录姓名:赵青爱出生地:山西晋城性别:男职业:退(离)休人员年龄:71岁入院日期:2015年09月民族:汉族记录日期:2015年09月婚否:已婚病历陈述者:患者本人主诉:间断关节肿痛15年,加重2月。");
+//        context.add("现病史:2000年06月患者在进食肉类及饮酒后出现左足第1跖趾关节肿痛,就诊于太原市煤炭中心医院,查血尿酸460μmol/L,诊断为\"痛风\",予静滴\"青霉素\"800万Ux5天,口服\"苯溴马隆\"50mg,1次/日治疗,1周后关节肿痛减轻,后因出现腹泻症状更换为\"别嘌醇\"0.1-0.2/日,病情控制良好。");
+//        context.add("2003年患者因皮肤红斑就诊于山西医科大学第二医院,诊断为\"变应性血管炎\",考虑为别嘌醇所致,予停用别嘌醇,更换为\"雷公藤多甙\"20mg,3次/日治疗,半年后出现\"心律失常,室性早搏\",遂停用雷公藤多甙。");
+//        context.add("2005年冬患者出现右手第2指近端指间关节痛,自行口服中药及\"复方伸筋胶囊\"2粒,2次/日治疗,关节痛减轻。");
+//        context.add("2014年09月患者复查血尿酸550μmol/L,自行口服中药及\"碳酸氢钠\"2粒,3次/日治疗,后复查血尿酸降至正常范围,尿PH值升高,停服上述药物。");
+//
+//        HashMap<String, HashSet<String>> pre = ner.predict(context);
+//        System.out.println();
+//
+//
+//    }
 
 
 }

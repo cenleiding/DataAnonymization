@@ -11,34 +11,6 @@ import java.util.ArrayList;
  */
 public class EasyAnonymizeAdapter {
 
-    public static void main(String[] args){
-        ArrayList<ArrayList<String>> data = new ArrayList<>();
-        ArrayList<String> d1 = new ArrayList<>();
-        d1.add("名族");
-        d1.add("汉");
-        d1.add("汉");
-        d1.add("汉");
-        d1.add("汉");
-        d1.add("维吾尔族");
-        d1.add("维吾尔族");
-        d1.add("维吾尔族");
-        d1.add("土家族");
-
-        ArrayList<String> d2 = new ArrayList<>();
-        d2.add("入院时间");
-        d2.add("2018-03-05");
-        d2.add("2018-03-06");
-        d2.add("2019-04-05");
-        d2.add("2019-05-05");
-        d2.add("2000-10-10");
-        d2.add("2010-05-15");
-        d2.add("2013-12-11");
-        d2.add("2014-12-21");
-
-        data.add(d1);
-        data.add(d2);
-    }
-
     public static ArrayList<ArrayList<String>> ToLimitedSet(ArrayList<ArrayList<String>> data,
                                                             ArrayList<ArrayList<String>> fieldList){
         DataHandle dataHandle=new DataHandle(data);

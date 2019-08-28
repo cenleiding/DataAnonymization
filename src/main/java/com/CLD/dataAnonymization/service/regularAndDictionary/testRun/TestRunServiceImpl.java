@@ -4,10 +4,12 @@ import com.CLD.dataAnonymization.dao.h2.entity.Dictionary;
 import com.CLD.dataAnonymization.dao.h2.entity.Regular;
 import com.CLD.dataAnonymization.dao.h2.repository.DictionaryrRepository;
 import com.CLD.dataAnonymization.dao.h2.repository.RegularRepository;
+import com.CLD.dataAnonymization.util.deidentifier.algorithm.NER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,7 +17,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.CLD.dataAnonymization.util.deidentifier.algorithm.Unstructured.unstructured_NER;
 import static com.CLD.dataAnonymization.util.deidentifier.algorithm.Unstructured.unstructured_Re;
 import static com.CLD.dataAnonymization.util.deidentifier.algorithm.Unstructured.unstructured_dic;
 
@@ -64,7 +65,7 @@ public class TestRunServiceImpl implements TestRunService {
     }
 
     @Override
-    public HashMap<String,String> testAll(boolean xtzd, boolean xtgz, boolean wdzd, boolean wdgz, boolean jqxx, String libName, String content) {
+    public HashMap<String,String> testAll(boolean xtzd, boolean xtgz, boolean wdzd, boolean wdgz, boolean jqxx, String libName, String content){
         ArrayList<String> dic = new ArrayList<String>();
         ArrayList<HashMap<String,String>> re = new ArrayList<HashMap<String, String>>();
         ArrayList<String> contentList = new ArrayList<String>();
@@ -116,7 +117,13 @@ public class TestRunServiceImpl implements TestRunService {
 
         // 利用机器学习获取隐私信息
         if(jqxx==true){
-            HashMap<String,HashSet<String>> ner_result = unstructured_NER(contentList,ner_url);
+            NER ner = new NER();
+            HashMap<String,HashSet<String>> ner_result = null;
+            try {
+                ner_result = ner.predict(contentList);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             for(String key:ner_result.keySet()){
                 for (String s : ner_result.get(key))
                     outResult.put(s,"***");
