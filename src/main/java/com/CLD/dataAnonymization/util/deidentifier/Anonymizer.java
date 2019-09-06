@@ -38,13 +38,15 @@ public class Anonymizer {
      */
     public ArrayList<ArrayList<String>> anonymize(){
         try{
-            dataHandle.dataTranspose();
+            if(configuration.getTransposed())
+                dataHandle.dataTranspose();
             dataArrange();
             if(configuration.getLevel()==Configuration.AnonymousLevel.Level1)
                 runLevel_1();
             if(configuration.getLevel()==Configuration.AnonymousLevel.Level2)
                 runLevel_2();
-            dataHandle.dataTranspose();
+            if(configuration.getTransposed())
+                dataHandle.dataTranspose();
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -96,10 +98,46 @@ public class Anonymizer {
      * @return
      */
     private Boolean runLevel_1(){
-        Runnable runnable1 = Level1Thread1();
-        Runnable runnable2 = Level1Thread2();
-        new Thread(runnable1).start();
-        new Thread(runnable2).start();
+        ArrayList<HashMap<String,String>> proInfo=new ArrayList<HashMap<String,String>>();
+        ArrayList<Integer> k_col=new ArrayList<Integer>();
+        ArrayList<Integer> t_col=new ArrayList<Integer>();
+        for(int i=0;i<dataHandle.getData().get(0).size();i++)
+            proInfo.add(new HashMap<String,String>());
+        ArrayList<Integer> column=null;
+        //处理mask信息
+        column=selectTypeColumn(dataHandle.getEI_Remove());
+        Suppression.suppressionHandle(dataHandle.getData(),column,proInfo);
+
+        //处理加密信息
+        column=selectTypeColumn(dataHandle.getEI_Encrypt());
+        Encrypt.encryptHandle(dataHandle.getData(),column,configuration.getEncryptPassword(),proInfo);
+
+        //处理地址信息
+        column=selectTypeColumn(dataHandle.getQI_Geographic());
+        Geography.geographyHandle(dataHandle.getData(),column,dataHandle.getGeographic(),proInfo, Geography.GeographyLevel.SmallCity);
+
+        //处理关于记录的时间信息
+        column=selectTypeColumn(dataHandle.getQI_DateRecord());
+        Datetime.datetimeHandle(dataHandle.getData(),column,Datetime.DatetimeLevel.DAY);
+
+        //处理关于年龄的时间信息
+        column=selectTypeColumn(dataHandle.getQI_DateAge());
+        Datetime.datetimeHandle(dataHandle.getData(),column,Datetime.DatetimeLevel.YEAR);
+
+        //处理准标识符的数据信息
+        column=selectTypeColumn(dataHandle.getQI_Number());
+        LaplaceNoise.laplaceNoiseHandle(dataHandle.getData(),column,configuration.getNoiseScope_small());
+
+        //处理准标识符的字符串信息
+        k_col=selectTypeColumn(dataHandle.getQI_String());
+        Tcloseness.tClosenessHandle(dataHandle.getData(),k_col,t_col,configuration.getK_small(),
+                configuration.getT(),configuration.getSuppressionLimit_level1(),dataHandle.getHierarchy());
+
+        //处理UI非结构化信息
+        column=selectTypeColumn(dataHandle.getUI());
+        Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular(),
+                configuration.getNer_corePoolSize(),configuration.getNer_maximumPoolSize(),configuration.getNer_batchSize());
+
         return true;
     }
 
@@ -109,127 +147,55 @@ public class Anonymizer {
      * @return
      */
     private Boolean runLevel_2(){
-        Runnable runnable1 = Level2Thread1();
-        Runnable runnable2 = Level2Thread2();
-        new Thread(runnable1).start();
-        new Thread(runnable2).start();
+        ArrayList<HashMap<String,String>> proInfo=new ArrayList<HashMap<String,String>>();
+        ArrayList<Integer> k_col=new ArrayList<Integer>();
+        ArrayList<Integer> t_col=new ArrayList<Integer>();
+        for(int i=0;i<dataHandle.getData().get(0).size();i++)
+            proInfo.add(new HashMap<String,String>());
+        ArrayList<Integer> column=null;
+        //处理EI信息
+        column=selectTypeColumn(dataHandle.getEI_Remove());
+        Suppression.suppressionHandle(dataHandle.getData(),column,proInfo);
+
+        //处理加密信息
+        column=selectTypeColumn(dataHandle.getEI_Encrypt());
+        Encrypt.encryptHandle(dataHandle.getData(),column,configuration.getEncryptPassword(),proInfo);
+
+        //处理地址信息
+        column=selectTypeColumn(dataHandle.getQI_Geographic());
+        Geography.geographyHandle(dataHandle.getData(),column,dataHandle.getGeographic(),proInfo, Geography.GeographyLevel.BigCity);
+
+        //处理关于记录的时间信息
+        k_col=selectTypeColumn(dataHandle.getQI_DateRecord());
+
+        //处理关于年龄的时间信息
+        column=selectTypeColumn(dataHandle.getQI_DateAge());
+        Datetime.datetimeHandle(dataHandle.getData(),column,Datetime.DatetimeLevel.NOISE);
+
+        //处理准标识符的数据信息
+        column=selectTypeColumn(dataHandle.getQI_Number());
+        LaplaceNoise.laplaceNoiseHandle(dataHandle.getData(),column,configuration.getNoiseScope_big());
+
+        //处理准标识符的字符串信息
+        k_col.addAll(selectTypeColumn(dataHandle.getQI_String()));
+
+        //处理敏感信息的数据信息
+        column=selectTypeColumn(dataHandle.getSI_Number());
+        Microaggregation.microaggregationHandle(dataHandle.getData(),column,configuration.getMicroaggregation());
+
+        //处理敏感信息的字符串信息
+        t_col=selectTypeColumn(dataHandle.getSI_String());
+        Tcloseness.tClosenessHandle(dataHandle.getData(),k_col,t_col,configuration.getK_big(),
+                configuration.getT(),configuration.getSuppressionLimit_level2(),dataHandle.getHierarchy());
+
+        //处理UI非结构化信息
+        column=selectTypeColumn(dataHandle.getUI());
+        Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular(),
+                configuration.getNer_corePoolSize(),configuration.getNer_maximumPoolSize(),configuration.getNer_batchSize());
+
+
         return true;
     }
-
-    private Runnable Level1Thread1(){
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                ArrayList<HashMap<String,String>> proInfo=new ArrayList<HashMap<String,String>>();
-                for(int i=0;i<dataHandle.getData().get(0).size();i++)
-                    proInfo.add(new HashMap<String,String>());
-                ArrayList<Integer> column=null;
-                //处理mask信息
-                column=selectTypeColumn(dataHandle.getEI_Remove());
-                Suppression.suppressionHandle(dataHandle.getData(),column,proInfo);
-                //处理加密信息
-                column=selectTypeColumn(dataHandle.getEI_Encrypt());
-                Encrypt.encryptHandle(dataHandle.getData(),column,configuration.getEncryptPassword(),proInfo);
-                //处理地址信息
-                column=selectTypeColumn(dataHandle.getQI_Geographic());
-                Geography.geographyHandle(dataHandle.getData(),column,dataHandle.getGeographic(),proInfo, Geography.GeographyLevel.SmallCity);
-                //处理UI非结构化信息
-                column=selectTypeColumn(dataHandle.getUI());
-                Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular());
-            }
-        };
-        return runnable;
-    }
-
-    private Runnable Level1Thread2(){
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                ArrayList<Integer> column=null;
-                ArrayList<Integer> k_col=new ArrayList<Integer>();
-                ArrayList<Integer> t_col=new ArrayList<Integer>();
-                //处理关于记录的时间信息
-                column=selectTypeColumn(dataHandle.getQI_DateRecord());
-                Datetime.datetimeHandle(dataHandle.getData(),column,Datetime.DatetimeLevel.DAY);
-                //处理关于年龄的时间信息
-                column=selectTypeColumn(dataHandle.getQI_DateAge());
-                Datetime.datetimeHandle(dataHandle.getData(),column,Datetime.DatetimeLevel.YEAR);
-                //处理准标识符的数据信息
-                column=selectTypeColumn(dataHandle.getQI_Number());
-                LaplaceNoise.laplaceNoiseHandle(dataHandle.getData(),column,configuration.getNoiseScope_small());
-                //处理准标识符的字符串信息
-                k_col=selectTypeColumn(dataHandle.getQI_String());
-                Tcloseness.tClosenessHandle(dataHandle.getData(),k_col,t_col,configuration.getK_small(),
-                        configuration.getT(),configuration.getSuppressionLimit_level1(),dataHandle.getHierarchy());
-            }
-        };
-        return runnable;
-    }
-
-    private Runnable Level2Thread1(){
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                ArrayList<HashMap<String,String>> proInfo=new ArrayList<HashMap<String,String>>();
-                for(int i=0;i<dataHandle.getData().get(0).size();i++)
-                    proInfo.add(new HashMap<String,String>());
-                ArrayList<Integer> column=null;
-                //处理EI信息
-                column=selectTypeColumn(dataHandle.getEI_Remove());
-                Suppression.suppressionHandle(dataHandle.getData(),column,proInfo);
-
-                //处理加密信息
-                column=selectTypeColumn(dataHandle.getEI_Encrypt());
-                Encrypt.encryptHandle(dataHandle.getData(),column,configuration.getEncryptPassword(),proInfo);
-
-                //处理地址信息
-                column=selectTypeColumn(dataHandle.getQI_Geographic());
-                Geography.geographyHandle(dataHandle.getData(),column,dataHandle.getGeographic(),proInfo, Geography.GeographyLevel.BigCity);
-
-                //处理UI非结构化信息
-                column=selectTypeColumn(dataHandle.getUI());
-                Unstructured.unstructuredHandle(dataHandle.getData(),column,proInfo,dataHandle.getDictionary(),dataHandle.getRegular());
-
-            }
-        };
-        return runnable;
-    }
-
-    private Runnable Level2Thread2(){
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                ArrayList<Integer> column=null;
-                ArrayList<Integer> k_col=new ArrayList<Integer>();
-                ArrayList<Integer> t_col=new ArrayList<Integer>();
-                //处理关于记录的时间信息
-                k_col=selectTypeColumn(dataHandle.getQI_DateRecord());
-
-                //处理关于年龄的时间信息
-                column=selectTypeColumn(dataHandle.getQI_DateAge());
-                Datetime.datetimeHandle(dataHandle.getData(),column,Datetime.DatetimeLevel.NOISE);
-
-                //处理准标识符的数据信息
-                column=selectTypeColumn(dataHandle.getQI_Number());
-                LaplaceNoise.laplaceNoiseHandle(dataHandle.getData(),column,configuration.getNoiseScope_big());
-
-                //处理准标识符的字符串信息
-                k_col.addAll(selectTypeColumn(dataHandle.getQI_String()));
-
-                //处理敏感信息的数据信息
-                column=selectTypeColumn(dataHandle.getSI_Number());
-                Microaggregation.microaggregationHandle(dataHandle.getData(),column,configuration.getMicroaggregation());
-
-                //处理敏感信息的字符串信息
-                t_col=selectTypeColumn(dataHandle.getSI_String());
-                Tcloseness.tClosenessHandle(dataHandle.getData(),k_col,t_col,configuration.getK_big(),
-                        configuration.getT(),configuration.getSuppressionLimit_level2(),dataHandle.getHierarchy());
-               }
-        };
-        return runnable;
-    }
-
-
 
     private ArrayList<Integer> selectTypeColumn(HashSet<String> type){
         ArrayList<Integer> col=new ArrayList<Integer>();

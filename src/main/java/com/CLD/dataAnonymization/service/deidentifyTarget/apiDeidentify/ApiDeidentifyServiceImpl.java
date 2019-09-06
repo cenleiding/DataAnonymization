@@ -48,6 +48,7 @@ public class ApiDeidentifyServiceImpl implements ApiDeidentifyService{
         ArrayList<HashMap<String,String>> outData=new ArrayList<HashMap<String, String>>();
 
         //匿名化
+        anonymizeConfigure.setTransposed(true);
         data=easyUtil.deidentify_run(data,anonymizeConfigure).getData();
 
         //表单使用记录

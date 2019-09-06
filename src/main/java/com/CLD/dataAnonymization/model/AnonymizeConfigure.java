@@ -33,4 +33,6 @@ public class AnonymizeConfigure {
     private String                 suppressionLimit_level2;
 
     private String                 microaggregation;
+
+    private Boolean                Transposed = false;
 }

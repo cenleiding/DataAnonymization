@@ -38,6 +38,14 @@ public class EasyUtil {
     @Value("${ner.url}")
     private String ner_url;
 
+    @Value("${ner.corePoolSize}")
+    private Integer ner_corePoolSize;
+
+    @Value("${ner.maximumPoolSize}")
+    private Integer ner_maximumPoolSize;
+
+    @Value("${ner.batchSize}")
+    private Integer ner_batchSize;
 
     /**
      * 匿名化快速调用
@@ -141,6 +149,10 @@ public class EasyUtil {
         configuration.setSuppressionLimit_level2(Double.valueOf(anonymizeConfigure.getSuppressionLimit_level2()));
         configuration.setT(Double.valueOf(anonymizeConfigure.getT()));
         configuration.setNer_url(ner_url);
+        configuration.setTransposed(anonymizeConfigure.getTransposed());
+        configuration.setNer_corePoolSize(ner_corePoolSize);
+        configuration.setNer_maximumPoolSize(ner_maximumPoolSize);
+        configuration.setNer_batchSize(ner_batchSize);
         return configuration;
     }
 

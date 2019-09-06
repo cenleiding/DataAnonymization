@@ -34,26 +34,33 @@ public class Unstructured {
                                              ArrayList<Integer> col,
                                              ArrayList<HashMap<String,String>> proInfo,
                                              ArrayList<String> dictionary,
-                                             ArrayList<HashMap<String,String>> regular){
+                                             ArrayList<HashMap<String,String>> regular,
+                                             Integer ner_corePoolSize,
+                                             Integer ner_maximumPoolSize,
+                                             Integer ner_batchSize){
 
         try{
             // 利用机器学习获取隐私信息
             ArrayList<HashMap<String,HashSet<String>>> ner_result = new ArrayList<HashMap<String,HashSet<String>>>();
             // 开启多线程，NER
-            ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 4, 1, TimeUnit.DAYS,
+            ThreadPoolExecutor executor = new ThreadPoolExecutor(ner_corePoolSize, ner_maximumPoolSize, 1, TimeUnit.DAYS,
                     new LinkedBlockingDeque<Runnable>());
             for (int column :col) {
                 int left_index = 0;
-                int right_index = 250;
+                int right_index = ner_batchSize;
                 while(left_index<data.get(0).size()){
                     NerTask nerTask = new NerTask(data.get(column),left_index,Math.min(right_index,data.get(0).size()),ner_result);
-                    System.out.println(left_index+":"+right_index+"线程池中线程数目："+executor.getPoolSize()+"，队列中等待执行的任务数目："+
-                            executor.getQueue().size()+"，已执行玩别的任务数目："+executor.getCompletedTaskCount());
+                    executor.execute(nerTask);
                     left_index = right_index;
-                    right_index+=250;
+                    right_index+=ner_batchSize;
                 }
             }
             executor.shutdown();
+            while(!executor.isTerminated()){
+                System.out.println("线程池中线程数目："+executor.getPoolSize()+"，队列中等待执行的任务数目："+
+                        executor.getQueue().size()+"，已执行玩别的任务数目："+executor.getCompletedTaskCount());
+                Thread.sleep(200);
+            }
 
             //利用规则获取隐私信息
             ArrayList<HashMap<String,String>> re_result = new ArrayList<HashMap<String,String>>();
@@ -201,6 +208,8 @@ public class Unstructured {
         for(HashMap<String,String> pro : proInfo){
             out_result.putAll(pro);
         }
+
+
 
         return out_result;
     }
