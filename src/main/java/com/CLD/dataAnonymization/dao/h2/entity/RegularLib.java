@@ -21,6 +21,7 @@ public class RegularLib {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String libName;
 
     private String user;

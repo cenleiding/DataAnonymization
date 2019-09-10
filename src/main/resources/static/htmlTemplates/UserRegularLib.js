@@ -252,6 +252,7 @@ app.controller("userRegularLibCtrl", function($scope,$http,ngDialog) {
 
     // 测试单字典
     $scope.test_simple_dictionary = function (fileName) {
+        $scope.testText = document.getElementById("testText").value;
         $http({
             method:'GET',
             url:"/MyReAndDic/testSimpleDictionary",
@@ -268,6 +269,7 @@ app.controller("userRegularLibCtrl", function($scope,$http,ngDialog) {
     }
 
     $scope.test_simple_regular = function (regular) {
+        $scope.testText = document.getElementById("testText").value;
         $http({
             method:'GET',
             url:"/MyReAndDic/testSimpleRegular",
@@ -284,6 +286,7 @@ app.controller("userRegularLibCtrl", function($scope,$http,ngDialog) {
     }
 
     $scope.test_all = function () {
+        $scope.testText = document.getElementById("testText").value;
         $http({
             method:'GET',
             url:"/MyReAndDic/testAll",

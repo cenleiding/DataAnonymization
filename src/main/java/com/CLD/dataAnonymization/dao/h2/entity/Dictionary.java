@@ -29,5 +29,6 @@ public class Dictionary {
 
     private String description;
 
+    @Column(length = 5000)
     private String content;
 }

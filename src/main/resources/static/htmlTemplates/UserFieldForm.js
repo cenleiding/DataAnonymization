@@ -212,6 +212,9 @@ app.controller("userFieldFormCtrl", function($scope,$http,ngDialog) {
 
     $scope.saveChange=function () {
         updateForm();
+        //...不知道为什么双向绑定失效了。。
+        $scope.newFormName = document.getElementById("newFormName").value;
+        $scope.description = document.getElementById("description").value;
         var newFormDetail={}
         newFormDetail.newDescription=$scope.description;
         newFormDetail.oldFormName=$scope.formName;
