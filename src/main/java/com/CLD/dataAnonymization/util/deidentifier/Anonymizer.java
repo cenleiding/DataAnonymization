@@ -276,6 +276,7 @@ public class Anonymizer {
                         data.get(i).set(j,sdf.format(new Date((long)(((Double.valueOf(t[0])-70*365-19)*86400-8*3600)*1000))));
                     }
                     data.get(i).set(j, data.get(i).get(j)
+                            .trim()
                             .split(" ")[0]
                             .replace("\\","-")
                             .replace("/","-")

@@ -24,7 +24,7 @@ public class ApiUsage {
 
     private String time;
 
-    @Column(length = 1000)
+    @Column(length = 20000)
     private String head;
 
     private String size;

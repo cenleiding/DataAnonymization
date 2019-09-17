@@ -5,7 +5,6 @@ import com.CLD.dataAnonymization.dao.h2.repository.FieldClassifyUsageCountReposi
 import com.CLD.dataAnonymization.model.AnonymizeConfigure;
 import com.CLD.dataAnonymization.service.deidentifyTarget.EasyUtil;
 import com.CLD.dataAnonymization.service.nodeAndField.fieldClassify.FieldClassifyService;
-import com.CLD.dataAnonymization.util.deidentifier.Configuration;
 import com.CLD.dataAnonymization.util.deidentifier.DataHandle;
 import com.CLD.dataAnonymization.util.deidentifier.io.FileResolve;
 import com.CLD.dataAnonymization.util.deidentifier.io.ZipCompressor;
@@ -44,6 +43,7 @@ public class FileDeidentifyServiceImpl implements FileDeidentifyService {
         String time=String.valueOf(System.currentTimeMillis());
         String savePath =rq.getSession().getServletContext().getRealPath("/identityFiles/"+time);
         FileResolve.createFile(savePath);
+        System.out.println(savePath);
 
 
         //文件处理
