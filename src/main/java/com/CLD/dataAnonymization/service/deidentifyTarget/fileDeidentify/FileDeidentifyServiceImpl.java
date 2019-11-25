@@ -50,6 +50,7 @@ public class FileDeidentifyServiceImpl implements FileDeidentifyService {
         for(String key:files.keySet()) {
             MultipartFile file = files.getFirst(key);
             String filename = file.getOriginalFilename();
+            anonymizeConfigure.setTransposed(true);
             if(filename.endsWith(".csv")){
                 DataHandle dataHandle=easyUtil.deidentify_run(FileResolve.readerCsv(file.getInputStream()),anonymizeConfigure);
                 FileResolve.writerCsv(savePath+"\\"+anonymizeConfigure.getLevel()+filename,dataHandle.getData());
